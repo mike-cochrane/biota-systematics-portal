@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Configuration;
-using Systematics.Portal.Web.Models;
+using Systematics.Portal.Web.ViewModels;
 using Systematics.Portal.Web.Helpers;
 
 namespace Systematics.Portal.Web.Controllers

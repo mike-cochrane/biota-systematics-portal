@@ -1,6 +1,6 @@
 using System;
 
-namespace Systematics.Portal.Web.Models
+namespace Systematics.Portal.Web.ViewModels
 {
     public class ErrorViewModel
     {

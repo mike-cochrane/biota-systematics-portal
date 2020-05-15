@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Systematics.Portal.Web.Models;
+using Systematics.Portal.Web.ViewModels;
 
 namespace Systematics.Portal.Web.Controllers
 {
