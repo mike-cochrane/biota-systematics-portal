@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SystematicPortal.Controllers
+namespace Systematics.Portal.Web.Controllers
 {
     public class SearchController : Controller
     {

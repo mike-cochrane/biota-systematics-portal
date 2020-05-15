@@ -5,14 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Configuration;
-using SystematicPortal.Models;
-using SystematicsPortal.Helpers;
-using SystematicsPortal.Models;
-using System.Web.Mvc;
+using Systematics.Portal.Web.ViewModels;
+using Systematics.Portal.Web.Helpers;
 
-namespace SystematicPortal.Controllers
+namespace Systematics.Portal.Web.Controllers
 {
-    public class SupportController : Microsoft.AspNetCore.Mvc.Controller
+    public class SupportController : Controller
     {
         public IActionResult Index()
         {
@@ -64,8 +62,8 @@ namespace SystematicPortal.Controllers
             return View();
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpPost]
-        public Microsoft.AspNetCore.Mvc.ActionResult ContactUs(ContactUsViewModel model)
+        [HttpPost]
+        public ActionResult ContactUs(ContactUsViewModel model)
         {
             string info = string.Empty;
             string error = string.Empty;
@@ -112,7 +110,7 @@ namespace SystematicPortal.Controllers
                 Error = error,
                 Information = info
             };
-            return Json(viewData, JsonRequestBehavior.AllowGet);
+            return Json(viewData);
         }
     }
 }

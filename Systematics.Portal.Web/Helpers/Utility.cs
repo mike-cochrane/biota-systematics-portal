@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace SystematicsPortal.Helpers
+namespace Systematics.Portal.Web.Helpers
 {
     public class Utility
     {
@@ -19,21 +19,21 @@ namespace SystematicsPortal.Helpers
         /*private static ISearchRepository _searchRepository;
         private static ISectionContentsRepository _sectionContentsRepository;*/
 
-       /* private static ISearchRepository SearchRepository
-        {
-            get
-            {
-                if (_searchRepository == null)
-                {
-                    var solrConnectionString = ConfigurationManager.AppSettings["SolrServer"];
-                    var solrUserName = ConfigurationManager.AppSettings["SolrUserName"];
-                    var solrPassword = ConfigurationManager.AppSettings["SolrPassword"];
+        /* private static ISearchRepository SearchRepository
+         {
+             get
+             {
+                 if (_searchRepository == null)
+                 {
+                     var solrConnectionString = ConfigurationManager.AppSettings["SolrServer"];
+                     var solrUserName = ConfigurationManager.AppSettings["SolrUserName"];
+                     var solrPassword = ConfigurationManager.AppSettings["SolrPassword"];
 
-                    _searchRepository = new Data.Solr.Repositories.SearchRepository(solrConnectionString, solrUserName, solrPassword);
-                }
-                return _searchRepository;
-            }
-        }*/
+                     _searchRepository = new Data.Solr.Repositories.SearchRepository(solrConnectionString, solrUserName, solrPassword);
+                 }
+                 return _searchRepository;
+             }
+         }*/
 
         /*private static ISectionContentsRepository SectionContentsRepository
         {
@@ -161,10 +161,13 @@ namespace SystematicsPortal.Helpers
             {
                 if (fromAddress == null)
                 {
-                    fromAddress = ConfigurationManager.AppSettings["SenderAddress"].ToString();
+                    // TODO: Get configuration using DI
+                    //fromAddress = ConfigurationManager.AppSettings["SenderAddress"].ToString();
                 }
 
-                string SMTPServer = ConfigurationManager.AppSettings["SMTPServer"].ToString();
+                // TODO: Get configuration using DI
+                //string SMTPServer = ConfigurationManager.AppSettings["SMTPServer"].ToString();
+                var SMTPServer = string.Empty;
                 SmtpClient client = new SmtpClient(SMTPServer);
 
                 MailAddress sender = new MailAddress(fromAddress);

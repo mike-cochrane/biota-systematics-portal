@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SystematicPortal.Models;
+using Systematics.Portal.Web.ViewModels;
 
-namespace SystematicPortal.Controllers
+namespace Systematics.Portal.Web.Controllers
 {
     public class HomeController : Controller
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SystematicsPortal.Models
+namespace Systematics.Portal.Web.ViewModels
 {
     public class JSONBaseModel
     {
