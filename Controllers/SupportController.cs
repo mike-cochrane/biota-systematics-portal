@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System.Configuration;
 using SystematicPortal.Models;
 using SystematicsPortal.Helpers;
@@ -63,8 +64,8 @@ namespace SystematicPortal.Controllers
             return View();
         }
 
-        /*[System.Web.Mvc.HttpPost]
-        public System.Web.Mvc.ActionResult ContactUs(ContactUsViewModel model)
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public Microsoft.AspNetCore.Mvc.ActionResult ContactUs(ContactUsViewModel model)
         {
             string info = string.Empty;
             string error = string.Empty;
@@ -112,6 +113,6 @@ namespace SystematicPortal.Controllers
                 Information = info
             };
             return Json(viewData, JsonRequestBehavior.AllowGet);
-        }*/
+        }
     }
 }
