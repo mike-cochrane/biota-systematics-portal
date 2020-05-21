@@ -18,7 +18,7 @@
                 @Html.LabelFor(model => model.Name, new { @class = "inline-label" })<span class="required">&nbsp;*</span>
             </div>
             <div class="editor-field span9">
-                @Html.EditorFor(model => model.Name)
+                 @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class="required"}})
                 <p>@Html.ValidationMessageFor(model => model.Name)</p>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 @Html.LabelFor(model => model.Email, new { @class = "inline-label" })<span class="required">&nbsp;*</span>
             </div>
             <div class="editor-field span9">
-                @Html.EditorFor(model => model.Email)
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "required", @type = "email" } })
                 <p>@Html.ValidationMessageFor(model => model.Email)</p>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 @Html.LabelFor(model => model.Subject, new { @class = "inline-label" })<span class="required">&nbsp;*</span>
             </div>
             <div class="editor-field span9">
-                @Html.EditorFor(model => model.Subject)
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "required" } })
                 <p>@Html.ValidationMessageFor(model => model.Subject)</p>
             </div>
         </div>
@@ -68,7 +68,7 @@
                 @Html.LabelFor(model => model.Message, new { @class = "inline-label" })<span class="required">&nbsp;*</span>
             </div>
             <div class="editor-field span9">
-                @Html.TextAreaFor(model => model.Message, new { @class = "text-box multi-line" })
+                @Html.TextAreaFor(model => model.Message, new { @class = "required text-box multi-line" })
                 <p>@Html.ValidationMessageFor(model => model.Message)</p>
             </div>
         </div>
@@ -81,13 +81,23 @@
     }
 </div>
 <script type="text/javascript">
+
     function sendFeedback() {
         //var postData = $('form').serialize();
 
-        if ($('form').valid()) {
-            $("#loading").show();
+        //alert('valid() is ' + $('form').valid());
 
-            var recipient = $('input[name=RecipientId]:radio:checked').val();
+        const RESULT = $('form').valid({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                }
+            }
+        });
+
+        if (RESULT) {
+            //$("#loading").show();
 
             $.ajax({
                 url: '/Support/ContactUs',
@@ -95,7 +105,7 @@
                 contentType: 'application/json;',
                 cache: false,
                 data: JSON.stringify({
-                    recipientId: recipient,
+                    //recipientId: recipient,
                     name: $('#Name').val(),
                     email: $('#Email').val(),
                     organisation: $('#Organisation').val(),
@@ -104,11 +114,13 @@
                     message: $('#Message').val()
                 }),
                 success: function (result) {
-                    $("#loading").hide();
+                    alert("stringif is " + JSON.stringify(result)); 
+                    alert('result.Error is ' + result.error + ' and result.Information is ' + result.information);
+                    //$("#loading").hide();
                     updateMessages(result);
                 },
                 complete: function () {
-                    $("#loading").hide();
+                    //$("#loading").hide();
                 }
             });
         }

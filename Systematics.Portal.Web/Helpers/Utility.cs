@@ -167,7 +167,8 @@ namespace Systematics.Portal.Web.Helpers
 
                 // TODO: Get configuration using DI
                 //string SMTPServer = ConfigurationManager.AppSettings["SMTPServer"].ToString();
-                var SMTPServer = string.Empty;
+                //var SMTPServer = string.Empty;
+                var SMTPServer = "smtp.landcareresearch.co.nz"; // TODO testing this if it works...
                 SmtpClient client = new SmtpClient(SMTPServer);
 
                 MailAddress sender = new MailAddress(fromAddress);

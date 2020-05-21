@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/style.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/scripts.js"></script>
+    @RenderSection("Scripts", required: false)
 </head>
 <body>
     <header>
@@ -66,11 +72,36 @@
             <a asp-area="" asp-controller="Support" asp-action="ContactUs">Contact us</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/scripts.js"></script>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
+<script type="text/javascript">
+    var returnUrl = null;
+    var downloadRecordCount = 0;
+
+    function showImportantNotice(message) {
+        if (!message == "") {
+            $('#important-notice').html(message);
+            $('#important-notice').removeClass('hidden');
+        }
+    }
+
+    function updateMessages(result) {
+        var message = "";
+        if (!result.information == "") {
+            var message = "<p><span class='label label-success'><i class='icon-ok icon-white'></i></span> " + result.information + "</p>";
+        }
+        $('#message').html(message);
+
+        var errorMessage = "";
+        if (!result.error == "") {
+            var errorMessage = "<p><span class='label label-important'><i class='icon-ban-circle icon-white'></i></span> " + result.error + "</p>";
+        }
+        $('#error').html(errorMessage);
+    }
+
+    function goToReturnUrl() {
+        if (returnUrl != null) {
+            window.location = returnUrl;
+        }
+    }
+</script>
