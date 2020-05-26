@@ -1,107 +1,1611 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Systematics Portal</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/style.css" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/scripts.js"></script>
-    @RenderSection("Scripts", required: false)
+    <base href="https://localhost:44302/"><!--[if lte IE 6]></base><![endif]-->
+
+    <title>About Us &raquo; Manaaki Whenua</title>
+
+    <meta charset='utf-8'>
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
+
+    <meta generator="SilverStripe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="We are very excited to report that the first releases of the moth plant beetle (Freudeita cupripennis) took place in December 2019 at sites in the Bay of Plenty and Northland. One hundred and fifty adult beetles were released on 13 December at Matapihi, near Tauranga, in the Bay of Plenty. Shane Hona (Bay of Plenty Regional Council), together with Hayden Henry, a representative of Ngai Tukairangi Resource Management Authority, released the beetles onto a moth plant infestation smothering harakeke/New Zealand flax (Phormium tenax). The second release, also consisting of 150 adult beetles, took place in the Awanui area near the Sweetwater Lakes in Northland, courtesy of Jenny Dymock (Northland Regional Council). Jenny conducted the release on 18 December as part of Bushland Trust’s restoration plan for the lakes and the surrounding riparian/run-off zones." />
+
+
+    <meta robots="noindex, nofollow, nosnippet, noindex, nocache, noarchive" />
+
+
+    <meta twitter:title="Introducing the moth plant beetle, at last!" />
+
+
+    <meta twitter:description="You can fill this page out with your own content, or delete it and create your own pages." />
+
+
+
+
+
+    <meta property="og:title" content="Introducing the moth plant beetle, at last!" />
+
+    <meta property="og:type" content="website" />
+
+
+    <meta property="og:url" content="https://uat.mwlr.msapp.co.nz/about-us/" />
+
+
+    <meta property="og:description" content="You can fill this page out with your own content, or delete it and create your own pages." />
+
+
+    <meta property="og:site_name" content="Manaaki Whenua" />
+
+
+
+
+
+
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/_resources/themes/default/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/_resources/themes/default/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/_resources/themes/default/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="~/_resources/themes/default/images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="~/_resources/themes/default/images/favicons/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="~/_resources/vendor/dorsetdigital/silverstripe-photoswipe-elemental/client/dist/gallery.css">
+
+
+    <link rel="stylesheet" type="text/css" href="~/_resources/themes/default/dist/app.css" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Systematics Portal</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">About us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Support" asp-action="TermsOfUse">Terms of use</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Search" asp-action="Index">Search</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Search" asp-action="Browse">Browse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Support" asp-action="Index">Support</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Login / Signup</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                        </li>
-                    </ul>
+<body class="T3CategoryPage" dir="ltr">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFL7V92"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a href="/about-us/#main-content" class="c-skip-link">Skip to content</a>
+
+    <div class="l-page-container">
+        <header class="c-site-header js-menu">
+            <div class="c-site-header__inner">
+                <a href="/" class="c-site-logo">
+                    <svg class="c-svg-icon c-site-logo__icon">
+                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-mwlr-logo"></use>
+                    </svg>
+
+                    <span class="c-site-logo__text">
+                        <span class="c-site-logo__emphasised-text">Manaaki Whenua</span>
+                        <span>Landcare Research</span>
+                    </span>
+                </a>
+                <a href="/about-us/#" class="c-site-header__menu-trigger js-toggle-mobile-nav">
+                    <svg class="c-svg-icon c-site-header__trigger-icon">
+                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-menu"></use>
+                    </svg>
+
+                </a>
+                <div class="c-site-header__nav-container js-mobile-nav-panel">
+                    <a href="/about-us/#" class="c-site-header__menu-trigger c-site-header__menu-trigger--in-panel js-toggle-mobile-nav">
+                        <svg class="c-svg-icon c-site-header__trigger-icon">
+                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-menu-close"></use>
+                        </svg>
+
+                    </a>
+
+
+
+
+                    <nav class="c-top-nav" aria-label="Secondary Navigation">
+                        <ul class="c-top-nav__menu">
+                            <li class="c-top-nav__item">
+                                <a href="/contact-us/" class="c-top-nav__link link" title="">About us</a>
+                            </li>
+
+                            <li class="c-top-nav__item">
+                                <a href="/" class="c-top-nav__link current" title="">Terms of use</a>
+                            </li>
+
+                            <li class="c-top-nav__item">
+                                <a href="/" class="c-top-nav__link current" title="">Login / Signup</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+
+
+
+
+
+
+                    <nav class="c-audience-nav">
+                        <ul class="c-audience-nav__tier-1-menu">
+
+
+                            <li class="c-audience-nav__tier-1-item js-tier-1-item js-tier-1-item--1">
+                                <a href="/#" data-link="/about-us/" data-item="1" data-tier="1" class="c-audience-nav__tier-1-link js-tier-toggle link" title="" aria-haspopup="true" aria-expanded="false">
+                                    Search
+                                    <svg class="c-svg-icon c-audience-nav__tier-1-toggle-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-plus"></use>
+                                    </svg>
+
+                                </a>
+                                <div class="c-audience-nav__tier-2-items">
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--1  c-audience-nav__tier-2-item--featured">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-talk"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="1" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Hot topics</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/about-us/#" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Climate change
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Myrtle rust
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Land use sustainability
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--2 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-plant"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="2" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <a href="/discover-our-science/biodiversity/" class="c-audience-nav__tier-2-heading-text link" title="The description">
+                                                Biodiversity
+                                            </a>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+                                        <div class="c-audience-nav__tier-2-desc">We want New Zealand to be an environmentally informed nation</div>
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+                                            <a href="/discover-our-science/biodiversity/" class="c-button c-btn--menu-link link" title="The description">
+                                                Learn more
+                                                <svg class="c-svg-icon c-button__icon">
+                                                    <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                                </svg>
+
+                                            </a>
+
+
+
+
+                                            <h5 class="c-audience-nav__tier-2-menu-heading">Related science</h5>
+
+                                            <ul class="c-audience-nav__tier-2-menu  c-audience-nav__tier-2-menu--small">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Plants, fungi, anthropods &amp; bacteria
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--3 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-plant"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="3" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <a href="/discover-our-science/biosecurity/" class="c-audience-nav__tier-2-heading-text link" title="">
+                                                Biosecurity
+                                            </a>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+                                        <div class="c-audience-nav__tier-2-desc">We want New Zealand to be an environmentally informed nation</div>
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+                                            <a href="/discover-our-science/biosecurity/" class="c-button c-btn--menu-link link" title="">
+                                                Learn more
+                                                <svg class="c-svg-icon c-button__icon">
+                                                    <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                                </svg>
+
+                                            </a>
+
+
+
+
+                                            <h5 class="c-audience-nav__tier-2-menu-heading">Related research</h5>
+
+                                            <ul class="c-audience-nav__tier-2-menu  c-audience-nav__tier-2-menu--small">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link current" title="">
+                                                        Weed control
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link current" title="">
+                                                        Predator control
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link current" title="">
+                                                        Ecological control
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--4 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-hills"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="4" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <a href="/events/" class="c-audience-nav__tier-2-heading-text link" title="">
+                                                Land
+                                            </a>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+                                        <div class="c-audience-nav__tier-2-desc">We want New Zealanders to use our resources wisely.</div>
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+                                            <a href="/events/" class="c-button c-btn--menu-link link" title="">
+                                                Learn more
+                                                <svg class="c-svg-icon c-button__icon">
+                                                    <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                                </svg>
+
+                                            </a>
+
+
+
+
+                                            <h5 class="c-audience-nav__tier-2-menu-heading">Related science</h5>
+
+                                            <ul class="c-audience-nav__tier-2-menu  c-audience-nav__tier-2-menu--small">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Integrated land &amp; water management
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--5 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-chemistry"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="5" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <a href="/events/" class="c-audience-nav__tier-2-heading-text link" title="">
+                                                Environment
+                                            </a>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+                                        <div class="c-audience-nav__tier-2-desc">We want New Zealand to be an environmentally informed nation</div>
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+                                            <a href="/events/" class="c-button c-btn--menu-link link" title="">
+                                                Learn more
+                                                <svg class="c-svg-icon c-button__icon">
+                                                    <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                                </svg>
+
+                                            </a>
+
+
+
+
+                                            <h5 class="c-audience-nav__tier-2-menu-heading">Related science</h5>
+
+                                            <ul class="c-audience-nav__tier-2-menu  c-audience-nav__tier-2-menu--small">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Climate change &amp; greenhouse gases
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+
+
+                            <li class="c-audience-nav__tier-1-item js-tier-1-item js-tier-1-item--2">
+                                <a href="/#" data-link="/about-us/" data-item="2" data-tier="1" class="c-audience-nav__tier-1-link js-tier-toggle link" title="" aria-haspopup="true" aria-expanded="false">
+                                    Browse
+                                    <svg class="c-svg-icon c-audience-nav__tier-1-toggle-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-plus"></use>
+                                    </svg>
+
+                                </a>
+                                <div class="c-audience-nav__tier-2-items">
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--1  c-audience-nav__tier-2-item--featured">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="1" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Highlights</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Climate change
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Myrtle rust
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Land use sustainability
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--2 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-pair"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="2" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Information for...</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/home/information-for/iwi/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Iwi
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/home/information-for/information-for-government-and-policy-makers/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Government &amp; policy makers
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Business
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--3 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-microscope"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="3" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Our capabilities</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Biota
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Climate change adaptation &amp; mitigation
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Wildlife management &amp; conservation ecology
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--4 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-ladder"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="4" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Business solutions</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Toitu Envirocare
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Biological Heritage Challenge
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+
+
+                            <li class="c-audience-nav__tier-1-item js-tier-1-item js-tier-1-item--3">
+                                <a href="/#" data-link="/" data-item="3" data-tier="1" class="c-audience-nav__tier-1-link js-tier-toggle link" title="" aria-haspopup="true" aria-expanded="false">
+                                    Support
+                                    <svg class="c-svg-icon c-audience-nav__tier-1-toggle-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-plus"></use>
+                                    </svg>
+
+                                </a>
+                                <div class="c-audience-nav__tier-2-items">
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--1  c-audience-nav__tier-2-item--featured">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="1" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Climate change
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Myrtle rust
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--2 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-group"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="2" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Education</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Teaching resources
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--3 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-microscope"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="3" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Identification</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        What is this bug?
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Fungi identification
+                                                    </a>
+                                                </li>
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Plant identification
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="c-audience-nav__tier-2-item js-tier-2-item js-tier-2-item--4 ">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-ladder"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                        <h4 data-item="4" data-tier="2" class="c-audience-nav__tier-2-heading js-tier-toggle">
+
+                                            <span class="c-audience-nav__tier-2-heading-text">Tools</span>
+
+                                            <svg class="c-svg-icon c-audience-nav__tier-2-toggle-icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-cross"></use>
+                                            </svg>
+
+                                        </h4>
+
+
+
+                                        <div class="c-audience-nav__tier-2-menu-container">
+
+
+
+
+                                            <ul class="c-audience-nav__tier-2-menu ">
+
+                                                <li class="c-audience-nav__tier-2-menu-item">
+                                                    <a href="/" class="c-audience-nav__tier-2-menu-link link" title="">
+                                                        Collections
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            <li class="c-audience-nav__tier-1-item c-audience-nav__tier-1-item--search js-tier-1-item js-tier-1-item--0">
+                                <a href="/#" class="c-audience-nav__btn-link js-tier-toggle" data-item="0" data-tier="1" aria-haspopup="true" aria-expanded="false">
+                                    <span class="c-audience-nav__btn-link-text">Search</span>
+                                    <svg class="c-svg-icon c-audience-nav__btn-link-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-search"></use>
+                                    </svg>
+
+                                </a>
+                                <div class="c-audience-nav__search">
+                                    <div class="c-audience-nav__search-icon">
+                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-search-ring"></use>
+                                        </svg>
+
+                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
+                                    </div>
+                                    <form class="c-search-form" action="/search">
+                                        <div class="c-search-form__field c-search-form__field--keyword">
+                                            <label for="header-search-keyword" class="c-search-form__label">Search for&hellip;</label>
+                                            <input id="header-search-keyword" class="c-search-form__text-input" type="text" placeholder="Search for keyword or phrase..." name="query" />
+                                        </div>
+
+
+                                        <button type="submit" class="c-button">
+                                            <span class="c-button__text c-button__text--extra-space c-button__text--hide-mob">Search</span>
+                                            <svg class="c-svg-icon c-button__icon">
+                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                            </svg>
+
+                                        </button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+
+
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </header>
+
+
+        <div id="main-content" class="l-page-container__body">
+            <div class="c-t3-banner " style="background-image: url(https://uat.mwlr.msapp.co.nz/uploads/public/Uploads/petr-vysohlid-9fqwGqGLUxc-unsplash-1__FillMaxWzIwMDAsNTQwXQ.jpg)">
+                <div class="c-t3-banner__content">
+
+                    <ul class="c-breadcrumbs">
+
+                        <li class="c-breadcrumbs__item">
+
+                            <a href="/" class="c-breadcrumbs__link">
+
+                                Home
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+
+
+                    <h1 class="c-t3-banner__title">
+                        Introducing the moth plant beetle, at last!
+                    </h1>
+
+                </div>
+            </div>
+
+
+            <div class="l-content-container l-content-container--with-floating-nav" id="overview">
+
+
+
+
+
+
+
+
+
+
+                <div class="l-elemental-content">
+
+
+
+                    <div class="l-content-block l-content-block--default">
+                        <div class="element dnadesign__elemental__models__elementcontent" id="e20">
+                            <div class="content-element__content">
+
+                                @RenderBody()
+                                <p>We are very excited to report that the first releases of the moth plant beetle (Freudeita cupripennis) took place in December 2019 at sites in the Bay of Plenty and Northland. One hundred and fifty adult beetles were released on 13 December at Matapihi, near Tauranga, in the Bay of Plenty. Shane Hona (Bay of Plenty Regional Council), together with Hayden Henry, a representative of Ngai Tukairangi Resource Management Authority, released the beetles onto a moth plant infestation smothering harakeke/New Zealand flax (Phormium tenax). The second release, also consisting of 150 adult beetles, took place in the Awanui area near the Sweetwater Lakes in Northland, courtesy of Jenny Dymock (Northland Regional Council). Jenny conducted the release on 18 December as part of Bushland Trust’s restoration plan for the lakes and the surrounding riparian/run-off zones.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="l-content-block l-content-block--default">
+                        <div class="element quoteblock" id="e29">
+
+
+                            <blockquote class="c-blockquote">
+                                We are very excited to report that the first releases of the moth plant beetle (<span class="highlight">Freudeita cupripennis</span>) took place in December 2019 at sites in the Bay of Plenty and Northland. One hundred and fifty adult beetles were released on 13 December at Matapihi,
+                            </blockquote>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="l-content-block l-content-block--default">
+                        <div class="element dnadesign__elemental__models__baseelement" id="e21">
+
+                        </div>
+
+                    </div>
+
+                    <div class="l-content-block l-content-block--default">
+                        <div class="element dnadesign__elemental__models__elementcontent" id="e22">
+                            <div class="content-element__content">
+
+
+                                <p>Moth plant (<em>Araujia hortorum</em>) is native to Brazil, Argentina, Paraguay and Uruguay and is particularly invasive in the northern regions of New Zealand. The vines of moth plant smother shrubs and small trees, and they spread along the ground, shading out small native plants and seedlings. Moth plant is currently dominant in urban and peri-urban areas, particularly around forest margins, hedges and wastelands, but in time it will pose a greater threat to healthy native forests in northern New Zealand. Moth plant’s choko-like fruits produce 250 to 1,000 parachute-like seeds, which can disperse long distances in the wind. When damaged, moth plant exudes a white, waxy substance, which can stain clothing and with direct contact can cause skin irritation and serious eyes problems. Moth plant is so disliked in New Zealand that communities and school groups are dedicated to its demise. The Society Totally Against Moth Plant (STAMP), which has close to 500 members on Facebook, regularly goes on “control adventures” in the Auckland region. Moth plant is also subject to interschool competitions, whereby teams vie to collect the highest number of pods, with the winner taking home prize money donated by Pest Free Auckland. In 2019 two teams from Botany College finished in first and second place, with Team Demons defeating The Cultured Moth Destroyers by a score of 2,265 to 1,878 moth plant pods.</p><p>The release of the moth plant beetle has been a long time coming. An application to release the beetles was first approved by the Environmental Protection Authority (EPA) in December 2011, but due to ongoing problems with exporting biocontrol agents from Argentina, the beetles had to be recollected from Uruguay and undergo a new batch of host specificity tests. The beetle population from the Melilla area, northwest of Montevideo, was approved for release by the EPA in May 2019, after which Zane McGrath, the technician on the project, worked very hard to build up beetle numbers for a release. According to Zane, “the beetles are a bit of a handful to rear in the lab, but in a good way. When first rearing the beetles, we left groups of adults on individual potted moth plants, until we noticed that the plants started dying due to the hundreds of larvae that were feeding on the roots of the plants, causing them considerable damage and stress. We had to adjust our rearing techniques to control the numbers of larvae per plant to ensure enough root material for all of them to complete their development to adulthood.”</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="l-content-block l-content-block--default">
+                        <div class="element dnadesign__elemental__models__baseelement" id="e23">
+
+                        </div>
+
+                    </div>
+
+                    <div class="l-content-block l-content-block--default">
+                        <div class="element dnadesign__elemental__models__elementcontent" id="e24">
+                            <div class="content-element__content">
+
+
+                                <p><span>Hopefully the beetle larvae will have just as voracious an appetite for moth plant in the field as they do in the lab. “Although it is early days, the adult beetles, which are about 1 cm in length, should be easy to spot in the field, with their impressive metallic red wing cases and distinctive black head, thorax, antennae and legs,” said Zane. The beetles are expected to have two to three generations per year in New Zealand. “Further releases of the beetles are planned this summer, before they slow down to enter diapause, a period of suspended development to survive the colder months,” said Zane.</span></p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="l-content-block l-content-block--default">
+                        <div class="element dnadesign__elemental__models__elementcontent" id="e26">
+                            <div class="content-element__content">
+
+
+                                <p><iframe src="https://www.youtube.com/embed/-mb3meB5Mcc" width="800" height="415" frameborder="0"></iframe></p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+        <div id="js-site-footer" class="c-site-footer">
+            <a href="/about-us/#main-content" class="c-button c-button--grey c-button--vertical c-site-footer__top-link js-top-link js-jump-link">
+                <svg class="c-svg-icon c-button__icon">
+                    <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-up"></use>
+                </svg>
+
+                Top
+            </a>
+            <div class="c-site-footer__inner">
+                <a href="/about-us/#" class="c-site-footer__btn-link c-site-footer__btn-link--mob-only js-toggle-mob-footer-links">
+                    <span class="js-footer-btn-text">Show site links</span>
+                    <svg class="c-svg-icon c-site-footer__btn-link-icon">
+                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-down"></use>
+                    </svg>
+
+                </a>
+
+
+
+
+                <nav class="c-footer-nav js-hidden-mob-footer-links">
+
+
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Other links
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Jobs
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    About Us
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            <a href="/discover-our-science/" class="c-footer-nav__heading-link link" title="">Discover our science</a>
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/discover-our-science/biodiversity/" class="c-footer-nav__menu-link link" title="">
+
+                                    Biodiversity
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/discover-our-science/biosecurity/" class="c-footer-nav__menu-link link" title="">
+
+                                    Biosecurity
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Wildlife management &amp; conservation ecology
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Land
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Environment
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Hot topics
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Publications
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Books and monographs
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Newsletters
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Science publications
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Factsheets
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Briefing papers
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Library
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Work with us
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Science collaboration
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Books &amp; monographs
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Briefing papers
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Newsletters
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Factsheets
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Library
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            <a href="/about-us/" class="c-footer-nav__heading-link link" title="">About us</a>
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Our organisation
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Our people
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Corporate publications
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Contact us
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    News
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Events
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Tools and resources
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Indentification
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Data
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Soils portal
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Collections
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Information for...
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Businesses
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Iwi
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Government and policy makers
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Teachers
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Get involved
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Events
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    Surveys
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+
+
+
+
+
+
+
+
+                <nav class="c-footer-nav c-footer-nav--contact">
+
+                    <div class="c-footer-nav__col c-footer-nav__col--ipad-landscape-up">
+                        <svg class="c-svg-icon c-footer-nav__decorative-icon">
+                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-mwlr-logo"></use>
+                        </svg>
+
+                    </div>
+
+
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Follow us
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="https://twitter.com/mwlr_nz" class="c-footer-nav__menu-link link" target="_blank" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-twitter"></use>
+                                    </svg>
+
+
+                                    Twitter
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="https://www.facebook.com/landcareresearch/" class="c-footer-nav__menu-link link" target="_blank" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-facebook"></use>
+                                    </svg>
+
+
+                                    Facebook
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="https://www.youtube.com/landcareresearch" class="c-footer-nav__menu-link link" target="_blank" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-youtube"></use>
+                                    </svg>
+
+
+                                    Youtube
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="https://www.linkedin.com/company/landcare-research/" class="c-footer-nav__menu-link link" target="_blank" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-linkedin"></use>
+                                    </svg>
+
+
+                                    LinkedIn
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="https://www.instagram.com/manaaki_whenua/" class="c-footer-nav__menu-link link" target="_blank" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-instagram"></use>
+                                    </svg>
+
+
+                                    Instagram
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Contact us
+
+                        </h5>
+
+
+                        <ul class="c-footer-nav__menu">
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="mailto:info@landcareresearch.co.nz" class="c-footer-nav__menu-link link" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-email"></use>
+                                    </svg>
+
+
+                                    info@landcareresearch.co.nz
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="tel:+6433219999" class="c-footer-nav__menu-link link" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-phone"></use>
+                                    </svg>
+
+
+                                    +64 3 321 9999
+                                </a>
+                            </li>
+
+                            <li class="c-footer-nav__menu-item">
+                                <a href="/" class="c-footer-nav__menu-link link" title="">
+
+                                    <svg class="c-svg-icon c-footer-nav__menu-item-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-signpost"></use>
+                                    </svg>
+
+
+                                    PO Box 69040, Lincoln, New Zealand
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="c-footer-nav__col">
+
+
+
+                        <h5 class="c-footer-nav__heading">
+
+                            Related websites
+
+                        </h5>
+
+
+                        <select class="c-footer-nav__select js-external-site-select">
+                            <option value="">Navigate to&hellip;</option>
+
+                            <option value="http://www.google.com">External site #1</option>
+
+                            <option value="http://www.google.com">External Site #2</option>
+
+                        </select>
+
+                    </div>
+
+                </nav>
+
+
+
+
+
+                <div class="c-site-footer__copyright">Copyright Manaaki Whenua Landcare Research &copy; 1996 - 2020</div>
+            </div>
+        </div>
+
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Systematics Portal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <br />
-            <a asp-area="" asp-controller="Home" asp-action="AboutUs">About us</a>
-            <br />
-            <a asp-area="" asp-controller="Support" asp-action="TermsOfUse">Terms of use</a>
-            <br />
-            <a asp-area="" asp-controller="Support" asp-action="FAQ">FAQ</a>
-            <br />
-            <a asp-area="" asp-controller="Support" asp-action="SiteMap">Site map</a>
-            <br />
-            <a asp-area="" asp-controller="Support" asp-action="ContactUs">Contact us</a>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
+    <script type="text/javascript" src="~/_resources/themes/default/js/svg4everybody.min.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
+    <script type="text/javascript" src="~/_resources/themes/default/dist/manifest.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
+    <script type="text/javascript" src="~/_resources/themes/default/dist/vendor.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
+    <script type="text/javascript" src="~/_resources/themes/default/dist/site.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
+    <script type="application/javascript" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY=">
+        //<![CDATA[
+
+                        (function(w,d,s,l,i){
+                            w[l]=w[l]||[];
+                            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+                            var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+                            j.async=true;
+                            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                            f.parentNode.insertBefore(j,f);
+                        })(window,document,'script','dataLayer','GTM-NFL7V92');
+
+        //]]></script>
 </body>
 </html>
-<script type="text/javascript">
-    var returnUrl = null;
-    var downloadRecordCount = 0;
-
-    function showImportantNotice(message) {
-        if (!message == "") {
-            $('#important-notice').html(message);
-            $('#important-notice').removeClass('hidden');
-        }
-    }
-
-    function updateMessages(result) {
-        var message = "";
-        if (!result.information == "") {
-            var message = "<p><span class='label label-success'><i class='icon-ok icon-white'></i></span> " + result.information + "</p>";
-        }
-        $('#message').html(message);
-
-        var errorMessage = "";
-        if (!result.error == "") {
-            var errorMessage = "<p><span class='label label-important'><i class='icon-ban-circle icon-white'></i></span> " + result.error + "</p>";
-        }
-        $('#error').html(errorMessage);
-    }
-
-    function goToReturnUrl() {
-        if (returnUrl != null) {
-            window.location = returnUrl;
-        }
-    }
-</script>
