@@ -109,8 +109,7 @@
          WARNING: The _text_ catch-all field will significantly increase your index size.
          If you don't need it, consider removing it and the corresponding copyField directive.
     -->
-
-    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+    
     <!-- docValues are enabled by default for long type so we don't need to index the version field  -->
     <field name="_version_" type="plong" indexed="false" stored="false"/>
 
@@ -122,142 +121,66 @@
 
     <field name="_text_" type="text_general" indexed="true" stored="false" multiValued="true"/>
 
-<!--Specimen-->
-    <field name="specimenId" type="string" indexed="true" stored="true" required="true" multiValued="false" />
-    <field name="accessionNumber" type="string" indexed="true" stored="true" required="true" multiValued="false" />
-    <field name="dateAdded" type="pint" indexed="true" stored="false"/>
-    <field name="last_modified" type="pint" indexed="true" stored="false"/>
-    <field name="securityLevel" type="pint" indexed="true" stored="false" multiValued="false" />
-    <field name="collection" type="text_general" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="duplicates" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="exsiccata" type="text_general" indexed="true" stored="false" />
-    <field name="kindOfSpecimen" type="text_general" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="loanStatus" type="text_general" indexed="true" stored="false" multiValued="false" />
-    <field name="referenceNumber" type="text_general" indexed="true" stored="false" />
-    <field name="specimenNote" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="specimenNoteType" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="specimenNoteAuthor" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="subcollection" type="text_general" indexed="true" stored="true" multiValued="false" />
-    <field name="typeStatus" type="text_general" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="hasImages" type="boolean" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="otherReferenceNoType" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="otherReferenceNo" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="duplicateAccessionNumber" type="text_general" indexed="true" stored="false" multiValued="true" />
-    
-     <!--Collection Event-->
-    <field name="collectionDate" type="pint" indexed="true" stored="false" multiValued="true" />
-    <field name="verbatimCollectionDate" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="collectionYear" type="pint" indexed="true" stored="false" multiValued="true" />
-    <field name="altitude" type="pint" indexed="true" stored="false" multiValued="true" />
-    <field name="localHeight" type="pint" indexed="true" stored="false" multiValued="true" />
-    <field name="collectionEventCode" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="abundance" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="collectionMethod" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="collectionMonth" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="collector" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="verbatimCollector" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="collectorsNumber" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="country" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="ecologicalDistrict" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="botanicalDistrict" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="ecologicalRegion" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="stateProvince" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="worldGeographicRegion" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="keyword" type="text_general" indexed="true" stored="false" multiValued="true" />
-     <field name="landDistrict" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="nzAreaCode" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="nzAreaCodeFull" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="observedSpecies" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="typeOfCollectionEvent" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="habitat" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="microHabitat" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="collectionEventNote" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="locality" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="eventNote" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="eventDateText" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="decimalLatitude" type="pdouble" indexed="true" stored="false" multiValued="true" />
-    <field name="decimalLongitude" type="pdouble" indexed="true" stored="false" multiValued="true" />
-    <field name="collectionEventLocation" type="location" indexed="true" stored="false" multiValued="false" />
-    <field name="georeferenceValidationStatus" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="georeference" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="localityDecimalLatitude" type="pdouble" indexed="true" stored="false" multiValued="true" />
-    <field name="localityDecimalLongitude" type="pdouble" indexed="true" stored="false" multiValued="true" />
+    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="text" type="text_general" multiValued="true" indexed="true" stored="false"/>
+  
+    <field name="documentClass" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="source" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="title" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="titleFormatted" type="text_general" indexed="false" stored="true" required="true" multiValued="false" />
+    <field name="nameFull" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="namePart" type="text_general" indexed="true" stored="true" required="true" multiValued="false"/>
+    <field name="nameFormatted" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
+    <field name="canonical" type="text_general" indexed="true" stored="true" required="true" multiValued="false"/>
+    <field name="nameAuthor" type="text_general" indexed="true" stored="true" required="true" multiValued="false"/>
+    <field name="basionymAuthor" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
+    <field name="combinationAuthor" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
+    <field name="nomCode" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="kingdom" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="phylum" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="class" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="order" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="family" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="genus" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="taxonRank" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="taxonRankSort" type="pint" indexed="false" stored="true" multiValued="false"/>
+    <field name="parent" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="parentId" type="string" indexed="false" stored="true" multiValued="false"/>
+    <field name="current" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="currentId" type="string" indexed="false" stored="true" multiValued="false"/>
+    <field name="hybridParentId" type="string" indexed="false" stored="true" required="false" multiValued="true"/>
+    <field name="hybridParent" type="text_general" indexed="true" stored="true" multiValued="true"/>
+    <field name="hyperLinkType" type="text_general" indexed="true" stored="true" multiValued="true"/>
 
-   <!--Culture-->
-    <field name="cultureViability" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="storageMethod" type="text_general" indexed="true" stored="false" multiValued="true" />
-    
-    <!--Component-->
-    <field name="partAffected" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="substrate" type="text_general" indexed="true" stored="false" multiValued="true" />
-
-     <!--Identification-->
-    <field name="identificationDate" type="pint" indexed="true" stored="false" multiValued="true" />
-    <field name="associationType" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="class" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="determiner" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="division" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="family" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="genus" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="identificationUncertain" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="order" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="phylum" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="preferredName" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="taxonomicName" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="typeOfIdentification" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="vernacularName" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="identificationNote" type="text_general" indexed="true" stored="false" multiValued="true" />
-
-     <!--Specimen event-->
-    <field name="actionedDate" type="pint" indexed="true" stored="false" multiValued="true" />
-    <field name="actionedBy" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="referenceNumberForActionedBy" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="typeOfEvent" type="text_general" indexed="true" stored="false" multiValued="true" />
-
-    <!--Specimen flag-->
-    <field name="flagValue" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="typeOfFlag" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="flagNote" type="text_general" indexed="true" stored="false" multiValued="true" />
-    
-    <!--Specimen link-->
-    <field name="linkSource" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="linkType" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="linkValue" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="relationshipType" type="text_general" indexed="true" stored="false" multiValued="true" />
-
-     <!--Transaction-->
-    <field name="organisation" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="transactionStatus" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="transactionReferenceNo" type="text_general" indexed="true" stored="false" multiValued="true" />
-
-    <!--Also-->
-    <field name="contributorReferenceNumber" type="text_general" indexed="true" stored="false" multiValued="true" />
-    <field name="otherText" type="text_general" indexed="true" stored="false" multiValued="true" />
-
-    <!--Sorting
-    Some fields require sorting other than just alphabetically by value-->
-    <field name="accessionNumberSort" type="plong" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="taxonomicNameSort" type="string" indexed="true" stored="false" multiValued="true" />
-    <field name="taxonomicNameSort_dr" type="string" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    
-    <!--Results Display
-    To display the search results, we need a primary value for some fields where multiple values are possible-->
-    <field name="taxonomicName_dr" type="string" indexed="false" stored="true" multiValued="false" />
-    <field name="country_dr" type="string" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="landDistrict_dr" type="string" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="ecologicalDistrict_dr" type="string" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="nzAreaCode_dr" type="string" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-    <field name="locality_dr" type="string" indexed="true" stored="true" multiValued="false" sortMissingLast="true" />
-
-    <!-- catchall field, containing all other searchable text fields (implemented
-            via copyField further on in this schema  -->
-    <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
-    <field name="collectionEventContext" type="text_general" indexed="true" stored="false" multiValued="true" />
-
-    <!-- catchall text field that indexes tokens both normally and in reverse for efficient
-        leading wildcard queries. -->
-    <field name="text_rev" type="text_general_rev" indexed="true" stored="false" multiValued="true"/>
-    <field name="collectionEventContext_rev" type="text_general_rev" indexed="true" stored="false" multiValued="true" />
+    <field name="vernacularId" type="string" indexed="false" stored="false" multiValued="true" />
+   <field name="vernacularName" type="text_general" indexed="true" stored="false" multiValued="true" />
+   <field name="verncularLanguageOfUse" type="text_general" indexed="true" stored="false" multiValued="true" />
+   <field name="verncularLanguageOfOrigin" type="text_general" indexed="true" stored="true" multiValued="false"/>
+   <field name="verncularRegionOfUse" type="text_general" indexed="true" stored="true" multiValued="false"/>
+   <field name="nzbioStatusAdded" type="pdate" indexed="false" stored="true" multiValued="true"/>
+   <field name="nzbioStatusUpdated" type="pdate" indexed="false" stored="true" multiValued="true"/>
+   <field name="nzBiostatusReferenceId" type="string" indexed="false" stored="true" multiValued="false"/>
+    <field name="nzBioStatusReference" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="nzOrigin" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="nzOccurrence" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <field name="note" type="text_general" indexed="true" stored="false" multiValued="false"/>
+    <field name="imageUri" type="string" indexed="false" stored="true" multiValued="false"/>
+    <field name="externalLinkSource" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="added" type="pdate" indexed="true" stored="true" required="true" multiValued="false"/>
+    <field name="updated" type="pdate" indexed="true" stored="true" required="true" multiValued="false"/>
+    <field name="deprecatedId" type="string" indexed="true" stored="true" multiValued="true" required="false" />
+    <field name="referenceType" type="string" indexed="true" stored="true" multiValued="false" />
+  
+    <!-- Ask Aaron -->
+    <field name="parentReference" type="text_general" indexed="true" stored="true" multiValued="false" />
+    <!-- Ask Aaron -->
+    <field name="parentReferenceId" type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="associationType" type="text_general" indexed="true" stored="true" multiValued="false" />
+    <field name="citeNameId" type="string" indexed="false" stored="true" multiValued="true" />
+    <field name="citedName" type="text_general" indexed="true" stored="true" multiValued="true" />
+    <field name="appliedToNameId" type="string" indexed="false" stored="true" multiValued="true" />
+    <field name="appliedToNameFull" type="text_general" indexed="true" stored="true" multiValued="true" />
+    <field name="vernacularRegionOfOrigin" type="text_general" indexed="true" stored="true" multiValued="false" />
 
     <!-- This can be enabled, in case the client does not know what fields may be searched. It isn't enabled by default
          because it's very expensive to index everything twice. -->
@@ -311,200 +234,45 @@
 
     <copyField source="sourceFieldName" dest="destinationFieldName"/>
     -->
-
-  <copyField source="collectionDate" dest="text" />
-  <copyField source="verbatimCollectionDate" dest="text" />
-  <copyField source="collectionYear" dest="text" />
-  <copyField source="altitude" dest="text" />
-  <copyField source="localHeight" dest="text" />
-  <copyField source="collectionEventCode" dest="text" />
-  <copyField source="abundance" dest="text" />
-  <copyField source="collectionMethod" dest="text" />
-  <copyField source="collectionMonth" dest="text" />
-  <copyField source="collector" dest="text" />
-  <copyField source="verbatimCollector" dest="text" />
-  <copyField source="collectorsNumber" dest="text" />
-  <copyField source="country" dest="text" />
-  <copyField source="ecologicalDistrict" dest="text" />
-  <copyField source="botanicalDistrict" dest="text" />
-  <copyField source="ecologicalRegion" dest="text" />
-  <copyField source="stateProvince" dest="text" />
-  <copyField source="worldGeographicRegion" dest="text" />
-  <copyField source="keyword" dest="text" />
-  <copyField source="landDistrict" dest="text" />
-  <copyField source="nzAreaCode" dest="text" />
-  <copyField source="observedSpecies" dest="text" />
-  <copyField source="typeOfCollectionEvent" dest="text" />
-  <copyField source="cultureViability" dest="text" />
-  <copyField source="storageMethod" dest="text" />
-  <copyField source="partAffected" dest="text" />
-  <copyField source="substrate" dest="text" />
-  <copyField source="identificationDate" dest="text" />
-  <copyField source="associationType" dest="text" />
-  <copyField source="class" dest="text" />
-  <copyField source="determiner" dest="text" />
-  <copyField source="family" dest="text" />
-  <copyField source="identificationUncertain" dest="text" />
-  <copyField source="order" dest="text" />
-  <copyField source="preferredName" dest="text" />
-  <copyField source="taxonomicName" dest="text" />
-  <copyField source="typeOfIdentification" dest="text" />
-  <copyField source="vernacularName" dest="text" />
-  <copyField source="identificationNote" dest="text" />
-  <copyField source="accessionNumber" dest="text" />
-  <copyField source="dateAdded" dest="text" />
-  <copyField source="last_modified" dest="text" />
-  <copyField source="collection" dest="text" />
-  <copyField source="duplicates" dest="text" />
-  <copyField source="exsiccata" dest="text" />
-  <copyField source="kindOfSpecimen" dest="text" />
-  <copyField source="loanStatus" dest="text" />
-  <copyField source="referenceNumber" dest="text" />
-  <copyField source="subcollection" dest="text" />
-  <copyField source="typeStatus" dest="text" />
-  <copyField source="actionedDate" dest="text" />
-  <copyField source="actionedBy" dest="text" />
-  <copyField source="referenceNumberForActionedBy" dest="text" />
-  <copyField source="typeOfEvent" dest="text" />
-  <copyField source="flagValue" dest="text" />
-  <copyField source="typeOfFlag" dest="text" />
-  <copyField source="organisation" dest="text" />
-  <copyField source="transactionStatus" dest="text" />
-  <copyField source="habitat" dest="text" />
-  <copyField source="microHabitat" dest="text" />
-  <copyField source="division" dest="text" />
-  <copyField source="phylum" dest="text" />
-  <copyField source="genus" dest="text" />
-  <copyField source="specimenNote" dest="text" />
-  <copyField source="specimenNoteType" dest="text" />
-  <copyField source="specimenNoteAuthor" dest="text" />
-  <copyField source="collectionEventNote" dest="text" />
-  <copyField source="locality" dest="text" />
-  <copyField source="flagNote" dest="text" />
-  <copyField source="linkSource" dest="text" />
-  <copyField source="linkType" dest="text" />
-  <copyField source="linkValue"  dest="text" />
-  <copyField source="relationshipType" dest="text" />
-  <copyField source="transactionReferenceNo" dest="text" />
-  <copyField source="otherReferenceNoType" dest="text" />
-  <copyField source="otherReferenceNo" dest="text" />
-  <copyField source="duplicateAccessionNumber" dest="text" />
-  <copyField source="eventNote" dest="text" />
-  <copyField source="eventDateText" dest="text" />
-  <copyField source="decimalLatitude" dest="text" />
-  <copyField source="decimalLongitude" dest="text" />
-  <copyField source="georeferenceValidationStatus" dest="text" />
-  <copyField source="georeference" dest="text" />
-  <copyField source="localityDecimalLatitude" dest="text" />
-  <copyField source="localityDecimalLongitude" dest="text" />
-  <copyField source="contributorReferenceNumber" dest="text" />
-  <copyField source="otherText" dest="text" />
-
-  <copyField source="collectionDate" dest="collectionEventContext" />
-  <copyField source="verbatimCollectionDate" dest="collectionEventContext" />
-  <copyField source="collectionYear" dest="collectionEventContext" />
-  <copyField source="altitude" dest="collectionEventContext" />
-  <copyField source="localHeight" dest="collectionEventContext" />
-  <copyField source="collectionEventCode" dest="collectionEventContext" />
-  <copyField source="abundance" dest="collectionEventContext" />
-  <copyField source="collectionMethod" dest="collectionEventContext" />
-  <copyField source="collectionMonth" dest="collectionEventContext" />
-  <copyField source="collector" dest="collectionEventContext" />
-  <copyField source="verbatimCollector" dest="collectionEventContext" />
-  <copyField source="collectorsNumber" dest="collectionEventContext" />
-  <copyField source="country" dest="collectionEventContext" />
-  <copyField source="ecologicalDistrict" dest="collectionEventContext" />
-  <copyField source="botanicalDistrict" dest="collectionEventContext" />
-  <copyField source="ecologicalRegion" dest="collectionEventContext" />
-  <copyField source="stateProvince" dest="collectionEventContext" />
-  <copyField source="worldGeographicRegion" dest="collectionEventContext" />
-  <copyField source="keyword" dest="collectionEventContext" />
-  <copyField source="landDistrict" dest="collectionEventContext" />
-  <copyField source="nzAreaCode" dest="collectionEventContext" />
-  <copyField source="observedSpecies" dest="collectionEventContext" />
-  <copyField source="typeOfCollectionEvent" dest="collectionEventContext" />
-  <copyField source="habitat" dest="collectionEventContext" />
-  <copyField source="microHabitat" dest="collectionEventContext" />
-  <copyField source="collectionEventNote" dest="collectionEventContext" />
-  <copyField source="locality" dest="collectionEventContext" />
-  <copyField source="eventNote" dest="collectionEventContext" />
-  <copyField source="eventDateText" dest="collectionEventContext" />
-  <copyField source="decimalLatitude" dest="collectionEventContext" />
-  <copyField source="decimalLongitude" dest="collectionEventContext" />
-  <copyField source="georeferenceValidationStatus" dest="text" />
-  <copyField source="georeference" dest="text" />
-  <copyField source="localityDecimalLatitude" dest="collectionEventContext" />
-  <copyField source="localityDecimalLongitude" dest="collectionEventContext" />
-
-<!--<copyField source="cat" dest="text"/>
-   <copyField source="name" dest="text"/>
-   <copyField source="manu" dest="text"/>
-   <copyField source="features" dest="text"/>
-   <copyField source="includes" dest="text"/>
-   <copyField source="manu" dest="manu_exact"/>
-
-   -->
-  <!-- Copy the price into a currency enabled field (default USD) -->
-  <!--
-   <copyField source="price" dest="price_c"/>
-
-   -->
-  <!-- Text fields from SolrCell to search by default in our catch-all field -->
-  <!--
-   <copyField source="title" dest="text"/>
-   <copyField source="author" dest="text"/>
-   <copyField source="description" dest="text"/>
-   <copyField source="keywords" dest="text"/>
-   <copyField source="content" dest="text"/>
-   <copyField source="content_type" dest="text"/>
-   <copyField source="resourcename" dest="text"/>
-   <copyField source="url" dest="text"/>-->
-
-  <!-- Create a string version of author for faceting -->
-  <!--<copyField source="author" dest="author_s"/>-->
-  <copyField source="abundance" dest="abundance_ss" />
-  <copyField source="actionedBy" dest="actionedBy_ss" />
-  <copyField source="associationType" dest="associationType_ss" />
-  <copyField source="class" dest="class_ss" />
-  <copyField source="collectionMethod" dest="collectionMethod_ss" />
-  <copyField source="collectionMonth" dest="collectionMonth_ss" />
-  <copyField source="collector" dest="collector_ss" />
-  <copyField source="country" dest="country_ss" />
-  <copyField source="cultureViability" dest="cultureViability_ss" />
-  <copyField source="determiner" dest="determiner_ss" />
-  <copyField source="division" dest="division_ss" />
-  <copyField source="duplicates" dest="duplicates_ss"/>
-  <copyField source="ecologicalDistrict" dest="ecologicalDistrict_ss" />
-  <copyField source="ecologicalRegion" dest="ecologicalRegion_ss" />
-  <copyField source="exsiccata" dest="exsiccata_ss"/>
-  <copyField source="family" dest="family_ss" />
-  <copyField source="flagValue" dest="flagValue_ss" />
-  <copyField source="genus" dest="genus_ss" />
-  <copyField source="identificationUncertain" dest="identificationUncertain_ss" />
-  <copyField source="keyword" dest="keyword_ss" />
-  <copyField source="kindOfSpecimen" dest="kindOfSpecimen_ss" />
-  <copyField source="landDistrict" dest="landDistrict_ss" />
-  <copyField source="loanStatus" dest="loanStatus_ss" />
-  <copyField source="nzAreaCodeFull" dest="nzAreaCode_ss" />
-  <copyField source="observedSpecies" dest="observedSpecies_ss" />
-  <copyField source="order" dest="order_ss" />
-  <copyField source="organisation" dest="organisation_ss" />
-  <copyField source="otherReferenceNoType" dest="otherReferenceNoType_ss" />
-  <copyField source="phylum" dest="phylum_ss" />
-  <copyField source="preferredName" dest="preferredName_ss" />
-  <copyField source="referenceNumber" dest="referenceNumber_ss" />
-  <copyFiled source="relationshipType" dest="relationshipType_ss" />
-  <copyField source="storageMethod" dest="storageMethod_ss" />
-  <copyField source="subcollection" dest="subcollection_ss"/>
-  <copyField source="taxonomicName" dest="taxonomicName_ss" />
-  <copyField source="transactionReferenceNo" dest="transactionReferenceNo_ss" />
-  <copyField source="transactionStatus" dest="transactionStatus_ss" />
-  <copyField source="typeOfCollectionEvent" dest="typeOfCollectionEvent_ss" />
-  <copyField source="typeOfEvent" dest="typeOfEvent_ss" />
-  <copyField source="typeOfFlag" dest="typeOfFlag_ss" />
-  <copyField source="typeOfIdentification" dest="typeOfIdentification_ss" />
-  <copyField source="typeStatus" dest="typeStatus_ss" />
-  
+    <copyField source="documentClass" dest="text"/>
+    <copyField source="source" dest="text"/>
+    <!-- continue with the remaining fields and then do the facets-->
+    <copyField source="title" dest="text"/>
+    <copyField source="nameFull" dest="text"/>
+    <copyField source="namePart" dest="text"/>
+    <copyField source="nameFormatted" dest="text"/>
+    <copyField source="canonical" dest="text"/>
+    <copyField source="nameAuthor" dest="text"/>
+    <copyField source="basionymAuthor" dest="text"/>
+    <copyField source="combinationAuthor" dest="text"/>
+    <copyField source="nomCode" dest="text"/>
+    <copyField source="kingdom" dest="text"/>
+    <copyField source="phylum" dest="text"/>
+    <copyField source="class" dest="text"/>
+    <copyField source="order" dest="text"/>
+    <copyField source="family" dest="text"/>
+    <copyField source="genus" dest="text"/>
+    <copyField source="taxonRank" dest="text"/>
+    <copyField source="parent" dest="text"/>
+    <copyField source="current" dest="text"/>
+    <copyField source="hybridParent" dest="text"/>
+    <copyField source="hyperLinkType" dest="text"/>
+    <copyField source="vernacularName" dest="text"/>
+    <copyField source="verncularLanguageOfUse" dest="text"/>
+    <copyField source="verncularLanguageOfOrigin" dest="text"/>
+    <copyField source="verncularRegionOfUse" dest="text"/>
+    <copyField source="nzBioStatusReference" dest="text"/>
+    <copyField source="nzOrigin" dest="text"/>
+    <copyField source="nzOccurrence" dest="text"/>
+    <copyField source="note" dest="text"/>
+    <copyField source="referenceType" dest="text"/>
+    <copyField source="parentReference" dest="text"/>
+    <copyField source="associationType" dest="text"/>
+    <copyField source="citedName" dest="text"/>
+    <copyField source="appliedToNameId" dest="text"/>
+    <copyField source="appliedToNameFull" dest="text"/>
+    <copyField source="vernacularRegionOfOrigin" dest="text"/>
+    
     <!-- field type definitions. The "name" attribute is
        just a label to be used by field definitions.  The "class"
        attribute and any other attributes determine the real
@@ -994,7 +762,18 @@
         <!-- more aggressive: <filter class="solr.SnowballPorterFilterFactory" language="Spanish"/> -->
       </analyzer>
     </fieldType>
-    
+
+    <!-- Estonian -->
+    <dynamicField name="*_txt_et" type="text_et"  indexed="true"  stored="true"/>
+    <fieldType name="text_et" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_et.txt" />
+        <filter class="solr.SnowballPorterFilterFactory" language="Estonian"/>
+      </analyzer>
+    </fieldType>
+
     <!-- Basque -->
     <dynamicField name="*_txt_eu" type="text_eu"  indexed="true"  stored="true"/>
     <fieldType name="text_eu" class="solr.TextField" positionIncrementGap="100">
