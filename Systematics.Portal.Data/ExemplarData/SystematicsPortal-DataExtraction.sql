@@ -207,6 +207,7 @@ CREATE TABLE #Name (
 	, IsRecombination bit
 	, [Aggregate] bit
 	, ClassificationFK int
+	, [Classification] nvarchar(255)
 	, IsAnamorph bit
 	, TypeLocality nvarchar(50)
 	, SanctioningAuthor nvarchar(10)
@@ -368,7 +369,7 @@ INSERT INTO #Name(NameGuid, Canonical, NameFull, Orthography
 	, [Page], YearOfPublication, YearOnPublication
 	, InCitation, Misapplied, Dubium, ProParte 
 	, Novum, Invalid, Illegitimate, Autonym 
-	, IsRecombination, [Aggregate], ClassificationFK
+	, IsRecombination, [Aggregate], ClassificationFK, [Classification]
 	, IsAnamorph, TypeLocality, SanctioningAuthor 
 	, SanctioningPage, HybridLink, CheckStatus 
 	, NomCode, Suppress, ReferenceFK, TaxonomyReferenceFk 
@@ -383,7 +384,7 @@ SELECT NameGuid, NameCanonical, NameFull, NameOrthographyVariant
 	, NamePage, NameYearOfPublication, NameYearOnPublication
 	, NameInCitation, NameMisapplied, NameDubium, NameProParte 
 	, NameNovum, NameInvalid, NameIllegitimate, NameAutonym 
-	, NameIsRecombination, NameAggregate, NameClassificationFK
+	, NameIsRecombination, NameAggregate, NameClassificationFK, C.ClassificationDescription
 	, NameIsAnamorph, NameTypeLocality, NameSanctioningAuthor 
 	, NameSanctioningPage, NameHybridLink, NameCheckStatus 
 	, NameNomCode, NameSuppress, NameReferenceFK, NameTaxonomyReferenceFk 
@@ -395,6 +396,7 @@ SELECT NameGuid, NameCanonical, NameFull, NameOrthographyVariant
 	, CASE NameCurrentFk WHEN NameGuid THEN 1 ELSE 0 END AS IsCurrent
  FROM tblName N
 	INNER JOIN tblTaxonRank TR ON N.NameTaxonRankFk = TR.TaxonRankPk
+	LEFT JOIN tblClassification C ON N.NameClassificationFK = C.ClassificationCounterPk
 WHERE NameGuid IN (SELECT id from #TestList WHERE objectType = 'name')
 
 GO
@@ -1224,7 +1226,7 @@ FROM #Name NA
 
 -- keys
 ; WITH Keys as (
-SELECT KD.KeyDataNameFk as NameId
+SELECT DISTINCT KD.KeyDataNameFk as NameId
 	, K.KeyReferenceFk as ReferenceId
 	, K.KeyPk  AS KeyId
 FROM tblKeyData KD
@@ -1234,11 +1236,11 @@ FROM tblKeyData KD
 			AND ISNULL(R.ReferenceSuppress, 0) = 0
 	)
 UPDATE N
-	SET KeyXML = (SELECT keyId as '@keyLocalId'
+	SET KeyXML = (SELECT LOWER(DB_Name()) + '-key-' +  CAST(keyId as nvarchar(10)) as '@keyId'
 						, ReferenceId as '@referenceId'
 					FROM keys 
 					WHERE Nameid = N.NameGuid
-					FOR XML PATH('Key'), ROOT('Keys'), TYPE)
+					FOR XML PATH('Key'), ROOT('InKeys'), TYPE)
 FROM #Name N
 
 -- concepts + descriptions
@@ -1447,7 +1449,8 @@ SELECT LOWER(NameGuid) as '@nameId'
 	, [Page]
 	, YearOfPublication
 	, YearOnPublication
-	, ClassificationFK
+	, ClassificationFK as 'Classification/@id'
+	, [Classification]
 	, TypeLocality
 	, SanctioningAuthor 
 	, SanctioningPage
@@ -1475,8 +1478,7 @@ SELECT LOWER(NameGuid) as '@nameId'
 	, AnamorphReference		
 	, LOWER(TypeTaxonFK)			AS 'TypeTaxon/@nameId'
 	, TypeTaxon						AS 'TypeTaxon/text()'
-	, ForeignId 
-	
+	, LOWER(ForeignId) AS ForeignId
 	
 	, LOWER(KingdomId)		AS 'Kingdom/@nameId'
 	, Kingdom				AS 'Kingdom/text()'
@@ -1498,7 +1500,7 @@ SELECT LOWER(NameGuid) as '@nameId'
 	, HybridXML.query('(//Hybridisation)[1]')
 	, HyperLinkXML.query('(//Hyperlinks)[1]')
 	, CollectionObjectXML.query('(//CollectionObjects)[1]')
-	, KeyXML.query('(//Keys)[1]')
+	, KeyXML.query('(//InKeys)[1]')
 FROM #Name N
 FOR XML PATH('Document'), ROOT('Documents')
 
@@ -1816,7 +1818,8 @@ FROM #Reference R
 --
 
 UPDATE R
-	SET KeysXML = (SELECT KeyTitle as '@title'
+	SET KeysXML = (SELECT  DB_Name() + '-key-' + CAST(K.KeyPk as nvarchar(10)) as '@keyId' 
+						,KeyTitle as '@title'
 					 , KeyAddedDate as '@added'
 					 , KeyUpdatedDate as '@updated'
 					 , CAST(REPLACE(CAST(KeyAcknowledgement as nvarchar(max)), '&','&amp;') AS xml) as Acknowledgement
@@ -1835,7 +1838,7 @@ UPDATE R
 						FOR XML PATH('Line'), TYPE)
 					FROM tblKey K
 					WHERE K.KeyReferenceFk = R.ReferenceId
-					FOR XML PATH('Key'), ROOT('Keys'))
+					FOR XML PATH('Key'), ROOT('IncludedKeys'))
 
 FROM #Reference R
 ---
@@ -1858,7 +1861,7 @@ SELECT LOWER(ReferenceId) AS '@referenceId'
 	, FieldsXML.query('(//Fields)[1]')
 	, ConceptsXML.query('(//DefinedConcepts)[1]')
 	, CitationsXML.query('(//CitedTaxa)[1]')
-	, KeysXML.query('(//Keys)[1]')
+	, KeysXML.query('(//IncludedKeys)[1]')
 	-- keys
 FROM #Reference
 FOR XML PATH('Document'), ROOT('Documents')
