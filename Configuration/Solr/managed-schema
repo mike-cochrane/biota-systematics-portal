@@ -265,6 +265,7 @@
     <copyField source="nzOrigin" dest="text"/>
     <copyField source="nzOccurrence" dest="text"/>
     <copyField source="note" dest="text"/>
+    <copyField source="externalLinkSource" dest="text"/>
     <copyField source="referenceType" dest="text"/>
     <copyField source="parentReference" dest="text"/>
     <copyField source="associationType" dest="text"/>
@@ -273,6 +274,36 @@
     <copyField source="appliedToNameFull" dest="text"/>
     <copyField source="vernacularRegionOfOrigin" dest="text"/>
     
+    <copyField source="documentClass" dest="documentClass_ss"/>
+    <copyField source="source" dest="source_ss"/>
+    <copyField source="combinationAuthor" dest="combinationAuthor_ss"/>
+    <copyField source="nomCode" dest="nomCode_ss"/>
+    <copyField source="kingdom" dest="kingdom_ss"/>
+    <copyField source="phylum" dest="phylum_ss"/>
+    <copyField source="class" dest="class_ss"/>
+    <copyField source="order" dest="order_ss"/>
+    <copyField source="family" dest="family_ss"/>
+    <copyField source="genus" dest="genus_ss"/>
+    <copyField source="taxonRank" dest="taxonRank_ss"/>
+    <copyField source="current" dest="current_ss"/>
+    <copyField source="hybridParent" dest="hybridParent_ss"/>
+    <copyField source="hyperLinkType" dest="hyperLinkType_ss"/>
+    <copyField source="vernacularName" dest="vernacularName_ss"/>
+    <copyField source="verncularLanguageOfUse" dest="verncularLanguageOfUse_ss"/>
+    <copyField source="verncularLanguageOfOrigin" dest="verncularLanguageOfOrigin_ss"/>
+    <copyField source="verncularRegionOfUse" dest="verncularRegionOfUse_ss"/>
+    <copyField source="nzBioStatusReference" dest="nzBioStatusReference_ss"/>
+    <copyField source="nzOrigin" dest="nzOrigin_ss"/>
+    <copyField source="nzOccurrence" dest="nzOccurrence_ss"/>
+    <copyField source="externalLinkSource" dest="externalLinkSource_ss"/>
+    <copyField source="externalLinkSource" dest="externalLinkSource_ss"/>
+    <copyField source="added" dest="added_ss"/>
+    <copyField source="updated" dest="updated_ss"/>
+    <copyField source="referenceType" dest="referenceType_ss"/>
+    <copyField source="parentReference" dest="parentReference_ss"/>
+    <copyField source="associationType" dest="associationType_ss"/>
+    
+
     <!-- field type definitions. The "name" attribute is
        just a label to be used by field definitions.  The "class"
        attribute and any other attributes determine the real
