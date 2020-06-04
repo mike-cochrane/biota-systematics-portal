@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.Configuration;
-using Systematics.Portal.Web.ViewModels;
-using Systematics.Portal.Web.Helpers;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Systematics.Portal.Web.Controllers
 {

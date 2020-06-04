@@ -55,10 +55,6 @@
       <Project>{e5e09def-563d-460c-8ad4-14bcba25ac57}</Project>
       <Name>CIS.Web.Data.Sql</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Systematics.Portal.Web.Data\Systematics.Portal.Web.Data.csproj">
-      <Project>{762968a2-4fb0-4cfd-bb49-659dbd9e03b3}</Project>
-      <Name>Systematics.Portal.Web.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Systematics.Portal.Web.Model\Systematics.Portal.Web.Model.csproj">
       <Project>{1513cb40-24b5-42c4-b730-94f3bea35af1}</Project>
       <Name>Systematics.Portal.Web.Model</Name>

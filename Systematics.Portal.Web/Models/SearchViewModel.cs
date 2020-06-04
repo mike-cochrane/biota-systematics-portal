@@ -1,13 +1,12 @@
-﻿using Systematics.Portal.Web.Helpers;
-using Systematics.Portal.Web.Model;
-using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using Systematics.Portal.Web.Helpers;
+using Systematics.Portal.Web.Models.Search;
 
-namespace Systematics.Portal.Web.Models {
-    public class SearchViewModel : ViewModelBase {
+namespace Systematics.Portal.Web.Models
+{
+    public class SearchViewModel : ViewModelBase
+    {
 
         private string _query;
 
@@ -32,7 +31,7 @@ namespace Systematics.Portal.Web.Models {
         public int ResultsPerPage { get; set; }
         public int CurrentPage { get; set; }
         public List<SetViewModel> Sets { get; set; }
-        public DownloadLogViewModel DownloadLog { get; set; }
+       // public DownloadLogViewModel DownloadLog { get; set; }
         public bool AllSelected { get; set; }
         public bool OneOrMoreSelected { get; set; }
 
@@ -49,7 +48,7 @@ namespace Systematics.Portal.Web.Models {
             ResultsPerPage = 500;
             CurrentPage = 0;
             Sets = null;
-            DownloadLog = new DownloadLogViewModel();
+            //DownloadLog = new DownloadLogViewModel();
             AllSelected = false;
             OneOrMoreSelected = false;
         }
@@ -62,7 +61,7 @@ namespace Systematics.Portal.Web.Models {
         public int GetTotalPages() {
             int quotient = 0;
             int remainder = 0;
-            quotient = Math.DivRem(Result.TotalSpecimens, ResultsPerPage, out remainder);
+            //quotient = Math.DivRem(Result.TotalSpecimens, ResultsPerPage, out remainder);
             int totalPages = quotient;
             if (remainder > 0) {
                 totalPages += 1;
