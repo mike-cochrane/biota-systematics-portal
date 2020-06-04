@@ -8,12 +8,12 @@
                                 @if (Model.CurrentPage > 0) {
                                     <li><a href="#" onclick="pageResults(@Model.CurrentPage - 1)">&lt;&nbsp; Previous Page</a></li>
                                 }
-                                @for (int page = 1; page <= totalPages; page++) {
-                                    if ((page - 1) != Model.CurrentPage) {
-                                        @:<li><a href="#" onclick="pageResults(@page -1)">@page.ToString()</a></li>
+                                @for (int pageNr = 1; pageNr <= totalPages; pageNr++) {
+                                    if ((pageNr - 1) != Model.CurrentPage) {
+                                        @:<li><a href="#" onclick="pageResults(@pageNr -1)">@pageNr.ToString()</a></li>
                                     }
                                     else {
-                                        @:<li class="current-page">@page.ToString()</li>
+                                        @:<li class="current-page">@pageNr.ToString()</li>
                                     }
                                 } 
                                 @if (Model.CurrentPage < (totalPages-1)) {
@@ -58,12 +58,12 @@
                                         @:<li><a href="#" onclick="pageResults(1)">1</a></li>
                                     }
 
-                                for (int page = start; page <= end; page++) {
-                                    if ((page - 1) != Model.CurrentPage) {
-                                            @:<li><a href="#" onclick="pageResults(@page - 1)">@page.ToString()</a></li>
+                                for (int pageNr = start; pageNr <= end; pageNr++) {
+                                    if ((pageNr - 1) != Model.CurrentPage) {
+                                            @:<li><a href="#" onclick="pageResults(@pageNr - 1)">@pageNr.ToString()</a></li>
                                         }
                                     else {
-                                            @:<li class="current-page">@page.ToString()</li>
+                                            @:<li class="current-page">@pageNr.ToString()</li>
                                         }
                                 }
 

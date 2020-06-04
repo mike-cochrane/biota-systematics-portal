@@ -1,11 +1,11 @@
 ﻿@model Systematics.Portal.Web.Models.SearchViewModel
 <div id="results" class="row-fluid">
     <div id="applied-facets">
-        @foreach (Systematics.Portal.Web.Model.SelectedFacetValue s in Model.Result.AppliedFacets) {
+        @foreach (Systematics.Portal.Web.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets) {
             string label = s.Label + " [x]";
             <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
         }
-        @foreach (Systematics.Portal.Web.Model.SelectedRange s in Model.Result.AppliedRanges) {
+        @foreach (Systematics.Portal.Web.Models.Search.SelectedRange s in Model.Result.AppliedRanges) {
             string label = s.Label + " [x]";
             <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '', 'range')">@Html.Raw(label)</a>
         }
@@ -16,8 +16,8 @@
                 <h2>
                     Facets</h2>
                 @foreach (object filter in Model.Result.Filters) {
-                    if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Model.Facet))) {
-                        Systematics.Portal.Web.Model.Facet f = (Systematics.Portal.Web.Model.Facet)filter;
+                    if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Models.Facet))) {
+                        Systematics.Portal.Web.Models.Facet f = (Systematics.Portal.Web.Models.Facet)filter;
 
                         string facetIconId = f.Name + "-icon";
                         string facetTargetId = f.Name + "-content";
@@ -27,10 +27,10 @@
                         if (total > 0) {
                         <div class="clickable", data-toggle="collapse" data-target="#@facetTargetId">
                             <h5>
-                                <i id="@facetIconId" class="icon-minus-sign"></i> @f.DisplayText</h5>
+                                <i id="@facetIconId" class="icon-minus-sign"></i> @f.Name</h5>
                         </div>
                         <div id="@facetTargetId" class="collapse in">
-                            @foreach (Systematics.Portal.Web.Model.FacetValue v in topFive) {
+                            @foreach (Systematics.Portal.Web.Models.FacetValue v in topFive) {
                                 if (!v.Selected) {
                                     string label = v.Name + " (" + v.Count + ")";
                                 <p>
@@ -48,10 +48,10 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                     &times;</button>
-                                <h3>@f.DisplayText</h3>
+                                <h3>@f.Name</h3>
                             </div>
                             <div class="modal-body">
-                                @foreach (Systematics.Portal.Web.Model.FacetValue v in f.Values) {
+                                @foreach (Systematics.Portal.Web.Models.FacetValue v in f.Values) {
                                     if (!v.Selected) {
                                         string label = v.Name + " (" + v.Count + ")";
                                     <p>
@@ -71,8 +71,8 @@
                         </script>
                         }
                     }
-                    else if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Model.Range))) {
-                        Systematics.Portal.Web.Model.Range r = (Systematics.Portal.Web.Model.Range)filter;
+                    else if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Models.Search.Range))) {
+                        Systematics.Portal.Web.Models.Search.Range r = (Systematics.Portal.Web.Models.Search.Range)filter;
 
                         string slider = r.Name.ToLower() + "-slider";
                         string sliderId = "#" + slider;
@@ -238,7 +238,7 @@
                                     @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />&nbsp;Select all
                                 }
                             </div>
-                            @foreach (Systematics.Portal.Web.Model.SpecimenSummary summary in specimens)
+                            @foreach (Systematics.Portal.Web.Models.Search.SpecimenSummary summary in specimens)
                             {
                             <div class="specimen-list-item">
                                 <div class="pull-left">
@@ -296,7 +296,7 @@
                                         Specimen Type
                                     </th>
                                 </tr>
-                                @foreach (Systematics.Portal.Web.Model.SpecimenSummary summary in specimens)
+                                @foreach (Systematics.Portal.Web.Models.Search.SpecimenSummary summary in specimens)
                                 {
                                     string id = summary.SpecimenId.ToString();
                                     @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@
@@ -371,7 +371,8 @@
         <button class="btn btn-home" data-dismiss="modal" aria-hidden="true">Cancel</button>
     </div>
 </div>
-@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)
+@*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@
+
 <script type="text/javascript">
     var currentTab = '@Model.SelectedView';
     var sortBy = '@Model.SelectedSortOption';

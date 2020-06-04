@@ -79,10 +79,6 @@
     <Compile Include="Repositories\SpecimensRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Systematics.Portal.Web.Data\Systematics.Portal.Web.Data.csproj">
-      <Project>{762968A2-4FB0-4CFD-BB49-659DBD9E03B3}</Project>
-      <Name>Systematics.Portal.Web.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Systematics.Portal.Web.Model\Systematics.Portal.Web.Model.csproj">
       <Project>{1513CB40-24B5-42C4-B730-94F3BEA35AF1}</Project>
       <Name>Systematics.Portal.Web.Model</Name>
