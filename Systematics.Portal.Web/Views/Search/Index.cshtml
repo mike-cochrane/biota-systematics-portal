@@ -1,0 +1,18 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        $('li').removeClass('selected');
+        $('#nav-search').addClass('selected');
+        showImportantNotice('@Html.Raw(Model.ImportantNotice)');
+    });
+</script>
+
+@model Systematics.Portal.Web.Models.SearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+@using (Html.BeginForm()) {
+    <div class="full">
+        @Html.Partial("SearchPartial", Model.SearchData)
+        @Html.Partial("ResultsPartial", Model)
+    </div>
+} 
