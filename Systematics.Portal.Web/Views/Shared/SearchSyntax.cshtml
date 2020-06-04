@@ -1,0 +1,189 @@
+﻿<h2>Search Syntax</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Search Type
+            </th>
+            <th>Example
+            </th>
+            <th>Comment
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2">Spaces between words or AND (must be upper case)
+            </td>
+            <td>urban park
+            </td>
+            <td rowspan="2">A space is treated as an AND. These examples both search for urban AND park – a
+                record must contain both words to be a match
+            </td>
+        </tr>
+        <tr>
+            <td>urban AND park
+            </td>
+        </tr>
+        <tr>
+            <td>OR search – OR must be upper case
+            </td>
+            <td>urban OR park
+            </td>
+            <td>A record has to contain only one of these words to be a match
+            </td>
+        </tr>
+        <tr>
+            <td>Use quotes to define a phrase search
+            </td>
+            <td>“urban park”
+            </td>
+            <td>A record must contain the exact phrase to be a match
+            </td>
+        </tr>
+        <tr>
+            <td>Negative searches
+            </td>
+            <td>urban -park
+            </td>
+            <td>A record must contain urban and must not contain park to be a match
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="4">Wild card search
+            </td>
+            <td></td>
+            <td>Wild cards can be placed anywhere within your query term.
+                <br />
+                <br />
+                Note that without a wild card, a word is treated as a full word search. For example, a search for kiwi will return only results where the word kiwi is used but a search for kiwi* will return results for kiwi, kiwifruit and any other word that starts with kiwi.
+            </td>
+        </tr>
+        <tr>
+            <td>antro*
+            </td>
+            <td>Find records containing words beginning with antro
+            </td>
+        </tr>
+        <tr>
+            <td>*diella
+            </td>
+            <td>Find records containing words that end with diella
+            </td>
+        </tr>
+        <tr>
+            <td>antro*ia
+            </td>
+            <td>Find records with words that start with antro and end with ia
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3">Field search
+            </td>
+            <td>collector:Johnston
+            </td>
+            <td rowspan="3">Specify the field name followed by a colon and then the search query. It’s important
+                that the correct case be used for the field definition. Fields start with a lower
+                case letter, contain no spaces and use camel case for multiple words (see collectionMethod
+                example). Any facet can be searched directly in this way.
+            </td>
+        </tr>
+        <tr>
+            <td>collectionMethod:sweeping
+            </td>
+        </tr>
+        <tr>
+            <td>collectionMethod:”malaise trap”
+            </td>
+        </tr>
+        <tr>
+            <td>Context search
+            </td>
+            <td>collectionEventContext:sweeping
+            </td>
+            <td>This searches all of the text within the collection events. Currently collection
+                event is the only context we have set up. Do you find this concept useful? Are there
+                other contexts you would like to see set up?
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3">Complex field and context searches
+            </td>
+            <td></td>
+            <td>You can build complex queries using this syntax
+            </td>
+        </tr>
+        <tr>
+            <td>class:liliopsida AND collectionMonth:January
+            </td>
+            <td>find all the liliopsida collected in January
+            </td>
+        </tr>
+        <tr>
+            <td>class:liliopsida AND (collectionMonth:january OR collectionMonth:march)
+            </td>
+            <td>find all the liliopsida collected in January or March
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3">Negative field/context searches
+            </td>
+            <td>class:liliopsida -collectionMonth:january
+            </td>
+            <td>Find everything with a Class of Liliopsida, but not collected in the month of January.
+            </td>
+        </tr>
+        <tr>
+            <td>-country:”New Zealand”
+            </td>
+            <td>Find everything without New Zealand specified as a country
+            </td>
+        </tr>
+        <tr>
+            <td>-country:*
+            </td>
+            <td>Find everything that does not have a country specified
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="5">Range searching
+            </td>
+            <td>collectionYear:[1950 TO 1959]
+            </td>
+            <td>Everything from 1950 to 1959
+            </td>
+        </tr>
+        <tr>
+            <td>collectionYear:[* TO 1959]
+            </td>
+            <td>Everything before and including 1959
+            </td>
+        </tr>
+        <tr>
+            <td>collectionYear:[1950 TO *]
+            </td>
+            <td>Everything after and including 1950
+            </td>
+        </tr>
+        <tr>
+            <td>-collectionYear:[* TO *]
+            </td>
+            <td>Everything that doesn’t have a collection year specified
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>NB the range displayed in the facets may be beyond that specified in these examples
+                because some records contain multiple collection events.
+            </td>
+        </tr>
+        <tr>
+            <td>Proximity search
+            </td>
+            <td>“urban park”~150
+            </td>
+            <td>Returns as a match any record where the words urban and park occur within 150 words
+                of each other
+            </td>
+        </tr>
+    </tbody>
+</table>

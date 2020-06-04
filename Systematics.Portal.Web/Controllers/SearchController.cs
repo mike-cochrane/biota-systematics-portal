@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Systematics.Portal.Web.Data;
 
 namespace Systematics.Portal.Web.Controllers
 {
@@ -18,7 +16,15 @@ namespace Systematics.Portal.Web.Controllers
         // GET: Search/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Document document;
+            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(Document));
+
+            using (StreamReader sr = new StreamReader("20200527-Document-Names-Fungi.xml"))
+            {
+                document = (Document)ser.Deserialize(sr);
+            }
+       
+            return View(document);
         }
 
         // GET: Search/Create

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Systematics Portal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/scripts.js"></script>
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Systematics Portal</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="child navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"><!-- navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse -->
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Support" asp-action="AboutUs">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Support" asp-action="TermsOfUse">Terms of use</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Login / Signup</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="child navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <!-- navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse -->
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Search" asp-action="Index">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Browse" asp-action="Browse">Browse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Support" asp-action="Index">Support</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Systematics Portal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <br />
+            <a asp-area="" asp-controller="Support" asp-action="AboutUs">About us</a>
+            <br />
+            <a asp-area="" asp-controller="Support" asp-action="TermsOfUse">Terms of use</a>
+            <br />
+            <a asp-area="" asp-controller="Support" asp-action="FAQ">FAQ</a>
+            <br />
+            <a asp-area="" asp-controller="Support" asp-action="SiteMap">Site map</a>
+            <br />
+            <a asp-area="" asp-controller="Support" asp-action="ContactUs">Contact us</a>
+        </div>
+    </footer>
+</body>
+</html>
+<script type="text/javascript">
+    var returnUrl = null;
+    var downloadRecordCount = 0;
+
+    function showImportantNotice(message) {
+        if (!message == "") {
+            $('#important-notice').html(message);
+            $('#important-notice').removeClass('hidden');
+        }
+    }
+
+    function updateMessages(result) {
+        var message = "";
+        if (!result.information == "") {
+            var message = "<p><span class='label label-success'><i class='icon-ok icon-white'></i></span> " + result.information + "</p>";
+        }
+        $('#message').html(message);
+
+        var errorMessage = "";
+        if (!result.error == "") {
+            var errorMessage = "<p><span class='label label-important'><i class='icon-ban-circle icon-white'></i></span> " + result.error + "</p>";
+        }
+        $('#error').html(errorMessage);
+    }
+
+    function goToReturnUrl() {
+        if (returnUrl != null) {
+            window.location = returnUrl;
+        }
+    }
+</script>
