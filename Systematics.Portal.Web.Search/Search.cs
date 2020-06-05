@@ -1,22 +1,23 @@
-﻿using SearchLibrary.Implementation;
+﻿using Microsoft.Extensions.Logging;
+using SearchLibrary.Implementation;
 using SolrNet;
 using SolrNet.Commands.Parameters;
 using System;
 using System.Collections.Generic;
 using Systematics.Portal.Web.Search.Tools.Models;
 
-namespace SearchLibrary
+namespace Systematics.Portal.Web.Search
 {
     public class Search : IDisposable
     {
         private readonly Connection _connection;
 
-       // private readonly ILogger _logger;
+         private readonly ILogger _logger;
 
-        public Search(string connection, string userName, string password/*, ILogger logger*/)
+        public Search(string connection, string userName, string password, ILogger logger)
         {
             _connection = new Connection(connection, userName, password);
-            //_logger = logger;
+            _logger = logger;
         }
 
         /// <summary>
@@ -59,9 +60,9 @@ namespace SearchLibrary
 
                 // TODO: Check if we should we get sort order by parameter
                 queryOptions.AddOrder(new SortOrder("title", Order.ASC));
-                
+
                 ExtraParameters extraParameters = new ExtraParameters();
-                
+
                 queryOptions.ExtraParams = extraParameters.BuildExtraParameters();
                 // Execute the query
                 ISolrQuery solrQuery = new SolrQuery(query.TextQuery);
@@ -74,7 +75,7 @@ namespace SearchLibrary
                 extractResponse.SetFacets(queryResponse, solrResults);
 
                 //log result
-                //_logger.LogDebug($"Image Search results:  {queryResponse.Results}");
+                //_logger.LogDebug($"Search results:  {queryResponse.Results}");
             }
             catch (Exception e)
             {

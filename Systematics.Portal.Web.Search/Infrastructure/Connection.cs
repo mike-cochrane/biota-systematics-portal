@@ -23,7 +23,7 @@ namespace SearchLibrary.Implementation
 
             // Enable the following line in case that you get the error "url string is too long"
             // Notice that we'll use our own implementation to obtain a POST connection.
-            //Startup.Init<Image>(new MyPostSolrConnection(solrConnection, coreUrl,userName,password));
+            //Startup.Init<Document>(new MyPostSolrConnection(solrConnection, coreUrl,userName,password));
             Startup.Init<Document>(solrConnection);
 
             SolrCore = ServiceLocator.Current.GetInstance<ISolrOperations<Document>>();

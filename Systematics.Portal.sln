@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Systematics.Portal.Web", "Systematics.Portal.Web\Systematics.Portal.Web.csproj", "{1D855A40-D01E-4A61-B3C7-9FEE82277C1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Systematics.Portal.Web.Search", "Systematics.Portal.Web.Search\Systematics.Portal.Web.Search.csproj", "{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Systematics.Portal.Web.Search", "Systematics.Portal.Web.Search\Systematics.Portal.Web.Search.csproj", "{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Systematics.Portal.Web.Search.Tools", "Systematics.Portal.Web.Search.Tools\Systematics.Portal.Web.Search.Tools.csproj", "{F963483A-A1A8-4634-BEB9-A17779CB5062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Systematics.Portal.Web.Search.Tools", "Systematics.Portal.Web.Search.Tools\Systematics.Portal.Web.Search.Tools.csproj", "{F963483A-A1A8-4634-BEB9-A17779CB5062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Systematics.Portal.Web.Api.Access", "Systematics.Portal.Web.Api.Access\Systematics.Portal.Web.Api.Access.csproj", "{3A70D786-422D-4F98-AF98-87A60CB887EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +25,32 @@ Global
 		{1D855A40-D01E-4A61-B3C7-9FEE82277C1D}.DevTest|Any CPU.Build.0 = Debug|Any CPU
 		{1D855A40-D01E-4A61-B3C7-9FEE82277C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D855A40-D01E-4A61-B3C7-9FEE82277C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D855A40-D01E-4A61-B3C7-9FEE82277C1D}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{1D855A40-D01E-4A61-B3C7-9FEE82277C1D}.Test|Any CPU.Build.0 = Release|Any CPU
 		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.DevTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.DevTest|Any CPU.Build.0 = Debug|Any CPU
 		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}.Test|Any CPU.Build.0 = Release|Any CPU
 		{F963483A-A1A8-4634-BEB9-A17779CB5062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F963483A-A1A8-4634-BEB9-A17779CB5062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F963483A-A1A8-4634-BEB9-A17779CB5062}.DevTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{F963483A-A1A8-4634-BEB9-A17779CB5062}.DevTest|Any CPU.Build.0 = Debug|Any CPU
 		{F963483A-A1A8-4634-BEB9-A17779CB5062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F963483A-A1A8-4634-BEB9-A17779CB5062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F963483A-A1A8-4634-BEB9-A17779CB5062}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{F963483A-A1A8-4634-BEB9-A17779CB5062}.Test|Any CPU.Build.0 = Release|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.DevTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.DevTest|Any CPU.Build.0 = Debug|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A70D786-422D-4F98-AF98-87A60CB887EB}.Test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

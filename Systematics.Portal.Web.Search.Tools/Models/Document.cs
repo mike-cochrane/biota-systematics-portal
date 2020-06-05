@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 
-//using System.Threading.Tasks;
-
 namespace Systematics.Portal.Web.Search.Tools.Models
 {
     public class Document
@@ -185,8 +183,6 @@ namespace Systematics.Portal.Web.Search.Tools.Models
         [SolrField("updated")]
         public DateTime Updated { get; set; }
 
-        /////
-        ///
         [SolrField("vernacularId")]
         public List<string> VernacularId { get; set; }
 
