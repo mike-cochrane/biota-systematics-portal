@@ -110,11 +110,11 @@ namespace SearchLibrary.Implementation
             {
                 Queries = new List<ISolrFacetQuery>
                 {
-                    new SolrFacetFieldQuery("aspectRatio_ss")
-                    {
-                        // This way we avoid bringing facets without elements
-                        MinCount = 1
-                    }
+                    //new SolrFacetFieldQuery("aspectRatio_ss")
+                    //{
+                    //    // This way we avoid bringing facets without elements
+                    //    MinCount = 1
+                    //}
                 }
             };
         }

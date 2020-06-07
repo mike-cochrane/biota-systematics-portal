@@ -26,7 +26,7 @@ namespace Systematics.Portal.Web.Search.Tools.Models
         public string BasionymAuthor { get; set; }
 
         [SolrField("canonical")]
-        public List<string> Canonical { get; set; }
+        public string Canonical { get; set; }
 
         [SolrField("citeNameId")]
         public List<string> CiteNameId { get; set; }
@@ -48,7 +48,7 @@ namespace Systematics.Portal.Web.Search.Tools.Models
 
         [SolrField("currentId")]
         public string CurrentId { get; set; }
-        
+
         [SolrField("deprecatedId")]
         public List<string> DeprecatedId { get; set; }
 
@@ -81,7 +81,7 @@ namespace Systematics.Portal.Web.Search.Tools.Models
 
         [SolrField("imageUri")]
         public List<string> ImageUri { get; set; }
-        
+
         [SolrField("kingdom")]
         public string Kingdom { get; set; }
 
@@ -105,22 +105,8 @@ namespace Systematics.Portal.Web.Search.Tools.Models
 
         [SolrField("note")]
         public List<string> Note { get; set; }
-
-        [SolrField("noteType")]
-        public string NoteType { get; set; }
-
-        [SolrField("nzBioStatusReference")]
-        public string NzBioStatusReference { get; set; }
-        
-        [SolrField("nzBiostatusAdded")]
-        public DateTime NzBiostatusAdded { get; set; }
-
         [SolrField("nzBiostatusReference")]
-        public string NzBiostatusReference { get; set; }
-
-        [SolrField("nzBiostatusReferenceDisplay")]
-        public string NzBiostatusReferenceDisplay { get; set; }
-
+        public List<string> NzBiostatusReference { get; set; }
         [SolrField("nzBiostatusReferenceId")]
         public string NzBiostatusReferenceId { get; set; }
 
@@ -155,7 +141,7 @@ namespace Systematics.Portal.Web.Search.Tools.Models
         public string ParentReferenceId { get; set; }
 
         [SolrField("phylum")]
-        public List<string> Phylum { get; set; }
+        public string Phylum { get; set; }
 
         [SolrField("phylumId")]
         public string PhylumId { get; set; }
@@ -203,13 +189,5 @@ namespace Systematics.Portal.Web.Search.Tools.Models
 
         [SolrField("verncularId")]
         public string VerncularId { get; set; }
-        [SolrField("verncularLanguageOfOrigin")]
-        public List<string> verncularLanguageOfOrigin { get; set; }
-        [SolrField("verncularLanguageOfUse")]
-        public List<string> verncularLanguageOfUse { get; set; }
-        [SolrField("verncularName")]
-        public string VerncularName { get; set; }
-        [SolrField("verncularRegionOfUse")]
-        public string VerncularRegionOfUse { get; set; }
     }
 }

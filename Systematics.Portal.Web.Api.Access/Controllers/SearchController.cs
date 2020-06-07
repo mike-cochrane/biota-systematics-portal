@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,57 +23,26 @@ namespace Systematics.Portal.Web.Api.Access.Controllers
         private readonly ISearchService _searchService;
 
 
-        public SearchController(ILogger<SearchController> logger)
+        public SearchController(IOptions<AppSettings> appSettings, ILogger<SearchController> logger,  ISearchService searchService)
         {
             _logger = logger;
+            _searchService = searchService;
+            _appSettings = appSettings.Value;
         }
 
         [HttpGet]
-        public IActionResult Get(string query, string width = "", string height = "", string aspectRatio = "",
-            string library = "", string category = "", string title = "", string copyright = "",
-            string album = "", string keyword = "", int pageNumber = 0, int resultsPerPage = 100, string facets = "")
+        public IActionResult Get(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
         {
             QueryResponse response;
 
-            //if (!(User is ClaimsPrincipal user))
-            //{
-            //    return BadRequest();
-            //}
-
-            // Getting operatorId, so we can use it to retrieve images according to user's permission.
-            //var operatorIdObjClaim = User.Claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Subject);
-
-            //var operatorId = operatorIdObjClaim == null ? string.Empty : operatorIdObjClaim.Value;
-
-            // We obtain the groups that the user belongs to
-            //var groups = User.Claims.Where(x => x.Type == "group").Select(@group => @group.Value).ToList();
-
             _logger.LogDebug(
-                "ImagesController - Get - query: {query}- width: {width} - height: {height} - aspectRatio {aspectRatio} - library {library} - category {category} - title {title} - copyright {copyright} - album {album} - keyword {keyword} - pageNumber {pageNumber} - resultsPerPage {resultsPerPage}",
-                             query, width, height, aspectRatio, library, category, title, copyright, album, keyword, pageNumber, resultsPerPage);
-
+                "ImagesController - Get - query: {query} - pageNumber {pageNumber} - resultsPerPage {resultsPerPage}",
+                             query, pageNumber, resultsPerPage);
 
             try
             {
                 // This is the object that will be used to parse the query and the parameter. Start Position equals to pageNumber * resultsPerPage. Rows number will be the results per page.
                 var queryToUse = new Query(pageNumber * resultsPerPage, resultsPerPage) { TextQuery = query };
-
-                // TODO: Check if it necessary the id as filter
-                //if (!(string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id)))
-                //{
-                //    queryToUse.IdFilter.Add(id);
-                //}
-
-                //long auxToParse;
-                //if (!(string.IsNullOrEmpty(width) || string.IsNullOrWhiteSpace(width)))
-                //{
-                //    if (long.TryParse(width, out auxToParse))
-                //    {
-                //        queryToUse.WidthFilter.Add(auxToParse);
-                //    }
-                //}
-
-
 
                 var appliedFacets = _searchService.ParseFilterQueries(facets);
 

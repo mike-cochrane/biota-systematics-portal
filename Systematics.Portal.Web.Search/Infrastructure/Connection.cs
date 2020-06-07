@@ -14,12 +14,20 @@ namespace SearchLibrary.Implementation
         public readonly ISolrOperations<Document> SolrCore;
 
         // Initialize the connection and provide it to the search library
-        public Connection(string coreUrl,string userName, string password)
+        public Connection(string coreUrl, string userName, string password)
         {
-            var solrConnection = new SolrNet.Impl.SolrConnection(coreUrl)
+            SolrNet.Impl.SolrConnection solrConnection;
+            if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
             {
-                HttpWebRequestFactory = new SecureHttpWebRequestFactory(userName, password)
-            };
+                solrConnection = new SolrNet.Impl.SolrConnection(coreUrl);
+            }
+            else
+            {
+                solrConnection = new SolrNet.Impl.SolrConnection(coreUrl)
+                {
+                    HttpWebRequestFactory = new SecureHttpWebRequestFactory(userName, password)
+                };
+            }
 
             // Enable the following line in case that you get the error "url string is too long"
             // Notice that we'll use our own implementation to obtain a POST connection.
@@ -48,9 +56,13 @@ namespace SearchLibrary.Implementation
             public IHttpWebRequest Create(Uri url)
             {
                 var req = (HttpWebRequest)WebRequest.Create(url);
-                var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(_username + ":" + _password));
 
-                req.Headers.Add("Authorization", "Basic " + credentials);
+                if (!(string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password)))
+                {
+                    var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(_username + ":" + _password));
+
+                    req.Headers.Add("Authorization", "Basic " + credentials);
+                }
 
                 return new HttpWebRequestAdapter(req);
             }
