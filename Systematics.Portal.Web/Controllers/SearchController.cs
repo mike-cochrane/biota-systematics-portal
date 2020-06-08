@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
-using Systematics.Portal.Web.Data;
+using System.Security;
+using System.Text;
+using System.Web;
+using System.Xml;
+using Systematics.Portal.Web.Models;
 
 namespace Systematics.Portal.Web.Controllers
 {
@@ -14,16 +18,31 @@ namespace Systematics.Portal.Web.Controllers
         }
 
         // GET: Search/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Detail(int id)
         {
             Document document;
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(Document));
 
-            using (StreamReader sr = new StreamReader("20200527-Document-Names-Fungi.xml"))
+            using (StreamReader xml = new StreamReader("single-document.xml"))
             {
-                document = (Document)ser.Deserialize(sr);
+                document = (Document)ser.Deserialize(xml);
             }
-       
+
+            //XmlDocument xmlString = new XmlDocument();
+            //xmlString.Load("single-document.xml");
+            //string xmlString = new StreamReader("single-document.xml").ReadToEnd();// This encoding helped me for special chars like ("é")
+            //string encodedXml = HttpUtility.HtmlEncode(xmlString);
+            //encodedXml = SecurityElement.Escape(encodedXml); // handled the & issue
+            //xmlString = xmlString.Replace("<", "<").Replace(">", ">").Replace(""", "\"");
+            //string encodedXml = xmlString.ToString().Replace("'", "&apos;").Replace("\"", "&quot;").Replace(">", "&gt;").Replace("<", "&lt;").Replace("&", "&amp;");
+
+            // convert string to stream
+            //byte[] byteArray = Encoding.UTF8.GetBytes(xmlString.ToString());
+            //byte[] byteArray = Encoding.ASCII.GetBytes(contents);
+            //MemoryStream xmlStream = new MemoryStream(byteArray);
+
+            //document = (Document)ser.Deserialize(xmlStream);
+
             return View(document);
         }
 
