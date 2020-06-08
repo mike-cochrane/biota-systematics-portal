@@ -11,9 +11,9 @@ namespace Systematics.Portal.Web.Services
 {
     public class SearchService : ISearchService
     {
-        public async Task<SearchResult> Search(string searchTerm, int pageNumber, int resultsPerPage, string sortBy, string sortOrder)
+        public async Task<SearchResult> Search(string searchTerm, int pageNumber=0, int resultsPerPage=100, string sortBy="", string sortOrder="")
         {
-            var client = new Systematics.Portal.Web.Api.Access.Client.Client("http://localhost:29578/");
+            var client = new Api.Access.Client.Client("http://localhost:29578/");
 
             var response  = await client.CallService(searchTerm, pageNumber, resultsPerPage);
 

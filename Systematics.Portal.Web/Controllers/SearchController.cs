@@ -7,6 +7,7 @@ using System.Web;
 using System.Xml;
 using Systematics.Portal.Web.Models;
 using Systematics.Portal.Web.Services;
+using System.Threading.Tasks;
 
 namespace Systematics.Portal.Web.Controllers
 {
@@ -20,8 +21,11 @@ namespace Systematics.Portal.Web.Controllers
         }
 
         // GET: Search
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+
+            var response = await _searchService.Search("Bacteria");
+
             return View();
         }
 

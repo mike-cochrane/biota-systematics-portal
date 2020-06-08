@@ -1,7 +1,7 @@
-﻿@model Systematics.Portal.Web.Models.Search.SpecimenSummary
+﻿@model Systematics.Portal.Web.Search.Tools.Models.SolrDocument
 
 <div class="specimen-list-item">
-    <div class="pull-left">
+    @*<div class="pull-left">
         <h1><a href="Specimen/@Model.AccessionNumber.Replace(' ', '_')">@Model.AccessionNumber : @Model.TaxonName</a></h1>
     </div>
     <div class="pull-right">
@@ -26,5 +26,5 @@
         @if (Model.NZAreaCode != null && !Model.NZAreaCode.Equals(string.Empty)) {
             @:&nbsp;&nbsp;<span class="heading">NZ&nbsp;area&nbsp;code:</span>&nbsp;@Model.NZAreaCode
         }
-    </p>
+    </p>*@
 </div>

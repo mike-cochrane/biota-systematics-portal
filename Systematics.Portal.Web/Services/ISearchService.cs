@@ -12,9 +12,9 @@ namespace Systematics.Portal.Web.Services
         Task<SearchResult> Search(/*List<SelectedFacetValue> appliedFacets,
             List<SelectedRange> appliedRanges,*/
             string searchTerm,
-            int pageNumber,
-            int resultsPerPage,
-            string sortBy,
-            string sortOrder);
+            int pageNumber=0,
+            int resultsPerPage=100,
+            string sortBy ="",
+            string sortOrder="");
     }
 }
