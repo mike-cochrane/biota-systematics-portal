@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Systematics.Portal.Web.Api.Access.Client\Systematics.Portal.Web.Api.Access.Client.csproj" />
+  </ItemGroup>
+
 </Project>
