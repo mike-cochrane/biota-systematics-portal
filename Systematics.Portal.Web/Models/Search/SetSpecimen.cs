@@ -11,7 +11,7 @@ namespace Systematics.Portal.Web.Models.Search
         public int SetId { get; set; }
         public Guid SpecimenGuid { get; set; }
         public DateTime AddedDate { get; set; }
-        public SpecimenSummary SpecimenSummary { get; set; }
+        public Document Summary { get; set; }
 
         public SetSpecimen()
         {
@@ -19,7 +19,7 @@ namespace Systematics.Portal.Web.Models.Search
             SetId = -1;
             SpecimenGuid = Guid.Empty;
             AddedDate = DateTime.Now;
-            SpecimenSummary = new SpecimenSummary();
+            Summary = new Document();
         }
     }
 }

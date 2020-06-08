@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Systematics.Portal.Web.Api.Access.Client.Extensions;
+using Systematics.Portal.Web.Search.Tools.Models;
 
 namespace Systematics.Portal.Web.Api.Access.Client
 {
@@ -18,28 +20,33 @@ namespace Systematics.Portal.Web.Api.Access.Client
             _url = url;
         }
 
-        public async Task CallService(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
+        public async Task<QueryResponse> CallService(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
         {
             string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}&facets={facets}";
+            QueryResponse queryResponse = null;
 
-            try
+            var baseAddress = urlToQuery;
+
+            var client = new HttpClient
             {
-                var baseAddress = urlToQuery;
+                BaseAddress = new Uri(baseAddress)
+            };
 
-                var client = new HttpClient
-                {
-                    BaseAddress = new Uri(baseAddress)
-                };
+            var response = await client.GetAsync(urlToQuery);
 
-                var response = await client.GetStringAsync(urlToQuery);
-
-                Console.WriteLine(response.ToString());
-            }
-            catch (Exception exception)
+            if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine(exception);
+                queryResponse = await response.Content.ReadAsAsync<QueryResponse>();
 
             }
+            else
+            { throw new HttpRequestException(response.ReasonPhrase); }
+
+            // Do event logging
+            //Console.WriteLine(response.ToString());
+
+
+            return queryResponse;
         }
     }
 }

@@ -11,4 +11,9 @@
   <ItemGroup>
     <Folder Include="Views\Download\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Systematics.Portal.Web.Api.Access.Client\Systematics.Portal.Web.Api.Access.Client.csproj" />
+    <ProjectReference Include="..\Systematics.Portal.Web.Search.Tools\Systematics.Portal.Web.Search.Tools.csproj" />
+  </ItemGroup>
 </Project>

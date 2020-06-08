@@ -62,48 +62,48 @@ namespace Systematics.Portal.Web.Models
         {
             List<SetSpecimen> sortedSpecimens = Specimens;
 
-            switch (SelectedSortOption)
-            {
-                case "accessionNumber":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.AccessionNumberSort).ToList();
-                    break;
-                case "country":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.Country).ToList();
-                    break;
-                case "collection":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.Collection).ToList();
-                    break;
-                case "addedDate":
-                    sortedSpecimens = Specimens.OrderBy(s => s.AddedDate).ToList();
-                    break;
-                case "ecologicalDistrict":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.EcologicalDistrict).ToList();
-                    break;
-                case "hasImages":
-                    sortedSpecimens = Specimens.OrderByDescending(s => s.SpecimenSummary.HasImages).ToList();
-                    break;
-                case "landDistrict":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.LandDistrict).ToList();
-                    break;
-                case "locality":
-                    //TODO - sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.Locality).ToList();
-                    break;
-                case "newZealandAreaCode":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.NZAreaCode).ToList();
-                    break;
-                case "taxonName":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.TaxonNameSort).ToList();
-                    break;
-                case "typeStatus":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.TypeStatus).ToList();
-                    break;
-                case "specimenType":
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.SpecimenType).ToList();
-                    break;
-                default:
-                    sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.AccessionNumberSort).ToList();
-                    break;
-            }
+            //switch (SelectedSortOption)
+            //{
+            //    case "accessionNumber":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.AccessionNumberSort).ToList();
+            //        break;
+            //    case "country":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.Country).ToList();
+            //        break;
+            //    case "collection":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.Collection).ToList();
+            //        break;
+            //    case "addedDate":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.AddedDate).ToList();
+            //        break;
+            //    case "ecologicalDistrict":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.EcologicalDistrict).ToList();
+            //        break;
+            //    case "hasImages":
+            //        sortedSpecimens = Specimens.OrderByDescending(s => s.Summary.HasImages).ToList();
+            //        break;
+            //    case "landDistrict":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.LandDistrict).ToList();
+            //        break;
+            //    case "locality":
+            //        //TODO - sortedSpecimens = Specimens.OrderBy(s => s.SpecimenSummary.Locality).ToList();
+            //        break;
+            //    case "newZealandAreaCode":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.NZAreaCode).ToList();
+            //        break;
+            //    case "taxonName":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.TaxonNameSort).ToList();
+            //        break;
+            //    case "typeStatus":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.TypeStatus).ToList();
+            //        break;
+            //    case "specimenType":
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.SpecimenType).ToList();
+            //        break;
+            //    default:
+            //        sortedSpecimens = Specimens.OrderBy(s => s.Summary.AccessionNumberSort).ToList();
+            //        break;
+            //}
 
             return sortedSpecimens;
         }

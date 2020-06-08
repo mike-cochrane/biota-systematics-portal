@@ -10,7 +10,7 @@ namespace Systematics.Portal.Web.Search.Tools.Models
         }
 
         // Expose properties that will be returned from the search library
-        public List<Document> Results { get; set; }
+        public List<SolrDocument> Results { get; set; }
         public int TotalHits { get; set; }
         public int QueryTime { get; set; }
         public int Status { get; set; }

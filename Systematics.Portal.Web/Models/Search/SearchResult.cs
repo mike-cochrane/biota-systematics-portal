@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Systematics.Portal.Web.Search.Tools.Models;
 
 namespace Systematics.Portal.Web.Models.Search
 {
     public class SearchResult
     {
-        public Dictionary<Guid, SpecimenSummary> FoundSpecimens { get; set; }
+        public Dictionary<string, SolrDocument> FoundDocuments { get; set; }
         public int TotalSpecimens { get; set; }
 
         public List<Filter> Filters { get; set; }
@@ -20,7 +21,7 @@ namespace Systematics.Portal.Web.Models.Search
 
         public SearchResult(string sortBy = "relevance")
         {
-            FoundSpecimens = new Dictionary<Guid, SpecimenSummary>();
+            FoundDocuments = new Dictionary<string, SolrDocument>();
             TotalSpecimens = 0;
 
             Filters = new List<Filter>();
@@ -29,11 +30,11 @@ namespace Systematics.Portal.Web.Models.Search
             AppliedRanges = new List<SelectedRange>();
         }
 
-        public List<SpecimenSummary> DisplayedSpecimens()
+        public List<SolrDocument> DisplayedDocuments()
         {
-            List<SpecimenSummary> specimens = FoundSpecimens.Values.ToList();
+            List<SolrDocument> documents = FoundDocuments.Values.ToList();
 
-            return specimens;
+            return documents;
         }
 
         public string GetAppliedFacets()

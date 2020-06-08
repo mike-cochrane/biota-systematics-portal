@@ -11,7 +11,7 @@ namespace SearchLibrary.Implementation
 {
     public class Connection
     {
-        public readonly ISolrOperations<Document> SolrCore;
+        public readonly ISolrOperations<SolrDocument> SolrCore;
 
         // Initialize the connection and provide it to the search library
         public Connection(string coreUrl, string userName, string password)
@@ -32,9 +32,9 @@ namespace SearchLibrary.Implementation
             // Enable the following line in case that you get the error "url string is too long"
             // Notice that we'll use our own implementation to obtain a POST connection.
             //Startup.Init<Document>(new MyPostSolrConnection(solrConnection, coreUrl,userName,password));
-            Startup.Init<Document>(solrConnection);
+            Startup.Init<SolrDocument>(solrConnection);
 
-            SolrCore = ServiceLocator.Current.GetInstance<ISolrOperations<Document>>();
+            SolrCore = ServiceLocator.Current.GetInstance<ISolrOperations<SolrDocument>>();
         }
 
         private class SecureHttpWebRequestFactory : IHttpWebRequestFactory

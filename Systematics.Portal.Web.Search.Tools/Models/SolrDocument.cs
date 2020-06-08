@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Systematics.Portal.Web.Search.Tools.Models
 {
-    public class Document
+    public class SolrDocument
     {
         [SolrUniqueKey("id")]
         public string Id { get; set; }

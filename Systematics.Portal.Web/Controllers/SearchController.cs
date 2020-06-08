@@ -6,11 +6,19 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using Systematics.Portal.Web.Models;
+using Systematics.Portal.Web.Services;
 
 namespace Systematics.Portal.Web.Controllers
 {
     public class SearchController : Controller
     {
+        public ISearchService _searchService;
+
+        public SearchController(ISearchService searchService)
+        {
+            _searchService = searchService;
+        }
+
         // GET: Search
         public ActionResult Index()
         {
@@ -45,6 +53,7 @@ namespace Systematics.Portal.Web.Controllers
 
             return View(document);
         }
+
 
         // GET: Search/Create
         public ActionResult Create()
