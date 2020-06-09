@@ -21,12 +21,25 @@ namespace Systematics.Portal.Web.Controllers
         }
 
         // GET: Search
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string keyboards)
         {
+            bool success = false;
+            var viewData = new SearchViewModel(null, null);
+            viewData.Result = await _searchService.Search("Bacteria");
 
-            var response = await _searchService.Search("Bacteria");
+            if (viewData.Result != null)
+            {
+                success = true;
+                //specimenCount = viewData.Result.TotalSpecimens;
+            }
 
-            return View();
+            return View(viewData);
+        }
+
+        public async Task<ActionResult> Search(string keyboards)
+        {
+            var result = await _searchService.Search("Bacteria");
+            return View(result);
         }
 
         // GET: Search/Details/5

@@ -1,0 +1,25 @@
+﻿@model Systematics.Portal.Web.Models.Search.SpecimenSummary
+
+<p>
+    &nbsp;&nbsp;<span class="heading">Data&nbsp;provider:</span>&nbsp;@Model.Collection
+    &nbsp;&nbsp;<span class="heading">Collection:</span>&nbsp;@Model.SubCollection
+    @if (Model.Collection != "ICMP")
+    {
+        @:&nbsp; &nbsp;<span class="heading">Specimen&nbsp;Type:</span>&nbsp;@Model.SpecimenType
+    } else
+    {
+        @:&nbsp; &nbsp;<span class="heading">Culture&nbsp;Type:</span>&nbsp;@Model.SpecimenType
+    }
+    @if (Model.Country != null && !Model.Country.Equals(string.Empty)) 
+    {
+        @:&nbsp;&nbsp;<span class="heading">Country:</span>&nbsp;@Model.Country
+    }
+    @if (Model.Locality != null && !Model.Locality.Equals(string.Empty)) 
+    {
+        @:&nbsp;&nbsp;<span class="heading">Standard Locality:</span>&nbsp;@Model.Locality
+    }
+    @if (Model.NZAreaCode != null && !Model.NZAreaCode.Equals(string.Empty)) 
+    {
+        @:&nbsp;&nbsp;<span class="heading">NZ&nbsp;area&nbsp;code:</span>&nbsp;@Model.NZAreaCode
+    }
+</p>

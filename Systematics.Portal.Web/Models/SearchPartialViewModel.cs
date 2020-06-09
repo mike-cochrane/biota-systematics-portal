@@ -14,7 +14,7 @@ namespace Systematics.Portal.Web.Models
             Query = string.Empty;
             UncorrectedQuery = string.Empty;
             SelectedCollection = selectedCollection;
-            Collections = new SelectList(collectionList.Items, "Key", "DisplayText", SelectedCollection);
+            // siamac commented to get working temporarily until backend completed - Collections = new SelectList(collectionList.Items, "Key", "DisplayText", SelectedCollection);
             ErrorMessage = string.Empty;
         }
     }
