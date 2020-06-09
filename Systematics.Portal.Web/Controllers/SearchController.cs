@@ -25,7 +25,7 @@ namespace Systematics.Portal.Web.Controllers
         {
             bool success = false;
             var viewData = new SearchViewModel(null, null);
-            viewData.Result = await _searchService.Search("Bacteria");
+            viewData.Result = await _searchService.Search(keyboards);
 
             if (viewData.Result != null)
             {

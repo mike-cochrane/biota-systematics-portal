@@ -1,5 +1,10 @@
-﻿@model Systematics.Portal.Web.Models.Search.SpecimenSummary
+﻿@model Systematics.Portal.Web.Search.Tools.Models.SolrDocument
 
+<p>
+    @Html.Raw(Model.Current);
+</p>
+
+@*
 <p>
     &nbsp;&nbsp;<span class="heading">Data&nbsp;provider:</span>&nbsp;@Model.Collection
     &nbsp;&nbsp;<span class="heading">Collection:</span>&nbsp;@Model.SubCollection
@@ -22,4 +27,4 @@
     {
         @:&nbsp;&nbsp;<span class="heading">NZ&nbsp;area&nbsp;code:</span>&nbsp;@Model.NZAreaCode
     }
-</p>
+</p>*@
