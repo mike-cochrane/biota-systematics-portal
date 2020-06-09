@@ -205,11 +205,11 @@
                 </div>
                 @* Paging *@
                 @Html.Partial("PagingPartial", Model)
-                @if (Model.Result.FoundSpecimens.Count > 0)
+                @if (Model.Result.FoundDocuments.Count > 0)
                 {
                     string listActiveClass = string.Empty;
                     string gridActiveClass = string.Empty;
-                    var specimens = Model.Result.DisplayedSpecimens();
+                    var specimens = Model.Result.DisplayedDocuments();
                     if (Model.SelectedView.Equals("list"))
                     {
                         listActiveClass = "active";
@@ -238,10 +238,10 @@
                                     @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />&nbsp;Select all
                                 }
                             </div>
-                            @foreach (Systematics.Portal.Web.Models.Search.SpecimenSummary summary in specimens)
+                            @foreach (Systematics.Portal.Web.Search.Tools.Models.SolrDocument summary in specimens)
                             {
                             <div class="specimen-list-item">
-                                <div class="pull-left">
+                                @*<div class="pull-left">
                                     <h1>
                                         <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
                                         @Html.ActionLink(@summary.AccessionNumber + " : " + @summary.TaxonName, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
@@ -256,7 +256,7 @@
                                     {
                                         <i class= "icon-camera" title="Images are available for this record"></i>
                                     }
-                                </div>
+                                </div>*@
                                 <div class="clear"></div>
                                 @Html.Partial("SpecimenSummaryTextPartial", summary)
                             </div>                            
@@ -296,33 +296,33 @@
                                         Specimen Type
                                     </th>
                                 </tr>
-                                @foreach (Systematics.Portal.Web.Models.Search.SpecimenSummary summary in specimens)
+                                @foreach (Systematics.Portal.Web.Search.Tools.Models.SolrDocument summary in specimens)
                                 {
-                                    string id = summary.SpecimenId.ToString();
+                                    //string id = summary.SpecimenId.ToString();
                                     @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@
-                                    <tr valign="top">
-                                        <td>
-                                            <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
-                                        </td>
-                                        <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
-                                        </td>
-                                        <td>@summary.TaxonName
-                                        </td>
-                                        <td>@summary.TypeStatus
-                                        </td>
-                                        <td>@summary.Country
-                                        </td>
-                                        <td>@summary.EcologicalDistrict
-                                        </td>
-                                        <td>@summary.LandDistrict
-                                        </td>
-                                        <td>@summary.NZAreaCode
-                                        </td>
-                                        <td>@summary.Collection
-                                        </td>
-                                        <td>@summary.SpecimenType
-                                        </td>
-                                    </tr>
+                                    @*<tr valign="top">
+                                    <td>
+                                        <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
+                                    </td>
+                                    <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                    </td>
+                                    <td>@summary.TaxonName
+                                    </td>
+                                    <td>@summary.TypeStatus
+                                    </td>
+                                    <td>@summary.Country
+                                    </td>
+                                    <td>@summary.EcologicalDistrict
+                                    </td>
+                                    <td>@summary.LandDistrict
+                                    </td>
+                                    <td>@summary.NZAreaCode
+                                    </td>
+                                    <td>@summary.Collection
+                                    </td>
+                                    <td>@summary.SpecimenType
+                                    </td>
+                                </tr>*@
                                 }
                             </table>
                         </div>
