@@ -780,33 +780,33 @@
                             </li>
 
                             <!--<li class="c-audience-nav__tier-1-item c-audience-nav__tier-1-item--search js-tier-1-item js-tier-1-item--0">
-                                <a href="/#" class="c-audience-nav__btn-link js-tier-toggle" data-item="0" data-tier="1" aria-haspopup="true" aria-expanded="false">
-                                    <span class="c-audience-nav__btn-link-text">Search</span>
-                                    <svg class="c-svg-icon c-audience-nav__btn-link-icon">
-                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-search"></use>
+                            <a href="/#" class="c-audience-nav__btn-link js-tier-toggle" data-item="0" data-tier="1" aria-haspopup="true" aria-expanded="false">
+                                <span class="c-audience-nav__btn-link-text">Search</span>
+                                <svg class="c-svg-icon c-audience-nav__btn-link-icon">
+                                    <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-search"></use>
+                                </svg>
+                            </a>
+                            <div class="c-audience-nav__search">
+                                <div class="c-audience-nav__search-icon">
+                                    <svg class="c-svg-icon c-audience-nav__tier-2-icon">
+                                        <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-search-ring"></use>
                                     </svg>
-                                </a>
-                                <div class="c-audience-nav__search">
-                                    <div class="c-audience-nav__search-icon">
-                                        <svg class="c-svg-icon c-audience-nav__tier-2-icon">
-                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-search-ring"></use>
-                                        </svg>
-                                        <span class="c-audience-nav__tier-2-icon-underline"></span>
-                                    </div>
-                                    <form class="c-search-form" action="/search">
-                                        <div class="c-search-form__field c-search-form__field--keyword">
-                                            <label for="header-search-keyword" class="c-search-form__label">Search for&hellip;</label>
-                                            <input id="header-search-keyword" class="c-search-form__text-input" type="text" placeholder="Search for keyword or phrase..." name="query" />
-                                        </div>
-                                        <button type="submit" class="c-button">
-                                            <span class="c-button__text c-button__text--extra-space c-button__text--hide-mob">Search</span>
-                                            <svg class="c-svg-icon c-button__icon">
-                                                <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <span class="c-audience-nav__tier-2-icon-underline"></span>
                                 </div>
-                            </li>-->
+                                <form class="c-search-form" action="/search">
+                                    <div class="c-search-form__field c-search-form__field--keyword">
+                                        <label for="header-search-keyword" class="c-search-form__label">Search for&hellip;</label>
+                                        <input id="header-search-keyword" class="c-search-form__text-input" type="text" placeholder="Search for keyword or phrase..." name="query" />
+                                    </div>
+                                    <button type="submit" class="c-button">
+                                        <span class="c-button__text c-button__text--extra-space c-button__text--hide-mob">Search</span>
+                                        <svg class="c-svg-icon c-button__icon">
+                                            <use xlink:href="~/_resources/themes/default/images/icons/icons.svg#icon-arrow-right"></use>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </li>-->
                         </ul>
                     </nav>
                 </div>
@@ -814,20 +814,7 @@
         </header>
 
         <div id="main-content" class="l-page-container__body">
-            <div class="c-t3-banner " style="background-image: url(https://uat.mwlr.msapp.co.nz/uploads/public/Uploads/petr-vysohlid-9fqwGqGLUxc-unsplash-1__FillMaxWzIwMDAsNTQwXQ.jpg)">
-                <div class="c-t3-banner__content">
-                    <ul class="c-breadcrumbs">
-                        <li class="c-breadcrumbs__item">
-                            <a href="/" class="c-breadcrumbs__link">
-                                Home
-                            </a>
-                        </li>
-                    </ul>
-                    <h1 class="c-t3-banner__title">
-                        Systematics Portal
-                    </h1>
-                </div>
-            </div>
+            <partial name="/Views/Shared/_BannerPartial.cshtml" />
             <div class="l-content-container l-content-container--with-floating-nav" id="overview">
                 <div class="l-elemental-content">
                     <div class="l-content-block l-content-block--default">

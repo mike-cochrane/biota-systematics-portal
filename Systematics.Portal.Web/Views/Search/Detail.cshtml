@@ -4,7 +4,7 @@
 
 @model Systematics.Portal.Web.Models.Document;
 
-<h1>Detail</h1>
+<h1>@Html.Raw(Model.NameFull)</h1>
 
 <div class="container-fluid">
     <div class="row">
@@ -12,13 +12,13 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">Home</a>
+                        <a href="#">Breadcrumb</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="#">Library</a>
+                        <a href="#">Breadcrumb</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        Data
+                        Breadcrumb
                     </li>
                 </ol>
             </nav>
@@ -26,7 +26,30 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="btn-group btn-group-lg float-right" role="group">
+            <div class="btn-group btn-group-lg float-right hidden-xs-down" role="group">
+                <button class="btn btn-secondary" type="button">
+                    Save to favorites
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Download
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Annotate
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    History
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Get citation
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Share
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Contact us
+                </button>
+            </div>
+            <div class="btn-group-vertical btn-group-lg hidden-sm-up" role="group">
                 <button class="btn btn-secondary" type="button">
                     Save to favorites
                 </button>
