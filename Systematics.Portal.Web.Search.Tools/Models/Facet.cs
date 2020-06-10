@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Systematics.Portal.Web.Search.Tools.Facet
+namespace Systematics.Portal.Web.Search.Tools.Models
 {
     public class Facet
     {

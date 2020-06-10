@@ -9,9 +9,9 @@ namespace Systematics.Portal.Web.Services
 {
     public interface ISearchService
     {
-        Task<SearchResult> Search(/*List<SelectedFacetValue> appliedFacets,
-            List<SelectedRange> appliedRanges,*/
-            string searchTerm,
+        Task<SearchResult> Search(string searchTerm, 
+            List<SelectedFacetValue> appliedFacets = null,
+            List<SelectedRange> appliedRanges = null,
             int pageNumber=0,
             int resultsPerPage=100,
             string sortBy ="",

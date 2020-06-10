@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SolrNet;
+using Systematics.Portal.Web.Models.Search;
 using Systematics.Portal.Web.Search.Tools.Models;
 
 namespace SearchLibrary.Implementation
@@ -8,11 +9,11 @@ namespace SearchLibrary.Implementation
     public class ResponseExtraction
     {
         // Extract part of the SolrNet response and set them in QueryResponse class
-        internal void SetHeader(QueryResponse queryResponse, SolrQueryResults<SolrDocument> solrResults)
+        internal void SetHeader(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
         {
             queryResponse.QueryTime = solrResults.Header.QTime;
             queryResponse.Status = solrResults.Header.Status;
-            queryResponse.TotalHits = solrResults.NumFound;
+            queryResponse.TotalSpecimens = solrResults.NumFound;
         }
 
         internal void SetBody(QueryResponse queryResponse, SolrQueryResults<SolrDocument> solrResults)
