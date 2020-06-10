@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Systematics.Portal.Web.Helpers;
-using Systematics.Portal.Web.Models.Search;
+using Systematics.Portal.Web.Search.Tools.Models.Search;
 
 namespace Systematics.Portal.Web.Models
 {

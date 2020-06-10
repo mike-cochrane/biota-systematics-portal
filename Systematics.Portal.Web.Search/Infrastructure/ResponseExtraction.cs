@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SolrNet;
-using Systematics.Portal.Web.Models.Search;
 using Systematics.Portal.Web.Search.Tools.Models;
+using Systematics.Portal.Web.Search.Tools.Models.Search;
 
 namespace SearchLibrary.Implementation
 {

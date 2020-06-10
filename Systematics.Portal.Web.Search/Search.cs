@@ -4,8 +4,8 @@ using SolrNet;
 using SolrNet.Commands.Parameters;
 using System;
 using System.Collections.Generic;
-using Systematics.Portal.Web.Models.Search;
 using Systematics.Portal.Web.Search.Tools.Models;
+using Systematics.Portal.Web.Search.Tools.Models.Search;
 
 namespace Systematics.Portal.Web.Search
 {

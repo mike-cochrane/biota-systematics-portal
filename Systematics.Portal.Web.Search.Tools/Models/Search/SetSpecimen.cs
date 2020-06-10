@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Systematics.Portal.Web.Models.Search
+namespace Systematics.Portal.Web.Search.Tools.Models.Search
 {
     public class SetSpecimen
     {

@@ -1,7 +1,7 @@
 ﻿@model Systematics.Portal.Web.Models.SearchViewModel
 <div id="results" class="row-fluid">
     <div id="applied-facets">
-        @foreach (Systematics.Portal.Web.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets) {
+        @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets) {
             string label = s.Label + " [x]";
             <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
         }
