@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SolrNet;
+using Systematics.Portal.Web.Search.Tools.Helpers;
 using Systematics.Portal.Web.Search.Tools.Models;
 using Systematics.Portal.Web.Search.Tools.Models.Search;
 
@@ -16,12 +17,12 @@ namespace SearchLibrary.Implementation
             queryResponse.TotalSpecimens = solrResults.NumFound;
         }
 
-        internal void SetBody(QueryResponse queryResponse, SolrQueryResults<SolrDocument> solrResults)
+        internal void SetBody(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
         {
-            queryResponse.Results = solrResults;
+            queryResponse.FoundDocuments = solrResults.ToDictionary(id => id.Id, document => document);
         }
 
-        internal void SetSpellCheck(QueryResponse queryResponse, SolrQueryResults<SolrDocument> solrResults)
+        internal void SetSpellCheck(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
         {
             var spellSuggestions = new List<string>();
 
@@ -36,18 +37,46 @@ namespace SearchLibrary.Implementation
             queryResponse.DidYouMean = spellSuggestions;
         }
 
-        internal void SetFacets(QueryResponse queryResponse, SolrQueryResults<SolrDocument> solrResults)
+        internal void SetFacets(SearchResult searchResult, SolrQueryResults<SolrDocument> results)
         {
-            if (solrResults.FacetFields.ContainsKey("aspectRatio_ss"))
+            var facetConfigList = Utils.GetFacetConfigList();
+
+            foreach (AdminFacet config in facetConfigList)
             {
-                queryResponse.Facets.Add(new Facet
+                var current = results.FacetFields.Where(c => c.Key == config.SolrFieldName);
+                if (current.Any())
                 {
-                    Name = "aspectRatio_ss",
-                    Values = solrResults.FacetFields["aspectRatio_ss"]
-                        .Select(
-                            facet => new KeyValuePair<string, int>(facet.Key, facet.Value))
-                        .ToList()
-                });
+                    var f = current.First();
+                    switch (config.Type)
+                    {
+                        case "text":
+                        default:
+                            Facet facet = new Facet();
+                            facet.Name = f.Key;
+
+                            facet.DisplayText = config.Facet;
+
+                            foreach (var v in f.Value)
+                            {
+                                if (v.Value > 0)
+                                {
+                                    FacetValue value = new FacetValue()
+                                    {
+                                        Name = v.Key,
+                                        Count = v.Value
+                                    };
+                                    facet.Values.Add(value);
+                                }
+                            }
+
+                           
+                            if (facet.Values.Any())
+                            {
+                                searchResult.Filters.Add(facet);
+                            }
+                            break;
+                    }
+                }
             }
         }
     }

@@ -5,7 +5,7 @@
             string label = s.Label + " [x]";
             <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
         }
-        @foreach (Systematics.Portal.Web.Models.Search.SelectedRange s in Model.Result.AppliedRanges) {
+        @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.SelectedRange s in Model.Result.AppliedRanges) {
             string label = s.Label + " [x]";
             <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '', 'range')">@Html.Raw(label)</a>
         }
@@ -16,8 +16,8 @@
                 <h2>
                     Facets</h2>
                 @foreach (object filter in Model.Result.Filters) {
-                    if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Models.Facet))) {
-                        Systematics.Portal.Web.Models.Facet f = (Systematics.Portal.Web.Models.Facet)filter;
+                    if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Search.Tools.Models.Search.Facet))) {
+                        Systematics.Portal.Web.Search.Tools.Models.Search.Facet f = (Systematics.Portal.Web.Search.Tools.Models.Search.Facet)filter;
 
                         string facetIconId = f.Name + "-icon";
                         string facetTargetId = f.Name + "-content";
@@ -30,7 +30,7 @@
                                 <i id="@facetIconId" class="icon-minus-sign"></i> @f.Name</h5>
                         </div>
                         <div id="@facetTargetId" class="collapse in">
-                            @foreach (Systematics.Portal.Web.Models.FacetValue v in topFive) {
+                            @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.FacetValue v in topFive) {
                                 if (!v.Selected) {
                                     string label = v.Name + " (" + v.Count + ")";
                                 <p>
@@ -51,7 +51,7 @@
                                 <h3>@f.Name</h3>
                             </div>
                             <div class="modal-body">
-                                @foreach (Systematics.Portal.Web.Models.FacetValue v in f.Values) {
+                                @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.FacetValue v in f.Values) {
                                     if (!v.Selected) {
                                         string label = v.Name + " (" + v.Count + ")";
                                     <p>

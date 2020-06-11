@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Systematics.Portal.Web.Api.Access.Infrastructure;
 using Systematics.Portal.Web.Api.Access.Services;
 using Systematics.Portal.Web.Search.Tools.Models;
+using Systematics.Portal.Web.Search.Tools.Models.Search;
 
 namespace Systematics.Portal.Web.Api.Access.Controllers
 {
@@ -33,7 +34,7 @@ namespace Systematics.Portal.Web.Api.Access.Controllers
         [HttpGet]
         public IActionResult Get(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
         {
-            QueryResponse response;
+            SearchResult response;
 
             _logger.LogDebug(
                 "ImagesController - Get - query: {query} - pageNumber {pageNumber} - resultsPerPage {resultsPerPage}",

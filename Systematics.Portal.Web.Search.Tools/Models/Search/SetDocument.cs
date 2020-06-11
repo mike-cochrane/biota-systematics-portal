@@ -5,21 +5,21 @@ using System.Text;
 
 namespace Systematics.Portal.Web.Search.Tools.Models.Search
 {
-    public class SetSpecimen
+    public class SetDocument
     {
         public int SetSpecimenId { get; set; }
         public int SetId { get; set; }
         public Guid SpecimenGuid { get; set; }
         public DateTime AddedDate { get; set; }
-        public Document Summary { get; set; }
+        public SolrDocument SolrDocument { get; set; }
 
-        public SetSpecimen()
+        public SetDocument()
         {
             SetSpecimenId = -1;
             SetId = -1;
             SpecimenGuid = Guid.Empty;
             AddedDate = DateTime.Now;
-            Summary = new Document();
+            SolrDocument = new SolrDocument();
         }
     }
 }

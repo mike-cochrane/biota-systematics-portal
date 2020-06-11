@@ -26,7 +26,7 @@ namespace Systematics.Portal.Web.Models
         public DateTime UpdatedDate { get; set; }
         public Guid OwnerId { get; set; }
 
-        public List<SetSpecimen> Specimens { get; set; }
+        public List<SetDocument> Specimens { get; set; }
 
         public string SelectedSortOption { get; set; }
         public SelectList SortOptions
@@ -34,7 +34,7 @@ namespace Systematics.Portal.Web.Models
             get { return GetSortOptions(); }
         }
 
-        public List<SetSpecimen> SortedSpecimens
+        public List<SetDocument> SortedSpecimens
         {
             get { return SortSpecimens(); }
         }
@@ -51,16 +51,16 @@ namespace Systematics.Portal.Web.Models
             UpdatedDate = DateTime.MinValue;
             OwnerId = Guid.Empty;
 
-            Specimens = new List<SetSpecimen>();
+            Specimens = new List<SetDocument>();
 
             SelectedView = "list";
             SelectedSortOption = "accessionNumber";
             IsNew = true;
         }
 
-        public List<SetSpecimen> SortSpecimens()
+        public List<SetDocument> SortSpecimens()
         {
-            List<SetSpecimen> sortedSpecimens = Specimens;
+            List<SetDocument> sortedSpecimens = Specimens;
 
             //switch (SelectedSortOption)
             //{
