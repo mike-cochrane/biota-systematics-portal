@@ -71,8 +71,8 @@
                         </script>
                         }
                     }
-                    else if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Models.Search.Range))) {
-                        Systematics.Portal.Web.Models.Search.Range r = (Systematics.Portal.Web.Models.Search.Range)filter;
+                    else if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Search.Tools.Models.Search.Range))) {
+                        Systematics.Portal.Web.Search.Tools.Models.Search.Range r = (Systematics.Portal.Web.Search.Tools.Models.Search.Range)filter;
 
                         string slider = r.Name.ToLower() + "-slider";
                         string sliderId = "#" + slider;

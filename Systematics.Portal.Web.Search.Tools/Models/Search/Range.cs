@@ -1,6 +1,4 @@
-﻿using Systematics.Portal.Web.Search.Tools.Models.Search;
-
-namespace Systematics.Portal.Web.Models.Search
+﻿namespace Systematics.Portal.Web.Search.Tools.Models.Search
 {
     public class Range : Filter
     {

@@ -309,5 +309,33 @@ namespace Systematics.Portal.Web.Search.Tools.Helpers
 
             return facetConfigList;
         }
+
+        public static  DateTime ConvertIntToDate(int i)
+        {
+            try
+            {
+                int year = i / 10000;
+                int month = Math.Min(12, (i - (year * 10000)) / 100);
+                int day = i - (year * 10000) - (month * 100);
+                if (month == 2)
+                {
+                    day = Math.Min(29, day);
+                }
+                else if (month == 4 || month == 6 || month == 9 || month == 11)
+                {
+                    day = Math.Min(30, day);
+                }
+                else
+                {
+                    day = Math.Min(31, day);
+                }
+                return new DateTime(year, Math.Max(1, month), Math.Max(1, day));
+
+            }
+            catch (Exception)
+            {
+                return DateTime.MinValue;
+            }
+        }
     }
 }
