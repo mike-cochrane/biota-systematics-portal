@@ -89,7 +89,7 @@ namespace Systematics.Portal.Web.Controllers
             Document document;
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(Document));
 
-            using (StreamReader xml = new StreamReader("single-document.xml"))
+            using (StreamReader xml = new StreamReader("single-Document-References-Fungi.xml"))
             {
                 document = (Document)ser.Deserialize(xml);
             }
