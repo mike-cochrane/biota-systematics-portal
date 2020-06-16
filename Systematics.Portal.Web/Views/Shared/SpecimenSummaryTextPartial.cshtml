@@ -1,16 +1,69 @@
 ﻿@model Systematics.Portal.Web.Search.Tools.Models.SolrDocument
 
-    <p class="ml-4">
-        @if (Model.NzOrigin != null && !Model.NzOrigin.Equals(string.Empty))
+    <div class="row">
+        <span class="col-lg-9">
+            <p class="ml-4">
+                @if (Model.DocumentClass != null && !Model.DocumentClass.Equals(string.Empty))
+                {
+                    @:&nbsp;&nbsp;<span class="heading">Record class:</span>&nbsp;@Model.DocumentClass
+                }
+
+                @if (Model.DocumentClass == "name")
+                {
+                    @if (Model.NameFull != null && !Model.NameFull.Equals(string.Empty))
+                    {
+                        @:&nbsp;&nbsp;<span class="heading">Preferred name:</span>&nbsp;@Model.NameFull
+                    }
+                    @if (Model.Kingdom != null && !Model.Kingdom.Equals(string.Empty) && Model.Class != null && !Model.Class.Equals(string.Empty) && Model.Order != null && !Model.Order.Equals(string.Empty) && Model.Family != null && !Model.Family.Equals(string.Empty))
+                    {
+                        <br />
+                        @:&nbsp;&nbsp;<span class="heading">Rank title:</span>&nbsp;@Model.Kingdom > @Model.Class > @Model.Order > @Model.Family
+                    }
+                    <!-- TODO: add nz relevant & nomenclatural status values -->
+                }
+                else if (Model.DocumentClass == "vernacular")
+                {
+                    @if (Model.VernacularLanguageOfUse != null && !Model.VernacularLanguageOfUse.Equals(string.Empty))
+                    {
+                        @:&nbsp;&nbsp;<span class="heading">Language of use:</span>&nbsp;@Model.VernacularLanguageOfUse
+                    }
+                    @if (Model.VernacularLanguageOfOrigin != null && !Model.VernacularLanguageOfOrigin.Equals(string.Empty))
+                    {
+                        @:&nbsp;&nbsp;<span class="heading">Language of origin:</span>&nbsp;@Model.VernacularLanguageOfOrigin
+                    }
+                }
+                else
+                {
+                    @if (Model.ReferenceType != null && !Model.ReferenceType.Equals(string.Empty))
+                    {
+                        @:&nbsp;&nbsp;<span class="heading">Reference type:</span>&nbsp;@Model.ReferenceType
+                    }
+                }
+                <br />
+                @if (Model.Source != null && !Model.Source.Equals(string.Empty))
+                {
+                    @:&nbsp;&nbsp;<span class="heading">Source:</span>&nbsp;@Model.Source
+                }
+                @if (Model.Added != null && !Model.Added.Equals(string.Empty))
+                {
+                    @:&nbsp;&nbsp;<span class="heading">Added:</span>&nbsp;@Model.Added
+                }
+                @if (Model.Updated != null && !Model.Updated.Equals(string.Empty))
+                {
+                    @:&nbsp;&nbsp;<span class="heading">Updated:</span>&nbsp;@Model.Updated
+                }
+            </p>
+        </span>
+        @if (Model.DocumentClass == "name")
         {
-            @:&nbsp;&nbsp;<span class="heading">NZ Origin:</span>&nbsp;@Model.NzOrigin
+            @if (Model.ImageUri != null && Model.ImageUri.Count > 0)
+            {
+                @foreach (String imageUri in Model.ImageUri)
+                {
+                    @:&nbsp;&nbsp;<!--<a href="@String.Concat("http://internaldata.landcareresearch.co.nz/", @Html.Raw(imageUri))" target="_blank">--><!--</a>-->
+                    <span class="col-lg-2"><img src="@String.Concat("http://internaldata.landcareresearch.co.nz/", @Html.Raw(imageUri))" width="100" height="100" class="float-right" /></span>
+                    break;
+                }
+            }
         }
-        @if (Model.TaxonRank != null && !Model.TaxonRank.Equals(string.Empty))
-        {
-            @:&nbsp;&nbsp;<span class="heading">Taxon Rank:</span>&nbsp;@Model.TaxonRank
-        }
-        @if (Model.Kingdom != null && !Model.Kingdom.Equals(string.Empty))
-        {
-            @:&nbsp;&nbsp;<span class="heading">Kingdom:</span>&nbsp;@Model.Kingdom
-        }
-    </p>
+    </div>

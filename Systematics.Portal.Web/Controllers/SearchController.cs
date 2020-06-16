@@ -50,6 +50,7 @@ namespace Systematics.Portal.Web.Controllers
                     selectedPage = Convert.ToInt32(pageNumber);
                 }
                 viewData.CurrentPage = selectedPage;
+                sortField = "Title";
 
                 viewData.Result = await _searchService.Search(query, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
 
