@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Systematics.Portal.Web.Search.Tools.Models.Search;
 
 namespace Systematics.Portal.Web.Search.Tools.Models
 {
@@ -14,24 +15,11 @@ namespace Systematics.Portal.Web.Search.Tools.Models
         public int TotalHits { get; set; }
         public int QueryTime { get; set; }
         public int Status { get; set; }
-        public Query OriginalQuery { get; set; }
+        //public Query OriginalQuery { get; set; }
 
         public List<string> DidYouMean { get; set; }
 
         public List<Facet> Facets { get; set; }
-    }
-
-
-
-    public class Facet
-    {
-        public string Name { get; set; }
-        public List<KeyValuePair<string, int>> Values { get; set; }
-
-        public Facet()
-        {
-            Values = new List<KeyValuePair<string, int>>();
-        }
     }
 }
 

@@ -5,6 +5,7 @@ using SolrNet.Commands.Parameters;
 using System;
 using System.Collections.Generic;
 using Systematics.Portal.Web.Search.Tools.Models;
+using Systematics.Portal.Web.Search.Tools.Models.Search;
 
 namespace Systematics.Portal.Web.Search
 {
@@ -25,18 +26,18 @@ namespace Systematics.Portal.Web.Search
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public QueryResponse DoSearch(Query query)
+        public SearchResult DoSearch(Query query)
         {
-            QueryResponse queryResponse;
+            SearchResult queryResponse;
             try
             {
                 var filterFacets = new FilterFacets();
 
                 // Create an object to hold results
-                queryResponse = new QueryResponse
+                queryResponse = new SearchResult
                 {
                     // Store the original query
-                    OriginalQuery = query
+                    //OriginalQuery = query
                 };
 
                 // Get a connection 

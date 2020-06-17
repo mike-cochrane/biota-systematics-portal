@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Systematics.Portal.Web.Search.Tools.Models;
 
-namespace Systematics.Portal.Web.Models.Search
+namespace Systematics.Portal.Web.Search.Tools.Models.Search
 {
     public class SearchResult
     {
+        public int QueryTime { get; set; }
+        public int Status { get; set; }
         public Dictionary<string, SolrDocument> FoundDocuments { get; set; }
         public int TotalSpecimens { get; set; }
 
@@ -14,6 +16,8 @@ namespace Systematics.Portal.Web.Models.Search
 
         public List<SelectedFacetValue> AppliedFacets { get; set; }
         public List<SelectedRange> AppliedRanges { get; set; }
+        public List<string> DidYouMean { get; set; }
+
 
         //public int SecondsToRetrieveData { get; set; }
         //public int SecondsToProcessData { get; set; }
