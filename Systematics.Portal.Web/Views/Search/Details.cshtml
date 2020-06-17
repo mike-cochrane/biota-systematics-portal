@@ -116,50 +116,104 @@
         </div>
     </div>
 </div>-->
-@*
-        @if (Model.Class.Equals("reference"))
-        {
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Title, "Title")</label>
-                <div class="col-sm-10">
-                    @Html.Raw(Model.Title)
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.ParentReference, "Parent reference")</label>
-                <div class="col-sm-10">
-                    @Html.Raw(Model.ParentReference)
-                </div>
-            </div>
 
-        @if (Model.Fields != null)
-        {
-            <h3>Fields</h3>
-            <div class="form-group row">
-                @foreach (Systematics.Portal.Web.Models.DocumentFields field in Model.Fields)
-                {
-                    <label class="col-sm-2 col-form-label">@field.type</label>
-                    <div class="col-sm-10">
-                        @Html.Raw(field.VernacularName.Value)
-                    </div>
-                }
-            </div>
-        }
+@if (Model.Class.Equals("reference"))
+{
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Title, "Title")</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Title)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">@nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.ParentReference)
+        </div>
+    </div>
 
-        @if (Model.CitedTaxa != null)
-        {
-    <h3>Cited Taxon</h3>
-            <div class="form-group row">
-                @foreach (Systematics.Portal.Web.Models.DocumentCitedTaxa citedTaxon in Model.CitedTaxa)
-                {
-                    <label class="col-sm-2 col-form-label">&nbsp;</label>
-                    <div class="col-sm-10">
-                        @Html.Raw(citedTaxon.Value)
-                    </div>
-                }
-            </div>
-        }
-        }*@
+    @if (Model.Fields != null)
+    {
+        <h3>Fields</h3>
+        <div class="form-group row">
+            @foreach (Systematics.Portal.Web.Models.DocumentFields field in Model.Fields)
+            {
+                <label class="col-sm-2 col-form-label">@field.type</label>
+                <div class="col-sm-10">
+                    @Html.Raw(field.VernacularName.Value)
+                </div>
+            }
+        </div>
+    }
+
+    <h3>Concepts</h3>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Cited Name</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Defin)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">@nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.ParentReference)
+        </div>
+    </div>
+
+    @if (Model.Associations != null)
+    {
+        <h4>Cited Taxon</h4>
+        <div class="form-group row">
+            @foreach (Systematics.Portal.Web.Models.DocumentAssociations association in Model.Associations)
+            {
+            <label class="col-sm-2 col-form-label">Associated taxon</label>
+                <div class="col-sm-10">
+                    @Html.Raw(association.relatedName)
+                </div>
+                <label class="col-sm-2 col-form-label">Association type</label>
+                <div class="col-sm-10">
+                    @Html.Raw(association.type)
+                </div>
+                <label class="col-sm-2 col-form-label">ICON</label>
+                <div class="col-sm-10">
+                    @Html.Raw(association.relatedConceptId)
+                </div>
+            }
+        </div>
+    }
+
+    @if (Model.DefinedConcepts != null)
+    {
+        <h4>Other taxa cited</h4>
+        <div class="form-group row">
+            @foreach (Systematics.Portal.Web.Models.DocumentDefinedConcepts definedConcept in Model.DefinedConcepts)
+            {
+                <label class="col-sm-2 col-form-label">Cited Name</label>
+                <div class="col-sm-10">
+                    @Html.Raw(citedTaxon.nameFull)
+                </div>
+                <label class="col-sm-2 col-form-label">ICON</label>
+                <div class="col-sm-10">
+                    @Html.Raw(citedTaxon.relatedConceptId)
+                </div>
+            }
+        </div>
+    }
+
+    @if (Model.CitedTaxa != null)
+    {
+        <h3>Cited Taxon</h3>
+        <div class="form-group row">
+            @foreach (Systematics.Portal.Web.Models.DocumentCitedTaxa citedTaxon in Model.CitedTaxa)
+            {
+                <label class="col-sm-2 col-form-label">&nbsp;</label>
+                <div class="col-sm-10">
+                    @Html.Raw(citedTaxon.Value)
+                </div>
+            }
+        </div>
+    }
+}
 
 @*@if (Model.Class.Equals("vernacular"))
     {
@@ -409,7 +463,7 @@
 
     @*@if (Model.Concepts != null)
         {
-            <h3>Collections</h3>
+            <h3>Concepts</h3>
             @foreach (Systematics.Portal.Web.Models.DocumentConcepts concept in Model.Concepts)
             {
                 @if (concept.Name != null)
