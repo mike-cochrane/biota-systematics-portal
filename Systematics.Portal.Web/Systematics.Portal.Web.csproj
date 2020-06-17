@@ -12,6 +12,7 @@
 		<InformationalVersion Condition=" '$(BUILD_NUMBER)' != '' ">$(BUILD_NUMBER)</InformationalVersion>
 		<MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
 		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<UserSecretsId>e8d702e4-350d-4a60-91df-c1709ada1d56</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
