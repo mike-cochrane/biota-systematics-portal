@@ -11,6 +11,7 @@
 		<InformationalVersion Condition=" '$(BUILD_NUMBER)' == '' ">-</InformationalVersion>
 		<InformationalVersion Condition=" '$(BUILD_NUMBER)' != '' ">$(BUILD_NUMBER)</InformationalVersion>
 		<MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
 	</PropertyGroup>
 
 	<ItemGroup>
