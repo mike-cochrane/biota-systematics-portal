@@ -16,7 +16,7 @@
 *@
 @if (Model.Class.Equals("name"))
 {
-    <h1>@Html.Raw(Model.NameFull)</h1>
+    <h1>@Html.Raw(Model.NameFormatted)</h1>
 }
 
 <div class="container-fluid">
@@ -245,15 +245,33 @@
         </div>
     }
 
+    <h3>Taxonomy</h3>
+
     @if (Model.CurrentName != null)
     {
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.CurrentName, "Current Name")</label>
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.CurrentName, "Name Status")</label>
             <div class="col-sm-10">
                 @Html.Raw(Model.CurrentName.Value)
             </div>
         </div>
     }
+
+    @*@if (Model.TaxonomyReference != null)
+        {
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.TaxonomyReference, "Taxonomy Reference")</label>
+                <div class="col-sm-10">
+                    @Html.Raw(Model.TaxonomyReference.Value)
+                </div>
+            </div>
+        }*@
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            TODO: Image and meta data
+        </div>
+    </div>
 
     @if (Model.Basionym != null)
     {
@@ -264,6 +282,8 @@
             </div>
         </div>
     }
+
+    <h3>Classification</h3>
 
     @if (Model.Kingdom != null)
     {
@@ -315,6 +335,16 @@
         </div>
     }
 
+    @if (Model.Genus != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Genus, "Genus")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.Genus.Value)
+            </div>
+        </div>
+    }
+
     @if (Model.AppliedVernaculars != null)
     {
         <h3>Applied Vernaculars</h3>
@@ -324,6 +354,22 @@
                 <label class="col-sm-2 col-form-label">Vernacular Name</label>
                 <div class="col-sm-10">
                     @Html.Raw(vernacularUse.VernacularName.Value)
+                </div>
+                <label class="col-sm-2 col-form-label">Language of origin</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.VernacularName.languageOfOrigin)
+                </div>
+                <label class="col-sm-2 col-form-label">Language of use</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.languageOfUse)
+                </div>
+                <label class="col-sm-2 col-form-label">Region of use</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.regionOfUse)
+                </div>
+                <label class="col-sm-2 col-form-label">Notes</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.VernacularUseNote)
                 </div>
             }
         </div>
@@ -362,57 +408,57 @@
     }
 
     @*@if (Model.Concepts != null)
-    {
-        <h3>Collections</h3>
-        @foreach (Systematics.Portal.Web.Models.DocumentConcepts concept in Model.Concepts)
         {
-            @if (concept.Name != null)
+            <h3>Collections</h3>
+            @foreach (Systematics.Portal.Web.Models.DocumentConcepts concept in Model.Concepts)
             {
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                        @Html.Raw(concept.Name)
+                @if (concept.Name != null)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            @Html.Raw(concept.Name)
+                        </div>
                     </div>
-                </div>
-            }
+                }
 
-            @if (concept.AccordingTo != null)
-            {
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">According To</label>
-                    <div class="col-sm-10">
-                        @Html.Raw(concept.AccordingTo)
+                @if (concept.AccordingTo != null)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">According To</label>
+                        <div class="col-sm-10">
+                            @Html.Raw(concept.AccordingTo)
+                        </div>
                     </div>
-                </div>
-            }
+                }
 
-            @if (concept.Keywords != null)
-            {
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Keywords</label>
-                    <div class="col-sm-10">
-                        @foreach (Systematics.Portal.Web.Models.DocumentKeywords keyword in concept.Keywords)
-                        {
-                            @Html.Raw(keyword.Keyword.Value)<br />
-                        }
+                @if (concept.Keywords != null)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Keywords</label>
+                        <div class="col-sm-10">
+                            @foreach (Systematics.Portal.Web.Models.DocumentKeywords keyword in concept.Keywords)
+                            {
+                                @Html.Raw(keyword.Keyword.Value)<br />
+                            }
+                        </div>
                     </div>
-                </div>
-            }
+                }
 
-            @if (concept.RelatedConcepts != null)
-            {
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Related Taxon</label>
-                    <div class="col-sm-10">
-                        @foreach (Systematics.Portal.Web.Models.DocumentRelatedConcepts relatedConcept in concept.RelatedConcepts)
-                        {
-                            @Html.Raw(relatedConcept.RelatedTaxon.Value)<br />
-                        }
+                @if (concept.RelatedConcepts != null)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Related Taxon</label>
+                        <div class="col-sm-10">
+                            @foreach (Systematics.Portal.Web.Models.DocumentRelatedConcepts relatedConcept in concept.RelatedConcepts)
+                            {
+                                @Html.Raw(relatedConcept.RelatedTaxon.Value)<br />
+                            }
+                        </div>
                     </div>
-                </div>
+                }
             }
-        }
-    }*@
+        }*@
 
     @if (Model.CollectionObjects != null)
     {
