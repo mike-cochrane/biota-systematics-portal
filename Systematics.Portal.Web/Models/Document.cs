@@ -9,10 +9,10 @@ namespace Systematics.Portal.Web.Models
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRoot(Namespace = "", IsNullable = false)]
     public partial class Document
     {
 
@@ -112,9 +112,9 @@ namespace Systematics.Portal.Web.Models
 
         private string sourceField;
 
-        private System.DateTime addedField;
+        private DateTime addedField;
 
-        private System.DateTime updatedField;
+        private DateTime updatedField;
 
         /// <remarks/>
         public DocumentName Name
@@ -533,7 +533,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("AppliedVernacular", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("AppliedVernacular", IsNullable = false)]
         public DocumentAppliedVernacular[] AppliedVernaculars
         {
             get
@@ -547,7 +547,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("BiostatusValue", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("BiostatusValue", IsNullable = false)]
         public DocumentBiostatusValue[] BiostatusValues
         {
             get
@@ -561,7 +561,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Concept", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Concept", IsNullable = false)]
         public DocumentConcept[] Concepts
         {
             get
@@ -575,7 +575,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Note", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Note", IsNullable = false)]
         public DocumentNote[] Notes
         {
             get
@@ -589,7 +589,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Image", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Image", IsNullable = false)]
         public DocumentImage[] Images
         {
             get
@@ -603,7 +603,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("ExternalLink", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("ExternalLink", IsNullable = false)]
         public DocumentExternalLink[] ExternalLinks
         {
             get
@@ -617,7 +617,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("NomenclaturalStatus", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("NomenclaturalStatus", IsNullable = false)]
         public DocumentNomenclaturalStatus[] NomenclaturalStatusValues
         {
             get
@@ -631,7 +631,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("HybridData", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("HybridData", IsNullable = false)]
         public DocumentHybridData[] Hybridisation
         {
             get
@@ -645,7 +645,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Hyperlink", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Hyperlink", IsNullable = false)]
         public DocumentHyperlink[] Hyperlinks
         {
             get
@@ -659,7 +659,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("CollectionObject", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("CollectionObject", IsNullable = false)]
         public DocumentCollectionObject[] CollectionObjects
         {
             get
@@ -673,7 +673,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Key", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Key", IsNullable = false)]
         public DocumentKey[] InKeys
         {
             get
@@ -687,7 +687,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -701,7 +701,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -715,7 +715,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string vernacularId
         {
             get
@@ -729,7 +729,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string documentClass
         {
             get
@@ -743,7 +743,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string source
         {
             get
@@ -757,8 +757,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime added
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime added
         {
             get
             {
@@ -771,8 +771,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime updated
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime updated
         {
             get
             {
@@ -786,9 +786,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentName
     {
 
@@ -829,7 +829,7 @@ namespace Systematics.Portal.Web.Models
         private string nzRelevanceField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string namePart
         {
             get
@@ -843,7 +843,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string canonical
         {
             get
@@ -857,7 +857,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool inCitation
         {
             get
@@ -871,7 +871,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool misapplied
         {
             get
@@ -885,7 +885,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool dubium
         {
             get
@@ -899,7 +899,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool proParte
         {
             get
@@ -913,7 +913,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool novum
         {
             get
@@ -927,7 +927,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool invalid
         {
             get
@@ -941,7 +941,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool illegitimate
         {
             get
@@ -955,7 +955,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool autonym
         {
             get
@@ -969,7 +969,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool recombination
         {
             get
@@ -983,7 +983,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nomCode
         {
             get
@@ -997,7 +997,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string isSuppressed
         {
             get
@@ -1011,7 +1011,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string taxonRank
         {
             get
@@ -1025,7 +1025,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string taxonRankSort
         {
             get
@@ -1039,7 +1039,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool isAggregate
         {
             get
@@ -1053,7 +1053,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool isAnamorph
         {
             get
@@ -1067,7 +1067,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nzRelevance
         {
             get
@@ -1082,9 +1082,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentClassification
     {
 
@@ -1093,7 +1093,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -1107,7 +1107,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1122,9 +1122,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentNameReference
     {
 
@@ -1135,7 +1135,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -1149,7 +1149,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -1163,7 +1163,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -1178,9 +1178,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentTaxonomyReference
     {
 
@@ -1191,7 +1191,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -1205,7 +1205,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -1219,7 +1219,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -1234,9 +1234,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentParentReference
     {
 
@@ -1247,7 +1247,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -1261,7 +1261,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -1275,7 +1275,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -1290,9 +1290,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentParent
     {
 
@@ -1301,7 +1301,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1315,7 +1315,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1330,9 +1330,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentCurrentName
     {
 
@@ -1341,7 +1341,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1355,7 +1355,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1370,9 +1370,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBasionym
     {
 
@@ -1381,7 +1381,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1395,7 +1395,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1410,9 +1410,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBasedOn
     {
 
@@ -1421,7 +1421,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1435,7 +1435,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1450,9 +1450,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBlocking
     {
 
@@ -1461,7 +1461,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1475,7 +1475,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1490,9 +1490,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentAnamorphGenus
     {
 
@@ -1501,7 +1501,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1515,7 +1515,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1530,9 +1530,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentAnamorphReference
     {
 
@@ -1543,7 +1543,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -1557,7 +1557,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -1571,7 +1571,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -1586,9 +1586,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentTypeTaxon
     {
 
@@ -1597,7 +1597,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1611,7 +1611,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1626,9 +1626,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentKingdom
     {
 
@@ -1637,7 +1637,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1651,7 +1651,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1666,9 +1666,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentPhylum
     {
 
@@ -1677,7 +1677,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1691,7 +1691,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1706,9 +1706,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentClass
     {
 
@@ -1717,7 +1717,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1731,7 +1731,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1746,9 +1746,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentOrder
     {
 
@@ -1757,7 +1757,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1771,7 +1771,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1786,9 +1786,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentFamily
     {
 
@@ -1797,7 +1797,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1811,7 +1811,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1826,9 +1826,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentGenus
     {
 
@@ -1837,7 +1837,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -1851,7 +1851,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -1866,9 +1866,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentAppliedVernacular
     {
 
@@ -1919,7 +1919,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -1933,7 +1933,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string languageOfUseId
         {
             get
@@ -1947,7 +1947,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string languageOfUse
         {
             get
@@ -1961,7 +1961,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string languageOfUseIso
         {
             get
@@ -1975,7 +1975,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string regionOfUseSchema
         {
             get
@@ -1989,7 +1989,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string regionOfUse
         {
             get
@@ -2003,7 +2003,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string added
         {
             get
@@ -2017,7 +2017,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string updated
         {
             get
@@ -2032,9 +2032,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentAppliedVernacularVernacularName
     {
 
@@ -2051,7 +2051,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string vernacularId
         {
             get
@@ -2065,7 +2065,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string languageOfOrigin
         {
             get
@@ -2079,7 +2079,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string languageOfOriginIso
         {
             get
@@ -2093,7 +2093,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string added
         {
             get
@@ -2107,7 +2107,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string updated
         {
             get
@@ -2121,7 +2121,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -2136,9 +2136,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentAppliedVernacularVernacularUseNote
     {
 
@@ -2147,7 +2147,7 @@ namespace Systematics.Portal.Web.Models
         private string[] textField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -2161,7 +2161,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -2176,9 +2176,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBiostatusValue
     {
 
@@ -2268,7 +2268,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -2282,7 +2282,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string isActive
         {
             get
@@ -2296,7 +2296,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string isFirstRecord
         {
             get
@@ -2310,7 +2310,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string added
         {
             get
@@ -2324,7 +2324,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string updated
         {
             get
@@ -2339,9 +2339,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBiostatusValueBiostatusReference
     {
 
@@ -2352,7 +2352,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -2366,7 +2366,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -2380,7 +2380,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -2395,9 +2395,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBiostatusValueOrigin
     {
 
@@ -2406,7 +2406,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string code
         {
             get
@@ -2420,7 +2420,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -2435,9 +2435,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBiostatusValueOccurrence
     {
 
@@ -2446,7 +2446,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string code
         {
             get
@@ -2460,7 +2460,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -2475,9 +2475,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBiostatusValueGeoregion
     {
 
@@ -2486,7 +2486,7 @@ namespace Systematics.Portal.Web.Models
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string schema
         {
             get
@@ -2500,7 +2500,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string Value
         {
             get
@@ -2515,9 +2515,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentBiostatusValueComment
     {
 
@@ -2526,7 +2526,7 @@ namespace Systematics.Portal.Web.Models
         private string[] textField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -2540,7 +2540,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -2555,9 +2555,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentConcept
     {
 
@@ -2579,9 +2579,9 @@ namespace Systematics.Portal.Web.Models
 
         private string explicitField;
 
-        private System.DateTime addedField;
+        private DateTime addedField;
 
-        private System.DateTime updatedField;
+        private DateTime updatedField;
 
         /// <remarks/>
         public string Name
@@ -2636,7 +2636,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Keyword", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Keyword", IsNullable = false)]
         public string[] Keywords
         {
             get
@@ -2650,7 +2650,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("RelatedConcept", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("RelatedConcept", IsNullable = false)]
         public DocumentConceptRelatedConcept[] RelatedConcepts
         {
             get
@@ -2664,7 +2664,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Description", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Description", IsNullable = false)]
         public DocumentConceptDescription[] Descriptions
         {
             get
@@ -2678,7 +2678,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -2692,7 +2692,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string @explicit
         {
             get
@@ -2706,8 +2706,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime added
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime added
         {
             get
             {
@@ -2720,8 +2720,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime updated
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime updated
         {
             get
             {
@@ -2735,9 +2735,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentConceptAccordingTo
     {
 
@@ -2748,7 +2748,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -2762,7 +2762,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -2776,7 +2776,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -2791,9 +2791,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentConceptRelatedConcept
     {
 
@@ -2823,7 +2823,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string conceptId
         {
             get
@@ -2837,7 +2837,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string direction
         {
             get
@@ -2851,7 +2851,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string type
         {
             get
@@ -2865,7 +2865,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string added
         {
             get
@@ -2879,7 +2879,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string updated
         {
             get
@@ -2894,9 +2894,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentConceptDescription
     {
 
@@ -2916,9 +2916,9 @@ namespace Systematics.Portal.Web.Models
 
         private string categoryField;
 
-        private System.DateTime addedField;
+        private DateTime addedField;
 
-        private System.DateTime updatedField;
+        private DateTime updatedField;
 
         /// <remarks/>
         public string DescriptionIconFilename
@@ -2960,7 +2960,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -2974,7 +2974,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string type
         {
             get
@@ -2988,7 +2988,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string language
         {
             get
@@ -3002,7 +3002,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string languageIso
         {
             get
@@ -3016,7 +3016,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string category
         {
             get
@@ -3030,8 +3030,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime added
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime added
         {
             get
             {
@@ -3044,8 +3044,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime updated
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime updated
         {
             get
             {
@@ -3059,9 +3059,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentNote
     {
 
@@ -3073,9 +3073,9 @@ namespace Systematics.Portal.Web.Models
 
         private string typeField;
 
-        private System.DateTime addedField;
+        private DateTime addedField;
 
-        private System.DateTime updatedField;
+        private DateTime updatedField;
 
         /// <remarks/>
         public DocumentNoteText Text
@@ -3104,7 +3104,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -3118,7 +3118,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string type
         {
             get
@@ -3132,8 +3132,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime added
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime added
         {
             get
             {
@@ -3146,8 +3146,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime updated
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime updated
         {
             get
             {
@@ -3161,9 +3161,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentNoteText
     {
 
@@ -3172,7 +3172,7 @@ namespace Systematics.Portal.Web.Models
         private string[] textField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -3186,7 +3186,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -3201,9 +3201,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentNoteReference
     {
 
@@ -3214,7 +3214,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -3228,7 +3228,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -3242,7 +3242,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -3257,16 +3257,16 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentImage
     {
 
         private string imageURIField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string imageURI
         {
             get
@@ -3281,9 +3281,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentExternalLink
     {
 
@@ -3309,7 +3309,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -3323,7 +3323,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string externalId
         {
             get
@@ -3337,7 +3337,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string source
         {
             get
@@ -3352,9 +3352,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentNomenclaturalStatus
     {
 
@@ -3368,9 +3368,9 @@ namespace Systematics.Portal.Web.Models
 
         private string isTrueField;
 
-        private System.DateTime addedField;
+        private DateTime addedField;
 
-        private System.DateTime updatedField;
+        private DateTime updatedField;
 
         /// <remarks/>
         public DocumentNomenclaturalStatusComment Comment
@@ -3399,7 +3399,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string id
         {
             get
@@ -3413,7 +3413,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string type
         {
             get
@@ -3427,7 +3427,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string isTrue
         {
             get
@@ -3441,8 +3441,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime added
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime added
         {
             get
             {
@@ -3455,8 +3455,8 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime updated
+        [System.Xml.Serialization.XmlAttribute()]
+        public DateTime updated
         {
             get
             {
@@ -3470,9 +3470,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentNomenclaturalStatusComment
     {
 
@@ -3481,7 +3481,7 @@ namespace Systematics.Portal.Web.Models
         private string[] textField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -3495,7 +3495,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -3510,9 +3510,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentNomenclaturalStatusReference
     {
 
@@ -3523,7 +3523,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("i")]
+        [System.Xml.Serialization.XmlElement("i")]
         public string[] i
         {
             get
@@ -3537,7 +3537,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlText()]
         public string[] Text
         {
             get
@@ -3551,7 +3551,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get
@@ -3566,9 +3566,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentHybridData
     {
 
@@ -3590,7 +3590,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("HybridParentName", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("HybridParentName", IsNullable = false)]
         public DocumentHybridDataHybridParentName[] HybridParentNames
         {
             get
@@ -3605,9 +3605,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentHybridDataHybridParentName
     {
 
@@ -3633,7 +3633,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string nameId
         {
             get
@@ -3647,7 +3647,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string prefixText
         {
             get
@@ -3661,7 +3661,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string suffixText
         {
             get
@@ -3676,9 +3676,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentHyperlink
     {
 
@@ -3719,7 +3719,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string type
         {
             get
@@ -3733,7 +3733,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string added
         {
             get
@@ -3747,7 +3747,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string updated
         {
             get
@@ -3762,9 +3762,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentCollectionObject
     {
 
@@ -3800,7 +3800,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("CollectionEventRegion", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("CollectionEventRegion", IsNullable = false)]
         public DocumentCollectionObjectCollectionEventRegion[] CollectionEventRegions
         {
             get
@@ -3814,7 +3814,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Image", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Image", IsNullable = false)]
         public DocumentCollectionObjectImage[] CollectionObjectImages
         {
             get
@@ -3828,7 +3828,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string specimenGuid
         {
             get
@@ -3842,7 +3842,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string specimenId
         {
             get
@@ -3856,7 +3856,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string accessionNumber
         {
             get
@@ -3870,7 +3870,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string collectionAcronym
         {
             get
@@ -3884,7 +3884,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string collectionDateISO
         {
             get
@@ -3898,7 +3898,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string typeStatus
         {
             get
@@ -3913,9 +3913,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentCollectionObjectCollectionEventRegion
     {
 
@@ -3924,7 +3924,7 @@ namespace Systematics.Portal.Web.Models
         private string georegionSchemaField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string georegion
         {
             get
@@ -3938,7 +3938,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string georegionSchema
         {
             get
@@ -3953,16 +3953,16 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentCollectionObjectImage
     {
 
         private string imageUrlField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string imageUrl
         {
             get
@@ -3977,9 +3977,9 @@ namespace Systematics.Portal.Web.Models
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class DocumentKey
     {
 
@@ -3988,7 +3988,7 @@ namespace Systematics.Portal.Web.Models
         private string referenceIdField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string keyId
         {
             get
@@ -4002,7 +4002,7 @@ namespace Systematics.Portal.Web.Models
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string referenceId
         {
             get

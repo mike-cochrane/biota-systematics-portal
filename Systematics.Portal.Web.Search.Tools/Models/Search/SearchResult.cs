@@ -7,6 +7,7 @@ namespace Systematics.Portal.Web.Search.Tools.Models.Search
 {
     public class SearchResult
     {
+
         public int QueryTime { get; set; }
         public int Status { get; set; }
         public Dictionary<string, SolrDocument> FoundDocuments { get; set; }
@@ -22,6 +23,11 @@ namespace Systematics.Portal.Web.Search.Tools.Models.Search
         //public int SecondsToRetrieveData { get; set; }
         //public int SecondsToProcessData { get; set; }
         //public int SecondsToRenderData { get; set; }
+
+        public SearchResult(): this("relevance")
+        {
+            
+        }
 
         public SearchResult(string sortBy = "relevance")
         {

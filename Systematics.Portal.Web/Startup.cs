@@ -1,3 +1,4 @@
+using Annotations.Web.dScribe.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +20,14 @@ namespace Systematics.Portal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.RegisterDependencies();
+
+            var appSettingsConfigurationSection = Configuration.GetSection("AppSettings");
+
+            services.Configure<AppSettings>(appSettingsConfigurationSection);
+
+            var appSettings = appSettingsConfigurationSection.Get<AppSettings>();
+
+            services.RegisterDependencies(appSettings);
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
