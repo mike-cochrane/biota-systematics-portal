@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2018 rel. 2 sp1 (x64) (http://www.altova.com) by Aaron Wilton (Landcare Research New Zealand Limit) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Document" type="DocumentType">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ReferenceType" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="i"/>
+		</xs:choice>
+		<xs:attribute name="referenceId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="LinkedNameType" mixed="true">
+		<xs:sequence>
+			<xs:element name="i" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="nameFull" type="xs:string" use="optional"/>
+		<xs:attribute name="nameId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="DocumentType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:annotation>
+					<xs:documentation>Name fields</xs:documentation>
+				</xs:annotation>
+				<xs:element name="Name">
+					<xs:complexType>
+						<xs:attribute name="namePart" type="xs:string"/>
+						<xs:attribute name="canonical" type="xs:string"/>
+						<xs:attribute name="inCitation" type="xs:boolean"/>
+						<xs:attribute name="misapplied" type="xs:boolean"/>
+						<xs:attribute name="dubium" type="xs:boolean"/>
+						<xs:attribute name="proParte" type="xs:boolean"/>
+						<xs:attribute name="novum" type="xs:boolean"/>
+						<xs:attribute name="invalid" type="xs:boolean"/>
+						<xs:attribute name="illegitimate" type="xs:boolean"/>
+						<xs:attribute name="autonym" type="xs:boolean"/>
+						<xs:attribute name="recombination" type="xs:boolean"/>
+						<xs:attribute name="nomCode" type="xs:string"/>
+						<xs:attribute name="taxonRank" type="xs:string" use="required"/>
+						<xs:attribute name="taxonRankSort"/>
+						<xs:attribute name="isAggregate" type="xs:boolean"/>
+						<xs:attribute name="isAnamorph" type="xs:boolean"/>
+						<xs:attribute name="nzRelevance" type="xs:string"/>
+						<xs:attribute name="isSuppressed"/>
+						<xs:attribute name="isCurrent"/>
+						<xs:attribute name="isConserved"/>
+						<xs:attribute name="isSuperfluous"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NameFull"/>
+				<xs:element name="NameFormatted" type="TextType"/>
+				<xs:element name="NameScientific" type="TextType"/>
+				<xs:element name="NamePartFormatted"/>
+				<xs:element name="Orthography" type="xs:string" minOccurs="0"/>
+				<xs:element name="Page" type="xs:string" minOccurs="0"/>
+				<xs:element name="YearOfPublication" minOccurs="0"/>
+				<xs:element name="YearOnPublication" minOccurs="0"/>
+				<xs:element name="Classification" minOccurs="0">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="id"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TypeLocality" type="xs:string" minOccurs="0"/>
+				<xs:element name="SanctioningAuthor" type="xs:string" minOccurs="0"/>
+				<xs:element name="SanctioningPage" type="xs:string" minOccurs="0"/>
+				<xs:element name="HybridLink" minOccurs="0"/>
+				<xs:element name="CheckStatus" type="xs:string" minOccurs="0"/>
+				<xs:element name="NameReference" type="ReferenceType" minOccurs="0"/>
+				<xs:element name="TaxonomyReference" type="ReferenceType" minOccurs="0"/>
+				<xs:element name="ParentReference" type="ReferenceType" minOccurs="0"/>
+				<xs:element name="Parent" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="CurrentName" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="Synonyms" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Synonym" type="LinkedNameType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Siblings" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Sibling" type="LinkedNameType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Basionym" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="BasedOn" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="Blocking" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="AnamorphGenus" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="AnamorphReference" type="ReferenceType" minOccurs="0"/>
+				<xs:element name="TypeTaxon" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="ForeignId" minOccurs="0"/>
+				<xs:element name="Kingdom" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="Phylum" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="Class" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="Order" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="Family" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="Genus" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="AppliedVernaculars" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AppliedVernacular" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="VernacularName">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="vernacularId" use="required"/>
+														<xs:attribute name="languageOfOrigin"/>
+														<xs:attribute name="languageOfOriginIso"/>
+														<xs:attribute name="added"/>
+														<xs:attribute name="updated"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="VernacularUseNote" type="TextType" minOccurs="0"/>
+									</xs:sequence>
+									<xs:attribute name="id" use="required"/>
+									<xs:attribute name="languageOfUseId"/>
+									<xs:attribute name="languageOfUse"/>
+									<xs:attribute name="languageOfUseIso"/>
+									<xs:attribute name="regionOfUseSchema"/>
+									<xs:attribute name="regionOfUse"/>
+									<xs:attribute name="added"/>
+									<xs:attribute name="updated"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BiostatusValues" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="BiostatusValue" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="BiostatusReference" type="ReferenceType" minOccurs="0"/>
+										<xs:element name="Origin" minOccurs="0">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="code"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Occurrence" minOccurs="0">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="code"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Georegion">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="schema"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Comment" type="TextType" minOccurs="0"/>
+									</xs:sequence>
+									<xs:attribute name="id"/>
+									<xs:attribute name="isActive"/>
+									<xs:attribute name="isFirstRecord"/>
+									<xs:attribute name="added"/>
+									<xs:attribute name="updated"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Concepts" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Concept" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" minOccurs="0"/>
+										<xs:element name="Orthography" minOccurs="0"/>
+										<xs:element name="Page" minOccurs="0"/>
+										<xs:element name="AccordingTo" type="ReferenceType"/>
+										<xs:element name="Keywords" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Keyword" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="RelatedConcepts" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="RelatedConcept" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="RelatedTaxon"/>
+															</xs:sequence>
+															<xs:attribute name="conceptId"/>
+															<xs:attribute name="direction"/>
+															<xs:attribute name="type"/>
+															<xs:attribute name="added"/>
+															<xs:attribute name="updated"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Descriptions" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Description" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="DescriptionIconFilename" minOccurs="0"/>
+																<xs:element name="DescriptionText"/>
+																<xs:element name="DescriptionUrl" minOccurs="0"/>
+															</xs:sequence>
+															<xs:attribute name="id"/>
+															<xs:attribute name="type"/>
+															<xs:attribute name="language"/>
+															<xs:attribute name="languageIso"/>
+															<xs:attribute name="category" type="xs:string" use="optional"/>
+															<xs:attribute name="added" type="xs:dateTime"/>
+															<xs:attribute name="updated" type="xs:dateTime"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="id"/>
+									<xs:attribute name="explicit"/>
+									<xs:attribute name="added" type="xs:dateTime"/>
+									<xs:attribute name="updated" type="xs:dateTime"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Notes" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Note" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Text" type="TextType"/>
+										<xs:element name="Reference" type="ReferenceType" minOccurs="0"/>
+									</xs:sequence>
+									<xs:attribute name="id"/>
+									<xs:attribute name="type" type="xs:string" use="required"/>
+									<xs:attribute name="added" type="xs:dateTime"/>
+									<xs:attribute name="updated" type="xs:dateTime"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Images" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Image" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="imageURI" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ExternalLinks" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ExternalLink" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ExternalFullName"/>
+									</xs:sequence>
+									<xs:attribute name="id"/>
+									<xs:attribute name="externalId" type="xs:string" use="required"/>
+									<xs:attribute name="source" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NomenclaturalStatusValues" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NomenclaturalStatus" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Comment" type="TextType" minOccurs="0"/>
+										<xs:element name="Reference" type="ReferenceType" minOccurs="0"/>
+									</xs:sequence>
+									<xs:attribute name="id"/>
+									<xs:attribute name="type"/>
+									<xs:attribute name="isTrue"/>
+									<xs:attribute name="added" type="xs:dateTime"/>
+									<xs:attribute name="updated" type="xs:dateTime"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Hybridisation" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="HybridData" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="HybridText" type="xs:string"/>
+										<xs:element name="HybridParentNames" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="HybridParentName" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="NameFull" type="xs:string"/>
+															</xs:sequence>
+															<xs:attribute name="nameId" use="required"/>
+															<xs:attribute name="prefixText"/>
+															<xs:attribute name="suffixText"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Hyperlinks" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="Hyperlink" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LinkUrl"/>
+										<xs:element name="Caption"/>
+									</xs:sequence>
+									<xs:attribute name="type"/>
+									<xs:attribute name="added"/>
+									<xs:attribute name="updated"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CollectionObjects" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CollectionObject" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NameFormatted" type="LinkedNameType" minOccurs="0"/>
+										<xs:element name="Collector" type="xs:string" minOccurs="0"/>
+										<xs:element name="Substrate" type="xs:string" minOccurs="0"/>
+										<xs:element name="PartAffected" type="xs:string" minOccurs="0"/>
+										<xs:element name="Association" minOccurs="0">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="LinkedNameType">
+														<xs:attribute name="type" type="xs:string"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CollectionEventRegions" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CollectionEventRegion" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="georegion"/>
+															<xs:attribute name="georegionSchema"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CollectionObjectImages" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Image" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="imageUrl" type="xs:string"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="specimenGuid"/>
+									<xs:attribute name="specimenId"/>
+									<xs:attribute name="accessionNumber"/>
+									<xs:attribute name="collectionAcronym"/>
+									<xs:attribute name="collectionDateISO"/>
+									<xs:attribute name="typeStatus"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="InKeys" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Key" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="keyId" use="required"/>
+									<xs:attribute name="referenceId"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="Reference">
+					<xs:complexType>
+						<xs:attribute name="parentId"/>
+						<xs:attribute name="type"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Title" type="TextType"/>
+				<xs:element name="TitleUnformatted"/>
+				<xs:element name="ParentReference" type="ReferenceType" minOccurs="0"/>
+				<xs:element name="Fields">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Field" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="type"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DefinedConcepts" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DefinedConcept" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Associations" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Association" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence/>
+															<xs:attribute name="type"/>
+															<xs:attribute name="direction"/>
+															<xs:attribute name="relatedConceptId"/>
+															<xs:attribute name="relatedNameId"/>
+															<xs:attribute name="relatedName" type="xs:string"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="conceptId"/>
+									<xs:attribute name="nameId"/>
+									<xs:attribute name="nameFull"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CitedTaxa" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CitedTaxon" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="IncludedKeys" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Key" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Line" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Characteristic" type="TextType"/>
+													<xs:element name="ResultText">
+														<xs:complexType>
+															<xs:complexContent>
+																<xs:extension base="TextType">
+																	<xs:attribute name="nameId"/>
+																	<xs:attribute name="otherKeyLineId"/>
+																</xs:extension>
+															</xs:complexContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="id"/>
+												<xs:attribute name="linePrefix"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="keyId"/>
+									<xs:attribute name="title"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="VernacularName">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="languageOfOrigin" type="xs:string"/>
+								<xs:attribute name="regionOfOrigin"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Translation" type="xs:string" minOccurs="0"/>
+				<xs:element name="Transliteration" type="xs:string" minOccurs="0"/>
+				<xs:element name="VernacularUses">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="VernacularUse" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NameFull"/>
+										<xs:element name="NameFormatted" type="TextType"/>
+										<xs:element name="AppliesTo" type="xs:string" minOccurs="0"/>
+										<xs:element name="References" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Reference" type="ReferenceType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="id"/>
+									<xs:attribute name="georegionOfUse" type="xs:string"/>
+									<xs:attribute name="languageOfUse" type="xs:string"/>
+									<xs:attribute name="languageOfUseIso" type="xs:string"/>
+									<xs:attribute name="nameId" use="required"/>
+									<xs:attribute name="added" type="xs:dateTime"/>
+									<xs:attribute name="updated" type="xs:dateTime"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:choice>
+		<xs:attribute name="nameId"/>
+		<xs:attribute name="referenceId"/>
+		<xs:attribute name="vernacularId"/>
+		<xs:attribute name="documentClass" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="name"/>
+					<xs:enumeration value="vernacular"/>
+					<xs:enumeration value="reference"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="source" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Names_Plants"/>
+					<xs:enumeration value="Names_Fungi"/>
+					<xs:enumeration value="Names_NZAC"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="added" type="xs:dateTime"/>
+		<xs:attribute name="updated" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:complexType name="TextType" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="i"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
