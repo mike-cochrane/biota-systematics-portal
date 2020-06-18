@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Systematics.Portal.Web.Models.Search
+namespace Systematics.Portal.Web.Search.Tools.Models.Search
 {
     [Serializable()]
     [XmlRoot("Record")]
-    public class SpecimenDetails {
+    public class SpecimenDetails
+    {
         [XmlElement("AccessionNumber")]
         public string AccessionNumber { get; set; }
         [XmlElement("SpecimenGuid")]
@@ -69,7 +70,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlArray("InventoryItems")]
         public List<InventoryItem> InventoryItems { get; set; }
 
-        public SpecimenDetails() {
+        public SpecimenDetails()
+        {
             AccessionNumber = string.Empty;
             SpecimenGuid = string.Empty;
             Barcode = string.Empty;
@@ -104,13 +106,15 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Extensions")]
-    public class SpecimenDetailsExtensions{
+    public class SpecimenDetailsExtensions
+    {
         [XmlElement("CollectionAcronym")]
         public string DataProvider { get; set; }
         [XmlElement("LoanStatus")]
         public string LoanStatus { get; set; }
 
-        public SpecimenDetailsExtensions(){
+        public SpecimenDetailsExtensions()
+        {
             DataProvider = string.Empty;
             LoanStatus = string.Empty;
         }
@@ -118,18 +122,21 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("ImageLink")]
-    public class ImageLink {
+    public class ImageLink
+    {
         [XmlElement("ImageURL")]
         public string ImageURL { get; set; }
 
-        public ImageLink(){
+        public ImageLink()
+        {
             ImageURL = string.Empty;
         }
     }
 
     [Serializable()]
     [XmlRoot("SpecimenComponent")]
-    public class SpecimenComponent {
+    public class SpecimenComponent
+    {
         [XmlElement("IsPrimary")]
         public bool IsPrimary { get; set; }
         [XmlElement("SpecimenTypeId")]
@@ -146,7 +153,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlArray("Identifications")]
         public List<Identification> Identifications { get; set; }
 
-        public SpecimenComponent() {
+        public SpecimenComponent()
+        {
             IsPrimary = false;
             Type = string.Empty;
             IsPresent = true;
@@ -160,18 +168,21 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Extensions")]
-    public class ComponentExtension{
+    public class ComponentExtension
+    {
         [XmlElement("ComponentAssociationText")]
         public string Association { get; set; }
 
-        public ComponentExtension(){
+        public ComponentExtension()
+        {
             Association = string.Empty;
         }
     }
 
     [Serializable()]
     [XmlRoot("Identification")]
-    public class Identification {
+    public class Identification
+    {
         [XmlElement("TaxonName")]
         public string TaxonName { get; set; }
         [XmlElement("Determiner")]
@@ -200,7 +211,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlArray("IdentificationNames")]
         public List<IdentificationName> IdentificationNames { get; set; }
 
-        public Identification() {
+        public Identification()
+        {
             TaxonName = string.Empty;
             Determiner = string.Empty;
             DeterminerReferenceNumber = string.Empty;
@@ -220,14 +232,16 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("IdentificationName")]
-    public class IdentificationName{
+    public class IdentificationName
+    {
         [XmlElement("WorkingNameId")]
         public string WorkingName { get; set; }
 
         [XmlElement("Extensions")]
         public List<IdentificationNameExtension> Extensions { get; set; }
 
-        public IdentificationName(){
+        public IdentificationName()
+        {
             WorkingName = string.Empty;
 
             Extensions = new List<IdentificationNameExtension>();
@@ -236,7 +250,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Extensions")]
-    public class IdentificationNameExtension{
+    public class IdentificationNameExtension
+    {
         [XmlElement("Division")]
         public string Division { get; set; }
         [XmlElement("Phylum")]
@@ -248,18 +263,20 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("Family")]
         public string Family { get; set; }
 
-        public IdentificationNameExtension(){
+        public IdentificationNameExtension()
+        {
             Division = string.Empty;
             Phylum = string.Empty;
             Class = string.Empty;
             Order = string.Empty;
             Family = string.Empty;
-       }
+        }
     }
 
     [Serializable()]
     [XmlRoot("CollectionEventSpecimen")]
-    public class CollectionEventSpecimen {
+    public class CollectionEventSpecimen
+    {
         [XmlElement("Representation")]
         public List<CollectionEventSpecimenRepresentation> Representation { get; set; }
         [XmlElement("CollectionEvent")]
@@ -275,7 +292,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("AbundanceTypeId")]
         public string Abundance { get; set; }
 
-        public CollectionEventSpecimen() {
+        public CollectionEventSpecimen()
+        {
             Representation = new List<CollectionEventSpecimenRepresentation>();
             CollectionEvent = new List<CollectionEvent>();
 
@@ -288,18 +306,21 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Representation")]
-    public class CollectionEventSpecimenRepresentation {
+    public class CollectionEventSpecimenRepresentation
+    {
         [XmlElement("MicroHabitat")]
         public string MicroHabitat { get; set; }
 
-        public CollectionEventSpecimenRepresentation() {
+        public CollectionEventSpecimenRepresentation()
+        {
             MicroHabitat = string.Empty;
         }
     }
 
     [Serializable()]
     [XmlRoot("CollectionEvent")]
-    public class CollectionEvent{
+    public class CollectionEvent
+    {
         [XmlElement("CollectionEventTypeId")]
         public string Type { get; set; }
         [XmlElement("VerbatimCollector")]
@@ -334,7 +355,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlArray("LocalHeights")]
         public List<LocalHeight> LocalHeights { get; set; }
 
-        public CollectionEvent(){
+        public CollectionEvent()
+        {
             Type = string.Empty;
             VerbatimLocality = string.Empty;
             GazeteerLocality = string.Empty;
@@ -352,18 +374,20 @@ namespace Systematics.Portal.Web.Models.Search
             GeoRegions = new List<CollectionEventRegion>();
             ObservedSpecies = new List<ObservedSpecies>();
             Keywords = new List<CollectionEventKeywords>();
-       }
+        }
     }
 
     [Serializable()]
     [XmlRoot("Representation")]
-    public class CollectionEventRepresentation {
+    public class CollectionEventRepresentation
+    {
         [XmlElement("Habitat")]
         public string Habitat { get; set; }
         [XmlElement("Notes")]
         public string CollectionEventNotes { get; set; }
 
-        public CollectionEventRepresentation() {
+        public CollectionEventRepresentation()
+        {
             Habitat = string.Empty;
             CollectionEventNotes = string.Empty;
         }
@@ -371,16 +395,18 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("GeoReference")]
-    public class GeoReference {
+    public class GeoReference
+    {
         [XmlElement("CoordinateSystemId")]
         public string CoordinateSystem { get; set; }
-        [XmlElement("GeodeticDatumId")]  
+        [XmlElement("GeodeticDatumId")]
         public string Datum { get; set; }
 
         [XmlElement("Representation")]
         public List<Representation> Representation { get; set; }
 
-        public GeoReference() {
+        public GeoReference()
+        {
             CoordinateSystem = string.Empty;
             Datum = string.Empty;
 
@@ -390,18 +416,21 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Representation")]
-    public class Representation{//Georeference Representation
+    public class Representation
+    {//Georeference Representation
         [XmlElement("Georeference")]
         public string Georeference { get; set; }
 
-        public Representation(){
+        public Representation()
+        {
             Georeference = string.Empty;
         }
     }
 
     [Serializable()]
     [XmlRoot("CollectionEventRegion")] //GeoRegions
-    public class CollectionEventRegion {
+    public class CollectionEventRegion
+    {
         [XmlElement("GeoRegionSchemaId")]
         public string Schema { get; set; }
         [XmlElement("GeoRegionId")]
@@ -409,7 +438,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("VerbatimRegion")]
         public string VerbatimRegion { get; set; }
 
-        public CollectionEventRegion() {
+        public CollectionEventRegion()
+        {
             Schema = string.Empty;
             Region = string.Empty;
             VerbatimRegion = string.Empty;
@@ -418,7 +448,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("ObservedSpecies")]
-    public class ObservedSpecies {
+    public class ObservedSpecies
+    {
         [XmlElement("AssociationTypeId")]
         public string AssociationType { get; set; }
         [XmlElement("TaxonName")]
@@ -428,7 +459,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("IsDerived")]
         public bool IsDerived { get; set; }
 
-        public ObservedSpecies() {
+        public ObservedSpecies()
+        {
             AssociationType = string.Empty;
             TaxonName = string.Empty;
             WorkingName = string.Empty;
@@ -438,35 +470,41 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("CollectionEventKeywords")]
-    public class CollectionEventKeywords{
+    public class CollectionEventKeywords
+    {
         [XmlElement("GeoEcologicalKeywordID")]
         public string Word { get; set; }
 
-        public CollectionEventKeywords(){
+        public CollectionEventKeywords()
+        {
             Word = string.Empty;
         }
     }
 
     [Serializable()]
     [XmlRoot("Altitude")]
-    public class Altitude{
+    public class Altitude
+    {
         [XmlElement("Representation")]
         public List<AltitudeRepresentation> Representations { get; set; }
 
-        public Altitude(){
+        public Altitude()
+        {
             Representations = new List<AltitudeRepresentation>();
         }
     }
 
     [Serializable()]
     [XmlRoot("Representation")]
-    public class AltitudeRepresentation{
+    public class AltitudeRepresentation
+    {
         [XmlElement("CalculatedLower")]
         public string CalculatedLower { get; set; }
         [XmlElement("CalculatedUpper")]
         public string CalculatedUpper { get; set; }
 
-        public AltitudeRepresentation(){
+        public AltitudeRepresentation()
+        {
             CalculatedLower = string.Empty;
             CalculatedUpper = string.Empty;
         }
@@ -474,18 +512,21 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("LocalHeight")]
-    public class LocalHeight{
+    public class LocalHeight
+    {
         [XmlElement("Representation")]
         public List<AltitudeRepresentation> Representations { get; set; }
 
-        public LocalHeight(){
+        public LocalHeight()
+        {
             Representations = new List<AltitudeRepresentation>();
         }
     }
 
     [Serializable()]
     [XmlRoot("SpecimenFlag")]
-    public class SpecimenFlag {
+    public class SpecimenFlag
+    {
         [XmlElement("SpecimenFlagTypeId")]
         public string Type { get; set; }
         [XmlElement("Value")]
@@ -493,7 +534,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("Note")]
         public string Note { get; set; }
 
-        public SpecimenFlag() {
+        public SpecimenFlag()
+        {
             Type = string.Empty;
             Value = string.Empty;
             Note = string.Empty;
@@ -502,7 +544,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("SpecimenNote")]
-    public class SpecimenNote {
+    public class SpecimenNote
+    {
         [XmlElement("SpecimenNoteTypeId")]
         public string NoteType { get; set; }
         [XmlElement("Note")]
@@ -512,7 +555,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("Date")]
         public string Date { get; set; }
 
-        public SpecimenNote() {
+        public SpecimenNote()
+        {
             NoteType = string.Empty;
             Text = string.Empty;
             Author = string.Empty;
@@ -522,16 +566,18 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("SpecimenRelationship")]
-    public class SpecimenRelationship {
+    public class SpecimenRelationship
+    {
         [XmlElement("SpecimenRelationshipTypeId")]
         public string Type { get; set; }
         [XmlElement("Note")]
         public string Note { get; set; }
-        
+
         [XmlElement("SpecimenRelationshipMember")]
         public List<SpecimenRelationshipMember> Members { get; set; }
 
-        public SpecimenRelationship() {
+        public SpecimenRelationship()
+        {
             Type = string.Empty;
             Note = string.Empty;
 
@@ -541,13 +587,15 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("SpecimenRelationshipMember")]
-    public class SpecimenRelationshipMember {
+    public class SpecimenRelationshipMember
+    {
         [XmlElement("AccessionNumber")]
         public string AccessionNumber { get; set; }
         [XmlElement("Note")]
         public string Note { get; set; }
 
-        public SpecimenRelationshipMember() {
+        public SpecimenRelationshipMember()
+        {
             AccessionNumber = string.Empty;
             Note = string.Empty;
         }
@@ -555,7 +603,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("SpecimenEvent")]
-    public class SpecimenEvent {
+    public class SpecimenEvent
+    {
         [XmlElement("SpecimenEventTypeId")]
         public string Type { get; set; }
         [XmlElement("MethodId")]
@@ -571,7 +620,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("ISODate")]
         public string ISODate { get; set; }
 
-        public SpecimenEvent() {
+        public SpecimenEvent()
+        {
             Type = string.Empty;
             SpecimenEventMethod = string.Empty;
             SpecimenEventNote = string.Empty;
@@ -584,7 +634,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Duplicate")]
-    public class Duplicate {
+    public class Duplicate
+    {
         [XmlElement("Collection")]
         public string Collection { get; set; }
         [XmlElement("AccessionNumber")]
@@ -596,7 +647,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("Note")]
         public string DuplicateNote { get; set; }
 
-        public Duplicate() {
+        public Duplicate()
+        {
             Collection = string.Empty;
             AccessionNumber = string.Empty;
             Direction = string.Empty;
@@ -607,13 +659,15 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("AssignedRefNumber")]
-    public class AssignedRefNumber {
+    public class AssignedRefNumber
+    {
         [XmlElement("RefNumberId")]
         public string ReferenceNumber { get; set; }
         [XmlElement("RefNumberValue")]
         public string Value { get; set; }
 
-        public AssignedRefNumber() {
+        public AssignedRefNumber()
+        {
             ReferenceNumber = string.Empty;
             Value = string.Empty;
         }
@@ -621,7 +675,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("ExternalLink")]
-    public class ExternalLink {
+    public class ExternalLink
+    {
         [XmlElement("ExternalLinkTypeId")]
         public string ExternalLinkType { get; set; }
         [XmlElement("DisplayValue")]
@@ -633,7 +688,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("IsValid")]
         public bool IsValid { get; set; }
 
-        public ExternalLink() {
+        public ExternalLink()
+        {
             ExternalLinkType = string.Empty;
             Value = string.Empty;
             Url = string.Empty;
@@ -644,7 +700,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Batch")]
-    public class Batch {
+    public class Batch
+    {
         [XmlElement("DateCreated")]
         public DateTime DateCreated { get; set; }
         [XmlElement("DateFrozen")]
@@ -666,7 +723,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("Quantity")]
         public string BatchQuantity { get; set; }
 
-        public Batch() {
+        public Batch()
+        {
             DateCreated = DateTime.MinValue;
             DateFrozen = DateTime.MinValue;
             PhysicalLocation = string.Empty;
@@ -682,7 +740,8 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("InventoryItem")]
-    public class InventoryItem {
+    public class InventoryItem
+    {
         [XmlElement("TransactionId")]
         public string TransactionReferenceNumber { get; set; }
         [XmlElement("SpecimenId")]
@@ -709,7 +768,8 @@ namespace Systematics.Portal.Web.Models.Search
         [XmlElement("Extensions")]
         public List<InventoryItemExtension> Extensions { get; set; }
 
-        public InventoryItem() {
+        public InventoryItem()
+        {
             TransactionReferenceNumber = string.Empty;
             LCRCatalogueId = string.Empty;
             TaxonName = string.Empty;
@@ -726,11 +786,13 @@ namespace Systematics.Portal.Web.Models.Search
 
     [Serializable()]
     [XmlRoot("Extensions")]
-    public class InventoryItemExtension{
+    public class InventoryItemExtension
+    {
         [XmlElement("OrganisationAcronym")]
         public string OrganisationAcronym { get; set; }
 
-        public InventoryItemExtension(){
+        public InventoryItemExtension()
+        {
             OrganisationAcronym = string.Empty;
         }
     }

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Systematics.Portal.Web.Models.Search
+namespace Systematics.Portal.Web.Search.Tools.Models.Search
 {
-    public class Set {
+    public class Set
+    {
         public int SetId { get; set; }
         public Guid OwnerId { get; set; }
         public string DisplayName { get; set; }
@@ -14,7 +15,8 @@ namespace Systematics.Portal.Web.Models.Search
         public DateTime UpdatedDate { get; set; }
         public List<SetSpecimen> Specimens { get; set; }
 
-        public Set() {
+        public Set()
+        {
             SetId = -1;
             OwnerId = Guid.Empty;
             DisplayName = string.Empty;

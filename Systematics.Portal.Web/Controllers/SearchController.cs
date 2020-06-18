@@ -52,7 +52,8 @@ namespace Systematics.Portal.Web.Controllers
                 viewData.CurrentPage = selectedPage;
                 sortField = "Title";
 
-                viewData.Result = await _searchService.Search(query, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                // viewData.Result = await _searchService.Search(query, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                viewData.Result = await _searchService.Search(query, null,null,selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
 
                 if (query == null)
                 {
