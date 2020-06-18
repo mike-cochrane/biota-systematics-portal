@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Api.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Api.Access.Client", "SystematicsPortal.Web.Api.Access.Client\SystematicsPortal.Web.Api.Access.Client.csproj", "{95D506C3-B3FD-4712-98AB-8F75C412BB00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystematicsPortal.Web.Model", "SystematicsPortal.Web.Model\SystematicsPortal.Web.Model.csproj", "{7572487C-648D-4495-9DB6-DE4985B1ED7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Model", "SystematicsPortal.Web.Model\SystematicsPortal.Web.Model.csproj", "{7572487C-648D-4495-9DB6-DE4985B1ED7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystematicsPortal.Data", "SystematicsPortal.Data\SystematicsPortal.Data.csproj", "{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,14 @@ Global
 		{7572487C-648D-4495-9DB6-DE4985B1ED7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7572487C-648D-4495-9DB6-DE4985B1ED7A}.Test|Any CPU.ActiveCfg = Debug|Any CPU
 		{7572487C-648D-4495-9DB6-DE4985B1ED7A}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.DevTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.DevTest|Any CPU.Build.0 = Debug|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -69,5 +69,8 @@
     <Build Include="Schemas\documents\Tables\ReferenceDocumentHistory .sql" />
     <Build Include="Schemas\documents\Tables\VernacularNameDocument.sql" />
     <Build Include="Schemas\documents\Tables\VernacularNameDocumentHistory.sql" />
+    <Build Include="Schemas\documents\Tables\StaticContentDocument.sql" />
+    <Build Include="Schemas\documents\Tables\StaticContentDocumentHistory.sql" />
+    <Build Include="Security\web.sql" />
   </ItemGroup>
 </Project>
