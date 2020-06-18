@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Web.Model.Interfaces;
+using SystematicsPortal.Model.Interfaces;
 
 namespace SystematicsPortal.Data
 {

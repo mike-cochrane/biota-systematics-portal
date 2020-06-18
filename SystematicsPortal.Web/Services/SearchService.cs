@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Web.Search.Tools.Models.Search;
+using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Services
 {
     public class SearchService : ISearchService
     {
-        public Api.Access.Client.Client _apiClient;
+        public Api.Client.Client _apiClient;
 
-        public SearchService(Api.Access.Client.Client apiClient)
+        public SearchService(Api.Client.Client apiClient)
         {
             _apiClient = apiClient;
         }
