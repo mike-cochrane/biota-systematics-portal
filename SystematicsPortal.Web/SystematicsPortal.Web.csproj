@@ -17,10 +17,11 @@
 
 	<ItemGroup>
 	  <None Remove="Views\Search\Details.cshtml.ToBeFixed" />
+	  <None Remove="Views\Search\Details.NeedsToBeFixed" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Views\Search\Details.cshtml.ToBeFixed" />
+	  <Content Include="Views\Search\Details.NeedsToBeFixed" />
 	</ItemGroup>
 
 	<ItemGroup>
