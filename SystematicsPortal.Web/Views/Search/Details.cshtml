@@ -678,12 +678,24 @@
         </div>
     }
 
+    @if(Model.HybridData.HybridParentNames != null) {
+    <h3>Hybridisation</h3>
+    <h4>HybridData</h4>
+        @foreach (SystematicsPortal.Web.Models.DocumentHybridParentName hybridParentName in Model.HybridData.HybridParentNames)
+        {
+            <label class="col-sm-2 col-form-label">&nbsp;</label>
+            <div class="col-sm-10">
+                @Html.Raw(hybridParentName.NameFull.Value)
+            </div>
+        }
+    }
+
     @if (Model.Concepts != null)
     {
         <h3>Concepts</h3>
         @foreach (SystematicsPortal.Web.Models.DocumentConcepts concept in Model.Concepts)
         {
-            @if (concept.Name != null)
+            @*@if (concept.Name != null)
             {
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Name</label>
@@ -691,7 +703,7 @@
                         @Html.Raw(concept.Name)
                     </div>
                 </div>
-            }
+            }*@
 
             @if (concept.AccordingTo != null)
             {
@@ -703,7 +715,27 @@
                 </div>
             }
 
-            @if (concept.Keywords != null)
+            @if (concept.Page != null)
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Page</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(concept.page)
+                    </div>
+                </div>
+            }
+
+            @if (concept.Orthography != null)
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">@Html.LabelFor(concept => concept.Orthography, "Orthography")</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(concept.Orthography.Value)
+                    </div>
+                </div>
+            }
+
+            @*@if (concept.Keywords != null)
             {
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Keywords</label>
@@ -714,10 +746,11 @@
                         }
                     </div>
                 </div>
-            }
+            }*@
 
             @if (concept.RelatedConcepts != null)
             {
+                <h4>Associations</h4>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Related Taxon</label>
                     <div class="col-sm-10">
