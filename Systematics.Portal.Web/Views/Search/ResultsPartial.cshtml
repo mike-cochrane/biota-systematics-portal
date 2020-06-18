@@ -1,383 +1,414 @@
 ﻿@model Systematics.Portal.Web.Models.SearchViewModel
-<div id="results" class="row-fluid">
-    <div id="applied-facets">
-        @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets) {
-            string label = s.Label + " [x]";
-            <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
-        }
-        @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.SelectedRange s in Model.Result.AppliedRanges) {
-            string label = s.Label + " [x]";
-            <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '', 'range')">@Html.Raw(label)</a>
-        }
-    </div>
-    <div id="search-result" class="row-fluid">
-        @if (Model.HaveSearched) {
-            <div id="facets">
-                <h2>
-                    Facets</h2>
-                @foreach (object filter in Model.Result.Filters) {
-                    if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Search.Tools.Models.Search.Facet))) {
-                        Systematics.Portal.Web.Search.Tools.Models.Search.Facet f = (Systematics.Portal.Web.Search.Tools.Models.Search.Facet)filter;
+    <div class="container-fluid">
+        <div id="results" class="row-fluid">
+            <div id="applied-facets">
+                @foreach (Systematics.Portal.Web.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets)
+                {
+                    string label = s.Label + " [x]";
+                    <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
+                }
+                @foreach (Systematics.Portal.Web.Models.Search.SelectedRange s in Model.Result.AppliedRanges)
+                {
+                    string label = s.Label + " [x]";
+                    <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '', 'range')">@Html.Raw(label)</a>
+                }
+            </div>
+            <div id="search-result" class="row-fluid">
+                @* @if (Model.HaveSearched) { *@
+                @*<div id="facets">
+                    <h2>
+                        Facets
+                    </h2>
+                    @foreach (object filter in Model.Result.Filters)
+                    {
+                        if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Models.Facet)))
+                        {
+                            Systematics.Portal.Web.Models.Facet f = (Systematics.Portal.Web.Models.Facet)filter;
 
-                        string facetIconId = f.Name + "-icon";
-                        string facetTargetId = f.Name + "-content";
-                        string facetCompleteId = f.Name + "-complete";
-                        var topFive = Model.Result.TopFive(f);
-                        int total = f.Values.Where(v => v.Selected == false).Count();
-                        if (total > 0) {
-                        <div class="clickable", data-toggle="collapse" data-target="#@facetTargetId">
-                            <h5>
-                                <i id="@facetIconId" class="icon-minus-sign"></i> @f.Name</h5>
-                        </div>
-                        <div id="@facetTargetId" class="collapse in">
-                            @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.FacetValue v in topFive) {
-                                if (!v.Selected) {
-                                    string label = v.Name + " (" + v.Count + ")";
-                                <p>
-                                    <a href="#" onclick="submitFacet('@f.Name', '@v.Name')">@label</a></p>
-                                }
-                            }
-                            @if (total > 5) {
-                                <a href="#@facetCompleteId" role="button" class="btn btn-mini btn-home" data-toggle="modal">More...</a>
-                            }
-                        </div>
-                        <!--[if IE]><div class="ie-separator"></div><![endif]-->
-                        <!--[if !(IE)]><!--><div class="separator"></div><!--<![endif]-->
-                            if (total > 5) {
-                        <div id="@facetCompleteId" class="modal hide fade">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    &times;</button>
-                                <h3>@f.Name</h3>
-                            </div>
-                            <div class="modal-body">
-                                @foreach (Systematics.Portal.Web.Search.Tools.Models.Search.FacetValue v in f.Values) {
-                                    if (!v.Selected) {
-                                        string label = v.Name + " (" + v.Count + ")";
-                                    <p>
-                                        <a href="#" onclick="applyFacet('@facetCompleteId', '@f.Name', '@v.Name')">@label</a></p>
+                            string facetIconId = f.Name + "-icon";
+                            string facetTargetId = f.Name + "-content";
+                            string facetCompleteId = f.Name + "-complete";
+                            var topFive = Model.Result.TopFive(f);
+                            int total = f.Values.Where(v => v.Selected == false).Count();
+                            if (total > 0)
+                            {
+                                <div class="clickable" , data-toggle="collapse" data-target="#@facetTargetId">
+                                    <h5>
+                                        <i id="@facetIconId" class="icon-minus-sign"></i> @f.Name
+                                    </h5>
+                                </div>
+                                <div id="@facetTargetId" class="collapse in">
+                                    @foreach (Systematics.Portal.Web.Models.FacetValue v in topFive)
+                                    {
+                                        if (!v.Selected)
+                                        {
+                                            string label = v.Name + " (" + v.Count + ")";
+                                            <p>
+                                                <a href="#" onclick="submitFacet('@f.Name', '@v.Name')">@label</a>
+                                            </p>
+                                        }
                                     }
+                                    @if (total > 5)
+                                    {
+                                        <a href="#@facetCompleteId" role="button" class="btn btn-mini btn-home" data-toggle="modal">More...</a>
+                                    }
+                                </div>
+                                <!--[if IE]><div class="ie-separator"></div><![endif]-->
+                                <!--[if !(IE)]><!--><div class="separator"></div><!--<![endif]-->
+                                if (total > 5)
+                                {
+                                    <div id="@facetCompleteId" class="modal hide fade">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h3>@f.Name</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            @foreach (Systematics.Portal.Web.Models.FacetValue v in f.Values)
+                                            {
+                                                if (!v.Selected)
+                                                {
+                                                    string label = v.Name + " (" + v.Count + ")";
+                                                    <p>
+                                                        <a href="#" onclick="applyFacet('@facetCompleteId', '@f.Name', '@v.Name')">@label</a>
+                                                    </p>
+                                                }
+                                            }
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+                                        </div>
+                                    </div>
                                 }
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
-                            </div>
-                        </div>    
-                            }
-                        <script type="text/javascript">
+                                <script type="text/javascript">
                             $('#@facetTargetId').on('show hide', function () {
                                 $('#@facetIconId').toggleClass('icon-minus-sign icon-plus-sign', 200);
                             });
-                        </script>
+                                </script>
+                            }
                         }
-                    }
-                    else if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Search.Tools.Models.Search.Range))) {
-                        Systematics.Portal.Web.Search.Tools.Models.Search.Range r = (Systematics.Portal.Web.Search.Tools.Models.Search.Range)filter;
+                        else if (object.ReferenceEquals(filter.GetType(), typeof(Systematics.Portal.Web.Models.Search.Range)))
+                        {
+                            Systematics.Portal.Web.Models.Search.Range r = (Systematics.Portal.Web.Models.Search.Range)filter;
 
-                        string slider = r.Name.ToLower() + "-slider";
-                        string sliderId = "#" + slider;
-                        string applyButtonName = slider + "-apply";
-                        string checkboxName = slider + "-include-nulls";
-                        string valueText = slider + "-values";
-                        int minValue = r.MinimumValue;
-                        int maxValue = r.MaximumValue;
+                            string slider = r.Name.ToLower() + "-slider";
+                            string sliderId = "#" + slider;
+                            string applyButtonName = slider + "-apply";
+                            string checkboxName = slider + "-include-nulls";
+                            string valueText = slider + "-values";
+                            int minValue = r.MinimumValue;
+                            int maxValue = r.MaximumValue;
 
-                        if (maxValue != minValue) {
-                            <h5>@r.DisplayText</h5>
-                            <div class="range-facet">
-                                <span class="sparkline">@r.SparklineData</span>
-                                <div id="@slider" class="slider">
+                            if (maxValue != minValue)
+                            {
+                                <h5>@r.DisplayText</h5>
+                                <div class="range-facet">
+                                    <span class="sparkline">@r.SparklineData</span>
+                                    <div id="@slider" class="slider">
+                                    </div>
+                                    <div class="apply">
+                                        @if (r.Type.ToLower().Equals("date"))
+                                        {
+                                            <button id="@applyButtonName" class="btn btn-mini btn-home pull-right" type="button" onclick="submitRangeFacet('date', '@sliderId', '@r.Name')">
+                                                Apply
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button id="@applyButtonName" class="btn btn-mini btn-home pull-right" type="button" onclick="submitRangeFacet('value', '@sliderId', '@r.Name')">
+                                                Apply
+                                            </button>
+                                        }
+                                    </div>
+                                    <div class="clear"></div>
+                                    <!--[if IE]><div class="ie-separator"></div><![endif]-->
+                                    <!--[if !(IE)]><!--><div class="separator"></div><!--<![endif]-->
                                 </div>
-                                <div class="apply">
-                                    @if (r.Type.ToLower().Equals("date")) {
-                                        <button id="@applyButtonName" class="btn btn-mini btn-home pull-right" type="button" onclick="submitRangeFacet('date', '@sliderId', '@r.Name')">
-                                            Apply
-                                        </button>
-                                    }
-                                    else {
-                                        <button id="@applyButtonName" class="btn btn-mini btn-home pull-right" type="button" onclick="submitRangeFacet('value', '@sliderId', '@r.Name')">
-                                            Apply
-                                        </button>
-                                    }
-                                </div>
-                                <div class="clear"></div>
-                                <!--[if IE]><div class="ie-separator"></div><![endif]-->
-                                <!--[if !(IE)]><!--><div class="separator"></div><!--<![endif]-->
-                            </div>
-                            if (r.Type.ToLower().Equals("date")) {
-                                int minYear = minValue / 10000;
-                                int minMonth = (minValue - (minYear * 10000)) / 100;
-                                int minDay = minValue - (minYear * 10000) - (minMonth * 100);
-                                int maxYear = maxValue / 10000;
-                                int maxMonth = (maxValue - (maxYear * 10000)) / 100;
-                                int maxDay = maxValue - (maxYear * 10000) - (maxMonth * 100);
-                                <script type="text/javascript">
+                                if (r.Type.ToLower().Equals("date"))
+                                {
+                                    int minYear = minValue / 10000;
+                                    int minMonth = (minValue - (minYear * 10000)) / 100;
+                                    int minDay = minValue - (minYear * 10000) - (minMonth * 100);
+                                    int maxYear = maxValue / 10000;
+                                    int maxMonth = (maxValue - (maxYear * 10000)) / 100;
+                                    int maxDay = maxValue - (maxYear * 10000) - (maxMonth * 100);
+                                    <script type="text/javascript">
                                     $('#@slider').dateRangeSlider({
-                                        arrows:false, 
+                                        arrows:false,
                                         bounds:{
-                                        min:new Date(@minYear, @minMonth - 1, @minDay), 
+                                        min:new Date(@minYear, @minMonth - 1, @minDay),
                                         max:new Date(@maxYear, @maxMonth - 1, @maxDay)
                                         },
                                         defaultValues:{
-                                            min:new Date(@minYear, @minMonth - 1, @minDay), 
+                                            min:new Date(@minYear, @minMonth - 1, @minDay),
                                             max:new Date(@maxYear, @maxMonth - 1, @maxDay)
                                         }
                                     });
-                                </script>
-                            }
-                            else {
-                                <script type="text/javascript">
+                                    </script>
+                                }
+                                else
+                                {
+                                    <script type="text/javascript">
                                     $('#@slider').editRangeSlider({
-                                        arrows:false, 
+                                        arrows:false,
                                         bounds:{min:@minValue, max:@maxValue},
                                         defaultValues:{min:@minValue, max:@maxValue}
                                     });
-                                </script>
+                                    </script>
+                                }
                             }
                         }
                     }
-                }
-            </div>
-            <div id="specimens">
-                <div class="row-fluid">
-                    <div class="pull-left">
-                        <h2>
-                            Results
-                        </h2>
-                    </div>
-                     <div class="pull-right">
-                            @if (Model.Sets == null) {
+                </div>*@
+                <div id="specimens">
+                    <div class="row-fluid">
+                        <div class="pull-left">
+                            <h2>
+                                Results
+                            </h2>
+                        </div>
+                        <div class="pull-right">
+                            @if (Model.Sets == null)
+                            {
                                 <a class="btn btn-home" href="@Url.Action("LogIn", "Account", new { returnUrl = Url.Action("Index", "Search", new { collectionId = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.AppliedFacets, appliedRanges = Model.Result.AppliedRanges, currentDisplayTab = Model.SelectedView, pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption, back = true }) })">
-                                    <i class="icon-download-alt icon-white" title="Login to download selected records"></i></a>
+                                    <i class="icon-download-alt icon-white" title="Login to download selected records"></i>
+                                </a>
                                 <a class="btn btn-home" href="@Url.Action("LogIn", "Account", new { returnUrl = Url.Action("Index", "Search", new { collectionId = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.AppliedFacets, appliedRanges = Model.Result.AppliedRanges, currentDisplayTab = Model.SelectedView, pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption, back = true }) })">
-                                    <i class="icon-folder-open icon-white" title="Add selected records to set"></i></a>
+                                    <i class="icon-folder-open icon-white" title="Add selected records to set"></i>
+                                </a>
                             }
-                            else {
+                            else
+                            {
                                 <div class="dropdown" style="float: right;">
                                     <a class="btn btn-home dropdown-toggle" data-toggle="dropdown" role="button" data-target="#" id="save-to-set"><i class="icon-folder-open icon-white" title="Add selected records to set"></i></a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="save-to-set" id="sets">
-                                        @foreach (Systematics.Portal.Web.Models.SetViewModel s in Model.Sets) {
+                                        @foreach (Systematics.Portal.Web.Models.SetViewModel s in Model.Sets)
+                                        {
                                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="saveToSet('@s.SetId')">@s.DisplayName</a></li>
                                         }
                                         <li role="presentation" class="divider"></li>
                                         <li role="presentation"><a href="#new-set" data-toggle="modal">Add to new set</a></li>
                                     </ul>
                                 </div>
-                                if (Model.OneOrMoreSelected) { 
+                                if (Model.OneOrMoreSelected)
+                                {
                                     <a id="download-button" name="download-button" class="btn btn-home" onclick="processDownload()"><i class="icon-download-alt icon-white" title="Download selected records"></i></a>
                                 }
                                 else
                                 {
                                     <a id="download-button" name="download-button" class="btn btn-home disabled" href="#"><i class=" icon-download-alt icon-white" title="Select records to download data"></i></a>
                                 }
-                             } 
+                            }
+                        </div>
                     </div>
-                </div>
-                <div class="row-fluid">
-                    <div id="message"></div>
-                    <div id="error" class="error"></div>
-                </div>
-                <div class="row-fluid">
-                   <div class="pull-left">
-                        <div class="specimen-count clear">
-                            <p>
-                                @if (Model.Result.TotalSpecimens > Model.ResultsPerPage)
-                                {
-                                    if (Model.GetCurrentHighEndOfRange() > Model.Result.TotalSpecimens)
+                    <div class="row-fluid">
+                        <div id="message"></div>
+                        <div id="error" class="error"></div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="float-left">
+                            <div class="specimen-count clear">
+                                <p>
+                                    @if (Model.Result.TotalSpecimens > Model.ResultsPerPage)
                                     {
-                                        @:Showing @Model.GetCurrentLowEndOfRange() to @Model.Result.TotalSpecimens of @Model.Result.TotalSpecimens records
+                                        if (Model.GetCurrentHighEndOfRange() > Model.Result.TotalSpecimens)
+                                        {
+                                            @:Showing @Model.GetCurrentLowEndOfRange() to @Model.Result.TotalSpecimens of @Model.Result.TotalSpecimens records
+                                        }
+                                        else
+                                        {
+                                            @:Showing @Model.GetCurrentLowEndOfRange() to @Model.GetCurrentHighEndOfRange() of @Model.Result.TotalSpecimens records
+                                        }
                                     }
                                     else
                                     {
-                                        @:Showing @Model.GetCurrentLowEndOfRange() to @Model.GetCurrentHighEndOfRange() of @Model.Result.TotalSpecimens records
+                                        @Model.Result.TotalSpecimens @:records
                                     }
-                                }
-                                else
-                                {
-                                    @Model.Result.TotalSpecimens @:records
-                                }
-                            </p>
-                        </div>
-                    </div>
-                    <div class="dropdown pull-right">
-                        Sort by @Html.DropDownList("sort-option", Model.SortOptions, new { id = "sort-option" })
-                    </div>
-                </div>
-                @* Paging *@
-                @Html.Partial("PagingPartial", Model)
-                @if (Model.Result.FoundDocuments.Count > 0)
-                {
-                    string listActiveClass = string.Empty;
-                    string gridActiveClass = string.Empty;
-                    var specimens = Model.Result.DisplayedDocuments();
-                    if (Model.SelectedView.Equals("list"))
-                    {
-                        listActiveClass = "active";
-                    <ul class="nav nav-tabs" id="search-results">
-                        <li class="active"><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
-                        <li><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
-                    </ul>
-                    }
-                    else if (Model.SelectedView.Equals("grid"))
-                    {
-                        gridActiveClass = "active";
-                    <ul class="nav nav-tabs" id="search-results">
-                        <li><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
-                        <li class="active"><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
-                    </ul>
-                    }
-                    <div class="tab-content">
-                        <div class="tab-pane @listActiveClass" id="list-result">
-                            <div class="specimen-list-item">
-                                @if (Model.AllSelected)
-                                {
-                                    @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" checked="checked" />&nbsp;Select all
-                                }
-                                else
-                                {
-                                    @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />&nbsp;Select all
-                                }
+                                </p>
                             </div>
-                            @foreach (Systematics.Portal.Web.Search.Tools.Models.SolrDocument summary in specimens)
-                            {
-                            <div class="specimen-list-item">
-                                @*<div class="pull-left">
-                                    <h1>
-                                        <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
-                                        @Html.ActionLink(@summary.AccessionNumber + " : " + @summary.TaxonName, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
-                                    </h1>
-                                </div>
-                                <div class="pull-right">
-                                    @if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
-                                    {
-                                        <i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
-                                    }
-                                    @if (summary.HasImages)
-                                    {
-                                        <i class= "icon-camera" title="Images are available for this record"></i>
-                                    }
-                                </div>*@
-                                <div class="clear"></div>
-                                @Html.Partial("SpecimenSummaryTextPartial", summary)
-                            </div>                            
-                            }
                         </div>
-                        <div class="tab-pane @gridActiveClass" id="grid-result">
-                            <table>
-                                <tr>
-                                    <th>
-                                        <input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />
-                                    </th>
-                                    <th align="left">
-                                        Accession Number
-                                    </th>
-                                    <th align="left">
-                                        Taxonomic Name
-                                    </th>
-                                    <th align="left">
-                                        Type Status
-                                    </th>
-                                    <th align="left">
-                                        Country
-                                    </th>
-                                    <th align="left">
-                                        Ecological District
-                                    </th>
-                                    <th align="left">
-                                        Land District
-                                    </th>
-                                    <th align="left">
-                                        NZ Area Code
-                                    </th>
-                                    <th align="left">
-                                        Data Provider
-                                    </th>
-                                    <th align="left">
-                                        Specimen Type
-                                    </th>
-                                </tr>
+                        <div class="dropdown pull-right float-right">
+                            <span class="float-left align-self-center justify-content-center">Sort by:&nbsp;</span> @Html.DropDownList("sort-option", Model.SortOptions, new { id = "sort-option" })
+                        </div>
+                        <br />
+                    </div>
+                    @* Paging *@
+                    @Html.Partial("PagingPartial", Model)
+                    <br />
+                    @if (Model.Result.FoundDocuments.Count > 0)
+                    {
+                        string listActiveClass = string.Empty;
+                        string gridActiveClass = string.Empty;
+                        var specimens = Model.Result.DisplayedDocuments();
+                        if (Model.SelectedView.Equals("list"))
+                        {
+                            listActiveClass = "active";
+                            <!--<ul class="nav nav-tabs" id="search-results">
+                                <li class="active"><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
+                                <li><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
+                            </ul>-->
+                        }
+                        else if (Model.SelectedView.Equals("grid"))
+                        {
+                            gridActiveClass = "active";
+                            <!--<ul class="nav nav-tabs" id="search-results">
+                                <li><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
+                                <li class="active"><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
+                            </ul>-->
+                        }
+                        <br />
+                        <div class="tab-content">
+                            <div class="tab-pane @listActiveClass" id="list-result">
+                                <div class="specimen-list-item">
+                                    @if (Model.AllSelected)
+                                    {
+                                        @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" checked="checked" />&nbsp;Select all
+                                    }
+                                    else
+                                    {
+                                        @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />&nbsp;Select all
+                                    }
+                                </div>
                                 @foreach (Systematics.Portal.Web.Search.Tools.Models.SolrDocument summary in specimens)
                                 {
-                                    //string id = summary.SpecimenId.ToString();
-                                    @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@
-                                    @*<tr valign="top">
-                                    <td>
-                                        <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
-                                    </td>
-                                    <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
-                                    </td>
-                                    <td>@summary.TaxonName
-                                    </td>
-                                    <td>@summary.TypeStatus
-                                    </td>
-                                    <td>@summary.Country
-                                    </td>
-                                    <td>@summary.EcologicalDistrict
-                                    </td>
-                                    <td>@summary.LandDistrict
-                                    </td>
-                                    <td>@summary.NZAreaCode
-                                    </td>
-                                    <td>@summary.Collection
-                                    </td>
-                                    <td>@summary.SpecimenType
-                                    </td>
-                                </tr>*@
+                                    <div class="specimen-list-item">
+                                        <div class="pull-left">
+                                            <input type="checkbox" name="selected" id="@summary.Id.ToString()" class="@summary.Id.ToString()" onclick="toggleSpecimen(this)" @*checked="@summary.Selected"*@ />
+                                            @Html.ActionLink(@summary.GetHashCode() + " : " + @summary.TitleFormatted, "Details", "Specimen", new { id = @summary.GetHashCode(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                        </div>
+                                        @*<div class="pull-right">
+                                            @if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
+                                            {
+                                                <i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
+                                            }
+                                            @if (summary.HasImages)
+                                            {
+                                                <i class= "icon-camera" title="Images are available for this record"></i>
+                                            }
+                                        </div>*@
+                                        <div class="clear"></div>
+                                        @Html.Partial("SpecimenSummaryTextPartial", summary)
+                                    </div>
                                 }
-                            </table>
+                            </div>
+                            <div class="tab-pane @gridActiveClass" id="grid-result">
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />
+                                        </th>
+                                        <th align="left">
+                                            Accession Number
+                                        </th>
+                                        <th align="left">
+                                            Taxonomic Name
+                                        </th>
+                                        <th align="left">
+                                            Type Status
+                                        </th>
+                                        <th align="left">
+                                            Country
+                                        </th>
+                                        <th align="left">
+                                            Ecological District
+                                        </th>
+                                        <th align="left">
+                                            Land District
+                                        </th>
+                                        <th align="left">
+                                            NZ Area Code
+                                        </th>
+                                        <th align="left">
+                                            Data Provider
+                                        </th>
+                                        <th align="left">
+                                            Specimen Type
+                                        </th>
+                                    </tr>
+                                    @foreach (Systematics.Portal.Web.Search.Tools.Models.SolrDocument summary in specimens)
+                                    {
+                                        //string id = summary.SpecimenId.ToString();
+                                        @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@
+                                        @*<tr valign="top">
+                                            <td>
+                                                <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
+                                            </td>
+                                            <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                            </td>
+                                            <td>@summary.TaxonName
+                                            </td>
+                                            <td>@summary.TypeStatus
+                                            </td>
+                                            <td>@summary.Country
+                                            </td>
+                                            <td>@summary.EcologicalDistrict
+                                            </td>
+                                            <td>@summary.LandDistrict
+                                            </td>
+                                            <td>@summary.NZAreaCode
+                                            </td>
+                                            <td>@summary.Collection
+                                            </td>
+                                            <td>@summary.SpecimenType
+                                            </td>
+                                        </tr>*@
+                                    }
+                                </table>
+                            </div>
                         </div>
+                    }
+                    else
+                    {
+                        @:No results found
+                    }
+                    @* Paging *@
+                    @Html.Partial("PagingPartial", Model)
+                </div>
+                @* } *@
+            </div>
+        </div>
+        <div id="new-set" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="new-set-heading" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 id="new-set-heading">Create a New Set</h3>
+            </div>
+            <div class="modal-body">
+                @Html.ValidationSummary(true)
+
+                <div class="row-fluid">
+                    <div class="editor-label span2">
+                        <label for="DisplayName">Name</label>
                     </div>
-                }
-                else
-                {
-                    @:No results found
-                                }
-                @* Paging *@
-                @Html.Partial("PagingPartial", Model)
-            </div>
-        }
-    </div>
-</div>
-<div id="new-set" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="new-set-heading" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <h3 id="new-set-heading">Create a New Set</h3>
-    </div>
-    <div class="modal-body">
-        @Html.ValidationSummary(true)
+                    <div class="editor-field span10 condensed">
+                        <input class="text-box single-line" data-val="true" data-val-required="The Name field is required." id="DisplayName" name="DisplayName" type="text" value="">
+                        <span class="field-validation-valid" data-valmsg-for="DisplayName" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
 
-        <div class="row-fluid">
-            <div class="editor-label span2">
-                <label for="DisplayName">Name</label>
+                <div class="row-fluid">
+                    <div class="editor-label span2">
+                        <label for="Description">Description</label>
+                    </div>
+                    <div class="editor-field span10 condensed">
+                        <textarea class="text-box multi-line" id="Description" name="Description"></textarea>
+                        <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
             </div>
-            <div class="editor-field span10 condensed">
-                <input class="text-box single-line" data-val="true" data-val-required="The Name field is required." id="DisplayName" name="DisplayName" type="text" value="">
-                <span class="field-validation-valid" data-valmsg-for="DisplayName" data-valmsg-replace="true"></span>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-home" data-dismiss="modal" onclick="createSet()">Save</button>
+                <button class="btn btn-home" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
         </div>
-
-        <div class="row-fluid">
-            <div class="editor-label span2">
-                <label for="Description">Description</label>
-            </div>
-            <div class="editor-field span10 condensed">
-                <textarea class="text-box multi-line" id="Description" name="Description"></textarea>
-                <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary btn-home" data-dismiss="modal" onclick="createSet()">Save</button>
-        <button class="btn btn-home" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    </div>
 </div>
-@*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@
+        @*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@
 
-<script type="text/javascript">
+        <script type="text/javascript">
     var currentTab = '@Model.SelectedView';
     var sortBy = '@Model.SelectedSortOption';
 
-    $('.sparkline').sparkline('html', { type: 'bar', barWidth: 1, disableInteraction: true });
+    //$('.sparkline').sparkline('html', { type: 'bar', barWidth: 1, disableInteraction: true });
 
     $('#sort-option').bind("change", function(){
         sortBy = $('#sort-option').val();
@@ -752,4 +783,4 @@
         actionDownloadUrl("DownloadSelection", "Search", null, 0);
     }
 
-</script>
+        </script>

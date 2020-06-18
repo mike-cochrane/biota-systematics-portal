@@ -40,7 +40,7 @@ namespace Systematics.Portal.Web.Search.Tools.Models.Search
             AppliedRanges = new List<SelectedRange>();
         }
 
-        public List<SolrDocument> DisplayedDocuments()
+        public List<SolrDocument> DisplayedDocuments() // siamac this didn't work SpecimenSummary
         {
             List<SolrDocument> documents = FoundDocuments.Values.ToList();
 

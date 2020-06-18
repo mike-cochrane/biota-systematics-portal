@@ -6,13 +6,13 @@
     });
 </script>
 
-@model Systematics.Portal.Web.Models.SearchViewModel
+@model Systematics.Portal.Web.Models.SearchViewModel;
 @{
     ViewBag.Title = "Search";
 }
 @using (Html.BeginForm()) {
-    <div class="full">
-        @Html.Partial("SearchPartial", Model.SearchData)
-        @Html.Partial("ResultsPartial", Model)
-    </div>
+<div class="full">
+    <partial name="SearchPartial" model="Model.SearchData" />
+    <partial name="ResultsPartial" model="Model" />
+</div>
 } 

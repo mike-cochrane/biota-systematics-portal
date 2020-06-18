@@ -8,11 +8,13 @@ using System.Xml;
 using Systematics.Portal.Web.Models;
 using Systematics.Portal.Web.Services;
 using System.Threading.Tasks;
+using System;
 
 namespace Systematics.Portal.Web.Controllers
 {
     public class SearchController : Controller
     {
+        const int NUMBER_OF_RESULTS_PER_PAGE = 10;
         public ISearchService _searchService;
 
         public SearchController(ISearchService searchService)
@@ -21,21 +23,73 @@ namespace Systematics.Portal.Web.Controllers
         }
 
         // GET: Search
-        public async Task<ActionResult> Index()
+        [HttpPost]
+        public async Task<ActionResult> Index(string query, string appliedFacets, string appliedRanges, string currentDisplayTab, string pageNumber, string sortField, string back, string errorMessage)
         {
+            try
+            {
+                bool success = false;
+                var viewData = new SearchViewModel(null, null);
 
-            var response = await _searchService.Search("Bacteria");
+                string uncorrectedQuery = string.Empty;
+                if (query != null)
+                {
+                    uncorrectedQuery = query;
+                    //query = AutoCorrectQueryString(query);
+                    if (uncorrectedQuery.Equals(query))
+                    {
+                        uncorrectedQuery = string.Empty;
+                    }
+                    //update query log
+                    //q.QueryString = query;
+                }
 
-            return View();
+                int selectedPage = 0;
+                if (pageNumber != null)
+                {
+                    selectedPage = Convert.ToInt32(pageNumber);
+                }
+                viewData.CurrentPage = selectedPage;
+                sortField = "Title";
+
+                viewData.Result = await _searchService.Search(query, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+
+                if (query == null)
+                {
+                    viewData.Query = string.Empty;
+                }
+                else
+                {
+                    viewData.Query = query;
+                    viewData.SearchData.UncorrectedQuery = uncorrectedQuery;
+                }
+
+                if (viewData.Result != null)
+                {
+                    success = true;
+                    //specimenCount = viewData.Result.TotalSpecimens;
+                }
+
+                return View(viewData);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            } 
+            finally
+            {
+                // do something
+            }
+
         }
 
         // GET: Search/Details/5
-        public ActionResult Detail(int id)
+        public ActionResult Details(int id)
         {
             Document document;
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(Document));
 
-            using (StreamReader xml = new StreamReader("single-document.xml"))
+            using (StreamReader xml = new StreamReader("single-Document-References-Fungi.xml"))
             {
                 document = (Document)ser.Deserialize(xml);
             }

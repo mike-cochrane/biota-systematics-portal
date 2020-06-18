@@ -1,0 +1,14 @@
+﻿#sort-option {
+    width: 175px;
+    margin-bottom: 10px;
+}
+
+.specimen-list-item {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 10px 0;
+    color: #696969;
+}
+
+.heading {
+    font-weight: bold;
+}

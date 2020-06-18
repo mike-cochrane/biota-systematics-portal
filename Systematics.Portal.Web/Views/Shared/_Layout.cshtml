@@ -60,8 +60,10 @@
 
     <link rel="stylesheet" type="text/css" href="~/_resources/vendor/dorsetdigital/silverstripe-photoswipe-elemental/client/dist/gallery.css">
 
-
+    <link rel="stylesheet" href="~/old/lib/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/old/lib/bootstrap/bootstrap-grid.min.css" />
     <link rel="stylesheet" type="text/css" href="~/_resources/themes/default/dist/app.css" />
+    <link rel="stylesheet" type="text/css" href="~/systematics-portal.css" />
 </head>
 <body class="T3CategoryPage" dir="ltr">
 
@@ -813,20 +815,7 @@
         </header>
 
         <div id="main-content" class="l-page-container__body">
-            <div class="c-t3-banner " style="background-image: url(https://uat.mwlr.msapp.co.nz/uploads/public/Uploads/petr-vysohlid-9fqwGqGLUxc-unsplash-1__FillMaxWzIwMDAsNTQwXQ.jpg)">
-                <div class="c-t3-banner__content">
-                    <ul class="c-breadcrumbs">
-                        <li class="c-breadcrumbs__item">
-                            <a href="/" class="c-breadcrumbs__link">
-                                Home
-                            </a>
-                        </li>
-                    </ul>
-                    <h1 class="c-t3-banner__title">
-                        Systematics Portal
-                    </h1>
-                </div>
-            </div>
+            <partial name="/Views/Shared/_BannerPartial.cshtml" />
             <div class="l-content-container l-content-container--with-floating-nav" id="overview">
                 <div class="l-elemental-content">
                     <div class="l-content-block l-content-block--default">
@@ -1463,13 +1452,13 @@
             </div>
         </div>
     </div>
+
+    <script src="~/old/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/old/lib/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/_resources/themes/default/js/svg4everybody.min.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
     <script type="text/javascript" src="~/_resources/themes/default/dist/manifest.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
     <script type="text/javascript" src="~/_resources/themes/default/dist/vendor.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
     <script type="text/javascript" src="~/_resources/themes/default/dist/site.js" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY="></script>
-    <!--<link rel="stylesheet" href="~/old/lib/bootstrap/dist/css/bootstrap.css" /> -->
-    <link rel="stylesheet" href="~/old/lib/bootstrap/dist/css/bootstrap-grid.css" />
-    <!--<script src="~/old/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>-->
 
     <script type="application/javascript" nonce="ZmEwN2QyOTAyY2Y5OWU3NmQyMDNhOThmYWQwMDRkYWMwY2JmYjUzZGJiMGM1MTllZTJlYmNhMzFiNTE4ZDViYTFmMDA4YjNkOWNhZGE3YjZjNDc3MGNhYTU2MmNhYmE5ZDEzYjE2ODUzMmNjZDU4NjdkMWFmZjg3YWM4YTY4MzY=">
         //<![CDATA[
