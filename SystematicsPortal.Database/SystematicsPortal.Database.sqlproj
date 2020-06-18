@@ -56,8 +56,18 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Schemas" />
+    <Folder Include="Schemas\documents" />
+    <Folder Include="Schemas\documents\Tables" />
+    <Folder Include="Security" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="NameDocument.sql" />
+    <Build Include="Schemas\documents\Tables\NameDocument.sql" />
+    <Build Include="Schemas\documents\Tables\NameDocumentHistory.sql" />
+    <Build Include="Security\documents.sql" />
+    <Build Include="Schemas\documents\Tables\ReferenceDocument.sql" />
+    <Build Include="Schemas\documents\Tables\ReferenceDocumentHistory .sql" />
+    <Build Include="Schemas\documents\Tables\VernacularNameDocument.sql" />
+    <Build Include="Schemas\documents\Tables\VernacularNameDocumentHistory.sql" />
   </ItemGroup>
 </Project>

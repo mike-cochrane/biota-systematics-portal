@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Systematics.Portal.Database", "Systematics.Portal.Database\Systematics.Portal.Database.sqlproj", "{F8032803-8402-4F54-93C2-1A477F4105A2}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SystematicsPortal.Database", "SystematicsPortal.Database\SystematicsPortal.Database.sqlproj", "{F8032803-8402-4F54-93C2-1A477F4105A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
