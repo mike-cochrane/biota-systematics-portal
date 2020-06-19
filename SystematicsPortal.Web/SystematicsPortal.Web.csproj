@@ -17,10 +17,11 @@
 
 	<ItemGroup>
 	  <None Remove="Views\Search\Details.cshtml.ToBeFixed" />
+	  <None Remove="Views\Search\Details.NeedsToBeFixed" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Views\Search\Details.cshtml.ToBeFixed" />
+	  <Content Include="Views\Search\Details.NeedsToBeFixed" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -34,7 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SystematicsPortal.Web.Api.Access.Client\SystematicsPortal.Web.Api.Access.Client.csproj" />
-		<ProjectReference Include="..\SystematicsPortal.Web.Search.Tools\SystematicsPortal.Web.Search.Tools.csproj" />
+		<ProjectReference Include="..\SystematicsPortal.Web.Api.Client\SystematicsPortal.Web.Api.Client.csproj" />
+		<ProjectReference Include="..\SystematicsPortal.Search.Tools\SystematicsPortal.Search.Tools.csproj" />
 	</ItemGroup>
 </Project>
