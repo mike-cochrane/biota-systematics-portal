@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SystematicsPortal.Data\SystematicsPortal.Data.csproj" />
     <ProjectReference Include="..\SystematicsPortal.Search.Tools\SystematicsPortal.Search.Tools.csproj" />
     <ProjectReference Include="..\SystematicsPortal.Search\SystematicsPortal.Search.csproj" />
   </ItemGroup>

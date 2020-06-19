@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SystematicsPortal.Web.Models
+namespace SystematicsPortal.Model.Models.Documents
 {
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
@@ -13,7 +13,7 @@ namespace SystematicsPortal.Web.Models
     [System.ComponentModel.DesignerCategory("code")]
     [System.Xml.Serialization.XmlType(AnonymousType = true)]
     [System.Xml.Serialization.XmlRoot(Namespace = "", IsNullable = false)]
-    public partial class Document
+    public partial class NameDocumentDto
     {
 
         private DocumentName nameField;
@@ -121,11 +121,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
@@ -134,11 +134,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameFullField;
+                return nameFullField;
             }
             set
             {
-                this.nameFullField = value;
+                nameFullField = value;
             }
         }
 
@@ -147,11 +147,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameFormattedField;
+                return nameFormattedField;
             }
             set
             {
-                this.nameFormattedField = value;
+                nameFormattedField = value;
             }
         }
 
@@ -160,11 +160,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.namePartFormattedField;
+                return namePartFormattedField;
             }
             set
             {
-                this.namePartFormattedField = value;
+                namePartFormattedField = value;
             }
         }
 
@@ -173,11 +173,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.orthographyField;
+                return orthographyField;
             }
             set
             {
-                this.orthographyField = value;
+                orthographyField = value;
             }
         }
 
@@ -186,11 +186,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.pageField;
+                return pageField;
             }
             set
             {
-                this.pageField = value;
+                pageField = value;
             }
         }
 
@@ -199,11 +199,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.yearOfPublicationField;
+                return yearOfPublicationField;
             }
             set
             {
-                this.yearOfPublicationField = value;
+                yearOfPublicationField = value;
             }
         }
 
@@ -212,11 +212,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.yearOnPublicationField;
+                return yearOnPublicationField;
             }
             set
             {
-                this.yearOnPublicationField = value;
+                yearOnPublicationField = value;
             }
         }
 
@@ -225,11 +225,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.classificationField;
+                return classificationField;
             }
             set
             {
-                this.classificationField = value;
+                classificationField = value;
             }
         }
 
@@ -238,11 +238,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeLocalityField;
+                return typeLocalityField;
             }
             set
             {
-                this.typeLocalityField = value;
+                typeLocalityField = value;
             }
         }
 
@@ -251,11 +251,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.sanctioningAuthorField;
+                return sanctioningAuthorField;
             }
             set
             {
-                this.sanctioningAuthorField = value;
+                sanctioningAuthorField = value;
             }
         }
 
@@ -264,11 +264,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.sanctioningPageField;
+                return sanctioningPageField;
             }
             set
             {
-                this.sanctioningPageField = value;
+                sanctioningPageField = value;
             }
         }
 
@@ -277,11 +277,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.hybridLinkField;
+                return hybridLinkField;
             }
             set
             {
-                this.hybridLinkField = value;
+                hybridLinkField = value;
             }
         }
 
@@ -290,11 +290,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.checkStatusField;
+                return checkStatusField;
             }
             set
             {
-                this.checkStatusField = value;
+                checkStatusField = value;
             }
         }
 
@@ -303,11 +303,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameReferenceField;
+                return nameReferenceField;
             }
             set
             {
-                this.nameReferenceField = value;
+                nameReferenceField = value;
             }
         }
 
@@ -316,11 +316,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.taxonomyReferenceField;
+                return taxonomyReferenceField;
             }
             set
             {
-                this.taxonomyReferenceField = value;
+                taxonomyReferenceField = value;
             }
         }
 
@@ -329,11 +329,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.parentReferenceField;
+                return parentReferenceField;
             }
             set
             {
-                this.parentReferenceField = value;
+                parentReferenceField = value;
             }
         }
 
@@ -342,11 +342,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.parentField;
+                return parentField;
             }
             set
             {
-                this.parentField = value;
+                parentField = value;
             }
         }
 
@@ -355,11 +355,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.currentNameField;
+                return currentNameField;
             }
             set
             {
-                this.currentNameField = value;
+                currentNameField = value;
             }
         }
 
@@ -368,11 +368,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.basionymField;
+                return basionymField;
             }
             set
             {
-                this.basionymField = value;
+                basionymField = value;
             }
         }
 
@@ -381,11 +381,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.basedOnField;
+                return basedOnField;
             }
             set
             {
-                this.basedOnField = value;
+                basedOnField = value;
             }
         }
 
@@ -394,11 +394,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.blockingField;
+                return blockingField;
             }
             set
             {
-                this.blockingField = value;
+                blockingField = value;
             }
         }
 
@@ -407,11 +407,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.anamorphGenusField;
+                return anamorphGenusField;
             }
             set
             {
-                this.anamorphGenusField = value;
+                anamorphGenusField = value;
             }
         }
 
@@ -420,11 +420,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.anamorphReferenceField;
+                return anamorphReferenceField;
             }
             set
             {
-                this.anamorphReferenceField = value;
+                anamorphReferenceField = value;
             }
         }
 
@@ -433,11 +433,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeTaxonField;
+                return typeTaxonField;
             }
             set
             {
-                this.typeTaxonField = value;
+                typeTaxonField = value;
             }
         }
 
@@ -446,11 +446,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.foreignIdField;
+                return foreignIdField;
             }
             set
             {
-                this.foreignIdField = value;
+                foreignIdField = value;
             }
         }
 
@@ -459,11 +459,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.kingdomField;
+                return kingdomField;
             }
             set
             {
-                this.kingdomField = value;
+                kingdomField = value;
             }
         }
 
@@ -472,11 +472,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.phylumField;
+                return phylumField;
             }
             set
             {
-                this.phylumField = value;
+                phylumField = value;
             }
         }
 
@@ -485,11 +485,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.classField;
+                return classField;
             }
             set
             {
-                this.classField = value;
+                classField = value;
             }
         }
 
@@ -498,11 +498,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.orderField;
+                return orderField;
             }
             set
             {
-                this.orderField = value;
+                orderField = value;
             }
         }
 
@@ -511,11 +511,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.familyField;
+                return familyField;
             }
             set
             {
-                this.familyField = value;
+                familyField = value;
             }
         }
 
@@ -524,11 +524,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.genusField;
+                return genusField;
             }
             set
             {
-                this.genusField = value;
+                genusField = value;
             }
         }
 
@@ -538,11 +538,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.appliedVernacularsField;
+                return appliedVernacularsField;
             }
             set
             {
-                this.appliedVernacularsField = value;
+                appliedVernacularsField = value;
             }
         }
 
@@ -552,11 +552,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.biostatusValuesField;
+                return biostatusValuesField;
             }
             set
             {
-                this.biostatusValuesField = value;
+                biostatusValuesField = value;
             }
         }
 
@@ -566,11 +566,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.conceptsField;
+                return conceptsField;
             }
             set
             {
-                this.conceptsField = value;
+                conceptsField = value;
             }
         }
 
@@ -580,11 +580,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.notesField;
+                return notesField;
             }
             set
             {
-                this.notesField = value;
+                notesField = value;
             }
         }
 
@@ -594,11 +594,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.imagesField;
+                return imagesField;
             }
             set
             {
-                this.imagesField = value;
+                imagesField = value;
             }
         }
 
@@ -608,11 +608,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.externalLinksField;
+                return externalLinksField;
             }
             set
             {
-                this.externalLinksField = value;
+                externalLinksField = value;
             }
         }
 
@@ -622,11 +622,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nomenclaturalStatusValuesField;
+                return nomenclaturalStatusValuesField;
             }
             set
             {
-                this.nomenclaturalStatusValuesField = value;
+                nomenclaturalStatusValuesField = value;
             }
         }
 
@@ -636,11 +636,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.hybridisationField;
+                return hybridisationField;
             }
             set
             {
-                this.hybridisationField = value;
+                hybridisationField = value;
             }
         }
 
@@ -650,11 +650,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.hyperlinksField;
+                return hyperlinksField;
             }
             set
             {
-                this.hyperlinksField = value;
+                hyperlinksField = value;
             }
         }
 
@@ -664,11 +664,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.collectionObjectsField;
+                return collectionObjectsField;
             }
             set
             {
-                this.collectionObjectsField = value;
+                collectionObjectsField = value;
             }
         }
 
@@ -678,11 +678,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.inKeysField;
+                return inKeysField;
             }
             set
             {
-                this.inKeysField = value;
+                inKeysField = value;
             }
         }
 
@@ -692,11 +692,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -706,11 +706,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
 
@@ -720,11 +720,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.vernacularIdField;
+                return vernacularIdField;
             }
             set
             {
-                this.vernacularIdField = value;
+                vernacularIdField = value;
             }
         }
 
@@ -734,11 +734,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.documentClassField;
+                return documentClassField;
             }
             set
             {
-                this.documentClassField = value;
+                documentClassField = value;
             }
         }
 
@@ -748,11 +748,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.sourceField;
+                return sourceField;
             }
             set
             {
-                this.sourceField = value;
+                sourceField = value;
             }
         }
 
@@ -762,11 +762,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -776,11 +776,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -834,11 +834,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.namePartField;
+                return namePartField;
             }
             set
             {
-                this.namePartField = value;
+                namePartField = value;
             }
         }
 
@@ -848,11 +848,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.canonicalField;
+                return canonicalField;
             }
             set
             {
-                this.canonicalField = value;
+                canonicalField = value;
             }
         }
 
@@ -862,11 +862,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.inCitationField;
+                return inCitationField;
             }
             set
             {
-                this.inCitationField = value;
+                inCitationField = value;
             }
         }
 
@@ -876,11 +876,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.misappliedField;
+                return misappliedField;
             }
             set
             {
-                this.misappliedField = value;
+                misappliedField = value;
             }
         }
 
@@ -890,11 +890,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.dubiumField;
+                return dubiumField;
             }
             set
             {
-                this.dubiumField = value;
+                dubiumField = value;
             }
         }
 
@@ -904,11 +904,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.proParteField;
+                return proParteField;
             }
             set
             {
-                this.proParteField = value;
+                proParteField = value;
             }
         }
 
@@ -918,11 +918,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.novumField;
+                return novumField;
             }
             set
             {
-                this.novumField = value;
+                novumField = value;
             }
         }
 
@@ -932,11 +932,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.invalidField;
+                return invalidField;
             }
             set
             {
-                this.invalidField = value;
+                invalidField = value;
             }
         }
 
@@ -946,11 +946,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.illegitimateField;
+                return illegitimateField;
             }
             set
             {
-                this.illegitimateField = value;
+                illegitimateField = value;
             }
         }
 
@@ -960,11 +960,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.autonymField;
+                return autonymField;
             }
             set
             {
-                this.autonymField = value;
+                autonymField = value;
             }
         }
 
@@ -974,11 +974,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.recombinationField;
+                return recombinationField;
             }
             set
             {
-                this.recombinationField = value;
+                recombinationField = value;
             }
         }
 
@@ -988,11 +988,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nomCodeField;
+                return nomCodeField;
             }
             set
             {
-                this.nomCodeField = value;
+                nomCodeField = value;
             }
         }
 
@@ -1002,11 +1002,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.isSuppressedField;
+                return isSuppressedField;
             }
             set
             {
-                this.isSuppressedField = value;
+                isSuppressedField = value;
             }
         }
 
@@ -1016,11 +1016,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.taxonRankField;
+                return taxonRankField;
             }
             set
             {
-                this.taxonRankField = value;
+                taxonRankField = value;
             }
         }
 
@@ -1030,11 +1030,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.taxonRankSortField;
+                return taxonRankSortField;
             }
             set
             {
-                this.taxonRankSortField = value;
+                taxonRankSortField = value;
             }
         }
 
@@ -1044,11 +1044,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.isAggregateField;
+                return isAggregateField;
             }
             set
             {
-                this.isAggregateField = value;
+                isAggregateField = value;
             }
         }
 
@@ -1058,11 +1058,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.isAnamorphField;
+                return isAnamorphField;
             }
             set
             {
-                this.isAnamorphField = value;
+                isAnamorphField = value;
             }
         }
 
@@ -1072,11 +1072,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nzRelevanceField;
+                return nzRelevanceField;
             }
             set
             {
-                this.nzRelevanceField = value;
+                nzRelevanceField = value;
             }
         }
     }
@@ -1098,11 +1098,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -1112,11 +1112,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1140,11 +1140,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -1154,11 +1154,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -1168,11 +1168,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -1196,11 +1196,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -1210,11 +1210,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -1224,11 +1224,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -1252,11 +1252,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -1266,11 +1266,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -1280,11 +1280,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -1306,11 +1306,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1320,11 +1320,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1346,11 +1346,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1360,11 +1360,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1386,11 +1386,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1400,11 +1400,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1426,11 +1426,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1440,11 +1440,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1466,11 +1466,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1480,11 +1480,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1506,11 +1506,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1520,11 +1520,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1548,11 +1548,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -1562,11 +1562,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -1576,11 +1576,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -1602,11 +1602,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1616,11 +1616,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1642,11 +1642,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1656,11 +1656,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1682,11 +1682,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1696,11 +1696,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1722,11 +1722,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1736,11 +1736,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1762,11 +1762,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1776,11 +1776,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1802,11 +1802,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1816,11 +1816,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1842,11 +1842,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -1856,11 +1856,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -1897,11 +1897,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.vernacularNameField;
+                return vernacularNameField;
             }
             set
             {
-                this.vernacularNameField = value;
+                vernacularNameField = value;
             }
         }
 
@@ -1910,11 +1910,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.vernacularUseNoteField;
+                return vernacularUseNoteField;
             }
             set
             {
-                this.vernacularUseNoteField = value;
+                vernacularUseNoteField = value;
             }
         }
 
@@ -1924,11 +1924,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -1938,11 +1938,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.languageOfUseIdField;
+                return languageOfUseIdField;
             }
             set
             {
-                this.languageOfUseIdField = value;
+                languageOfUseIdField = value;
             }
         }
 
@@ -1952,11 +1952,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.languageOfUseField;
+                return languageOfUseField;
             }
             set
             {
-                this.languageOfUseField = value;
+                languageOfUseField = value;
             }
         }
 
@@ -1966,11 +1966,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.languageOfUseIsoField;
+                return languageOfUseIsoField;
             }
             set
             {
-                this.languageOfUseIsoField = value;
+                languageOfUseIsoField = value;
             }
         }
 
@@ -1980,11 +1980,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.regionOfUseSchemaField;
+                return regionOfUseSchemaField;
             }
             set
             {
-                this.regionOfUseSchemaField = value;
+                regionOfUseSchemaField = value;
             }
         }
 
@@ -1994,11 +1994,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.regionOfUseField;
+                return regionOfUseField;
             }
             set
             {
-                this.regionOfUseField = value;
+                regionOfUseField = value;
             }
         }
 
@@ -2008,11 +2008,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -2022,11 +2022,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -2056,11 +2056,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.vernacularIdField;
+                return vernacularIdField;
             }
             set
             {
-                this.vernacularIdField = value;
+                vernacularIdField = value;
             }
         }
 
@@ -2070,11 +2070,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.languageOfOriginField;
+                return languageOfOriginField;
             }
             set
             {
-                this.languageOfOriginField = value;
+                languageOfOriginField = value;
             }
         }
 
@@ -2084,11 +2084,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.languageOfOriginIsoField;
+                return languageOfOriginIsoField;
             }
             set
             {
-                this.languageOfOriginIsoField = value;
+                languageOfOriginIsoField = value;
             }
         }
 
@@ -2098,11 +2098,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -2112,11 +2112,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
 
@@ -2126,11 +2126,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -2152,11 +2152,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -2166,11 +2166,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
     }
@@ -2207,11 +2207,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.biostatusReferenceField;
+                return biostatusReferenceField;
             }
             set
             {
-                this.biostatusReferenceField = value;
+                biostatusReferenceField = value;
             }
         }
 
@@ -2220,11 +2220,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.originField;
+                return originField;
             }
             set
             {
-                this.originField = value;
+                originField = value;
             }
         }
 
@@ -2233,11 +2233,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.occurrenceField;
+                return occurrenceField;
             }
             set
             {
-                this.occurrenceField = value;
+                occurrenceField = value;
             }
         }
 
@@ -2246,11 +2246,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.georegionField;
+                return georegionField;
             }
             set
             {
-                this.georegionField = value;
+                georegionField = value;
             }
         }
 
@@ -2259,11 +2259,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.commentField;
+                return commentField;
             }
             set
             {
-                this.commentField = value;
+                commentField = value;
             }
         }
 
@@ -2273,11 +2273,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -2287,11 +2287,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.isActiveField;
+                return isActiveField;
             }
             set
             {
-                this.isActiveField = value;
+                isActiveField = value;
             }
         }
 
@@ -2301,11 +2301,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.isFirstRecordField;
+                return isFirstRecordField;
             }
             set
             {
-                this.isFirstRecordField = value;
+                isFirstRecordField = value;
             }
         }
 
@@ -2315,11 +2315,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -2329,11 +2329,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -2357,11 +2357,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -2371,11 +2371,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -2385,11 +2385,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -2411,11 +2411,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.codeField;
+                return codeField;
             }
             set
             {
-                this.codeField = value;
+                codeField = value;
             }
         }
 
@@ -2425,11 +2425,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -2451,11 +2451,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.codeField;
+                return codeField;
             }
             set
             {
-                this.codeField = value;
+                codeField = value;
             }
         }
 
@@ -2465,11 +2465,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -2491,11 +2491,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.schemaField;
+                return schemaField;
             }
             set
             {
-                this.schemaField = value;
+                schemaField = value;
             }
         }
 
@@ -2505,11 +2505,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
@@ -2531,11 +2531,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -2545,11 +2545,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
     }
@@ -2588,11 +2588,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
@@ -2601,11 +2601,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.orthographyField;
+                return orthographyField;
             }
             set
             {
-                this.orthographyField = value;
+                orthographyField = value;
             }
         }
 
@@ -2614,11 +2614,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.pageField;
+                return pageField;
             }
             set
             {
-                this.pageField = value;
+                pageField = value;
             }
         }
 
@@ -2627,11 +2627,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.accordingToField;
+                return accordingToField;
             }
             set
             {
-                this.accordingToField = value;
+                accordingToField = value;
             }
         }
 
@@ -2641,11 +2641,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.keywordsField;
+                return keywordsField;
             }
             set
             {
-                this.keywordsField = value;
+                keywordsField = value;
             }
         }
 
@@ -2655,11 +2655,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.relatedConceptsField;
+                return relatedConceptsField;
             }
             set
             {
-                this.relatedConceptsField = value;
+                relatedConceptsField = value;
             }
         }
 
@@ -2669,11 +2669,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.descriptionsField;
+                return descriptionsField;
             }
             set
             {
-                this.descriptionsField = value;
+                descriptionsField = value;
             }
         }
 
@@ -2683,11 +2683,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -2697,11 +2697,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.explicitField;
+                return explicitField;
             }
             set
             {
-                this.explicitField = value;
+                explicitField = value;
             }
         }
 
@@ -2711,11 +2711,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -2725,11 +2725,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -2753,11 +2753,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -2767,11 +2767,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -2781,11 +2781,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -2814,11 +2814,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.relatedTaxonField;
+                return relatedTaxonField;
             }
             set
             {
-                this.relatedTaxonField = value;
+                relatedTaxonField = value;
             }
         }
 
@@ -2828,11 +2828,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.conceptIdField;
+                return conceptIdField;
             }
             set
             {
-                this.conceptIdField = value;
+                conceptIdField = value;
             }
         }
 
@@ -2842,11 +2842,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.directionField;
+                return directionField;
             }
             set
             {
-                this.directionField = value;
+                directionField = value;
             }
         }
 
@@ -2856,11 +2856,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
@@ -2870,11 +2870,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -2884,11 +2884,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -2925,11 +2925,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.descriptionIconFilenameField;
+                return descriptionIconFilenameField;
             }
             set
             {
-                this.descriptionIconFilenameField = value;
+                descriptionIconFilenameField = value;
             }
         }
 
@@ -2938,11 +2938,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.descriptionTextField;
+                return descriptionTextField;
             }
             set
             {
-                this.descriptionTextField = value;
+                descriptionTextField = value;
             }
         }
 
@@ -2951,11 +2951,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.descriptionUrlField;
+                return descriptionUrlField;
             }
             set
             {
-                this.descriptionUrlField = value;
+                descriptionUrlField = value;
             }
         }
 
@@ -2965,11 +2965,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -2979,11 +2979,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
@@ -2993,11 +2993,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.languageField;
+                return languageField;
             }
             set
             {
-                this.languageField = value;
+                languageField = value;
             }
         }
 
@@ -3007,11 +3007,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.languageIsoField;
+                return languageIsoField;
             }
             set
             {
-                this.languageIsoField = value;
+                languageIsoField = value;
             }
         }
 
@@ -3021,11 +3021,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.categoryField;
+                return categoryField;
             }
             set
             {
-                this.categoryField = value;
+                categoryField = value;
             }
         }
 
@@ -3035,11 +3035,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -3049,11 +3049,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -3082,11 +3082,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -3095,11 +3095,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceField;
+                return referenceField;
             }
             set
             {
-                this.referenceField = value;
+                referenceField = value;
             }
         }
 
@@ -3109,11 +3109,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -3123,11 +3123,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
@@ -3137,11 +3137,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -3151,11 +3151,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -3177,11 +3177,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -3191,11 +3191,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
     }
@@ -3219,11 +3219,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -3233,11 +3233,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -3247,11 +3247,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -3271,11 +3271,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.imageURIField;
+                return imageURIField;
             }
             set
             {
-                this.imageURIField = value;
+                imageURIField = value;
             }
         }
     }
@@ -3300,11 +3300,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.externalFullNameField;
+                return externalFullNameField;
             }
             set
             {
-                this.externalFullNameField = value;
+                externalFullNameField = value;
             }
         }
 
@@ -3314,11 +3314,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -3328,11 +3328,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.externalIdField;
+                return externalIdField;
             }
             set
             {
-                this.externalIdField = value;
+                externalIdField = value;
             }
         }
 
@@ -3342,11 +3342,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.sourceField;
+                return sourceField;
             }
             set
             {
-                this.sourceField = value;
+                sourceField = value;
             }
         }
     }
@@ -3377,11 +3377,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.commentField;
+                return commentField;
             }
             set
             {
-                this.commentField = value;
+                commentField = value;
             }
         }
 
@@ -3390,11 +3390,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceField;
+                return referenceField;
             }
             set
             {
-                this.referenceField = value;
+                referenceField = value;
             }
         }
 
@@ -3404,11 +3404,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.idField;
+                return idField;
             }
             set
             {
-                this.idField = value;
+                idField = value;
             }
         }
 
@@ -3418,11 +3418,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
@@ -3432,11 +3432,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.isTrueField;
+                return isTrueField;
             }
             set
             {
-                this.isTrueField = value;
+                isTrueField = value;
             }
         }
 
@@ -3446,11 +3446,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -3460,11 +3460,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -3486,11 +3486,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -3500,11 +3500,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
     }
@@ -3528,11 +3528,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.iField;
+                return iField;
             }
             set
             {
-                this.iField = value;
+                iField = value;
             }
         }
 
@@ -3542,11 +3542,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.textField;
+                return textField;
             }
             set
             {
-                this.textField = value;
+                textField = value;
             }
         }
 
@@ -3556,11 +3556,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
@@ -3581,11 +3581,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.hybridTextField;
+                return hybridTextField;
             }
             set
             {
-                this.hybridTextField = value;
+                hybridTextField = value;
             }
         }
 
@@ -3595,11 +3595,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.hybridParentNamesField;
+                return hybridParentNamesField;
             }
             set
             {
-                this.hybridParentNamesField = value;
+                hybridParentNamesField = value;
             }
         }
     }
@@ -3624,11 +3624,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameFullField;
+                return nameFullField;
             }
             set
             {
-                this.nameFullField = value;
+                nameFullField = value;
             }
         }
 
@@ -3638,11 +3638,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.nameIdField;
+                return nameIdField;
             }
             set
             {
-                this.nameIdField = value;
+                nameIdField = value;
             }
         }
 
@@ -3652,11 +3652,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.prefixTextField;
+                return prefixTextField;
             }
             set
             {
-                this.prefixTextField = value;
+                prefixTextField = value;
             }
         }
 
@@ -3666,11 +3666,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.suffixTextField;
+                return suffixTextField;
             }
             set
             {
-                this.suffixTextField = value;
+                suffixTextField = value;
             }
         }
     }
@@ -3697,11 +3697,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.linkUrlField;
+                return linkUrlField;
             }
             set
             {
-                this.linkUrlField = value;
+                linkUrlField = value;
             }
         }
 
@@ -3710,11 +3710,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.captionField;
+                return captionField;
             }
             set
             {
-                this.captionField = value;
+                captionField = value;
             }
         }
 
@@ -3724,11 +3724,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
@@ -3738,11 +3738,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.addedField;
+                return addedField;
             }
             set
             {
-                this.addedField = value;
+                addedField = value;
             }
         }
 
@@ -3752,11 +3752,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.updatedField;
+                return updatedField;
             }
             set
             {
-                this.updatedField = value;
+                updatedField = value;
             }
         }
     }
@@ -3791,11 +3791,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.collectorField;
+                return collectorField;
             }
             set
             {
-                this.collectorField = value;
+                collectorField = value;
             }
         }
 
@@ -3805,11 +3805,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.collectionEventRegionsField;
+                return collectionEventRegionsField;
             }
             set
             {
-                this.collectionEventRegionsField = value;
+                collectionEventRegionsField = value;
             }
         }
 
@@ -3819,11 +3819,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.collectionObjectImagesField;
+                return collectionObjectImagesField;
             }
             set
             {
-                this.collectionObjectImagesField = value;
+                collectionObjectImagesField = value;
             }
         }
 
@@ -3833,11 +3833,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.specimenGuidField;
+                return specimenGuidField;
             }
             set
             {
-                this.specimenGuidField = value;
+                specimenGuidField = value;
             }
         }
 
@@ -3847,11 +3847,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.specimenIdField;
+                return specimenIdField;
             }
             set
             {
-                this.specimenIdField = value;
+                specimenIdField = value;
             }
         }
 
@@ -3861,11 +3861,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.accessionNumberField;
+                return accessionNumberField;
             }
             set
             {
-                this.accessionNumberField = value;
+                accessionNumberField = value;
             }
         }
 
@@ -3875,11 +3875,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.collectionAcronymField;
+                return collectionAcronymField;
             }
             set
             {
-                this.collectionAcronymField = value;
+                collectionAcronymField = value;
             }
         }
 
@@ -3889,11 +3889,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.collectionDateISOField;
+                return collectionDateISOField;
             }
             set
             {
-                this.collectionDateISOField = value;
+                collectionDateISOField = value;
             }
         }
 
@@ -3903,11 +3903,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.typeStatusField;
+                return typeStatusField;
             }
             set
             {
-                this.typeStatusField = value;
+                typeStatusField = value;
             }
         }
     }
@@ -3929,11 +3929,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.georegionField;
+                return georegionField;
             }
             set
             {
-                this.georegionField = value;
+                georegionField = value;
             }
         }
 
@@ -3943,11 +3943,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.georegionSchemaField;
+                return georegionSchemaField;
             }
             set
             {
-                this.georegionSchemaField = value;
+                georegionSchemaField = value;
             }
         }
     }
@@ -3967,11 +3967,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.imageUrlField;
+                return imageUrlField;
             }
             set
             {
-                this.imageUrlField = value;
+                imageUrlField = value;
             }
         }
     }
@@ -3993,11 +3993,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.keyIdField;
+                return keyIdField;
             }
             set
             {
-                this.keyIdField = value;
+                keyIdField = value;
             }
         }
 
@@ -4007,11 +4007,11 @@ namespace SystematicsPortal.Web.Models
         {
             get
             {
-                return this.referenceIdField;
+                return referenceIdField;
             }
             set
             {
-                this.referenceIdField = value;
+                referenceIdField = value;
             }
         }
     }
