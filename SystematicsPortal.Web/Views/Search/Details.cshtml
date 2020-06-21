@@ -3,17 +3,17 @@
 }
 
 @model SystematicsPortal.Web.Models.Document;
-@*
-    @if (Model.Class.Equals("reference"))
-    {
-        <h1>@Html.Raw(Model.Title)</h1>
-    }
 
-    @if (Model.Class.Equals("vernacular"))
-    {
-        <h1>@Html.Raw(Model.VernacularName)</h1>
-    }
-*@
+@if (Model.Class.Equals("reference"))
+{
+    <h1>@Html.Raw(Model.Title)</h1>
+}
+
+@if (Model.Class.Equals("vernacular"))
+{
+    <h1>@Html.Raw(Model.VernacularName)</h1>
+}
+
 @if (Model.Class.Equals("name"))
 {
     <h1>@Html.Raw(Model.NameFormatted.Replace("+=", "<i>").Replace("=+", "</i>"))</h1>
@@ -128,7 +128,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">@nbsp;</label>
         <div class="col-sm-10">
-            @Html.Raw(Model.ParentReference)
+            <a href="">@Html.Raw(Model.ParentReference)</a>
         </div>
     </div>
 
@@ -140,7 +140,16 @@
             {
                 <label class="col-sm-2 col-form-label">@field.type</label>
                 <div class="col-sm-10">
-                    @Html.Raw(field.VernacularName.Value)
+                    @if (field.type == "DOI")
+                    {
+                        <a href="">
+                            @Html.Raw(field.Value)
+                        </a>
+                    }
+                    else
+                    {
+                        @Html.Raw(field.Value)
+                    }
                 </div>
             }
         </div>
@@ -154,11 +163,11 @@
             {
                 <label class="col-sm-2 col-form-label">Cited Name</label>
                 <div class="col-sm-10">
-                    @Html.Raw(definedConcept.nameFull)
+                    <a href="">@Html.Raw(definedConcept.nameFull)</a>
                 </div>
                 <label class="col-sm-2 col-form-label">TODO: add icon</label>
                 <div class="col-sm-10">
-                    @Html.Raw(definedConcept.conceptId)
+                    <a href="">@Html.Raw(definedConcept.conceptId)<a />
                 </div>
             }
         </div>
@@ -172,7 +181,7 @@
             {
                 <label class="col-sm-2 col-form-label">Associated taxon</label>
                 <div class="col-sm-10">
-                    @Html.Raw(association.relatedName)
+                    <a href="">@Html.Raw(association.relatedName)</a>
                 </div>
                 <label class="col-sm-2 col-form-label">Association type</label>
                 <div class="col-sm-10">
@@ -180,7 +189,7 @@
                 </div>
                 <label class="col-sm-2 col-form-label">TODO: add icon</label>
                 <div class="col-sm-10">
-                    @Html.Raw(association.relatedConceptId)
+                    <a href="">@Html.Raw(association.relatedConceptId)</a>
                 </div>
             }
         </div>
@@ -194,7 +203,7 @@
             {
                 <label class="col-sm-2 col-form-label">Cited taxa</label>
                 <div class="col-sm-10">
-                    @Html.Raw(citedTaxon.Value)
+                    <a href="">@Html.Raw(citedTaxon.Value)</a>
                 </div>
             }
         </div>
@@ -281,7 +290,7 @@
             {
                 <label class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    @Html.Raw(vernacularUse.NameFormatted.Value)
+                    <a href="">@Html.Raw(vernacularUse.NameFormatted.Value)</a>
                 </div>
                 <label class="col-sm-2 col-form-label">Applies to</label>
                 <div class="col-sm-10">
@@ -339,7 +348,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.CurrentName, "Name Status")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.CurrentName.Value)
+                <a href="">@Html.Raw(Model.CurrentName.Value)</a>
             </div>
         </div>
     }
@@ -349,7 +358,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.TaxonomyReference, "Taxonomy Reference")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.TaxonomyReference.Value)
+                <a href="">@Html.Raw(Model.TaxonomyReference.Value)</a>
             </div>
         </div>
     }
@@ -388,7 +397,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Bio Status Reference</label>
                     <div class="col-sm-10">
-                        @Html.Raw(biostatusValue.BiostatusReference.Text[0].Replace("+=", "<i>").Replace("=+", "</i>"))
+                        <a href="">@Html.Raw(biostatusValue.BiostatusReference.Text[0].Replace("+=", "<i>").Replace("=+", "</i>"))</a>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -408,7 +417,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Basionym, "Basionym (ICN)")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Basionym.Value)
+                <a href="">@Html.Raw(Model.Basionym.Value)</a>
             </div>
         </div>
     }
@@ -418,7 +427,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.BasedOn, "Based on")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.BasedOn.Value)
+                <a href="">@Html.Raw(Model.BasedOn.Value)</a>
             </div>
         </div>
     }
@@ -428,7 +437,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Blocking, "Later homonym of")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Blocking.Value)
+                <a href="">@Html.Raw(Model.Blocking.Value)</a>
             </div>
         </div>
     }
@@ -493,7 +502,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Place of publication</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.NameReference)
+                <a href="">@Html.Raw(Model.NameReference)</a>
             </div>
         </div>
     }
@@ -543,7 +552,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.TypeTaxon, "Type taxon")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.TypeTaxon.Value)
+                <a href="">@Html.Raw(Model.TypeTaxon.Value)</a>
             </div>
         </div>
     }
@@ -595,7 +604,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Kingdom, "Kingdom")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Kingdom.Value)
+                <a href="">@Html.Raw(Model.Kingdom.Value)</a>
             </div>
         </div>
     }
@@ -605,7 +614,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Phylum, "Phylum")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Phylum.Value)
+                <a href="">@Html.Raw(Model.Phylum.Value)</a>
             </div>
         </div>
     }
@@ -615,7 +624,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Class, "Class")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Class.Value)
+                <a href="">@Html.Raw(Model.Class.Value)</a>
             </div>
         </div>
     }
@@ -625,7 +634,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Order, "Order")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Order.Value)
+                <a href="">@Html.Raw(Model.Order.Value)
             </div>
         </div>
     }
@@ -635,7 +644,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Family, "Family")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Family.Value)
+                <a href="">@Html.Raw(Model.Family.Value)</a>
             </div>
         </div>
     }
@@ -645,7 +654,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Genus, "Genus")</label>
             <div class="col-sm-10">
-                @Html.Raw(Model.Genus.Value)
+                <a href="">@Html.Raw(Model.Genus.Value)</a>
             </div>
         </div>
     }
@@ -658,7 +667,7 @@
             {
                 <label class="col-sm-2 col-form-label">Vernacular Name</label>
                 <div class="col-sm-10">
-                    @Html.Raw(vernacularUse.VernacularName.Value)
+                    <a href="">@Html.Raw(vernacularUse.VernacularName.Value)</a>
                 </div>
                 <label class="col-sm-2 col-form-label">Language of origin</label>
                 <div class="col-sm-10">
@@ -688,7 +697,7 @@
         {
             <label class="col-sm-2 col-form-label">&nbsp;</label>
             <div class="col-sm-10">
-                @Html.Raw(hybridParentName.NameFull.Value)
+                <a href="">@Html.Raw(hybridParentName.NameFull.Value)</a>
             </div>
         }
     }
@@ -713,7 +722,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">According To</label>
                     <div class="col-sm-10">
-                        @Html.Raw(concept.AccordingTo)
+                        <a href="">@Html.Raw(concept.AccordingTo)</a>
                     </div>
                 </div>
             }
@@ -761,7 +770,7 @@
                         {
                             <label class="col-sm-2 col-form-label">Cited Parent</label>
                             <div class="col-sm-10">
-                                @Html.Raw(relatedConcept.RelatedTaxon.Value)
+                                <a href="">@Html.Raw(relatedConcept.RelatedTaxon.Value)</a>
                             </div>
                         }
                         if (relatedConcept.type == "has current name")
@@ -848,7 +857,7 @@
                             {
                                 <label class="col-sm-2 col-form-label">&nbsp;</label>
                                 <div class="col-sm-10">
-                                    @Html.Raw(description.DescriptionUrl.Value)
+                                    <a href="">@Html.Raw(description.DescriptionUrl.Value)</a>
                                 </div>
                             }
                         }
@@ -884,9 +893,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Bio Status Reference</label>
+                    <label class="col-sm-2 col-form-label">Reference</label>
                     <div class="col-sm-10">
-                        @Html.Raw(biostatusValue.BiostatusReference.Text[0].Replace("+=", "<i>").Replace("=+", "</i>"))
+                        <a href="">@Html.Raw(biostatusValue.BiostatusReference.Text[0].Replace("+=", "<i>").Replace("=+", "</i>"))</a>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -927,6 +936,8 @@
             </div>
         }
     }
+
+    <!-- TODO: add Identification Keys -->
 
     @if (Model.CollectionObjects != null)
     {
