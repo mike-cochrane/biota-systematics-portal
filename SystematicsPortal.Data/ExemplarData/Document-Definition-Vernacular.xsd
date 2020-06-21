@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2018 rel. 2 sp1 (x64) (http://www.altova.com) by Aaron Wilton (Landcare Research New Zealand Limit) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Document">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="DocumentType">
+					<xs:sequence>
+						<xs:element name="VernacularName">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="languageOfOrigin" type="xs:string"/>
+										<xs:attribute name="regionOfOrigin"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Translation" type="xs:string" minOccurs="0"/>
+						<xs:element name="Transliteration" type="xs:string" minOccurs="0"/>
+						<xs:element name="VernacularUses">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="VernacularUse" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Name" type="LinkedNameType"/>
+												<xs:element name="AppliesTo" type="xs:string" minOccurs="0"/>
+												<xs:element name="References" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="Reference" type="ReferenceType" maxOccurs="unbounded"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="id"/>
+											<xs:attribute name="georegionOfUse" type="xs:string"/>
+											<xs:attribute name="languageOfUse" type="xs:string"/>
+											<xs:attribute name="languageOfUseIso" type="xs:string"/>
+											<xs:attribute name="added" type="xs:dateTime"/>
+											<xs:attribute name="updated" type="xs:dateTime"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ReferenceType" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="i"/>
+		</xs:choice>
+		<xs:attribute name="referenceId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="LinkedNameType" mixed="true">
+		<xs:sequence>
+			<xs:element name="i" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="nameFull" type="xs:string" use="optional"/>
+		<xs:attribute name="nameId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="DocumentType">
+		<xs:attribute name="vernacularId"/>
+		<xs:attribute name="documentClass" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="name"/>
+					<xs:enumeration value="vernacular"/>
+					<xs:enumeration value="reference"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="source" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Names_Plants"/>
+					<xs:enumeration value="Names_Fungi"/>
+					<xs:enumeration value="Names_NZAC"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="added" type="xs:dateTime"/>
+		<xs:attribute name="updated" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:complexType name="TextType" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="i"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
