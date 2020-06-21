@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Api.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Model", "SystematicsPortal.Model\SystematicsPortal.Model.csproj", "{7572487C-648D-4495-9DB6-DE4985B1ED7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystematicsPortal.Data", "SystematicsPortal.Data\SystematicsPortal.Data.csproj", "{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Data", "SystematicsPortal.Data\SystematicsPortal.Data.csproj", "{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystematicsPortal.Utility", "SystematicsPortal.Utility\SystematicsPortal.Utility.csproj", "{FD789B64-0572-492F-9472-800B0C171390}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,14 @@ Global
 		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Test|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.DevTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.DevTest|Any CPU.Build.0 = Debug|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD789B64-0572-492F-9472-800B0C171390}.Test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
