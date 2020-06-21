@@ -40,7 +40,7 @@ CREATE TABLE #AllowedNomenStatusTypes (
 	, DisplayAs  nvarchar(250)
 	)
 
-CREATE TABLE #TestList (Id uniqueidentifier, objectType nvarchar(50))
+CREATE TABLE #TestList (Id uniqueidentifier, objectType nvarchar(50), step nvarchar(250), NameCurrentId uniqueidentifier)
 GO
 
 /*
@@ -69,7 +69,8 @@ VALUES ('b1f2ef2e-4de4-428d-a10f-0018878be220',  'name')  --names_plants
 	, ('5FB0A025-DD7A-44E8-9B9F-CEA1CA3E9C76',  'name')   --names_plants
 	, ('9B7F9946-33E1-4D4C-8FE1-E75B6BE1F75E', 'name')   --names_plants
 	--, ('56A97ACD-D624-43AC-A7FB-06C72B67818C', 'name')    --names_plants
-	, ('81680BF6-8AAC-4706-9875-33F62A78BA86', 'name') -- names_plants:  ×Agropogon P.Fourn.	
+	--, ('81680BF6-8AAC-4706-9875-33F62A78BA86', 'name') -- names_plants:  ×Agropogon P.Fourn.	
+	, ('49B6400E-6FBF-478A-80E6-361C15E65D44', 'name')  --	names_plants	Cordyline ×matthewsii Carse
 
 	, ('1CB18142-36B9-11D5-9548-00D0592D548C', 'name') -- names_fungi -- Clavaria acuta Sowerby
 	, ('F18A0F26-4E13-444A-BDA2-A8FE52ADB18B', 'name') -- names_fungi -- Pseudomonas syringae pv. actinidiae Takikawa et al. 1989
@@ -86,25 +87,66 @@ VALUES ('b1f2ef2e-4de4-428d-a10f-0018878be220',  'name')  --names_plants
 	, ('DCBA5EDB-EFFD-4F08-B4A1-19B42207ABAD', 'name') -- names_nzac -- 2020-02-23 13:44:11.283
 	, ('098EE6E6-2ABB-4F5D-87F3-62092577483C', 'name') -- names_nzac -- Paropsis charybdis Stal
 
-	-- get related names
+	--SELECT * FROM #TestList
+-- get related names
+
+-- siblings - only current names
+; WITH Parents AS (
+	SELECT DISTINCT NameParentFk 
+			FROM tblName NP 
+			 INNER JOIN #TestList T ON NP.NameGuid = T.Id
+		WHERE ISNULL(NP.NameSuppress, 0) = 0
+			
+)
+INSERT INTO #TestList(id, objectType, step)
+SELECT N.NameGuid, 'name', 'siblings'
+FROM tblName N
+	INNER JOIN Parents P ON N.NameParentFk = P.NameParentFk
+WHERE ISNULL(N.NameSuppress, 0) = 0
+	AND N.NameGUID NOT IN (SELECT id FROM #TestList)
+	AND N.NameCurrentFk = N.NameGuid
+
+-- descendants, only current names
+
+INSERT INTO #TestList(id, objectType, step)
+SELECT N.NameGuid, 'name', 'descendants'
+FROM tblName N
+		INNER JOIN tblFlatName FN ON N.NameGuid = FN.FlatNameSeedName
+			INNER JOIN #TestList TL ON FN.FlatNameNameUFk = TL.Id
+WHERE N.NameCurrentFk = N.NameGuid
+	AND ISNULL(N.NameSuppress, 0) = 0
+	AND N.NameGuid NOT IN (SELECT id FROM #TestList)
+	
+
 	-- ancestors
-INSERT INTO #TestList(id, objectType)
-SELECT DISTINCT FN.FlatNameNameUFk, 'name'
+INSERT INTO #TestList(id, objectType, step)
+SELECT DISTINCT FN.FlatNameNameUFk, 'name', 'ancestors'
 FROM tblFlatName FN
 	INNER JOIN #TestList TL ON FN.FlatNameSeedName = TL.Id
 	INNER JOIN tblName N ON FN.FlatNameNameUFk = N.Nameguid
 		AND ISNULL(N.NameSuppress, 0) = 0
+WHERE FN.FlatNameNameUFk NOT IN (SELECT id FROM #TestList)
 
--- siblings?
--- descendants?
+-- related names via collection objects
 -- related names via concepts
 
+
+--SELECT TL.*, N.NameFull FROM #TestList TL INNER JOIN tblName N ON id = NameGuid
 -- synonyms
-INSERT INTO #TestList(Id, objectType)
-SELECT DISTINCT NameGuid, 'name'
+INSERT INTO #TestList(Id, objectType, step)
+SELECT DISTINCT NameGuid, 'name', 'synonyms'
 FROM tblName
 WHERE NameCurrentFk IN (SELECT id from #TestList)
 		AND NameGuid NOT IN (SELECT id from #TestList)
+
+
+UPDATE TL
+	SET TL.NameCurrentId = N.NameCurrentFk
+FROM #TestList TL
+INNER JOIN tblName N ON TL.Id = N.NameGuid
+
+--SELECT TL.*, N.NameFull FROM #TestList TL INNER JOIN tblName N ON id = NameGuid order by N.NamePart
+
 
 ; WITH CitedRefs AS(
 	SELECT NameReferenceFk as referenceid
@@ -465,30 +507,28 @@ CREATE TABLE #BibliographyRelationshipType(
 CREATE INDEX idx_InputRelationshipType ON #BibliographyRelationshipType(InputRelationshipType);
  
  INSERT INTO #BibliographyRelationshipType(InputRelationshipType, OutputRelationshipType, OutputInverseRelationshipType, Category)
-	VALUES ('Host', 'has host', 'is host of', 'biology')
-		, ('has host', 'has host', 'is host of', 'biology')
-		, ('Substratum', 'has substrate', 'is substrate of', 'biology')
-		, ('has substrate', '', '', 'biology')
-		, ('Food plant', 'has food plant', 'is food plant of', 'biology')
-		, ('has food plant', 'has food plant', 'is food plant of', 'biology')
-		, ('Symbiont', 'has symbiont', 'has symbiont', 'biology')
-		, ('has symbiont', 'has symbiont', 'has symbiont', 'biology')
-		, ('Colocated', 'is colocated with', 'is colocated with', 'biology')
-		, ('is colocated with', 'is colocated with', 'is colocated with', 'biology')
-		, ('Mycorrhizal', 'has mycorrhizal host', 'is mycorrhizal host of', 'biology')
-		, ('has mycorrhizal host', 'has mycorrhizal host', 'is mycorrhizal host of', 'biology')
-		
-		, ('Parent', 'has parent', 'is parent of', 'taxonomy')
-		, ('has parent', 'has parent', 'is parent of', 'taxonomy')
-		, ('Current Name', 'has current name', 'is synonym of', 'taxonomy')
-		, ('has current Name', 'has current name', 'is synonym of', 'taxonomy')
-		, ('Alternate name', 'has alternate name', 'has alternate name', 'taxonomy')
-		, ('has alternate name', 'has alternate name', 'has alternate name', 'taxonomy')
-		
-		, ('Is congruent', 'is congruent with', 'is congruent with', 'concepts')
-		, ('Is included in', 'is included in', 'includes', 'concepts')
-		, ('Overlaps with', 'overlaps with', 'overlaps with', 'concepts')
-		, ('Is excluded from', 'is excluded from', 'is excluded from', 'concepts')
+	VALUES ('Host'				, 'has host'			, 'is host of'				, 'biology')
+		, ('has host'			, 'has host'			, 'is host of'				, 'biology')
+		, ('Substratum'			, 'has substrate'		, 'is substrate of'			, 'biology')
+		, ('has substrate'		, 'has substrate'		, 'is substrate of'			, 'biology')
+		, ('Food plant'			, 'has food plant'		, 'is food plant of'		, 'biology')
+		, ('has food plant'		, 'has food plant'		, 'is food plant of'		, 'biology')
+		, ('Symbiont'			, 'has symbiont'		, 'has symbiont'			, 'biology')
+		, ('has symbiont'		, 'has symbiont'		, 'has symbiont'			, 'biology')
+		, ('Colocated'			, 'is colocated with'	, 'is colocated with'		, 'biology')
+		, ('is colocated with'	, 'is colocated with'	, 'is colocated with'		, 'biology')
+		, ('Mycorrhizal'		, 'has mycorrhizal host', 'is mycorrhizal host of'	, 'biology')
+		, ('has mycorrhizal host', 'has mycorrhizal host', 'is mycorrhizal host of'	, 'biology')	
+		, ('Parent'				, 'has parent'			, 'is parent of'			, 'taxonomy')
+		, ('has parent'			, 'has parent'			, 'is parent of'			, 'taxonomy')
+		, ('Current Name'		, 'has current name'	, 'is synonym of'			, 'taxonomy')
+		, ('has current Name'	, 'has current name'	, 'is synonym of'			, 'taxonomy')
+		, ('Alternate name'		, 'has alternate name'	, 'has alternate name'		, 'taxonomy')
+		, ('has alternate name'	, 'has alternate name'	, 'has alternate name'		, 'taxonomy')	
+		, ('Is congruent'		, 'is congruent with'	, 'is congruent with'		, 'concepts')
+		, ('Is included in'		, 'is included in'		, 'includes'				, 'concepts')
+		, ('Overlaps with'		, 'overlaps with'		, 'overlaps with'			, 'concepts')
+		, ('Is excluded from'	, 'is excluded from'	, 'is excluded from'		, 'concepts')
 
 
 
@@ -689,6 +729,9 @@ BEGIN
 					, NameScientific =	  dbo.GetFullName(NameGuid, 1, 1, 1, 1, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
 END
 
+GO
+
+UPDATE #Name SET NameScientific = NameFormatted WHERE NameScientific LIKE '%Value cannot be null.%'
 
 
 GO
@@ -705,8 +748,7 @@ UPDATE N
 		, BasionymFormatted = NA.NameFormattedXML
 FROM #Name N
 	INNER JOIN #Name NA ON N.BasionymFK = NA.NameGuid
-	
---WHERE ISNULL(NA.NameSuppress, 0) = 0
+WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET BasionymFk = NULL
@@ -721,7 +763,7 @@ UPDATE N
 		, CurrentNameEscaped = NA.NameFormattedEscaped
 FROM #Name N
 	INNER JOIN #Name NA ON N.CurrentFK = NA.NameGuid
---WHERE ISNULL(NA.NameSuppress, 0) = 0
+WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET CurrentFK = NULL
@@ -735,7 +777,7 @@ UPDATE N
 		, BasedOnFormatted = NA.NameFormattedXML
 FROM #Name N
 	INNER JOIN #Name NA ON N.BasedOnFk = NA.NameGuid
---WHERE ISNULL(NA.NameSuppress, 0) = 0
+WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET BasedOnFk = NULL
@@ -749,7 +791,7 @@ UPDATE N
 		, ParentFormatted = NA.NameFormattedXML
 FROM #Name N
 	INNER JOIN #Name NA ON N.ParentFK = NA.NameGuid
---WHERE ISNULL(NA.NameSuppress, 0) = 0
+WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET ParentFK = NULL
@@ -763,7 +805,7 @@ UPDATE N
 		, BlockingFormatted = NA.NameFormattedXML
 FROM #Name N
 	INNER JOIN #Name NA ON N.BlockingFk = NA.NameGuid
---WHERE ISNULL(NA.NameSuppress, 0) = 0
+WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET BlockingFk = NULL
@@ -777,7 +819,7 @@ UPDATE N
 		, AnamorphGenusFormatted = NA.NameFormattedXML
 FROM #Name N
 	INNER JOIN #Name NA ON N.AnamorphGenusFk = NA.NameGuid
---WHERE ISNULL(NA.NameSuppress, 0) = 0
+WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET AnamorphGenusFk = NULL
@@ -790,8 +832,7 @@ UPDATE N
 		, TypeTaxonFormatted = NA.NameFormattedXML
 FROM #Name N
 	INNER JOIN #Name NA ON N.TypeTaxonFK = NA.NameGuid
-
---WHERE ISNULL(NA.NameSuppress, 0) = 0
+WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET TypeTaxonFK = NULL
@@ -1126,7 +1167,7 @@ SELECT H.HybridId, H.NameId
 	, HN.HybridNodeNameFk, HN.HybridNodeNextHybridNodeFk
 	, H.[sequence] + 1
 	, N.NameFull
-	, H.FullHybrid + COALESCE(HybridNodePreText + ' ', ' ' ) + N.NameFull + COALESCE(HybridNodePostText + ' ', ' ')
+	, H.FullHybrid + COALESCE(HybridNodePreText + ' × ', ' ' ) + N.NameFull + COALESCE(HybridNodePostText + ' ', ' ')
 FROM Hybrids H
 	INNER JOIN tblHybridNode HN ON H.NextNodeId = HN.HybridNodePk
 	INNER JOIN tblName N ON HN.HybridNodeNameFk = N.NameGuid
@@ -1420,9 +1461,11 @@ UPDATE N
 								, AssociatedTaxon as Association
 								, CollectionEventRegions
 								, CollectionObjectImages
-							FROM SpecimenSummary
-							WHERE SourceNameId = N.NameGuid
-								OR SourceNameId IN (SELECT NameGuid FROM #Name WHERE CurrentFK = N.NameGuid)
+							FROM SpecimenSummary S
+								INNER JOIN #TestList TL ON S.SourceNameId = TL.Id
+							WHERE TL.NameCurrentId = N.NameGuid OR S.SourceNameId = N.NameGuid
+								--SourceNameId = N.NameGuid
+								--OR SourceNameId IN (SELECT NameGuid FROM #Name WHERE CurrentFK = N.NameGuid)
 							FOR XML PATH('CollectionObject'), ROOT('CollectionObjects'), TYPE)
 
 FROM #Name N 
@@ -1543,6 +1586,7 @@ FROM #Name NA
 ; WITH Keys as (
 SELECT DISTINCT KD.KeyDataNameFk as NameId
 	, K.KeyReferenceFk as ReferenceId
+	, R.ReferenceGenCitation AS Reference
 	, K.KeyPk  AS KeyId
 FROM tblKeyData KD
 	INNER JOIN tblKey K ON KD.KeyDataKeyFk = K.KeyPk
@@ -1553,6 +1597,7 @@ FROM tblKeyData KD
 UPDATE N
 	SET KeyXML = (SELECT LOWER(DB_Name()) + '-key-' +  CAST(keyId as nvarchar(10)) as '@keyId'
 						, ReferenceId as '@referenceId'
+						, CAST(REPLACE(Reference, '&', '&amp;') AS XML) As Reference
 					FROM keys 
 					WHERE Nameid = N.NameGuid
 					FOR XML PATH('Key'), ROOT('InKeys'), TYPE)
@@ -1569,13 +1614,14 @@ FROM #Name N
 		, B.BibliographyPage  as [Page]
 		, ISNULL(B.BibliographyExplicit, 0) [Explicit]
 		, B.BibliographyReferenceFk ReferenceId
-		, CAST(REPLACE(R.ReferenceGenCitation, '&', '&amp;') as xml) as AccordingTo	
-			
+		, CAST(REPLACE(R.ReferenceGenCitation, '&', '&amp;') as xml) as AccordingTo		
+		, N.NameFormattedXML
 	FROM tblBibliography B 
 		INNER JOIN tblReference R ON B.BibliographyReferenceFk = R.ReferenceID
 			AND ISNULL(R.ReferenceIsDeleted, 0) = 0
 			AND ISNULL(R.ReferenceSuppress, 0) = 0
-	WHERE ISNULL(B.BibliographyIsDeleted, 0) = 0
+		INNER JOIN #Name N ON B.BibliographyNameFk = N.NameGuid -- limit to names in the table
+	WHERE ISNULL(B.BibliographyIsDeleted, 0) = 0	
 )
 , Relationships AS
 (
@@ -1614,12 +1660,31 @@ UNION ALL
 	WHERE ISNULL(B.BibliographyIsDeleted, 0) = 0
 )
 , RelationshipTypes AS (SELECT DISTINCT RelationshipType, NameId, Category FROM Relationships WHERE direction = 'normal')
+, Descriptions AS (
+		SELECT DescriptionGuid AS Id
+			, DT.[Type] AS [Type] 
+			, DC.Category  Category
+			, AddedDate Added
+			, UpdatedDate Updated
+			, L.LanguageEnglish [Language]
+			, L.LanguageISOCode LanguageIso
+			, DescriptionIconFilename 
+			, DescriptionText
+			, DescriptionUrl
+			, BibliographyFk
+		FROM tblDescription D
+				LEFT JOIN tblDescriptionType DT ON D.DescriptionTypeFk = DT.DescriptionTypeGuid
+				LEFT JOIN tblDescriptionCategory DC ON D.DescriptionCategoryFk = DC.DescriptionCategoryGuid
+				LEFT JOIN tblLanguage L ON D.LanguageFk = L.LanguageCounterPK
+)
 UPDATE N
-	SET ConceptsXML = (SELECT LOWER(id) '@id'
+	SET ConceptsXML = (SELECT LOWER(C.id) '@id'
 							,  CASE [Explicit] WHEN 1 THEN 'true' else 'false' end AS '@explicit'
 							, Added as '@added'
 							, Updated as '@updated'
-							, [Name]
+							, C.NameId           as 'Name/@nameId'
+							, [Name]			 as 'Name/@nameFull'
+							, C.NameFormattedXML AS 'Name'
 							, Orthography
 							, [Page]
 							, LOWER(ReferenceId) AS 'AccordingTo/@referenceId'
@@ -1634,29 +1699,29 @@ UPDATE N
 									, LOWER(R.ConceptId2) AS '@conceptId'
 									, R.Added as '@added'
 									, LOWER(R.NameId) AS 'RelatedTaxon/@nameId'
-									, R.NameFullConcept2 AS RelatedTaxon
+									, R.NameFullConcept2 AS 'RelatedTaxon/@nameFull'
+									, N.NameFormattedXML AS RelatedTaxon
 								FROM Relationships R
+									LEFT JOIN #Name N ON R.NameId = N.NameGuid
 								WHERE R.ConceptId1 = C.id
 								ORDER BY R.RelationshipId, direction, R.NameFullConcept2
 								FOR XML PATH('RelatedConcept'), ROOT('RelatedConcepts'), TYPE)
-						    , (SELECT LOWER(DescriptionGuid) '@id'
-									, DT.[Type] AS '@type' 
-									, DC.Category  '@category'
+						    , (SELECT LOWER(id) '@id'
+									, [Type] AS '@type' 
+									, Category  '@category'
 									, AddedDate '@added'
 									, UpdatedDate '@updated'
-									, L.LanguageEnglish '@language'
-									, L.LanguageISOCode '@languageIso'
+									, [Language] '@language'
+									, LanguageISO '@languageIso'
 									, DescriptionIconFilename 
 									, DescriptionText
 									, DescriptionUrl
-								FROM tblDescription D
-									LEFT JOIN tblDescriptionType DT ON D.DescriptionTypeFk = DT.DescriptionTypeGuid
-									LEFT JOIN tblDescriptionCategory DC ON D.DescriptionCategoryFk = DC.DescriptionCategoryGuid
-									LEFT JOIN tblLanguage L ON D.LanguageFk = L.LanguageCounterPK
+								FROM Descriptions D
 								WHERE D.BibliographyFk = C.id
 								FOR XML PATH('Description'), ROOT('Descriptions'), TYPE)
 						FROM Concepts C
-						WHERE C.NameId = N.NameGuid
+							INNER JOIN #TestList TL ON C.NameId = TL.id
+						WHERE C.NameId = N.NameGuid OR TL.NameCurrentId = N.NameGuid
 						FOR XML PATH('Concept'), ROOT('Concepts'), TYPE)
 		, ConceptsSOLRXML =  (SELECT 
 								(SELECT
@@ -1820,7 +1885,7 @@ SELECT LOWER(NameGuid) as '@nameId'
 			, Syn.NameFull AS 'Synonym/@nameFull'
 			, Syn.NameFormattedXML AS 'Synonym'
 		FROM #Name Syn
-		WHERE Syn.CurrentFK = N.NameGuid  AND Syn.NameGuid <> N.NameGuid  
+		WHERE Syn.CurrentFK = N.NameGuid  AND NOT Syn.NameGuid = N.NameGuid  
 		FOR XML PATH(''), ROOT('Synonyms'), TYPE)
 
 	-- siblings
@@ -1828,9 +1893,17 @@ SELECT LOWER(NameGuid) as '@nameId'
 			, Sib.NameFull AS 'Sibling/@nameFull'
 			, Sib.NameFormattedXML AS Sibling
 		FROM #Name Sib
-		WHERE Sib.ParentFK = N.ParentFK  AND Sib.NameGuid <> N.NameGuid  
+		WHERE Sib.ParentFK = N.ParentFK AND NOT Sib.NameGuid = N.NameGuid  
 			AND Sib.IsCurrent = 1
 		FOR XML PATH(''), ROOT('Siblings'), TYPE)
+	-- subordinates
+	, (SELECT LOWER(Sub.NameGuid) AS 'Subordinate/@nameId'
+			, Sub.NameFull AS 'Subordinate/@nameFull'
+			, Sub.NameFormattedXML AS Subordinate
+		FROM #Name Sub
+		WHERE Sub.ParentFK = N.NameGuid  AND NOT Sub.NameGuid = N.NameGuid  
+			AND Sub.IsCurrent = 1
+		FOR XML PATH(''), ROOT('Subordinates'), TYPE)
 
 	, LOWER(BasionymFK)				as 'Basionym/@nameId'
 	, Basionym						as 'Basionym/@nameFull'
@@ -2034,8 +2107,11 @@ GO
 		, B.BibliographyGuid
 		, N.NameGuid
 		, N.NameFull
+		, NA.NameFormattedXML
+		
 	FROM tblBibliography B
 		INNER JOIN tblName N ON B.BibliographyNameFk = N.NameGuid
+		INNER JOIN #Name NA ON N.NameGuid = NA.NameGuid
 	WHERE B.BibliographyReferenceFk IN (SELECT id FROM #TestList)
 		AND B.BibliographyNameFk IN (SELECT Id from #TestList)
 		AND ISNULL(B.BibliographyIsDeleted, 0) = 0
@@ -2047,6 +2123,7 @@ GO
 		, LOWER(C.BibliographyGuid) AS RelatedConceptId
 		, lower(C.NameGuid) AS RelatedNameId
 		, C.NameFull as RelatedName
+		, C.NameFormattedXML as RelatedNameXML
 		, 'from' as direction
 	FROM tblBibliographyRelationship BR
 		INNER JOIN tblBibliographyRelationshipType BRT ON BR.BibliographyRelationshipTypeFk = BRT.BibliographyRelationshipTypePk
@@ -2061,6 +2138,7 @@ GO
 		, LOWER(C.BibliographyGuid) AS RelatedConceptId
 		, LOWER(C.NameGuid) AS RelatedNameId
 		, C.NameFull as RelatedName
+		, C.NameFormattedXML as RelatedNameXML
 		, 'to' as direction
 	FROM tblBibliographyRelationship BR
 		INNER JOIN tblBibliographyRelationshipType BRT ON BR.BibliographyRelationshipTypeFk = BRT.BibliographyRelationshipTypePk
@@ -2074,23 +2152,19 @@ GO
 	FROM ConceptRel CR
 		INNER JOIN Concepts C ON CR.BibId = C.BibliographyGuid
 )
---, DistinctNames AS(
---	SELECT DISTINCT BibliographyReferenceFk as ReferenceId, NameGuid, NameFull
---	FROM Concepts 
---)
 UPDATE R
 	SET ConceptsXML = (SELECT lower(BibliographyGuid) as '@conceptId'
 							, LOWER(NameGuid) as '@nameId'
 							, NameFull as '@nameFull'
-							, (SELECT RelationshipType as '@type'
-								, direction as '@direction'
-								, RelatedConceptId as '@relatedConceptId'
-								, RelatedNameId as '@relatedNameId'
-								, RelatedName as '@relatedName'
-								-- to do add formatted name?
+							, (SELECT RelationshipType	as 'Association/@type'
+								, direction				as 'Association/@direction'
+								, RelatedConceptId		as 'Association/@relatedConceptId'
+								, RelatedNameId			as 'Association/@relatedNameId'
+								, RelatedName			as 'Association/@relatedName'
+								, RelatedNameXML AS Association
 							FROM ConceptRel
 							WHERE BibId = C.BibliographyGuid
-							FOR XML PATH('Association'), ROOT('Associations'), TYPE)
+							FOR XML PATH(''), ROOT('Associations'), TYPE)
 						FROM Concepts C
 						WHERE BibliographyReferenceFk = R.ReferenceId
 						FOR XML PATH('DefinedConcept') , ROOT('DefinedConcepts'), TYPE)
@@ -2197,15 +2271,16 @@ FROM #Reference R
 			INNER JOIN #TestList TLR ON B.BibliographyReferenceFk = TLR.Id AND TLR.objectType = 'reference'
 		WHERE ISNULL(B.BibliographyIsDeleted, 0) = 0
 )
-, DistinctList AS (SELECT DISTINCT NameGuid, NameFull, ReferenceId  FROM CitedNames)
+, DistinctList AS (SELECT DISTINCT CN.NameGuid, CN.NameFull, CN.ReferenceId  FROM CitedNames CN )
 UPDATE R
 	SET CitationsXML = (SELECT 
-							lower(NameGuid) as '@id'
-							, NameFull as 'text()'
-							-- to do add formatted name?
+							lower(CN.NameGuid) as 'CitedTaxon/@id'
+							, CN.NameFull		as 'CitedTaxon/@nameFull'
+							, NameFormattedXML as CitedTaxon
 						FROM DistinctList CN
+							INNER JOIN #Name N ON CN.NameGuid = N.NameGuid
 						WHERE CN.ReferenceId = R.ReferenceId
-						FOR XML PATH('CitedTaxon'), ROOT('CitedTaxa'), TYPE)
+						FOR XML PATH(''), ROOT('CitedTaxa'), TYPE)
 		, CitationsSOLRXML = (SELECT
 									 (SELECT 'citedNameId'		as '@name'	, lower(NameGuid)	as 'text()' for xml path('field'), TYPE)
 									 , (SELECT 'citedName'		as '@name'	, NameFull	as 'text()' for xml path('field'), TYPE)
@@ -2352,11 +2427,13 @@ UPDATE V
 					, GeoregionOfUse AS '@georegionOfUse'
 					, LanguageOfUse AS '@languageOfUse'
 					, languageOfUseIso AS '@languageOfUseIso'
-					, LOWER(NameId) as '@nameId'				
+									
 					, Added AS '@added'
 					, Updated AS '@updated'
-					, NameFull
-					, CAST(REPLACE(NameFormatted, '&', '&amp;') as xml) AS NameFormatted
+					, LOWER(NameId) as 'Name/@nameId'
+					, U.NameFull aS 'Name/@nameFull'
+					, N.NameFormattedXML AS [Name]
+					--, CAST(REPLACE(NameFormatted, '&', '&amp;') as xml) AS NameFormatted
 					, AppliesTo	
 					, (SELECT ReferenceId as '@referenceId'
 						, CAST(REPLACE(Reference, '&', '&amp;') as xml) 
@@ -2364,6 +2441,7 @@ UPDATE V
 						WHERE UseId = U.Id
 						FOR XML PATH('Reference'), ROOT('References'), TYPE)
 			FROM Uses U
+				INNER JOIN #Name N ON U.NameId = N.NameGuid
 			WHERE VernacularId = V.VernacularId
 			FOR XML PATH('VernacularUse'), ROOT('VernacularUses'), TYPE)
 		, UsesSOLRXML = (SELECT

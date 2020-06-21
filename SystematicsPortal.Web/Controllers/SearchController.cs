@@ -9,6 +9,7 @@ using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services;
 using System.Threading.Tasks;
 using System;
+using SystematicsPortal.Model.Models.Documents;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -87,12 +88,12 @@ namespace SystematicsPortal.Web.Controllers
         // GET: Search/Details/5
         public ActionResult Details(int id)
         {
-            Document document;
-            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(Document));
+            NameDocumentDto document;
+            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(NameDocumentDto));
 
             using (StreamReader xml = new StreamReader("single-Document-References-Fungi.xml"))
             {
-                document = (Document)ser.Deserialize(xml);
+                document = (NameDocumentDto)ser.Deserialize(xml);
             }
 
             //XmlDocument xmlString = new XmlDocument();

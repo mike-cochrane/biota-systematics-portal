@@ -30,6 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\SystematicsPortal.Model\SystematicsPortal.Model.csproj" />
 		<ProjectReference Include="..\SystematicsPortal.Web.Api.Client\SystematicsPortal.Web.Api.Client.csproj" />
 		<ProjectReference Include="..\SystematicsPortal.Search.Tools\SystematicsPortal.Search.Tools.csproj" />
 	</ItemGroup>
