@@ -2,7 +2,7 @@
     ViewData["Title"] = "Detail";
 }
 
-@model SystematicsPortal.Model.Models.Documents.NameDocumentDto;
+@model SystematicsPortal.Model.Models.DTOs.DocumentDto;
 
 @if (Model.Class.Equals("reference"))
 {
@@ -126,7 +126,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">@nbsp;</label>
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
         <div class="col-sm-10">
             <a href="">@Html.Raw(Model.ParentReference)</a>
         </div>
@@ -136,7 +136,7 @@
     {
         <h3>Fields</h3>
         <div class="form-group row">
-            @foreach (SystematicsPortal.Web.Models.DocumentFields field in Model.Fields)
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentField field in Model.Fields)
             {
                 <label class="col-sm-2 col-form-label">@field.type</label>
                 <div class="col-sm-10">
@@ -159,7 +159,7 @@
     @if (Model.DefinedConcepts != null)
     {
         <div class="form-group row">
-            @foreach (SystematicsPortal.Web.Models.DocumentDefinedConcepts definedConcept in Model.DefinedConcepts)
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentDefinedConcept definedConcept in Model.DefinedConcepts)
             {
                 <label class="col-sm-2 col-form-label">Cited Name</label>
                 <div class="col-sm-10">
@@ -177,7 +177,7 @@
     {
         <h4>Cited Taxon</h4>
         <div class="form-group row">
-            @foreach (SystematicsPortal.Web.Models.DocumentAssociations association in Model.Associations)
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentDefinedConceptAssociation association in Model.Associations)
             {
                 <label class="col-sm-2 col-form-label">Associated taxon</label>
                 <div class="col-sm-10">
@@ -199,11 +199,11 @@
     {
         <h4>Other taxa cited</h4>
         <div class="form-group row">
-            @foreach (SystematicsPortal.Web.Models.DocumentCitedTaxa citedTaxon in Model.CitedTaxa)
+            @foreach (Object citedTaxon in Model.CitedTaxa)
             {
                 <label class="col-sm-2 col-form-label">Cited taxa</label>
                 <div class="col-sm-10">
-                    <a href="">@Html.Raw(citedTaxon.Value)</a>
+                    <a href="">@Html.Raw(citedTaxon)</a>
                 </div>
             }
         </div>
@@ -213,24 +213,24 @@
     {
         <h4>Identification Key(s)</h4>
         <div class="form-group row">
-            @foreach (SystematicsPortal.Web.Models.DocumentIncludedKeys key in Model.IncludedKeys)
+            @foreach (SystematicsPortal.Model.Models.Documents.SubDocuments.DocumentKey key in Model.IncludedKeys)
             {
                 <label class="col-sm-2 col-form-label">Cited taxa</label>
                 <div class="col-sm-10">
                     @Html.Raw(key.title)
                 </div>
-                @foreach (SystematicsPortal.Web.Models.DocumentLine line in key.Line)
+                @foreach (SystematicsPortal.Model.Models.Documents.DocumentKeyLine line in key.Line)
                 {
                     <label class="col-sm-2 col-form-label">Characteristic</label>
                     <div class="col-sm-10">
-                        @Html.Raw(line.Characteristic.Value)
+                        @Html.Raw(line.Characteristic)
                     </div>
                 }
             }
         </div>
     }
 
-    @if (Model.referenceId)
+    @if (Model.ReferenceId)
     {
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Reference Identifier	</label>
@@ -286,7 +286,7 @@
     @if (Model.AppliedVernaculars != null)
     {
         <div class="form-group row">
-            @foreach (SystematicsPortal.Web.Models.DocumentVernacularUses vernacularUse in Model.VernacularUses)
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentVernacularUse vernacularUse in Model.VernacularUses)
             {
                 <label class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
@@ -307,10 +307,10 @@
                 @if (vernacularUse.References != null)
                 {
                     <label class="col-sm-2 col-form-label">According to</label>
-                    @foreach (SystematicsPortal.Web.Models.DocumentReferences reference in vernacularUse.References)
+                    @foreach (SystematicsPortal.Model.Models.Documents.SubDocuments.ReferenceType reference in vernacularUse.References)
                     {
                         <div class="col-sm-10">
-                            @Html.Raw(reference.Value)
+                            @Html.Raw(reference)
                         </div>
                     }
                 }
@@ -372,9 +372,9 @@
     @if (Model.BiostatusValues != null)
     {
         <h3>Biostatus Values</h3>
-        @foreach (SystematicsPortal.Web.Models.DocumentBiostatusValue biostatusValue in Model.BiostatusValues)
+        @foreach (SystematicsPortal.Model.Models.Documents.DocumentBiostatusValue biostatusValue in Model.BiostatusValues)
         {
-            if (biostatusValue.isActive)
+            if (biostatusValue.isActive.Equals("true"))
             {
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Origin</label>
@@ -403,7 +403,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Note</label>
                     <div class="col-sm-10">
-                        @Html.Raw(biostatusValue.Comment.Value)
+                        @Html.Raw(biostatusValue.Comment)
                     </div>
                 </div>
             }
@@ -663,7 +663,7 @@
     {
         <h3>Vernacular Names</h3>
         <div class="form-group row">
-            @foreach (SystematicsPortal.Web.Models.DocumentAppliedVernacular vernacularUse in Model.AppliedVernaculars)
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentAppliedVernacular vernacularUse in Model.AppliedVernaculars)
             {
                 <label class="col-sm-2 col-form-label">Vernacular Name</label>
                 <div class="col-sm-10">
@@ -693,7 +693,7 @@
     {
         <h3>Hybridisation</h3>
         <h4>HybridData</h4>
-        @foreach (SystematicsPortal.Web.Models.DocumentHybridParentName hybridParentName in Model.HybridData.HybridParentNames)
+        @foreach (SystematicsPortal.Model.Models.Documents.DocumentHybridParentName hybridParentName in Model.HybridData.HybridParentNames)
         {
             <label class="col-sm-2 col-form-label">&nbsp;</label>
             <div class="col-sm-10">
@@ -705,7 +705,7 @@
     @if (Model.Concepts != null)
     {
         <h3>Concepts</h3>
-        @foreach (SystematicsPortal.Web.Models.DocumentConcepts concept in Model.Concepts)
+        @foreach (SystematicsPortal.Model.Models.Documents.DocumentConcept concept in Model.Concepts)
         {
             @*@if (concept.Name != null)
                 {
@@ -732,7 +732,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Page</label>
                     <div class="col-sm-10">
-                        @Html.Raw(concept.page)
+                        @Html.Raw(concept.Page)
                     </div>
                 </div>
             }
@@ -742,7 +742,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">@Html.LabelFor(concept => concept.Orthography, "Orthography")</label>
                     <div class="col-sm-10">
-                        @Html.Raw(concept.Orthography.Value)
+                        @Html.Raw(concept.Orthography)
                     </div>
                 </div>
             }
@@ -752,7 +752,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Keywords</label>
                         <div class="col-sm-10">
-                            @foreach (SystematicsPortal.Web.Models.DocumentKeywords keyword in concept.Keywords)
+                            @foreach (SystematicsPortal.Model.Models.DTOs.DocumentKeywords keyword in concept.Keywords)
                             {
                                 @Html.Raw(keyword.Keyword.Value)<br />
                             }
@@ -764,34 +764,34 @@
             {
                 <h4>Associations</h4>
                 <div class="form-group row">
-                    @foreach (SystematicsPortal.Web.Models.DocumentRelatedConcepts relatedConcept in concept.RelatedConcepts)
+                    @foreach (SystematicsPortal.Model.Models.Documents.DocumentConceptRelatedConcept relatedConcept in concept.RelatedConcepts)
                     {
                         if (relatedConcept.type == "has parent")
                         {
                             <label class="col-sm-2 col-form-label">Cited Parent</label>
                             <div class="col-sm-10">
-                                <a href="">@Html.Raw(relatedConcept.RelatedTaxon.Value)</a>
+                                <a href="">@Html.Raw(relatedConcept.RelatedTaxon)</a>
                             </div>
                         }
                         if (relatedConcept.type == "has current name")
                         {
                             <label class="col-sm-2 col-form-label">Cited Current Name</label>
                             <div class="col-sm-10">
-                                @Html.Raw(relatedConcept.RelatedTaxon.Value)
+                                @Html.Raw(relatedConcept.RelatedTaxon)
                             </div>
                         }
                         if (relatedConcept.type == "has alternative name")
                         {
                             <label class="col-sm-2 col-form-label">Cited Alternative Name</label>
                             <div class="col-sm-10">
-                                @Html.Raw(relatedConcept.RelatedTaxon.Value)
+                                @Html.Raw(relatedConcept.RelatedTaxon)
                             </div>
                         }
                         if (relatedConcept.type != "has parent" && relatedConcept.type != "has current name" && relatedConcept.type != "has alternative name")
                         {
                             <label class="col-sm-2 col-form-label">Cited Association</label>
                             <div class="col-sm-10">
-                                @Html.Raw(relatedConcept.RelatedTaxon.Value)
+                                @Html.Raw(relatedConcept.RelatedTaxon)
                             </div>
                         }
                     }
@@ -799,13 +799,13 @@
 
                 <h4>Relationships</h4>
                 <div class="form-group row">
-                    @foreach (SystematicsPortal.Web.Models.DocumentRelatedConcepts relatedConcept in concept.RelatedConcepts)
+                    @foreach (SystematicsPortal.Model.Models.Documents.DocumentConceptRelatedConcept relatedConcept in concept.RelatedConcepts)
                     {
                         if (relatedConcept.RelatedTaxon.type == "is congruent" || relatedConcept.RelatedTaxon.type == "is included in" || relatedConcept.RelatedTaxon.type == "overlaps with" || relatedConcept.RelatedTaxon.type == "is excluded from")
                         {
                             <label class="col-sm-2 col-form-label">Taxon</label>
                             <div class="col-sm-10">
-                                @Html.Raw(relatedConcept.RelatedTaxon.Value)
+                                @Html.Raw(relatedConcept.RelatedTaxon)
                             </div>
                         }
 
@@ -813,7 +813,7 @@
                         {
                             <label class="col-sm-2 col-form-label">Relationship</label>
                             <div class="col-sm-10">
-                                @Html.Raw(relatedConcept.RelatedTaxon.Value)
+                                @Html.Raw(relatedConcept.RelatedTaxon)
                             </div>
                         }
                     }
@@ -823,20 +823,20 @@
                 {
                     <h4>Descriptions</h4>
                     <div class="form-group row">
-                        @foreach (SystematicsPortal.Web.Models.DocumentDescription description in concept.Descriptions)
+                        @foreach (SystematicsPortal.Model.Models.Documents.DocumentConceptDescription description in concept.Descriptions)
                         {
-                            if (description.Name != null)
+                            if (description.DescriptionTextName != null)
                             {
                                 <label class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    @Html.Raw(description.Name.Value)
+                                    @Html.Raw(description.Name)
                                 </div>
                             }
                             if (description.DescriptionText != null)
                             {
                                 <label class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-sm-10">
-                                    @Html.Raw(description.DescriptionText.Value)
+                                    @Html.Raw(description.DescriptionText)
                                 </div>
                             }
                             if (description.type != null)
@@ -870,7 +870,7 @@
     @if (Model.BiostatusValues != null)
     {
         <h3>Biostatus Values</h3>
-        @foreach (SystematicsPortal.Web.Models.DocumentBiostatusValue biostatusValue in Model.BiostatusValues)
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentBiostatusValue biostatusValue in Model.BiostatusValues)
         {
             if (!biostatusValue.isActive)
             {
@@ -912,7 +912,7 @@
 
     @if (Model.HyperLinks != null)
     {
-        @foreach (SystematicsPortal.Web.Models.DocumentHyperlink hyperlink in Model.Hyperlinks)
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentHyperlink hyperlink in Model.Hyperlinks)
         {
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">&nbsp;</label>
@@ -926,7 +926,7 @@
     @if (Model.ExternalLinks != null)
     {
         <h4>Nomenclators</h4>
-        @foreach (SystematicsPortal.Web.Models.DocumentExternalLink externalLink in Model.ExternalLinks)
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentExternalLink externalLink in Model.ExternalLinks)
         {
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">&nbsp;</label>
@@ -942,7 +942,7 @@
     @if (Model.CollectionObjects != null)
     {
         <h3>Collections</h3>
-        @foreach (SystematicsPortal.Web.Models.DocumentCollectionObject collectionObject in Model.CollectionObjects)
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentCollectionObject collectionObject in Model.CollectionObjects)
         {
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Accession Number</label>
@@ -970,7 +970,7 @@
             </div>
             @if (Model.CollectionObjects != null)
             {
-                @foreach (SystematicsPortal.Web.Models.DocumentCollectionObjectCollectionEventRegion collectionEventRegion in collectionObject.CollectionEventRegions)
+                @foreach (SystematicsPortal.Model.Models.DTOs.DocumentCollectionObjectCollectionEventRegion collectionEventRegion in collectionObject.CollectionEventRegions)
                 {
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Country</label>
