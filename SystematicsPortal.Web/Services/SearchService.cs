@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using SolrNet.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystematicsPortal.Search.Tools.Models.Search;
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SystematicsPortal.Data.dbmodels;
 using SystematicsPortal.Model.Interfaces;
 using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Model.Models.DTOs;
 using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data
@@ -21,32 +22,32 @@ namespace SystematicsPortal.Data
             _context = context;
         }
 
-        public NameDocumentDto GetDocument(Guid documentId)
+        public DocumentDto GetDocument(Guid documentId)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<NameDocument> GetDocuments()
+        public IEnumerable<dbmodels.NameDocument> GetDocuments()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<NameDocumentDto> GetDocuments(IEnumerable<Guid> documentIds)
+        public IEnumerable<DocumentDto> GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertDocument(NameDocument document)
+        public void InsertDocument(dbmodels.NameDocument document)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(NameDocumentDto document)
+        public void UpdateDocument(DocumentDto document)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(NameDocument document)
+        public void UpdateDocument(dbmodels.NameDocument document)
         {
             throw new NotImplementedException();
         }
@@ -54,12 +55,12 @@ namespace SystematicsPortal.Data
         /// <summary>
         /// Writes name documents to the store and returns a list of names that were updated.
         /// </summary>
-        public List<NameDocumentDto> WriteDocuments(List<NameDocumentDto> names)
+        public List<DocumentDto> WriteDocuments(List<DocumentDto> names)
         {
             int index = 1;
             int consensusNameCount = names.Count();
             var allStoreNames = GetDocuments().ToDictionary(o => o.NameId);
-            var updatedNames = new List<NameDocumentDto>();
+            var updatedNames = new List<DocumentDto>();
 
             foreach (var name in names)
             {
@@ -67,7 +68,7 @@ namespace SystematicsPortal.Data
 
                 string xml = SerializationHelper.Serialize(name);
 
-                if (allStoreNames.TryGetValue(Guid.Parse(name.nameId), out var storeName))
+                if (allStoreNames.TryGetValue(Guid.Parse(name.NameId), out var storeName))
                 {
                     var xmlComparer = DiffBuilder.Compare(Input.FromString(storeName.SerializedDocument))
                         .WithTest(Input.FromString(xml))
@@ -86,9 +87,9 @@ namespace SystematicsPortal.Data
                 }
                 else
                 {
-                    storeName = new NameDocument();
+                    storeName = new dbmodels.NameDocument();
 
-                    storeName.NameId = Guid.Parse(name.nameId);
+                    storeName.NameId = Guid.Parse(name.NameId);
                     storeName.Version = 1;
                     storeName.SerializedDocument = xml;
 
@@ -103,12 +104,12 @@ namespace SystematicsPortal.Data
             return updatedNames;
         }
 
-        NameDocument INamesWebRepository.GetDocument(Guid documentId)
+        dbmodels.NameDocument INamesWebRepository.GetDocument(Guid documentId)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<NameDocument> INamesWebRepository.GetDocuments(IEnumerable<Guid> documentIds)
+        IEnumerable<dbmodels.NameDocument> INamesWebRepository.GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
