@@ -2,7 +2,7 @@
     ViewData["Title"] = "Detail";
 }
 
-@model SystematicsPortal.Web.Models.Document;
+@model SystematicsPortal.Model.Models.Documents.NameDocumentDto;
 
 @if (Model.Class.Equals("reference"))
 {

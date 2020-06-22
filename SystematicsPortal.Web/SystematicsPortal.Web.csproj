@@ -16,7 +16,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Views\Search\Details.cshtml.test" />
 	  <None Remove="Views\Search\Details.cshtml.ToBeFixed" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Views\Search\Details.cshtml.test" />
 	</ItemGroup>
 
 	<ItemGroup>
