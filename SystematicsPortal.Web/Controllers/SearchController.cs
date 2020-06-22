@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
-using System.Security;
-using System.Text;
-using System.Web;
-using System.Xml;
 using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services;
 using System.Threading.Tasks;
 using System;
-using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Model.Models.DTOs;
 
 namespace SystematicsPortal.Web.Controllers
 {
