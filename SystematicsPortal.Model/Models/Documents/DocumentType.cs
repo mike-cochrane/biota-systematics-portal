@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SystematicsPortal.Model.Models.Documents
 {
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -28,7 +28,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private bool updatedFieldSpecified;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string nameId
         {
@@ -42,7 +42,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public DocumentTypeDocumentClass documentClass
         {
@@ -56,7 +56,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public DocumentTypeSource source
         {
@@ -70,7 +70,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime added
         {
@@ -84,7 +84,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool addedSpecified
         {
@@ -98,7 +98,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime updated
         {
@@ -112,7 +112,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool updatedSpecified
         {
@@ -127,37 +127,37 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public enum DocumentTypeDocumentClass
     {
 
-        /// <remarks/>
+        
         name,
 
-        /// <remarks/>
+        
         vernacular,
 
-        /// <remarks/>
+        
         reference,
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public enum DocumentTypeSource
     {
 
-        /// <remarks/>
+        
         Names_Plants,
 
-        /// <remarks/>
+        
         Names_Fungi,
 
-        /// <remarks/>
+        
         Names_NZAC,
     }
 

@@ -19,7 +19,7 @@ namespace SystematicsPortal.Model.Models.Documents
 {
 
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -37,7 +37,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private DocumentVernacularUse[] vernacularUsesField;
 
-        /// <remarks/>
+        
         public DocumentVernacularName VernacularName
         {
             get
@@ -50,7 +50,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string Translation
         {
             get
@@ -63,7 +63,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string Transliteration
         {
             get
@@ -76,7 +76,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("VernacularUse", IsNullable = false)]
         public DocumentVernacularUse[] VernacularUses
         {
@@ -91,7 +91,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -106,7 +106,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string valueField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfOrigin
         {
@@ -120,7 +120,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string regionOfOrigin
         {
@@ -134,7 +134,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value
         {
@@ -149,7 +149,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -180,7 +180,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private bool updatedFieldSpecified;
 
-        /// <remarks/>
+        
         public LinkedNameType Name
         {
             get
@@ -193,7 +193,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string AppliesTo
         {
             get
@@ -206,7 +206,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Reference", IsNullable = false)]
         public ReferenceType[] References
         {
@@ -220,7 +220,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -234,7 +234,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string georegionOfUse
         {
@@ -248,7 +248,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfUse
         {
@@ -262,7 +262,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfUseIso
         {
@@ -276,7 +276,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime added
         {
@@ -290,7 +290,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool addedSpecified
         {
@@ -304,7 +304,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime updated
         {
@@ -318,7 +318,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool updatedSpecified
         {

@@ -1,186 +1,169 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using SystematicsPortal.Model.Models.Documents;
-//using SystematicsPortal.Model.Models.Documents.SubDocuments;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Model.Models.Documents.SubDocuments;
 
-//namespace SystematicsPortal.Model.Models.DTOs
-//{
-//    public class DocumentDto
-//    {
-//        public DocumentName Name { get; set; }
+namespace SystematicsPortal.Model.Models.DTOs
+{
+    public class DocumentDto
+    {
+        #region Common properties
+        public string NameId { get; set; }
+        
+        public DocumentTypeDocumentClass DocumentClass { get; set; }
+        
+        public DocumentTypeSource Source { get; set; }
+        
+        public System.DateTime Added { get; set; }
+        
+        public bool AddedSpecified { get; set; }
+        
+        public System.DateTime Updated { get; set; }
+        
+        public bool UpdatedSpecified { get; set; }
 
-//        public TextType NameFormatted { get; set; }
-        
-//        /// <remarks/>
-//        public TextType NameScientific { get; set; }
-       
-//        /// <remarks/>
-//        public string NamePartFormatted { get; set; }
-        
-//        /// <remarks/>
-//        public string Orthography { get; set; }
+        public ReferenceType ParentReference { get; set; }
+        #endregion
 
-//        /// <remarks/>
-//        public string Page { get; set; }
+        #region Document Type "Name Properties" 
 
-//        /// <remarks/>
-//        public string YearOfPublication { get; set; }
-        
-//        /// <remarks/>
-//        public string YearOnPublication { get; set; }
-       
-//        /// <remarks/>
-//        public DocumentClassification Classification { get; set; }
-        
-//        /// <remarks/>
-//        public string TypeLocality { get; set; }
-        
-        
-//        public string SanctioningAuthor { get; set; }
-        
-//        /// <remarks/>
-//        public string SanctioningPage { get; set; }
-        
-//        /// <remarks/>
-//        public string HybridLink { get; set; }
-        
-//        /// <remarks/>
-//        public string CheckStatus { get; set; }
+        public DocumentName Name { get; set; }
 
-
-//        /// <remarks/>
-//        public ReferenceType NameReference { get; set; }
-      
-//        /// <remarks/>
-//        public ReferenceType TaxonomyReference { get; set; }
-        
-//        /// <remarks/>
-
-//        public ReferenceType ParentReference { get; set; }
-        
-//        /// <remarks/>
-//        public LinkedNameType Parent { get; set; }
-        
-
-//        /// <remarks/>
-//        public LinkedNameType CurrentName { get; set; }
-
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Synonym", IsNullable = false)]
-//        public LinkedNameType[] Synonyms { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Sibling", IsNullable = false)]
-//        public LinkedNameType[] Siblings { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Subordinate", IsNullable = false)]
-//        public LinkedNameType[] Subordinates { get; set; }
-        
-//        /// <remarks/>
-//        public LinkedNameType Basionym { get; set; }
-        
-//        /// <remarks/>
-//        public LinkedNameType BasedOn { get; set; }
-
-//        /// <remarks/>
-//        public LinkedNameType Blocking { get; set; }
-        
-//        /// <remarks/>
-//        public LinkedNameType AnamorphGenus { get; set; }
+        public TextType NameFormatted { get; set; }
 
         
-//        public ReferenceType AnamorphReference { get; set; }
-        
-//        public LinkedNameType TypeTaxon { get; set; }
-        
+        public TextType NameScientific { get; set; }
 
-//        public string ForeignId { get; set; }
+        
+        public string NamePartFormatted { get; set; }
 
-//        /// <remarks/>
-//        public LinkedNameType Kingdom { get; set; }
+        
+        public string Orthography { get; set; }
 
-//        /// <remarks/>
-//        public LinkedNameType Phylum { get; set; }
+        
+        public string Page { get; set; }
 
-//        /// <remarks/>
-//        public LinkedNameType Class { get; set; }
         
-//        /// <remarks/>
-//        public LinkedNameType Order { get; set; }
-        
-//        /// <remarks/>
-//        public LinkedNameType Family { get; set; }
+        public string YearOfPublication { get; set; }
 
-//        /// <remarks/>
-//        public LinkedNameType Genus { get; set; }
         
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("AppliedVernacular", IsNullable = false)]
-//        public DocumentAppliedVernacular[] AppliedVernaculars { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("BiostatusValue", IsNullable = false)]
-//        public DocumentBiostatusValue[] BiostatusValues { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Concept", IsNullable = false)]
-//        public DocumentConcept[] Concepts { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Note", IsNullable = false)]
-//        public DocumentNote[] Notes { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Image", IsNullable = false)]
-//        public DocumentImage[] Images { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("ExternalLink", IsNullable = false)]
-//        public DocumentExternalLink[] ExternalLinks { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("NomenclaturalStatus", IsNullable = false)]
-//        public DocumentNomenclaturalStatus[] NomenclaturalStatusValues { get; set; }
-        
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("HybridData", IsNullable = false)]
-//        public DocumentHybridData[] Hybridisation { get; set; }
+        public string YearOnPublication { get; set; }
 
-//        /// <remarks/>
-//        public DocumentHyperlinks Hyperlinks { get; set; }
         
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Collectionstring", IsNullable = false)]
-//        public DocumentCollectionstring[] Collectionstrings { get; set; }
-//        {
-//            get
-//            {
-//                return this.collectionstringsField;
-//            }
-//            set
-//            {
-//                this.collectionstringsField = value;
-//            }
-//        }
+        public DocumentClassification Classification { get; set; }
 
-//        /// <remarks/>
-//        [System.Xml.Serialization.XmlArrayItemAttribute("Key", IsNullable = false)]
-//        public DocumentKey[] InKeys
-//        {
-//            get
-//            {
-//                return this.inKeysField;
-//            }
-//            set
-//            {
-//                this.inKeysField = value;
-//            }
-//        }
+        
+        public string TypeLocality { get; set; }
 
 
-//    }
-//}
+        public string SanctioningAuthor { get; set; }
+
+        
+        public string SanctioningPage { get; set; }
+
+        
+        public string HybridLink { get; set; }
+
+        
+        public string CheckStatus { get; set; }
+
+
+        
+        public ReferenceType NameReference { get; set; }
+
+        
+        public ReferenceType TaxonomyReference { get; set; }
+        
+        public LinkedNameType Parent { get; set; }
+        
+        public LinkedNameType CurrentName { get; set; }
+        
+        public List<LinkedNameType> Synonyms { get; set; }
+        
+        public List<LinkedNameType> Siblings { get; set; }
+
+        public List<LinkedNameType> Subordinates { get; set; }
+        
+        public List<LinkedNameType> Basionym { get; set; }
+        
+        public List<LinkedNameType> BasedOn { get; set; }
+        
+        public LinkedNameType Blocking { get; set; }
+        
+        public LinkedNameType AnamorphGenus { get; set; }
+
+        public ReferenceType AnamorphReference { get; set; }
+
+        public LinkedNameType TypeTaxon { get; set; }
+
+        public string ForeignId { get; set; }
+        
+        public LinkedNameType Kingdom { get; set; }
+        
+        public LinkedNameType Phylum { get; set; }
+        
+        public LinkedNameType Class { get; set; }
+        
+        public LinkedNameType Order { get; set; }
+        
+        public LinkedNameType Family { get; set; }
+        
+        public LinkedNameType Genus { get; set; }
+        
+        public List<DocumentAppliedVernacular> AppliedVernaculars { get; set; }
+        
+        public List<DocumentBiostatusValue> BiostatusValues { get; set; }
+        
+        public List<DocumentConcept> Concepts { get; set; }
+        
+        public List<DocumentNote> Notes { get; set; }
+        
+        public List<DocumentImage> Images { get; set; }
+
+        public List<DocumentExternalLink> ExternalLinks { get; set; }
+        
+        public List<DocumentNomenclaturalStatus> NomenclaturalStatusValues { get; set; }
+
+        public List<DocumentHybridData> Hybridisation { get; set; }
+
+        public DocumentHyperlinks Hyperlinks { get; set; }
+
+        public List<DocumentCollectionObject> CollectionObjects { get; set; }
+        
+        public List<DocumentKey> InKeys { get; set; }
+        #endregion
+
+        #region Vernacular Document Properties
+        
+        public DocumentVernacularName VernacularName { get; set; }
+        
+        public string Translation { get; set; }
+        
+        public string Transliteration { get; set; }
+        
+        public List<DocumentVernacularUse> VernacularUses { get; set; }
+
+        #endregion
+
+
+        #region Reference document type properties
+        public DocumentReference Reference { get; set; }
+        
+        public TextType Title { get; set; }        
+        
+        public string TitleUnformatted { get; set; }      
+        
+        public List<DocumentField> Fields { get; set; }      
+        
+        public List<DocumentDefinedConcept> DefinedConcepts { get; set; }     
+        
+        public List<string> CitedTaxa { get; set; }     
+        
+        public List<DocumentKey> IncludedKeys { get; set; }
+
+        #endregion
+    }
+}

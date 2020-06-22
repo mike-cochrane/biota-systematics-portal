@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SystematicsPortal.Model.Models.Documents.SubDocuments
 {
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -20,7 +20,7 @@ namespace SystematicsPortal.Model.Models.Documents.SubDocuments
 
         private string referenceIdField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlElementAttribute("i")]
         public object[] Items
         {
@@ -34,7 +34,7 @@ namespace SystematicsPortal.Model.Models.Documents.SubDocuments
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string[] Text
         {
@@ -48,7 +48,7 @@ namespace SystematicsPortal.Model.Models.Documents.SubDocuments
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string referenceId
         {

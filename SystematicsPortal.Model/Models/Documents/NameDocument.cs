@@ -20,7 +20,7 @@ namespace SystematicsPortal.Model.Models.Documents
 {
 
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -124,7 +124,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private DocumentKey[] inKeysField;
 
-        /// <remarks/>
+        
         public DocumentName Name
         {
             get
@@ -137,7 +137,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string NameFull
         {
             get
@@ -150,7 +150,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public TextType NameFormatted
         {
             get
@@ -163,7 +163,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public TextType NameScientific
         {
             get
@@ -176,7 +176,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object NamePartFormatted
         {
             get
@@ -189,7 +189,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string Orthography
         {
             get
@@ -202,7 +202,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string Page
         {
             get
@@ -215,7 +215,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object YearOfPublication
         {
             get
@@ -228,7 +228,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object YearOnPublication
         {
             get
@@ -241,7 +241,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public DocumentClassification Classification
         {
             get
@@ -254,7 +254,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string TypeLocality
         {
             get
@@ -267,7 +267,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string SanctioningAuthor
         {
             get
@@ -280,7 +280,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string SanctioningPage
         {
             get
@@ -293,7 +293,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object HybridLink
         {
             get
@@ -306,7 +306,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string CheckStatus
         {
             get
@@ -319,7 +319,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType NameReference
         {
             get
@@ -332,7 +332,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType TaxonomyReference
         {
             get
@@ -345,7 +345,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType ParentReference
         {
             get
@@ -358,7 +358,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Parent
         {
             get
@@ -371,7 +371,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType CurrentName
         {
             get
@@ -384,7 +384,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Synonym", IsNullable = false)]
         public LinkedNameType[] Synonyms
         {
@@ -398,7 +398,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Sibling", IsNullable = false)]
         public LinkedNameType[] Siblings
         {
@@ -412,7 +412,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Subordinate", IsNullable = false)]
         public LinkedNameType[] Subordinates
         {
@@ -426,7 +426,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Basionym
         {
             get
@@ -439,7 +439,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType BasedOn
         {
             get
@@ -452,7 +452,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Blocking
         {
             get
@@ -465,7 +465,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType AnamorphGenus
         {
             get
@@ -478,7 +478,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType AnamorphReference
         {
             get
@@ -491,7 +491,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType TypeTaxon
         {
             get
@@ -504,7 +504,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object ForeignId
         {
             get
@@ -517,7 +517,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Kingdom
         {
             get
@@ -530,7 +530,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Phylum
         {
             get
@@ -543,7 +543,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Class
         {
             get
@@ -556,7 +556,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Order
         {
             get
@@ -569,7 +569,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Family
         {
             get
@@ -582,7 +582,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public LinkedNameType Genus
         {
             get
@@ -595,7 +595,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("AppliedVernacular", IsNullable = false)]
         public DocumentAppliedVernacular[] AppliedVernaculars
         {
@@ -609,7 +609,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("BiostatusValue", IsNullable = false)]
         public DocumentBiostatusValue[] BiostatusValues
         {
@@ -623,7 +623,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Concept", IsNullable = false)]
         public DocumentConcept[] Concepts
         {
@@ -637,7 +637,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Note", IsNullable = false)]
         public DocumentNote[] Notes
         {
@@ -651,7 +651,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Image", IsNullable = false)]
         public DocumentImage[] Images
         {
@@ -665,7 +665,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("ExternalLink", IsNullable = false)]
         public DocumentExternalLink[] ExternalLinks
         {
@@ -679,7 +679,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("NomenclaturalStatus", IsNullable = false)]
         public DocumentNomenclaturalStatus[] NomenclaturalStatusValues
         {
@@ -693,7 +693,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("HybridData", IsNullable = false)]
         public DocumentHybridData[] Hybridisation
         {
@@ -707,7 +707,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public DocumentHyperlinks Hyperlinks
         {
             get
@@ -720,7 +720,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("CollectionObject", IsNullable = false)]
         public DocumentCollectionObject[] CollectionObjects
         {
@@ -734,7 +734,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Key", IsNullable = false)]
         public DocumentKey[] InKeys
         {
@@ -749,7 +749,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -826,7 +826,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string isNomNudumField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string namePart
         {
@@ -840,7 +840,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string canonical
         {
@@ -854,7 +854,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool inCitation
         {
@@ -868,7 +868,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool inCitationSpecified
         {
@@ -882,7 +882,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool misapplied
         {
@@ -896,7 +896,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool misappliedSpecified
         {
@@ -910,7 +910,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool dubium
         {
@@ -924,7 +924,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool dubiumSpecified
         {
@@ -938,7 +938,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool proParte
         {
@@ -952,7 +952,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool proParteSpecified
         {
@@ -966,7 +966,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool novum
         {
@@ -980,7 +980,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool novumSpecified
         {
@@ -994,7 +994,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool invalid
         {
@@ -1008,7 +1008,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool invalidSpecified
         {
@@ -1022,7 +1022,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool illegitimate
         {
@@ -1036,7 +1036,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool illegitimateSpecified
         {
@@ -1050,7 +1050,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool autonym
         {
@@ -1064,7 +1064,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool autonymSpecified
         {
@@ -1078,7 +1078,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool recombination
         {
@@ -1092,7 +1092,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool recombinationSpecified
         {
@@ -1106,7 +1106,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string nomCode
         {
@@ -1120,7 +1120,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string taxonRank
         {
@@ -1134,7 +1134,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string taxonRankSort
         {
@@ -1148,7 +1148,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool isAggregate
         {
@@ -1162,7 +1162,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool isAggregateSpecified
         {
@@ -1176,7 +1176,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool isAnamorph
         {
@@ -1190,7 +1190,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool isAnamorphSpecified
         {
@@ -1204,7 +1204,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string nzRelevance
         {
@@ -1218,7 +1218,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isSuppressed
         {
@@ -1232,7 +1232,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isCurrent
         {
@@ -1246,7 +1246,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isConserved
         {
@@ -1260,7 +1260,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isSuperfluous
         {
@@ -1274,7 +1274,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isNonCodeName
         {
@@ -1288,7 +1288,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isNomNudum
         {
@@ -1304,7 +1304,7 @@ namespace SystematicsPortal.Model.Models.Documents
     }
 
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1317,7 +1317,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string valueField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -1331,7 +1331,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value
         {
@@ -1346,7 +1346,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1375,7 +1375,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string updatedField;
 
-        /// <remarks/>
+        
         public DocumentAppliedVernacularVernacularName VernacularName
         {
             get
@@ -1388,7 +1388,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public TextType VernacularUseNote
         {
             get
@@ -1401,7 +1401,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -1415,7 +1415,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfUseId
         {
@@ -1429,7 +1429,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfUse
         {
@@ -1443,7 +1443,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfUseIso
         {
@@ -1457,7 +1457,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string regionOfUseSchema
         {
@@ -1471,7 +1471,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string regionOfUse
         {
@@ -1485,7 +1485,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string added
         {
@@ -1499,7 +1499,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string updated
         {
@@ -1514,7 +1514,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1535,7 +1535,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string valueField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string vernacularId
         {
@@ -1549,7 +1549,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfOrigin
         {
@@ -1563,7 +1563,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageOfOriginIso
         {
@@ -1577,7 +1577,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string added
         {
@@ -1591,7 +1591,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string updated
         {
@@ -1605,7 +1605,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value
         {
@@ -1620,7 +1620,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1649,7 +1649,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string updatedField;
 
-        /// <remarks/>
+        
         public ReferenceType BiostatusReference
         {
             get
@@ -1662,7 +1662,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public DocumentBiostatusValueOrigin Origin
         {
             get
@@ -1675,7 +1675,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public DocumentBiostatusValueOccurrence Occurrence
         {
             get
@@ -1688,7 +1688,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public DocumentBiostatusValueGeoregion Georegion
         {
             get
@@ -1701,7 +1701,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public TextType Comment
         {
             get
@@ -1714,7 +1714,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -1728,7 +1728,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isActive
         {
@@ -1742,7 +1742,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isFirstRecord
         {
@@ -1756,7 +1756,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string added
         {
@@ -1770,7 +1770,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string updated
         {
@@ -1785,7 +1785,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1798,7 +1798,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string valueField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string code
         {
@@ -1812,7 +1812,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value
         {
@@ -1827,7 +1827,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1840,7 +1840,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string valueField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string code
         {
@@ -1854,7 +1854,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value
         {
@@ -1869,7 +1869,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1882,7 +1882,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string valueField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string schema
         {
@@ -1896,7 +1896,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value
         {
@@ -1911,7 +1911,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1946,7 +1946,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private bool updatedFieldSpecified;
 
-        /// <remarks/>
+        
         public object Name
         {
             get
@@ -1959,7 +1959,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object Orthography
         {
             get
@@ -1972,7 +1972,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object Page
         {
             get
@@ -1985,7 +1985,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType AccordingTo
         {
             get
@@ -1998,7 +1998,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Keyword", IsNullable = false)]
         public object[] Keywords
         {
@@ -2012,7 +2012,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("RelatedConcept", IsNullable = false)]
         public DocumentConceptRelatedConcept[] RelatedConcepts
         {
@@ -2026,7 +2026,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Description", IsNullable = false)]
         public DocumentConceptDescription[] Descriptions
         {
@@ -2040,7 +2040,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -2054,7 +2054,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string @explicit
         {
@@ -2068,7 +2068,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime added
         {
@@ -2082,7 +2082,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool addedSpecified
         {
@@ -2096,7 +2096,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime updated
         {
@@ -2110,7 +2110,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool updatedSpecified
         {
@@ -2125,7 +2125,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2146,7 +2146,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string updatedField;
 
-        /// <remarks/>
+        
         public object RelatedTaxon
         {
             get
@@ -2159,7 +2159,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string conceptId
         {
@@ -2173,7 +2173,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string direction
         {
@@ -2187,7 +2187,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -2201,7 +2201,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string added
         {
@@ -2215,7 +2215,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string updated
         {
@@ -2230,7 +2230,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2263,7 +2263,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private bool updatedFieldSpecified;
 
-        /// <remarks/>
+        
         public object DescriptionIconFilename
         {
             get
@@ -2276,7 +2276,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object DescriptionText
         {
             get
@@ -2289,7 +2289,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object DescriptionUrl
         {
             get
@@ -2302,7 +2302,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -2316,7 +2316,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -2330,7 +2330,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string language
         {
@@ -2344,7 +2344,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string languageIso
         {
@@ -2358,7 +2358,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string category
         {
@@ -2372,7 +2372,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime added
         {
@@ -2386,7 +2386,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool addedSpecified
         {
@@ -2400,7 +2400,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime updated
         {
@@ -2414,7 +2414,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool updatedSpecified
         {
@@ -2429,7 +2429,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2454,7 +2454,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private bool updatedFieldSpecified;
 
-        /// <remarks/>
+        
         public TextType Text
         {
             get
@@ -2467,7 +2467,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType Reference
         {
             get
@@ -2480,7 +2480,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -2494,7 +2494,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -2508,7 +2508,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime added
         {
@@ -2522,7 +2522,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool addedSpecified
         {
@@ -2536,7 +2536,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime updated
         {
@@ -2550,7 +2550,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool updatedSpecified
         {
@@ -2565,7 +2565,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2576,7 +2576,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string imageURIField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string imageURI
         {
@@ -2591,7 +2591,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2608,7 +2608,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string sourceField;
 
-        /// <remarks/>
+        
         public object ExternalFullName
         {
             get
@@ -2621,7 +2621,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -2635,7 +2635,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string externalId
         {
@@ -2649,7 +2649,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string source
         {
@@ -2664,7 +2664,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2691,7 +2691,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private bool updatedFieldSpecified;
 
-        /// <remarks/>
+        
         public TextType Comment
         {
             get
@@ -2704,7 +2704,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType Reference
         {
             get
@@ -2717,7 +2717,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -2731,7 +2731,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -2745,7 +2745,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string isTrue
         {
@@ -2759,7 +2759,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime added
         {
@@ -2773,7 +2773,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool addedSpecified
         {
@@ -2787,7 +2787,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime updated
         {
@@ -2801,7 +2801,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool updatedSpecified
         {
@@ -2816,7 +2816,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2829,7 +2829,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private DocumentHybridDataHybridParentName[] hybridParentNamesField;
 
-        /// <remarks/>
+        
         public string HybridText
         {
             get
@@ -2842,7 +2842,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("HybridParentName", IsNullable = false)]
         public DocumentHybridDataHybridParentName[] HybridParentNames
         {
@@ -2857,7 +2857,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2874,7 +2874,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string suffixTextField;
 
-        /// <remarks/>
+        
         public string NameFull
         {
             get
@@ -2887,7 +2887,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string nameId
         {
@@ -2901,7 +2901,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string prefixText
         {
@@ -2915,7 +2915,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string suffixText
         {
@@ -2930,7 +2930,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2941,7 +2941,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private DocumentHyperlinksHyperlink[] itemsField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlElementAttribute("Hyperlink")]
         public DocumentHyperlinksHyperlink[] Items
         {
@@ -2956,7 +2956,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2975,7 +2975,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string updatedField;
 
-        /// <remarks/>
+        
         public object LinkUrl
         {
             get
@@ -2988,7 +2988,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object Caption
         {
             get
@@ -3001,7 +3001,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -3015,7 +3015,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string added
         {
@@ -3029,7 +3029,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string updated
         {
@@ -3044,7 +3044,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3079,7 +3079,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string typeStatusField;
 
-        /// <remarks/>
+        
         public LinkedNameType NameFormatted
         {
             get
@@ -3092,7 +3092,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string Collector
         {
             get
@@ -3105,7 +3105,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string Substrate
         {
             get
@@ -3118,7 +3118,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public string PartAffected
         {
             get
@@ -3131,7 +3131,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public DocumentCollectionObjectAssociation Association
         {
             get
@@ -3144,7 +3144,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("CollectionEventRegion", IsNullable = false)]
         public DocumentCollectionObjectCollectionEventRegion[] CollectionEventRegions
         {
@@ -3158,7 +3158,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Image", IsNullable = false)]
         public DocumentCollectionObjectImage[] CollectionObjectImages
         {
@@ -3172,7 +3172,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string specimenGuid
         {
@@ -3186,7 +3186,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string specimenId
         {
@@ -3200,7 +3200,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string accessionNumber
         {
@@ -3214,7 +3214,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string collectionAcronym
         {
@@ -3228,7 +3228,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string collectionDateISO
         {
@@ -3242,7 +3242,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string typeStatus
         {
@@ -3257,7 +3257,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3268,7 +3268,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string typeField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -3283,7 +3283,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3296,7 +3296,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string georegionSchemaField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string georegion
         {
@@ -3310,7 +3310,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string georegionSchema
         {
@@ -3325,7 +3325,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3336,7 +3336,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string imageUrlField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string imageUrl
         {

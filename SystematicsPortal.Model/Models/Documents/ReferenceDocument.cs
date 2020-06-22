@@ -18,7 +18,7 @@ using SystematicsPortal.Model.Models.Documents.SubDocuments;
 namespace SystematicsPortal.Model.Models.Documents
 {
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -44,7 +44,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private DocumentKey[] includedKeysField;
 
-        /// <remarks/>
+        
         public DocumentReference Reference
         {
             get
@@ -57,7 +57,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public TextType Title
         {
             get
@@ -70,7 +70,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public object TitleUnformatted
         {
             get
@@ -83,7 +83,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public ReferenceType ParentReference
         {
             get
@@ -96,7 +96,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Field", IsNullable = false)]
         public DocumentField[] Fields
         {
@@ -110,7 +110,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("DefinedConcept", IsNullable = false)]
         public DocumentDefinedConcept[] DefinedConcepts
         {
@@ -124,7 +124,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("CitedTaxon", IsNullable = false)]
         public object[] CitedTaxa
         {
@@ -138,7 +138,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Key", IsNullable = false)]
         public DocumentKey[] IncludedKeys
         {
@@ -153,7 +153,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -166,7 +166,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string typeField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string parentId
         {
@@ -180,7 +180,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -195,7 +195,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -208,7 +208,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string valueField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -222,7 +222,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value
         {
@@ -237,7 +237,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -254,7 +254,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string nameFullField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("Association", IsNullable = false)]
         public DocumentDefinedConceptAssociation[] Associations
         {
@@ -268,7 +268,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string conceptId
         {
@@ -282,7 +282,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string nameId
         {
@@ -296,7 +296,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string nameFull
         {
@@ -311,7 +311,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -330,7 +330,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string relatedNameField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -344,7 +344,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string direction
         {
@@ -358,7 +358,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string relatedConceptId
         {
@@ -372,7 +372,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string relatedNameId
         {
@@ -386,7 +386,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string relatedName
         {
@@ -402,7 +402,7 @@ namespace SystematicsPortal.Model.Models.Documents
     }
 
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -419,7 +419,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string linePrefixField;
 
-        /// <remarks/>
+        
         public TextType Characteristic
         {
             get
@@ -432,7 +432,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         public DocumentKeyLineResultText ResultText
         {
             get
@@ -445,7 +445,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id
         {
@@ -459,7 +459,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string linePrefix
         {
@@ -474,7 +474,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    /// <remarks/>
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -487,7 +487,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string otherKeyLineIdField;
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string nameId
         {
@@ -501,7 +501,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string otherKeyLineId
         {
