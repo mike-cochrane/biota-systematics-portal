@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+using SystematicsPortal.Web.Filters;
+using SystematicsPortal.Web.Helpers;
 using SystematicsPortal.Web.Services;
 
 namespace SystematicsPortal.Web
@@ -20,16 +23,18 @@ namespace SystematicsPortal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             var appSettingsConfigurationSection = Configuration.GetSection("AppSettings");
-
             services.Configure<AppSettings>(appSettingsConfigurationSection);
-
             var appSettings = appSettingsConfigurationSection.Get<AppSettings>();
+
+            services.AddLogging();
 
             services.RegisterDependencies(appSettings);
 
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews(opts =>
+            {
+                opts.Filters.Add<SerilogLoggingActionFilter>();
+            }).AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,15 +46,15 @@ namespace SystematicsPortal.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/home/error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = LogHelper.EnrichFromRequest);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
