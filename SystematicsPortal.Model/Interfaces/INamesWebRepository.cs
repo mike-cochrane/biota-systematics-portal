@@ -10,14 +10,14 @@ namespace SystematicsPortal.Model.Interfaces
 {
     public interface INamesWebRepository
     {
-        NameDocument GetDocument(Guid documentId);
+        Data.dbmodels.NameDocument GetDocument(Guid documentId);
 
-        IEnumerable<NameDocument> GetDocuments();
+        IEnumerable<Data.dbmodels.NameDocument> GetDocuments();
 
-        IEnumerable<NameDocument> GetDocuments(IEnumerable<Guid> documentIds);
+        IEnumerable<Data.dbmodels.NameDocument> GetDocuments(IEnumerable<Guid> documentIds);
 
-        void InsertDocument(NameDocument document);
+        void InsertDocument(Data.dbmodels.NameDocument document);
 
-        void UpdateDocument(NameDocument document);
+        void UpdateDocument(Data.dbmodels.NameDocument document);
     }
 }

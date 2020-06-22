@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SystematicsPortal.Data.dbmodels;
 using SystematicsPortal.Model.Interfaces;
 using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Model.Models.DTOs;
 using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data
@@ -26,7 +27,7 @@ namespace SystematicsPortal.Data
             throw new NotImplementedException();
         }
 
-        public IEnumerable<NameDocument> GetDocuments()
+        public IEnumerable<dbmodels.NameDocument> GetDocuments()
         {
             throw new NotImplementedException();
         }
@@ -36,7 +37,7 @@ namespace SystematicsPortal.Data
             throw new NotImplementedException();
         }
 
-        public void InsertDocument(NameDocument document)
+        public void InsertDocument(dbmodels.NameDocument document)
         {
             throw new NotImplementedException();
         }
@@ -46,7 +47,7 @@ namespace SystematicsPortal.Data
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(NameDocument document)
+        public void UpdateDocument(dbmodels.NameDocument document)
         {
             throw new NotImplementedException();
         }
@@ -86,7 +87,7 @@ namespace SystematicsPortal.Data
                 }
                 else
                 {
-                    storeName = new NameDocument();
+                    storeName = new dbmodels.NameDocument();
 
                     storeName.NameId = Guid.Parse(name.nameId);
                     storeName.Version = 1;
@@ -103,12 +104,12 @@ namespace SystematicsPortal.Data
             return updatedNames;
         }
 
-        NameDocument INamesWebRepository.GetDocument(Guid documentId)
+        dbmodels.NameDocument INamesWebRepository.GetDocument(Guid documentId)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<NameDocument> INamesWebRepository.GetDocuments(IEnumerable<Guid> documentIds)
+        IEnumerable<dbmodels.NameDocument> INamesWebRepository.GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
