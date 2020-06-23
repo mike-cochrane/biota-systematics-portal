@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using SystematicsPortal.Data.dbmodels;
 using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Model.Models.DTOs;
 
 namespace SystematicsPortal.Model.Interfaces
 {
     public interface INamesWebRepository
     {
-        Data.dbmodels.NameDocument GetDocument(Guid documentId);
+        Task<DocumentDto> GetDocument(Guid documentId);
 
         IEnumerable<Data.dbmodels.NameDocument> GetDocuments();
 
