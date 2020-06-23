@@ -26,7 +26,7 @@ namespace SystematicsPortal.Model.Models.Documents
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class VernacularDocument : DocumentType
+    public partial class VernacularDocumentDto : DocumentType
     {
 
         private DocumentVernacularName vernacularNameField;

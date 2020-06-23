@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Model.Models.Documents.Name;
 using SystematicsPortal.Model.Models.Documents.SubDocuments;
 
 namespace SystematicsPortal.Model.Models.DTOs
@@ -87,9 +88,9 @@ namespace SystematicsPortal.Model.Models.DTOs
 
         public List<LinkedNameType> Subordinates { get; set; }
         
-        public List<LinkedNameType> Basionym { get; set; }
+        public LinkedNameType Basionym { get; set; }
         
-        public List<LinkedNameType> BasedOn { get; set; }
+        public LinkedNameType BasedOn { get; set; }
         
         public LinkedNameType Blocking { get; set; }
         

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SystematicsPortal.Data.dbmodels;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SystematicsPortal.Data
 {
@@ -14,6 +15,15 @@ namespace SystematicsPortal.Data
         public NamesWebContext(DbContextOptions<NamesWebContext> options)
             : base(options)
         {
+        }
+
+        public NamesWebContext(string connectionString) : base(GetOptions(connectionString))
+        {
+        }
+
+        private static DbContextOptions GetOptions(string connectionString)
+        {
+            return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
         }
 
         public virtual DbSet<NameDocument> NameDocument { get; set; }
@@ -41,7 +51,6 @@ namespace SystematicsPortal.Data
                     .HasColumnType("xml");
 
                 entity.Property(e => e.ValidFrom).HasColumnType("datetime2(2)");
-
                 entity.Property(e => e.ValidTo).HasColumnType("datetime2(2)");
             });
 

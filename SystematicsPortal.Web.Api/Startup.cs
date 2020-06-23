@@ -36,7 +36,6 @@ namespace SystematicsPortal.Web.Api
 
             services.Configure<AppSettings>(appSettingsConfigurationSection);
 
-            services.AddSingleton<ISearchService, SearchService>();
 
             var connectionString = Configuration.GetConnectionString("NamesWebConnectionString");
 
@@ -44,10 +43,17 @@ namespace SystematicsPortal.Web.Api
                 options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
                 ServiceLifetime.Transient);
 
-            // To take advantage of loose coupling, we say to the services to provide an instance of the AnnotationsRepository for any classes that need it
             services.AddTransient<INamesWebRepository, NamesRepository>();
 
-            services.AddControllers();
+            services.AddSingleton<ISearchService, SearchService>();
+
+            services.AddScoped<INamesService, NamesService>();
+
+
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

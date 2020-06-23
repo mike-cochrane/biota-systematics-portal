@@ -25,7 +25,7 @@ namespace SystematicsPortal.Model.Models.Documents
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class ReferenceDocument : DocumentType
+    public partial class ReferenceDocumentDto : DocumentType
     {
 
         private DocumentReference referenceField;
