@@ -28,7 +28,7 @@ namespace SystematicsPortal.Data
         public async Task<DocumentDto> GetDocument(Guid documentId)
         {
             DocumentDto documentDto = null;
-            var documentDb = await _context.NameDocument.FirstOrDefaultAsync(doc => doc.NameId == documentId);
+            var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
 
             if (!(documentDb is null))
             {
@@ -38,7 +38,7 @@ namespace SystematicsPortal.Data
             return documentDto;
         }
 
-        public IEnumerable<dbmodels.NameDocument> GetDocuments()
+        public IEnumerable<dbmodels.Document> GetDocuments()
         {
             throw new NotImplementedException();
         }
@@ -48,9 +48,9 @@ namespace SystematicsPortal.Data
             throw new NotImplementedException();
         }
 
-        public void InsertDocument(dbmodels.NameDocument document)
+        public void InsertDocument(dbmodels.Document document)
         {
-            _context.NameDocument.Add(document);
+            _context.Document.Add(document);
 
             _context.SaveChanges();
         }
@@ -60,7 +60,7 @@ namespace SystematicsPortal.Data
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(dbmodels.NameDocument document)
+        public void UpdateDocument(dbmodels.Document document)
         {
             throw new NotImplementedException();
         }
@@ -100,9 +100,9 @@ namespace SystematicsPortal.Data
                 //}
                 //else
                 {
-                    var storeName = new dbmodels.NameDocument();
+                    var storeName = new dbmodels.Document();
 
-                    storeName.NameId = Guid.Parse(name.nameId);
+                    storeName.DocumentId = Guid.Parse(name.nameId);
                     storeName.Version = 1;
                     storeName.SerializedDocument = xml;
 
@@ -117,7 +117,7 @@ namespace SystematicsPortal.Data
             return updatedNames;
         }
 
-        IEnumerable<dbmodels.NameDocument> INamesWebRepository.GetDocuments(IEnumerable<Guid> documentIds)
+        IEnumerable<dbmodels.Document> INamesWebRepository.GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }

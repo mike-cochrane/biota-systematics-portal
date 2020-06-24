@@ -13,12 +13,12 @@ namespace SystematicsPortal.Model.Interfaces
     {
         Task<DocumentDto> GetDocument(Guid documentId);
 
-        IEnumerable<Data.dbmodels.NameDocument> GetDocuments();
+        IEnumerable<Data.dbmodels.Document> GetDocuments();
 
-        IEnumerable<Data.dbmodels.NameDocument> GetDocuments(IEnumerable<Guid> documentIds);
+        IEnumerable<Data.dbmodels.Document> GetDocuments(IEnumerable<Guid> documentIds);
 
-        void InsertDocument(Data.dbmodels.NameDocument document);
+        void InsertDocument(Data.dbmodels.Document document);
 
-        void UpdateDocument(Data.dbmodels.NameDocument document);
+        void UpdateDocument(Data.dbmodels.Document document);
     }
 }

@@ -12,7 +12,7 @@ using SystematicsPortal.Web.Api.Services;
 namespace SystematicsPortal.Web.Api.Controllers
 {
     [ApiController]
-    //[Route("[controller]")]
+    [Route("[controller]")]
     public class NamesController : ControllerBase
     {
         private readonly ILogger<SearchController> _logger;
@@ -27,7 +27,7 @@ namespace SystematicsPortal.Web.Api.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpGet("Names/{id}", Name = "GetName")]
+        [HttpGet("{id}", Name = "GetName")]
         public async Task<IActionResult> GetAsync(string id/*, string documentType*/)
         {
             _logger.LogDebug(

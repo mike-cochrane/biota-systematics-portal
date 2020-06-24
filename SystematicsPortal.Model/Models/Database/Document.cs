@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SystematicsPortal.Data.dbmodels
 {
-    public partial class VernacularNameDocument
+    public partial class Document
     {
-        public Guid VernacularNameId { get; set; }
+        public Guid DocumentId { get; set; }
         public int Version { get; set; }
         public string SerializedDocument { get; set; }
         public DateTime ValidFrom { get; set; }

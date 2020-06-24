@@ -1,11 +1,11 @@
-﻿CREATE TABLE [documents].[VernacularNameDocument] (
-    [VernacularNameId]				UNIQUEIDENTIFIER                            NOT NULL,
+﻿CREATE TABLE [documents].[Document] (
+    [DocumentId]    		UNIQUEIDENTIFIER                            NOT NULL,
     [Version]				INT                                         NOT NULL,
     [SerializedDocument]	XML                                         NOT NULL,
     [ValidFrom]				DATETIME2 (2) GENERATED ALWAYS AS ROW START NOT NULL,
     [ValidTo]				DATETIME2 (2) GENERATED ALWAYS AS ROW END   NOT NULL,
 
-    CONSTRAINT [prkVernacularNameDocument] PRIMARY KEY CLUSTERED ([VernacularNameId] ASC),
+    CONSTRAINT [prkDocument] PRIMARY KEY CLUSTERED ([DocumentId] ASC),
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
-WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[documents].[VernacularNameDocumentHistory], DATA_CONSISTENCY_CHECK=ON));
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[documents].[DocumentHistory], DATA_CONSISTENCY_CHECK=ON));
