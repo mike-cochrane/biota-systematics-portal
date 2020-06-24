@@ -43,7 +43,7 @@ namespace SystematicsPortal.Web.Api
                 options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
                 ServiceLifetime.Transient);
 
-            services.AddTransient<INamesWebRepository, NamesRepository>();
+            services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
             services.AddSingleton<ISearchService, SearchService>();
 

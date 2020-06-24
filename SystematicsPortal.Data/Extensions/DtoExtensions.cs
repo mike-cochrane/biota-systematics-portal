@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Data.dbmodels;
+using SystematicsPortal.Model.Models.Database;
 using SystematicsPortal.Model.Models.DTOs;
 using SystematicsPortal.Utility.Helpers;
 

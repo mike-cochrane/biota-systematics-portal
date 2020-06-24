@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SystematicsPortal.Data.dbmodels;
 using System.ComponentModel.DataAnnotations.Schema;
+using SystematicsPortal.Model.Models.Database;
 
 namespace SystematicsPortal.Data
 {

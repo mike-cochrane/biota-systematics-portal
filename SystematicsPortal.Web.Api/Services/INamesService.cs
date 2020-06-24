@@ -9,6 +9,6 @@ namespace SystematicsPortal.Web.Api.Services
 {
     public interface INamesService
     {
-        Task<DocumentDto> GetDocument(string id);
+        Task<Model.Models.Access.Document> GetDocument(string id);
     }
 }

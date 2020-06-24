@@ -11,31 +11,32 @@ namespace SystematicsPortal.Web.Api.Services
 {
     public class NamesService : INamesService
     {
-        private readonly INamesWebRepository _namesRepository;
-        private readonly INamesWebRepository _vernacularRepository;
-        private readonly INamesWebRepository _referenceRepository;
+        private readonly IDocumentsRepository _namesRepository;
+        private readonly IDocumentsRepository _vernacularRepository;
+        private readonly IDocumentsRepository _referenceRepository;
 
         private readonly ILogger<NamesService> _logger;
 
-        public NamesService(INamesWebRepository namesRepository, ILogger<NamesService> logger)
+        public NamesService(IDocumentsRepository namesRepository, ILogger<NamesService> logger)
         {
             _namesRepository = namesRepository;
             _logger = logger;
         }
 
-        public async Task<DocumentDto> GetDocument(string id)
+        public async Task<Model.Models.Access.Document> GetDocument(string id)
         {
-            DocumentDto name;
+            Model.Models.Access.Document document;
+
             if (Guid.TryParse(id, out var idGuid))
-            { 
-                name = await _namesRepository.GetDocument(idGuid);
+            {
+                document = await _namesRepository.GetDocument(idGuid);
             }
             else
             {
                 throw new Exception("Not valid Id");
             }
 
-            return name;
+            return document;
 
 
         }

@@ -6,64 +6,65 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Data.dbmodels;
 using SystematicsPortal.Data.Extensions;
 using SystematicsPortal.Model.Interfaces;
 using SystematicsPortal.Model.Models.Documents;
 using SystematicsPortal.Model.Models.DTOs;
 using SystematicsPortal.Utility.Helpers;
+using SystematicsPortal.Model.Models.Access;
+using System.Xml.Linq;
 
 namespace SystematicsPortal.Data
 {
-    public class NamesRepository : INamesWebRepository
+    public class DocumentsRepository : IDocumentsRepository
     {
         private readonly NamesWebContext _context;
 
 
-        public NamesRepository(NamesWebContext context)
+        public DocumentsRepository(NamesWebContext context)
         {
             _context = context;
         }
 
-        public async Task<DocumentDto> GetDocument(Guid documentId)
+        public async Task<Model.Models.Access.Document> GetDocument(Guid documentId)
         {
-            DocumentDto documentDto = null;
+            Model.Models.Access.Document documentAccess= null;
             var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
 
             if (!(documentDb is null))
             {
-                documentDto = documentDb.ToDto();
+                documentAccess.XDocument = XDocument.Parse(documentDb.SerializedDocument);
             }
 
-            return documentDto;
+            return documentAccess;
         }
 
-        public IEnumerable<dbmodels.Document> GetDocuments()
+        public IEnumerable<Model.Models.Access.Document> GetDocuments()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DocumentDto> GetDocuments(IEnumerable<Guid> documentIds)
+        public IEnumerable<Model.Models.Access.Document> GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertDocument(dbmodels.Document document)
+        public void InsertDocument(Model.Models.Database.Document document)
         {
             _context.Document.Add(document);
 
-            _context.SaveChanges();
         }
 
-        public void UpdateDocument(DocumentDto document)
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
+        }
+
+        public void UpdateDocument(Model.Models.Access.Document document)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(dbmodels.Document document)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Writes name documents to the store and returns a list of names that were updated.
@@ -100,7 +101,7 @@ namespace SystematicsPortal.Data
                 //}
                 //else
                 {
-                    var storeName = new dbmodels.Document();
+                    var storeName = new Model.Models.Database.Document();
 
                     storeName.DocumentId = Guid.Parse(name.nameId);
                     storeName.Version = 1;
@@ -115,11 +116,6 @@ namespace SystematicsPortal.Data
             }
 
             return updatedNames;
-        }
-
-        IEnumerable<dbmodels.Document> INamesWebRepository.GetDocuments(IEnumerable<Guid> documentIds)
-        {
-            throw new NotImplementedException();
         }
     }
 }

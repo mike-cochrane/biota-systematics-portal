@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SystematicsPortal.Data.dbmodels
+namespace SystematicsPortal.Model.Models.Database
 {
     public partial class Document
     {

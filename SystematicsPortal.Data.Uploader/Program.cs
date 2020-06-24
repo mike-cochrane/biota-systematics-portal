@@ -26,7 +26,7 @@ namespace SystematicsPortal.Data.Uploader
                 dezerializedList = (Documents)serializer.Deserialize(stream);
             }
 
-            NamesRepository repository = new NamesRepository(new NamesWebContext(connectionString));
+            DocumentsRepository repository = new DocumentsRepository(new NamesWebContext(connectionString));
 
             repository.WriteDocuments(dezerializedList.Document);
 
