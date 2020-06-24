@@ -9,15 +9,15 @@ using SystematicsPortal.Model.Models.DTOs;
 
 namespace SystematicsPortal.Web.Api.Services
 {
-    public class NamesService : INamesService
+    public class DocumentsService : IDocumentsService
     {
         private readonly IDocumentsRepository _namesRepository;
         private readonly IDocumentsRepository _vernacularRepository;
         private readonly IDocumentsRepository _referenceRepository;
 
-        private readonly ILogger<NamesService> _logger;
+        private readonly ILogger<DocumentsService> _logger;
 
-        public NamesService(IDocumentsRepository namesRepository, ILogger<NamesService> logger)
+        public DocumentsService(IDocumentsRepository namesRepository, ILogger<DocumentsService> logger)
         {
             _namesRepository = namesRepository;
             _logger = logger;

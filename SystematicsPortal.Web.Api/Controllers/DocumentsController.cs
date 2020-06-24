@@ -13,14 +13,14 @@ namespace SystematicsPortal.Web.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class NamesController : ControllerBase
+    public class DocumentsController : ControllerBase
     {
         private readonly ILogger<SearchController> _logger;
         private readonly AppSettings _appSettings;
-        private readonly INamesService _namesService;
+        private readonly IDocumentsService _namesService;
 
 
-        public NamesController(IOptions<AppSettings> appSettings, ILogger<SearchController> logger, INamesService namesService)
+        public DocumentsController(IOptions<AppSettings> appSettings, ILogger<SearchController> logger, IDocumentsService namesService)
         {
             _logger = logger;
             _namesService = namesService;
@@ -28,7 +28,7 @@ namespace SystematicsPortal.Web.Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetName")]
-        public async Task<IActionResult> GetAsync(string id/*, string documentType*/)
+        public async Task<IActionResult> Get(string id/*, string documentType*/)
         {
             _logger.LogDebug(
                 "NamesController - Get - id: {id}",
@@ -38,9 +38,9 @@ namespace SystematicsPortal.Web.Api.Controllers
 
 
 
+            return Ok(response.XmlDocument);
 
-
-            return Ok(response);
+            // return Ok(response.XDocument.Document);
         }
 
     }

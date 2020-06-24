@@ -13,7 +13,7 @@ namespace SystematicsPortal.Data.Extensions
     {
         public static DocumentDto ToDto(this Document nameDocument)
         {
-            var name = SerializationHelper.Deserialize<SystematicsPortal.Model.Models.Documents.Name.Document>(nameDocument.SerializedDocument);
+            var name = SerializationHelper.Deserialize<Model.Models.Documents.Name.Document>(nameDocument.SerializedDocument);
 
 
             var docDto = new DocumentDto();

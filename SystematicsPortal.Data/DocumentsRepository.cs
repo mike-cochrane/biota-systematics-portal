@@ -13,6 +13,7 @@ using SystematicsPortal.Model.Models.DTOs;
 using SystematicsPortal.Utility.Helpers;
 using SystematicsPortal.Model.Models.Access;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace SystematicsPortal.Data
 {
@@ -26,25 +27,32 @@ namespace SystematicsPortal.Data
             _context = context;
         }
 
-        public async Task<Model.Models.Access.Document> GetDocument(Guid documentId)
+        public async Task<Document> GetDocument(Guid documentId)
         {
-            Model.Models.Access.Document documentAccess= null;
+            Document documentAccess = null;
             var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
 
             if (!(documentDb is null))
             {
-                documentAccess.XDocument = XDocument.Parse(documentDb.SerializedDocument);
+                documentAccess = new Document()
+                {
+                    XDocument = XDocument.Parse(documentDb.SerializedDocument),
+                    XmlDocument = (new XmlDocument()),
+                    SDocument = documentDb.SerializedDocument
+                };
+
+                documentAccess.XmlDocument.LoadXml(documentDb.SerializedDocument);
             }
 
             return documentAccess;
         }
 
-        public IEnumerable<Model.Models.Access.Document> GetDocuments()
+        public IEnumerable<Document> GetDocuments()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Models.Access.Document> GetDocuments(IEnumerable<Guid> documentIds)
+        public IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
@@ -60,7 +68,7 @@ namespace SystematicsPortal.Data
             return _context.SaveChanges();
         }
 
-        public void UpdateDocument(Model.Models.Access.Document document)
+        public void UpdateDocument(Document document)
         {
             throw new NotImplementedException();
         }
@@ -112,9 +120,11 @@ namespace SystematicsPortal.Data
                     //_logger.Verbose("{Action} {NameId} {NameFullName}", "Add Consensus Name Document", name.NameId, name.FullName);
                 }
 
+                
                 index++;
             }
 
+            SaveChanges();
             return updatedNames;
         }
     }

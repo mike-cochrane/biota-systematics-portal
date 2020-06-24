@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SystematicsPortal.Model.Models.Database
 {
@@ -8,7 +9,9 @@ namespace SystematicsPortal.Model.Models.Database
         public Guid DocumentId { get; set; }
         public int Version { get; set; }
         public string SerializedDocument { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime ValidFrom { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime ValidTo { get; set; }
     }
 }

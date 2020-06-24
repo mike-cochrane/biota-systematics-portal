@@ -7,7 +7,7 @@ using SystematicsPortal.Model.Models.DTOs;
 
 namespace SystematicsPortal.Web.Api.Services
 {
-    public interface INamesService
+    public interface IDocumentsService
     {
         Task<Model.Models.Access.Document> GetDocument(string id);
     }
