@@ -31,10 +31,7 @@ namespace SystematicsPortal.Data.Uploader.Classess
             _logger.Debug("SystematicsPortal.Data.Uploader: Starting upload process for files");
             var results = new List<Result>();
             Result result;
-            var documents = new List<XDocument>();
             var files = Directory.GetFiles(_sourcePath, "*DOCUMENT*.xml");
-
-
 
             foreach (var file in files)
             {
@@ -45,17 +42,11 @@ namespace SystematicsPortal.Data.Uploader.Classess
 
                 try
                 {
-
                     var document = XDocument.Load(file);
-
                     int numberResults = await _repository.WriteDocuments(document);
-
 
                     result.UploadResult = true;
                     result.Message = $"Upload Succesful - {numberResults} persisted";
-
-                    
-
                 }
                 catch (Exception e)
                 {

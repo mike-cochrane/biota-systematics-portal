@@ -14,8 +14,6 @@ namespace SystematicsPortal.Web.Api.Demo
         {
                 // Start!
                 MainAsync(args).Wait();
-
-           
         }
 
         private static async Task MainAsync(string[] args)
