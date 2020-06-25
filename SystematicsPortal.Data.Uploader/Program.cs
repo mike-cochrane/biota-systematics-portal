@@ -10,18 +10,15 @@ namespace SystematicsPortal.Web.Api.Demo
 {
     class Program
     {
-        static int Main(string[] args)
+        static void Main(string[] args)
         {
-            int result = 0;
-
-            
                 // Start!
                 MainAsync(args).Wait();
 
-            return result;
+           
         }
 
-        private static async Task<int> MainAsync(string[] args)
+        private static async Task MainAsync(string[] args)
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -51,21 +48,25 @@ namespace SystematicsPortal.Web.Api.Demo
 
                     Parser parser = new Parser(logger, connectionString, appSettings.SourcePath);
 
-                    await parser.StoreFilesInDocumentStore();
+                    var results = await parser.StoreFilesInDocumentStore();
 
+                    logger.Information("SystematicsPortal.Data.Uploader process results:");
+
+
+                    foreach (var result in results)
+                    {
+                        logger.Information("File: {FileName}", result.FileName);
+                        logger.Information("Result: {UploadResult}", result.UploadResult);
+                        logger.Information("Message: {Message}", result.Message);
+                    }
 
                     logger.Information("SystematicsPortal.Data.Uploader - Finished");
-
-                    return 0;
                 }
                 catch (Exception exception)
                 {
                     logger.Information("SystematicsPortal.Data.Uploader failed {exception}", exception.Message);
                 }
             }
-
-            var result = 0;
-            return result;
         }
     }
 }
