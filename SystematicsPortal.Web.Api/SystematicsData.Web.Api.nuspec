@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0"?>
 <package >
   <metadata>
-    <id>SystematicsPortal.Web.Api</id>
+    <id>SystematicsData.Web.Api</id>
     <version>$version$</version>
-    <title>Systematics Portal Web API</title>
+    <title>Systematics Data Web API</title>
     <authors>Landcare Research</authors>
     <owners>Landcare Research</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Systematics portal web API.</description>
+    <description>Systematics data web API.</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright</copyright>
-    <tags>systematics-portal web api</tags>
+    <tags>systematics-portal systematics-data web api</tags>
   </metadata>
   <files>
     <file src="**" target=""/>
