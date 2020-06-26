@@ -33,14 +33,14 @@
     top: 0px;
 }
 
-    .search-icon:hover {
-        background-color: grey;
-    }
+.search-icon:hover {
+    background-color: grey;
+}
 
-    .search-field-wrapper, .search-icon-wrapper {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
+.search-field-wrapper, .search-icon-wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
 .form-control {
     border-radius: 0px;

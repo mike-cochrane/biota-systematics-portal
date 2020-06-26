@@ -84,13 +84,13 @@ namespace SystematicsPortal.Web.Controllers
         // GET: Search/Details/5
         public ActionResult Details(int id)
         {
-            DocumentDto document;
+            /*DocumentDto document;
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(DocumentDto));
 
             using (StreamReader xml = new StreamReader("single-Document-References-Fungi.xml"))
             {
                 document = (DocumentDto)ser.Deserialize(xml);
-            }
+            }*/
 
             //XmlDocument xmlString = new XmlDocument();
             //xmlString.Load("single-document.xml");
@@ -107,7 +107,8 @@ namespace SystematicsPortal.Web.Controllers
 
             //document = (Document)ser.Deserialize(xmlStream);
 
-            return View(document);
+            //return View(document);
+            return View();
         }
 
 
