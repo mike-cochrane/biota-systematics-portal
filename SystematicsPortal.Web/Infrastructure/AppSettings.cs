@@ -1,10 +1,12 @@
-﻿namespace Annotations.Web.dScribe.Models
+﻿namespace SystematicsPortal.Web.Infrastructure
 {
     public class AppSettings
     {
         public IdentityServerSettings IdentityServer { get; set; }
 
         public AccessServiceSettings AccessService { get; set; }
+
+        public ContentServiceSettings ContentService { get; set; }
 
         public EmailSetting Email { get; set; }
     }
@@ -22,6 +24,11 @@
         public string Name { get; set; }
     }
     public class AccessServiceSettings
+    {
+        public string Url { get; set; }
+        public string Name { get; set; }
+    }
+    public class ContentServiceSettings
     {
         public string Url { get; set; }
         public string Name { get; set; }

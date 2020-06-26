@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Annotations\" />
     <Folder Include="Models\Documents\Reference\" />
     <Folder Include="Models\Documents\Vernacular\" />
   </ItemGroup>

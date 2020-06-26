@@ -1,6 +1,6 @@
-﻿using Annotations.Web.dScribe.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using SystematicsPortal.Web.Infrastructure;
 
 namespace SystematicsPortal.Web.Services
 {
@@ -11,6 +11,8 @@ namespace SystematicsPortal.Web.Services
             services.AddSingleton(new Api.Client.Client(appSettings.AccessService.Url));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ISearchService, SearchService>();
+            services.AddSingleton<IContentService, ContentService>();
+
         }
     }
 }
