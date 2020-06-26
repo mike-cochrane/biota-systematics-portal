@@ -8,16 +8,16 @@
                 else {
                     <input class="search-query search-text single-line" id="Query" name="Query" type="text" value="@Model.UncorrectedQuery" />
                 }
-                <button type="submit" id="submit" class="btn">
+                <!--<button type="submit" id="submit" class="btn">
                     <i class="icon-search" title="Search"></i>
-                </button>
+                </button>-->
             </div>
         </div>
-        <div class="row-fluid">
+        <!--<div class="row-fluid">
             <div class="span2 offset9 search-tips-2">
                 <a href="@Url.Action("Help", "Search")" target="_blank" title="Search tips"><i class="icon-question-sign"></i>&nbsp;<small>Search help</small></a>
             </div>
-        </div>
+        </div>-->
         <div class="row-fluid">
             <div class="span11  text-center">
                 @if (!Model.UncorrectedQuery.Equals(string.Empty)) {
