@@ -912,7 +912,7 @@
 
     @if (Model.HyperLinks != null)
     {
-        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentHyperlink hyperlink in Model.Hyperlinks)
+        @foreach (SystematicsPortal.Model.Documents.DocumentHyperlink hyperlink in Model.Hyperlinks)
         {
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">&nbsp;</label>
@@ -926,7 +926,7 @@
     @if (Model.ExternalLinks != null)
     {
         <h4>Nomenclators</h4>
-        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentExternalLink externalLink in Model.ExternalLinks)
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentDto.DocumentExternalLink externalLink in Model.ExternalLinks)
         {
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">&nbsp;</label>
