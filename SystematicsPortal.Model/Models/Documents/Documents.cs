@@ -16,11 +16,11 @@ namespace SystematicsPortal.Model.Models.Documents
     public partial class Documents
     {
 
-        private Document[] documentField;
+        private NameDocument[] documentField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Document")]
-        public Document[] Document
+        public NameDocument[] Document
         {
             get
             {

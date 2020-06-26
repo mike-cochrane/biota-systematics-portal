@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using SystematicsPortal.Model.Models.Access;
 using SystematicsPortal.Search.Tools.Models.Search;
+using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Web.Services
 {
@@ -26,9 +27,21 @@ namespace SystematicsPortal.Web.Services
             return response;
         }
 
-        public async Task<Document> GetDocument(string id)
+        public async Task<Model.Models.Access.Document> GetDocument(string id)
         {
-            var document = await _apiClient.GetDocument(id);
+            var documentXml = await _apiClient.GetDocument(id);
+
+            return documentXml;
+        }
+
+
+        public async Task<Model.Models.Documents.DocumentType> GetDocumentAsCSharpClass(string id)
+        {
+            var documentXml = await _apiClient.GetDocument(id);
+
+
+            Model.Models.Documents.DocumentType document = null; 
+
 
             return document;
         }

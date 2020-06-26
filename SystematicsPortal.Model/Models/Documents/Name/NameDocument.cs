@@ -27,7 +27,7 @@ namespace SystematicsPortal.Model.Models.Documents.Name
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class Document : DocumentType
+    public partial class NameDocument : DocumentType
     {
 
         private DocumentName nameField;

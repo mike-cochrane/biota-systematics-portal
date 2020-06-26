@@ -22,7 +22,7 @@ namespace SystematicsPortal.Model.Interfaces
         Task InsertDocument(Document document);
 
         void UpdateDocument(Models.Access.Document document);
-        Task<int> WriteSerializedDocuments(Model.Models.Documents.Name.Document[] names);
+        Task<int> WriteSerializedDocuments(Model.Models.Documents.Name.NameDocument[] names);
         Task<int> WriteDocuments(XDocument documents);
     }
 }

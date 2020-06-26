@@ -66,7 +66,7 @@ namespace SystematicsPortal.Data
         /// <summary>
         /// Writes name documents to the store and returns a list of names that were updated.
         /// </summary>
-        public async Task<int> WriteSerializedDocuments(Model.Models.Documents.Name.Document[] names)
+        public async Task<int> WriteSerializedDocuments(Model.Models.Documents.Name.NameDocument[] names)
         {
             int index = 1;
             int consensusNameCount = names.Count();
