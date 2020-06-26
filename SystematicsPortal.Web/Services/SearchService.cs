@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SystematicsPortal.Model.Models.Access;
 using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Services
@@ -20,9 +21,16 @@ namespace SystematicsPortal.Web.Services
             string sortBy = "",
             string sortOrder = "")
         {
-            var response  = await _apiClient.CallService(searchTerm, pageNumber, resultsPerPage);
+            var response  = await _apiClient.Search(searchTerm, pageNumber, resultsPerPage);
 
             return response;
+        }
+
+        public async Task<Document> GetDocument(string id)
+        {
+            var document = await _apiClient.GetDocument(id);
+
+            return document;
         }
     }
 }
