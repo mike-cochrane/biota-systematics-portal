@@ -6,6 +6,7 @@ using SystematicsPortal.Web.Services;
 using System.Threading.Tasks;
 using System;
 using SystematicsPortal.Model.Models.DTOs;
+using System.Linq;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -13,10 +14,13 @@ namespace SystematicsPortal.Web.Controllers
     {
         const int NUMBER_OF_RESULTS_PER_PAGE = 10;
         public ISearchService _searchService;
+        public IContentService _contentService;
 
-        public SearchController(ISearchService searchService)
+
+        public SearchController(ISearchService searchService, IContentService contentService)
         {
             _searchService = searchService;
+            _contentService = contentService;
         }
 
         // GET: Search
@@ -25,6 +29,9 @@ namespace SystematicsPortal.Web.Controllers
         {
             try
             {
+                await CallContentServiceAsync();
+
+
                 bool success = false;
                 var viewData = new SearchViewModel(null, null);
 
@@ -179,6 +186,25 @@ namespace SystematicsPortal.Web.Controllers
             {
                 return View();
             }
+        }
+
+        private async Task CallContentServiceAsync()
+        {
+            var resources = await _contentService.GetResources();
+
+            var testResource = resources.ResourceList.FirstOrDefault(x => x.Value == "Test Data");
+
+            var itemTypes = await _contentService.GetItemTypes(testResource.ResourceId);
+
+            var itemType = itemTypes.Types.FirstOrDefault(x=>x.DisplayTitleSingular == "eFlora-Taxon");
+
+            var itemIds = await _contentService.GetItemIds(itemType.ItemTypeId);
+
+            var itemIdsList = itemIds.ItemsList.Select(x => x.ItemId).ToList();
+                
+            var items = await _contentService.GetItemsByIds(itemIdsList);
+
+
         }
     }
 }

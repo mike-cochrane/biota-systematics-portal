@@ -18,11 +18,11 @@ namespace SystematicsPortal.Model.Models.DTOs
         
         public DocumentTypeSource Source { get; set; }
         
-        public System.DateTime Added { get; set; }
+        public DateTime Added { get; set; }
         
         public bool AddedSpecified { get; set; }
         
-        public System.DateTime Updated { get; set; }
+        public DateTime Updated { get; set; }
         
         public bool UpdatedSpecified { get; set; }
 

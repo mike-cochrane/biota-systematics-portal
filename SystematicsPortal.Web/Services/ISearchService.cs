@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SystematicsPortal.Model.Models.Access;
+using SystematicsPortal.Model.Models.Documents;
 using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Services
@@ -13,5 +15,9 @@ namespace SystematicsPortal.Web.Services
             int resultsPerPage=100,
             string sortBy ="",
             string sortOrder="");
+
+        Task<Document> GetDocument (string id);
+
+        Task<DocumentType> GetDocumentAsCSharpClass(string id);
     }
 }

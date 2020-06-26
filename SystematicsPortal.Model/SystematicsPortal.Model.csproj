@@ -8,4 +8,10 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Annotations\" />
+    <Folder Include="Models\Documents\Reference\" />
+    <Folder Include="Models\Documents\Vernacular\" />
+  </ItemGroup>
+
 </Project>

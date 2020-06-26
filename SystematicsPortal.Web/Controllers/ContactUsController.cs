@@ -51,7 +51,7 @@ namespace SystematicsPortal.Web.Controllers
                     message += " has sent the following comment via the Systematics Collections Data website.</p>"
                         + model.Message;
 
-                    Utility.SendEmail(recipient, model.Subject, message, model.Email);
+                    //Utility.SendEmail(recipient, model.Subject, message, model.Email);
 
                     info = "Thank you for your feedback. Your comment will be attended to within the next few days.";
                 }

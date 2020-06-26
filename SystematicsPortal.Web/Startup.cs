@@ -1,4 +1,3 @@
-using Annotations.Web.dScribe.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using SystematicsPortal.Web.Filters;
 using SystematicsPortal.Web.Helpers;
+using SystematicsPortal.Web.Infrastructure;
 using SystematicsPortal.Web.Services;
 
 namespace SystematicsPortal.Web

@@ -18,7 +18,7 @@ using SystematicsPortal.Model.Models.Documents.SubDocuments;
 namespace SystematicsPortal.Model.Models.Documents
 {
 
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -44,7 +44,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private DocumentKey[] includedKeysField;
 
-        
+
         public DocumentReference Reference
         {
             get
@@ -57,7 +57,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         public TextType Title
         {
             get
@@ -70,7 +70,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         public object TitleUnformatted
         {
             get
@@ -83,7 +83,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         public ReferenceType ParentReference
         {
             get
@@ -96,7 +96,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlArrayItemAttribute("Field", IsNullable = false)]
         public DocumentField[] Fields
         {
@@ -110,7 +110,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlArrayItemAttribute("DefinedConcept", IsNullable = false)]
         public DocumentDefinedConcept[] DefinedConcepts
         {
@@ -124,7 +124,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlArrayItemAttribute("CitedTaxon", IsNullable = false)]
         public object[] CitedTaxa
         {
@@ -138,7 +138,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlArrayItemAttribute("Key", IsNullable = false)]
         public DocumentKey[] IncludedKeys
         {
@@ -153,7 +153,7 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -166,7 +166,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string typeField;
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string parentId
         {
@@ -180,7 +180,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -195,123 +195,11 @@ namespace SystematicsPortal.Model.Models.Documents
         }
     }
 
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class DocumentField
-    {
 
-        private string typeField;
 
-        private string valueField;
 
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string type
-        {
-            get
-            {
-                return this.typeField;
-            }
-            set
-            {
-                this.typeField = value;
-            }
-        }
 
-        
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value
-        {
-            get
-            {
-                return this.valueField;
-            }
-            set
-            {
-                this.valueField = value;
-            }
-        }
-    }
 
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class DocumentDefinedConcept
-    {
-
-        private DocumentDefinedConceptAssociation[] associationsField;
-
-        private string conceptIdField;
-
-        private string nameIdField;
-
-        private string nameFullField;
-
-        
-        [System.Xml.Serialization.XmlArrayItemAttribute("Association", IsNullable = false)]
-        public DocumentDefinedConceptAssociation[] Associations
-        {
-            get
-            {
-                return this.associationsField;
-            }
-            set
-            {
-                this.associationsField = value;
-            }
-        }
-
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string conceptId
-        {
-            get
-            {
-                return this.conceptIdField;
-            }
-            set
-            {
-                this.conceptIdField = value;
-            }
-        }
-
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string nameId
-        {
-            get
-            {
-                return this.nameIdField;
-            }
-            set
-            {
-                this.nameIdField = value;
-            }
-        }
-
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string nameFull
-        {
-            get
-            {
-                return this.nameFullField;
-            }
-            set
-            {
-                this.nameFullField = value;
-            }
-        }
-    }
-
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -330,7 +218,7 @@ namespace SystematicsPortal.Model.Models.Documents
 
         private string relatedNameField;
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string type
         {
@@ -344,7 +232,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string direction
         {
@@ -358,7 +246,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string relatedConceptId
         {
@@ -372,7 +260,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string relatedNameId
         {
@@ -386,7 +274,7 @@ namespace SystematicsPortal.Model.Models.Documents
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string relatedName
         {
@@ -402,117 +290,7 @@ namespace SystematicsPortal.Model.Models.Documents
     }
 
 
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class DocumentKeyLine
-    {
 
-        private TextType characteristicField;
 
-        private DocumentKeyLineResultText resultTextField;
 
-        private string idField;
-
-        private string linePrefixField;
-
-        
-        public TextType Characteristic
-        {
-            get
-            {
-                return this.characteristicField;
-            }
-            set
-            {
-                this.characteristicField = value;
-            }
-        }
-
-        
-        public DocumentKeyLineResultText ResultText
-        {
-            get
-            {
-                return this.resultTextField;
-            }
-            set
-            {
-                this.resultTextField = value;
-            }
-        }
-
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string linePrefix
-        {
-            get
-            {
-                return this.linePrefixField;
-            }
-            set
-            {
-                this.linePrefixField = value;
-            }
-        }
-    }
-
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class DocumentKeyLineResultText : TextType
-    {
-
-        private string nameIdField;
-
-        private string otherKeyLineIdField;
-
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string nameId
-        {
-            get
-            {
-                return this.nameIdField;
-            }
-            set
-            {
-                this.nameIdField = value;
-            }
-        }
-
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string otherKeyLineId
-        {
-            get
-            {
-                return this.otherKeyLineIdField;
-            }
-            set
-            {
-                this.otherKeyLineIdField = value;
-            }
-        }
-    }
 }

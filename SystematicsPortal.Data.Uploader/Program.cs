@@ -1,36 +1,70 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Extensions.Configuration;
+using Serilog;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
-using SystematicsPortal.Model.Models.Documents;
+using System.Threading.Tasks;
+using SystematicsPortal.Data.Uploader.Classess;
+using SystematicsPortal.Data.Uploader.Helpers;
 
-namespace SystematicsPortal.Data.Uploader
+namespace SystematicsPortal.Web.Api.Demo
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var connectionString = "Data Source=DEV-SQL-02;MultipleActiveResultSets=true;Initial Catalog=Names_Web;Integrated Security=True;MultipleActiveResultSets=True";
-            XmlSerializer serializer = new XmlSerializer(typeof(Documents));
+                // Start!
+                MainAsync(args).Wait();
+        }
 
-            //using (FileStream stream = File.OpenWrite("filename"))
-            //{
-            //    List<NameDocumentDto> list = new List<NameDocumentDto>();
-            //    serializer.Serialize(stream, list);
-            //}
-            Documents dezerializedList;
+        private static async Task MainAsync(string[] args)
+        {
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-            using (FileStream stream = File.OpenRead("D:\\development\\biota-systematics-portal\\SystematicsPortal.Data\\ExemplarData\\20200619-Document-Names-NZAC.xml"))
+            IConfigurationRoot configuration = builder.Build();
+
+            using (var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .Enrich.WithProperty("CorrelationId", Guid.NewGuid())
+                .CreateLogger())
             {
-                dezerializedList = (Documents)serializer.Deserialize(stream);
+                try
+                {
+                    logger.Information("SystematicsPortal.Data.Uploader - Started");
+                    logger.Information("Machine: {MachineName}", Environment.MachineName);
+                    logger.Information("Version: {Version}", AssemblyInfoHelper.GetInformationalVersion());
+                    logger.Information("User Name: {UserName}", Environment.UserName);
+
+                    var connectionString = configuration.GetConnectionString("NamesWebConnectionString");
+                    var settingsConfigurationSection = configuration.GetSection("AppSettings");
+                    AppSettings appSettings = settingsConfigurationSection.Get<AppSettings>();
+
+
+                    logger.Information("Configuration - Connection String: {ConnectionString}", ConnectionStringHelper.ReplacePassword(connectionString, "*REMOVED*"));
+                    logger.Information("Configuration - Source Folder Name: {SourceFolder}", appSettings.SourcePath);
+
+                    Parser parser = new Parser(logger, connectionString, appSettings.SourcePath);
+
+                    var results = await parser.StoreFilesInDocumentStore();
+
+                    logger.Information("SystematicsPortal.Data.Uploader process results:");
+
+
+                    foreach (var result in results)
+                    {
+                        logger.Information("File: {FileName}", result.FileName);
+                        logger.Information("Result: {UploadResult}", result.UploadResult);
+                        logger.Information("Message: {Message}", result.Message);
+                    }
+
+                    logger.Information("SystematicsPortal.Data.Uploader - Finished");
+                }
+                catch (Exception exception)
+                {
+                    logger.Information("SystematicsPortal.Data.Uploader failed {exception}", exception.Message);
+                }
             }
-
-            NamesRepository repository = new NamesRepository(new NamesWebContext(connectionString));
-
-            repository.WriteDocuments(dezerializedList.Document);
-
-            Console.ReadLine();
         }
     }
 }

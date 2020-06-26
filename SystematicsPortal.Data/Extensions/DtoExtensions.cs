@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Data.dbmodels;
-using SystematicsPortal.Model.Models.Documents.Name;
+using SystematicsPortal.Model.Models.Database;
 using SystematicsPortal.Model.Models.DTOs;
 using SystematicsPortal.Utility.Helpers;
 
@@ -12,14 +11,14 @@ namespace SystematicsPortal.Data.Extensions
 {
     public static class DtoExtensions
     {
-        public static DocumentDto ToDto(this NameDocument nameDocument)
+        public static DocumentDto ToDto(this Document nameDocument)
         {
-            var name = SerializationHelper.Deserialize<Document>(nameDocument.SerializedDocument);
+            var name = SerializationHelper.Deserialize<Model.Models.Documents.Name.NameDocument>(nameDocument.SerializedDocument);
 
 
             var docDto = new DocumentDto();
             
-                docDto.NameId = nameDocument.NameId.ToString();
+                docDto.NameId = nameDocument.DocumentId.ToString();
                 docDto.DocumentClass = name.documentClass;
                 docDto.Source = name.source;
                 docDto.Added = name.added;

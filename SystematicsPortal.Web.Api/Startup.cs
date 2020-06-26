@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,17 +44,20 @@ namespace SystematicsPortal.Web.Api
                 options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
                 ServiceLifetime.Transient);
 
-            services.AddTransient<INamesWebRepository, NamesRepository>();
+            services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
             services.AddSingleton<ISearchService, SearchService>();
 
-            services.AddScoped<INamesService, NamesService>();
+            services.AddScoped<IDocumentsService, DocumentsService>();
 
 
 
-            services.AddControllers().AddNewtonsoftJson(options =>
-                              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                            );
+            services.AddControllers(opt=> opt.OutputFormatters.Add(new XmlSerializerOutputFormatter())).AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                   
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,8 +67,6 @@ namespace SystematicsPortal.Web.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
