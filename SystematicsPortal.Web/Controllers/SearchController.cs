@@ -204,7 +204,7 @@ namespace SystematicsPortal.Web.Controllers
                 
             var items = await _contentService.GetItemsByIds(itemIdsList);
 
-
+            var test = 1;
         }
     }
 }
