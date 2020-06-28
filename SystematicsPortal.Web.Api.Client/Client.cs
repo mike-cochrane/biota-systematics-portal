@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Web.Api.Client.Extensions;
-using SystematicsPortal.Search.Tools.Models;
-using SystematicsPortal.Search.Tools.Models.Search;
-using SystematicsPortal.Model.Models.Access;
 using System.Xml.Linq;
+using SystematicsPortal.Model.Models.Access;
+using SystematicsPortal.Search.Tools.Models.Search;
+using SystematicsPortal.Web.Api.Client.Extensions;
 
 namespace SystematicsPortal.Web.Api.Client
 {
@@ -82,8 +78,8 @@ namespace SystematicsPortal.Web.Api.Client
 
                 }
                 else
-                { 
-                    throw new HttpRequestException(response.ReasonPhrase); 
+                {
+                    throw new HttpRequestException(response.ReasonPhrase);
                 }
 
                 // Do event logging

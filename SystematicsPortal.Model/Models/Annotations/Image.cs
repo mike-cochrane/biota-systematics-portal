@@ -13,7 +13,7 @@ namespace Systematics.Portal.Model.Models.Annotations
         public string ExternalId { get; set; }
         [XmlAttribute("displayOrder")]
         public int displayOrder { get; set; }
-       
+
 
         public Image()
         {

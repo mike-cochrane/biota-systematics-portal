@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SystematicsPortal.Model.Models.Access;
 using SystematicsPortal.Search.Tools.Models.Search;
-using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Web.Services
 {

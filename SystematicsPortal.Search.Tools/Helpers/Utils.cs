@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Search.Tools.Helpers
@@ -295,7 +292,7 @@ namespace SystematicsPortal.Search.Tools.Helpers
                     FacetGroup = "",
                     Type = "text"
                 },
-              
+
                     new AdminFacet()
                 {
                     AdminFacetId = 33,
@@ -310,7 +307,7 @@ namespace SystematicsPortal.Search.Tools.Helpers
             return facetConfigList;
         }
 
-        public static  DateTime ConvertIntToDate(int i)
+        public static DateTime ConvertIntToDate(int i)
         {
             try
             {

@@ -1,16 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using SystematicsPortal.Data.Uploader.Models;
 using SystematicsPortal.Model.Interfaces;
-using SystematicsPortal.Model.Models.Documents;
 
 namespace SystematicsPortal.Data.Uploader.Classess
 {

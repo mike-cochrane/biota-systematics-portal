@@ -1,7 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
-
-namespace Systematics.Portal.Model.Models.Annotations
+﻿namespace Systematics.Portal.Model.Models.Annotations
 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
@@ -45,7 +42,7 @@ namespace Systematics.Portal.Model.Models.Annotations
         // Display title of the Item which cites
         [System.Xml.Serialization.XmlTextAttribute()]
         public string CitedItemDisplayTitle { get; set; }
-        
+
         public Citation()
         {
             CitedItemDisplayTitle = string.Empty;

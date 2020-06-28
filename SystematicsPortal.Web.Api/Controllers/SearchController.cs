@@ -3,15 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using SystematicsPortal.Web.Api.Infrastructure;
-using SystematicsPortal.Web.Api.Services;
 using SystematicsPortal.Search.Tools.Models;
 using SystematicsPortal.Search.Tools.Models.Search;
+using SystematicsPortal.Web.Api.Infrastructure;
+using SystematicsPortal.Web.Api.Services;
 
 namespace SystematicsPortal.Web.Api.Controllers
 {
@@ -24,7 +19,7 @@ namespace SystematicsPortal.Web.Api.Controllers
         private readonly ISearchService _searchService;
 
 
-        public SearchController(IOptions<AppSettings> appSettings, ILogger<SearchController> logger,  ISearchService searchService)
+        public SearchController(IOptions<AppSettings> appSettings, ILogger<SearchController> logger, ISearchService searchService)
         {
             _logger = logger;
             _searchService = searchService;

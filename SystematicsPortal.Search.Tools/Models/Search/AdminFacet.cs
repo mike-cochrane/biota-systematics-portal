@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SystematicsPortal.Search.Tools.Models.Search
+﻿namespace SystematicsPortal.Search.Tools.Models.Search
 {
     public class AdminFacet
     {

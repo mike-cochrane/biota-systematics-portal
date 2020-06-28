@@ -22,23 +22,23 @@ namespace Systematics.Portal.Model.Models.Annotations
         [XmlElement("added", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Added Added { get; set; }
 
-        [XmlElement("updated",Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("updated", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Updated Updated { get; set; }
         [XmlElement("displayTitle", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public XElement DisplayTitle { get; set; }
 
         [XmlElement("resource", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Resource Resource { get; set; }
-        [XmlElement("external",Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("external", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public External External { get; set; }
         [XmlElement("securityLevel", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SecurityLevelType SecurityLevel { get; set; }
-        [XmlArray("notes",Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlArray("notes", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [XmlArrayItem("note", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<Note> Notes { get; set; }
 
         //This list is ordered by vocabulary, then by sequence as defined in the vocabulary
-        [XmlArray("associatedTerms",Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlArray("associatedTerms", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [XmlArrayItem("associatedTerm", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<Term> AssociatedTerms { get; set; }
 
@@ -51,7 +51,7 @@ namespace Systematics.Portal.Model.Models.Annotations
         [XmlArray("citations", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [XmlArrayItem("citation", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<Citation> Citations { get; set; }
-    
+
 
         public Item()
         {

@@ -3,7 +3,6 @@ using SearchLibrary.Implementation;
 using SolrNet;
 using SolrNet.Commands.Parameters;
 using System;
-using System.Collections.Generic;
 using SystematicsPortal.Search.Tools.Models;
 using SystematicsPortal.Search.Tools.Models.Search;
 
@@ -13,7 +12,7 @@ namespace SystematicsPortal.Search
     {
         private readonly Connection _connection;
 
-         private readonly ILogger _logger;
+        private readonly ILogger _logger;
 
         public Search(string connection, string userName, string password, ILogger logger)
         {

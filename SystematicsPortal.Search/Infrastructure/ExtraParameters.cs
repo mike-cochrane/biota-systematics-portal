@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SearchLibrary.Implementation
 {
@@ -17,6 +15,6 @@ namespace SearchLibrary.Implementation
 
             return extraParameters;
         }
-        
+
     }
 }

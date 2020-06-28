@@ -8,7 +8,7 @@
     {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int systemLevel { get; set; }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Text { get; set; }

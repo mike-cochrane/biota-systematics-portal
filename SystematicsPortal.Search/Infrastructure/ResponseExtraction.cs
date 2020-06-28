@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SolrNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SolrNet;
 using SystematicsPortal.Search.Tools.Helpers;
 using SystematicsPortal.Search.Tools.Models;
 using SystematicsPortal.Search.Tools.Models.Search;
@@ -230,7 +230,7 @@ namespace SearchLibrary.Implementation
                                 }
                             }
 
-                           
+
                             if (facet.Values.Any())
                             {
                                 searchResult.Filters.Add(facet);

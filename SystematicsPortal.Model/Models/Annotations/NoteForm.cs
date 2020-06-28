@@ -9,7 +9,7 @@ namespace Systematics.Portal.Model.Models.Annotations
         public string NoteFormId { get; set; }
         public string NoteStateId { get; set; }
         public string NoteStateTitle { get; set; }
-       // public XElement Content { get; set; }
+        // public XElement Content { get; set; }
         public string SecurityId { get; set; }
         public int? SecurityLevel { get; set; }
         public string SecurityTitle { get; set; }

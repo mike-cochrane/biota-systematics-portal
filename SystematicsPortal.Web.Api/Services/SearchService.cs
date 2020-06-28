@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using SearchLibrary;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Options;
 using SystematicsPortal.Web.Api.Infrastructure;
 
 namespace SystematicsPortal.Web.Api.Services

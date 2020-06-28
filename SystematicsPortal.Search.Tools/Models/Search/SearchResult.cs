@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SystematicsPortal.Search.Tools.Models;
 
 namespace SystematicsPortal.Search.Tools.Models.Search
 {
@@ -24,9 +23,9 @@ namespace SystematicsPortal.Search.Tools.Models.Search
         //public int SecondsToProcessData { get; set; }
         //public int SecondsToRenderData { get; set; }
 
-        public SearchResult(): this("relevance")
+        public SearchResult() : this("relevance")
         {
-            
+
         }
 
         public SearchResult(string sortBy = "relevance")

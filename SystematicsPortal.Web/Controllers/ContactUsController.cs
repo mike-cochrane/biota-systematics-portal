@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using SystematicsPortal.Web.ViewModels;
-using SystematicsPortal.Web.Helpers;
 
 namespace SystematicsPortal.Web.Controllers
 {

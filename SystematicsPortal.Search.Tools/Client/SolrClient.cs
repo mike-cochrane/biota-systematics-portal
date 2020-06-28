@@ -36,7 +36,7 @@ namespace SystematicsPortal.Search.Tools.Client
                 query = query + "?query=" + Query;
             }
 
-           
+
             if (!(string.IsNullOrEmpty(PageNumber) || string.IsNullOrWhiteSpace(PageNumber)))
             {
                 query = query + "&pageNumber=" + PageNumber;

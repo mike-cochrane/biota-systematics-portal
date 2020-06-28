@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SystematicsPortal.Model.Models.Documents.SubDocuments
+﻿namespace SystematicsPortal.Model.Models.Documents.SubDocuments
 {
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -21,7 +15,7 @@ namespace SystematicsPortal.Model.Models.Documents.SubDocuments
 
         private string titleField;
 
-        
+
         [System.Xml.Serialization.XmlElementAttribute("Line")]
         public DocumentKeyLine[] Line
         {
@@ -35,7 +29,7 @@ namespace SystematicsPortal.Model.Models.Documents.SubDocuments
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string keyId
         {
@@ -49,7 +43,7 @@ namespace SystematicsPortal.Model.Models.Documents.SubDocuments
             }
         }
 
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string title
         {

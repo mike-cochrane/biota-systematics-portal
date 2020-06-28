@@ -21,9 +21,9 @@ namespace Systematics.Portal.Model.Models.Annotations
         [XmlIgnore]
         public int? NumberAllowedMin { get; set; }
         [XmlAttribute("minOccurrence")]
-        public int NumberAllowedMinSerializable { get { return this.NumberAllowedMin.Value; } set { this.NumberAllowedMin = value; }  }
+        public int NumberAllowedMinSerializable { get { return this.NumberAllowedMin.Value; } set { this.NumberAllowedMin = value; } }
         public bool ShouldSerializeNumberAllowedMinSerializable() { return this.NumberAllowedMin.HasValue; }
-        
+
         [XmlIgnore]
         public int? NumberAllowedMax { get; set; }
         [XmlAttribute("maxOccurrence")]

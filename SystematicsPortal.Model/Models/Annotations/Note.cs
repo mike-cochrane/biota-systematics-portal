@@ -10,12 +10,12 @@ namespace Systematics.Portal.Model.Models.Annotations
     {
         [XmlElement("added", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public NoteAdded Added { get; set; }
-        
+
         // Solve NoteForm content problem
         [XmlElement("content", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public XElement Content { get; set; }
 
-        [XmlElement("securityLevel",Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("securityLevel", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SecurityLevelType SecurityLevel { get; set; }
 
         [XmlArray("images", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -25,11 +25,11 @@ namespace Systematics.Portal.Model.Models.Annotations
         /// <remarks/>
         [XmlAttribute("noteId")]
         public string NoteId { get; set; }
-        
+
         /// <remarks/>
         [XmlAttribute("sequence")]
         public int Sequence { get; set; }
-        
+
         /// <remarks/>
         [XmlAttribute("noteFormId")]
         public string NoteFormId { get; set; }
@@ -50,11 +50,11 @@ namespace Systematics.Portal.Model.Models.Annotations
         /// <remarks/>
         [XmlAttribute("noteTypePath")]
         public string NoteTypePath { get; set; }
-        
+
         /// <remarks/>
         [XmlAttribute("noteClass")]
         public string NoteClass { get; set; }
-        
+
         public Note()
         {
             NoteId = string.Empty;

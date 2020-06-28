@@ -3,17 +3,12 @@ using Org.XmlUnit.Builder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Data.Extensions;
-using SystematicsPortal.Model.Interfaces;
-using SystematicsPortal.Model.Models.Documents;
-using SystematicsPortal.Model.Models.DTOs;
-using SystematicsPortal.Utility.Helpers;
-using SystematicsPortal.Model.Models.Access;
-using System.Xml.Linq;
 using System.Xml;
+using System.Xml.Linq;
+using SystematicsPortal.Model.Interfaces;
+using SystematicsPortal.Model.Models.Access;
+using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data
 {
@@ -27,14 +22,14 @@ namespace SystematicsPortal.Data
             _context = context;
         }
 
-        public async Task<Model.Models.Access.Document> GetDocument(Guid documentId)
+        public async Task<Document> GetDocument(Guid documentId)
         {
-            Model.Models.Access.Document documentAccess = null;
+            Document documentAccess = null;
             var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
 
             if (!(documentDb is null))
             {
-                documentAccess = new Model.Models.Access.Document()
+                documentAccess = new Document()
                 {
                     XDocument = XDocument.Parse(documentDb.SerializedDocument),
                     XmlDocument = (new XmlDocument()),
@@ -52,12 +47,12 @@ namespace SystematicsPortal.Data
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Models.Access.Document> GetDocuments(IEnumerable<Guid> documentIds)
+        public IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(Model.Models.Access.Document document)
+        public void UpdateDocument(Document document)
         {
             throw new NotImplementedException();
         }
@@ -170,12 +165,12 @@ namespace SystematicsPortal.Data
             return result;
         }
 
-        public IEnumerable<Model.Models.Access.Document> GetDocuments()
+        public IEnumerable<Document> GetDocuments()
         {
             throw new NotImplementedException();
         }
 
-        private IEnumerable<SystematicsPortal.Model.Models.Database.Document> GetDocumentsDb()
+        private IEnumerable<Model.Models.Database.Document> GetDocumentsDb()
         {
             return _context.Document;
 
