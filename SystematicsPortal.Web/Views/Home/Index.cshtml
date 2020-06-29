@@ -2,96 +2,50 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="c-t1-banner__container">
-    <div class="c-t1-banner__extra-content">
-        <!--<div class="c-section-header c-section-header--white-text">
-        <h2 class="c-section-header__title">
-            Hot topics
+<div class="col-md-12 home-nav-search">
+    @await Html.PartialAsync("~/Views/Shared/_Navigation.cshtml")
+    @await Html.PartialAsync("~/Views/Shared/_SearchField.cshtml")
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-2">
+        <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+    </div>
+    <div class="col-md-3">
+        <h2>
+            Heading
         </h2>
-    </div> -->
-
-        <div class="container">
-            <div class="row">
-                <div class="form-group col-lg-12">
-                    <form method="post" id="form" enctype="multipart/form-data" asp-controller="Search" asp-action="Index">
-                        <div class="row">
-                            <div class="col-lg-11 search-field-wrapper">
-                                <input class="form-control search-form" type="text" placeholder="Search" aria-label="Search" name="query">
-                            </div>
-                            <div class="float-lg-right col-lg-1 search-icon-wrapper">
-                                <button type="submit" form="form" class="glyphicon glyphicon-search search-icon"></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center">
-            <button type="button" class="button">Browse</button>
-        </div>
-        <br />
-
-        <div class="c-related-content c-related-content--white-text c-related-content--4-up">
-            <div class="carousel carousel--4-up carousel--on-dark-bg">
-                <div class="carousel-cell">
-                    <div class="c-related-content__item">
-                        <a class="c-related-content__link" href="/discover-our-science/biodiversity/">
-                            <img class="c-related-content__image" src="~/images/rice__FillMaxWzMwMCwyMDBd.jpg" width="300" height="200" alt="rice">
-                            <h4 class="c-related-content__title">
-                                Lorem ipsum
-                            </h4>
-                            <p class="c-related-content__desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat odio id ligula sodales, sit amet porta nunc aliquam. Mauris viverra...
-                            </p>
-                        </a>
-                    </div>
-                </div><!-- End carousel-cell -->
-                <div class="carousel-cell">
-                    <div class="c-related-content__item">
-                        <a class="c-related-content__link" href="/discover-our-science/biosecurity/tachininae-occisorini-asetulia-malloch-1938/">
-                            <img class="c-related-content__image" src="~/images/vanuatu-scenery__FillMaxWzMwMCwyMDBd.JPG" width="300" height="200" alt="vanuatu scenery">
-                            <h4 class="c-related-content__title">
-                                Lorem ipsum
-                            </h4>
-                            <p class="c-related-content__desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat odio id ligula sodales, sit amet porta nunc aliquam. Mauris viverra...
-                            </p>
-                        </a>
-                    </div>
-                </div><!-- End carousel-cell -->
-                <div class="carousel-cell">
-                    <div class="c-related-content__item">
-                        <a class="c-related-content__link" href="/discover-our-science/biodiversity/biodiversity-indicators-2/">
-                            <img class="c-related-content__image" src="~/images/eight_col_stoat__FillMaxWzMwMCwyMDBd.jpg" width="300" height="200" alt="eight col stoat">
-                            <h4 class="c-related-content__title">
-                                Lorem ipsum
-                            </h4>
-                            <p class="c-related-content__desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat odio id ligula sodales, sit amet porta nunc aliquam. Mauris viverra...
-                            </p>
-                        </a>
-                    </div>
-                </div><!-- End carousel-cell -->
-                <div class="carousel-cell">
-                    <div class="c-related-content__item">
-                        <a class="c-related-content__link" href="/home/discover-our-research2/">
-                            <img class="c-related-content__image" src="~/images/53_190901_banks_solander-2010__FillMaxWzMwMCwyMDBd.jpg" width="300" height="200" alt="53 190901 banks solander 2010">
-                            <h4 class="c-related-content__title">
-                                Lorem ipsum
-                            </h4>
-                            <p class="c-related-content__desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat odio id ligula sodales, sit amet porta nunc aliquam. Mauris viverra...
-                            </p>
-                        </a>
-                        <!--<ul class="c-tag-list">
-                            <li class="c-tag-list__item">
-                                <a href="/search/?tag=biodiversity" class="c-tag c-tag--small">Biodiversity</a>
-                            </li>
-                        </ul>-->
-                    </div>
-                </div><!-- End carousel-cell -->
-            </div>
-        </div>
+        <p>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+        </p>
+        <p>
+            <a class="btn" href="#">View details »</a>
+        </p>
+    </div>
+    <div class="col-md-2">
+        <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+    </div>
+    <div class="col-md-3">
+        <h2>
+            Heading
+        </h2>
+        <p>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+        </p>
+        <p>
+            <a class="btn" href="#">View details »</a>
+        </p>
+    </div>
+    <div class="col-md-1">
     </div>
 </div>

@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <div class="col-md-2"></div>
+    <div class="form-group col-lg-8">
+        <form method="post" id="form" enctype="multipart/form-data" asp-controller="Search" asp-action="Index">
+            <div class="row">
+                <div class="col-lg-11 search-field-wrapper">
+                    <input class="form-control search-form" type="text" placeholder="Search" aria-label="Search" name="query">
+                </div>
+                <div class="float-lg-right col-lg-1 search-icon-wrapper">
+                    <button type="submit" form="form" class="glyphicon glyphicon-search search-icon"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
