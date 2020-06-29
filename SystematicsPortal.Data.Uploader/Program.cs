@@ -44,9 +44,9 @@ namespace SystematicsPortal.Web.Api.Demo
                     logger.Information("Configuration - Connection String: {ConnectionString}", ConnectionStringHelper.ReplacePassword(connectionString, "*REMOVED*"));
                     logger.Information("Configuration - Source Folder Name: {SourceFolder}", appSettings.SourcePath);
 
-                    Parser parser = new Parser(logger, connectionString, appSettings.SourcePath);
+                    Parser parser = new Parser(connectionString, appSettings.SourcePath, logger);
 
-                    var results = await parser.StoreFilesInDocumentStore();
+                    var results = await parser.StoreFilesInDocumentStoreAsync();
 
                     logger.Information("SystematicsPortal.Data.Uploader process results:");
 

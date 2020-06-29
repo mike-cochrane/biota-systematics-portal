@@ -14,15 +14,16 @@ namespace SystematicsPortal.Data.Uploader.Classess
         private readonly string _sourcePath;
         private readonly IDocumentsRepository _repository;
 
-        public Parser(Serilog.ILogger logger, string connectionString, string sourcePath)
+        public Parser(string connectionString, string sourcePath, Serilog.ILogger logger)
         {
-            _logger = logger;
-            _sourcePath = sourcePath;
             _repository = new DocumentsRepository(new NamesWebContext(connectionString));
+            _sourcePath = sourcePath;
+            _logger = logger;
         }
-        public async Task<List<Result>> StoreFilesInDocumentStore()
+        public async Task<List<Result>> StoreFilesInDocumentStoreAsync()
         {
             _logger.Debug("SystematicsPortal.Data.Uploader: Starting upload process for files");
+
             var results = new List<Result>();
             Result result;
             var files = Directory.GetFiles(_sourcePath, "*DOCUMENT*.xml");

@@ -74,17 +74,7 @@ namespace SystematicsPortal.Data
 
                 if (String.IsNullOrEmpty(documentId))
                 {
-                    documentId = (string)document.Attribute("nameId");
-
-                    if (String.IsNullOrEmpty(documentId))
-                    {
-                        documentId = (string)document.Attribute("referenceId");
-
-                        if (String.IsNullOrEmpty(documentId))
-                        {
-                            documentId = (string)document.Attribute("vernacularId");
-                        }
-                    }
+                    throw new InvalidInputException("DocumentId has not been found");
                 }
 
                 if (allStoreNames.TryGetValue(Guid.Parse(documentId), out var storeDocument))
