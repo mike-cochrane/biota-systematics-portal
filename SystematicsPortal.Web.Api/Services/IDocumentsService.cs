@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using SystematicsPortal.Models.Entities.Access;
 
 namespace SystematicsPortal.Web.Api.Services
 {
     public interface IDocumentsService
     {
-        Task<Model.Models.Access.Document> GetDocument(string id);
+        Task<Document> GetDocument(string id);
     }
 }

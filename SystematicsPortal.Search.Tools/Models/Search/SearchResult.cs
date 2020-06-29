@@ -48,11 +48,11 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public string GetAppliedFacets()
         {
-            string appliedFacets = string.Empty;
+            string appliedFacets = String.Empty;
 
             foreach (SelectedFacetValue facet in AppliedFacets)
             {
-                if (!appliedFacets.Equals(string.Empty))
+                if (!appliedFacets.Equals(String.Empty))
                 {
                     appliedFacets += "|";
                 }
@@ -126,11 +126,11 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public string GetAppliedRanges()
         {
-            string appliedRanges = string.Empty;
+            string appliedRanges = String.Empty;
 
             foreach (SelectedRange range in AppliedRanges)
             {
-                if (!appliedRanges.Equals(string.Empty))
+                if (!appliedRanges.Equals(String.Empty))
                 {
                     appliedRanges += "|";
                 }

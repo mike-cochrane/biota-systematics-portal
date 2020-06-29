@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Api",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Api.Client", "SystematicsPortal.Web.Api.Client\SystematicsPortal.Web.Api.Client.csproj", "{95D506C3-B3FD-4712-98AB-8F75C412BB00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Model", "SystematicsPortal.Model\SystematicsPortal.Model.csproj", "{7572487C-648D-4495-9DB6-DE4985B1ED7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Models", "SystematicsPortal.Models\SystematicsPortal.Models.csproj", "{7572487C-648D-4495-9DB6-DE4985B1ED7A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Data", "SystematicsPortal.Data\SystematicsPortal.Data.csproj", "{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}"
 EndProject

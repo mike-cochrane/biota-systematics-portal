@@ -14,16 +14,16 @@ namespace SystematicsPortal.Web.Api.Controllers
     [Route("[controller]")]
     public class SearchController : ControllerBase
     {
-        private readonly ILogger<SearchController> _logger;
-        private readonly AppSettings _appSettings;
         private readonly ISearchService _searchService;
+        private readonly AppSettings _appSettings;
+        private readonly ILogger<SearchController> _logger;
 
 
-        public SearchController(IOptions<AppSettings> appSettings, ILogger<SearchController> logger, ISearchService searchService)
+        public SearchController(ISearchService searchService, IOptions<AppSettings> appSettings, ILogger<SearchController> logger )
         {
-            _logger = logger;
             _searchService = searchService;
             _appSettings = appSettings.Value;
+            _logger = logger;
         }
 
         [HttpGet]

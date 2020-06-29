@@ -1,4 +1,6 @@
-﻿namespace SystematicsPortal.Search.Tools.Models.Search
+﻿using System;
+
+namespace SystematicsPortal.Search.Tools.Models.Search
 {
     public class FacetValue
     {
@@ -8,7 +10,7 @@
 
         public FacetValue()
         {
-            Name = string.Empty;
+            Name = String.Empty;
             Count = 0;
             Selected = false;
         }

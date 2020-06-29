@@ -1,4 +1,6 @@
-﻿namespace SystematicsPortal.Search.Tools.Models.Search
+﻿using System;
+
+namespace SystematicsPortal.Search.Tools.Models.Search
 {
     public class SelectedFacetValue
     {
@@ -16,9 +18,9 @@
 
         public SelectedFacetValue()
         {
-            GroupName = string.Empty;
-            FacetName = string.Empty;
-            ValueName = string.Empty;
+            GroupName = String.Empty;
+            FacetName = String.Empty;
+            ValueName = String.Empty;
         }
     }
 }

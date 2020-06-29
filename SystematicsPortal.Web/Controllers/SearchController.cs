@@ -5,7 +5,7 @@ using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services;
 using System.Threading.Tasks;
 using System;
-using SystematicsPortal.Model.Models.DTOs;
+using SystematicsPortal.Models.Entities.DTOs;
 using System.Linq;
 
 namespace SystematicsPortal.Web.Controllers
@@ -35,14 +35,14 @@ namespace SystematicsPortal.Web.Controllers
                 bool success = false;
                 var viewData = new SearchViewModel(null, null);
 
-                string uncorrectedQuery = string.Empty;
+                string uncorrectedQuery = String.Empty;
                 if (query != null)
                 {
                     uncorrectedQuery = query;
                     //query = AutoCorrectQueryString(query);
                     if (uncorrectedQuery.Equals(query))
                     {
-                        uncorrectedQuery = string.Empty;
+                        uncorrectedQuery = String.Empty;
                     }
                     //update query log
                     //q.QueryString = query;
@@ -61,7 +61,7 @@ namespace SystematicsPortal.Web.Controllers
 
                 if (query == null)
                 {
-                    viewData.Query = string.Empty;
+                    viewData.Query = String.Empty;
                 }
                 else
                 {

@@ -17,8 +17,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
         {
             SetId = -1;
             OwnerId = Guid.Empty;
-            DisplayName = string.Empty;
-            Description = string.Empty;
+            DisplayName = String.Empty;
+            Description = String.Empty;
             CreatedDate = DateTime.Now;
             UpdatedDate = DateTime.MinValue;
             Specimens = new List<SetSpecimen>();

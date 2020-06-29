@@ -44,8 +44,8 @@ namespace SystematicsPortal.Web.Models
         public SetViewModel()
         {
             SetId = -1;
-            DisplayName = string.Empty;
-            Description = string.Empty;
+            DisplayName = String.Empty;
+            Description = String.Empty;
             CreatedDate = DateTime.Now;
             UpdatedDate = DateTime.MinValue;
             OwnerId = Guid.Empty;
@@ -134,7 +134,7 @@ namespace SystematicsPortal.Web.Models
 
         public SelectSetViewModel()
         {
-            ErrorMessage = string.Empty;
+            ErrorMessage = String.Empty;
             SetData = new List<SetViewModel>();
         }
     }

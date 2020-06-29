@@ -70,20 +70,20 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public SpecimenDetails()
         {
-            AccessionNumber = string.Empty;
-            SpecimenGuid = string.Empty;
-            Barcode = string.Empty;
-            TypeStatus = string.Empty;
-            SpecimenType = string.Empty;
-            Quantity = string.Empty;
-            Quality = string.Empty;
+            AccessionNumber = String.Empty;
+            SpecimenGuid = String.Empty;
+            Barcode = String.Empty;
+            TypeStatus = String.Empty;
+            SpecimenType = String.Empty;
+            Quantity = String.Empty;
+            Quality = String.Empty;
             IsMissing = false;
             IsDeaccessioned = false;
             IsDeleted = false;
-            Exsiccata = string.Empty;
-            AddedUser = string.Empty;
+            Exsiccata = String.Empty;
+            AddedUser = String.Empty;
             AddedDate = DateTime.MinValue;
-            ChangeUser = string.Empty;
+            ChangeUser = String.Empty;
             ChangeDate = DateTime.MinValue;
 
             Images = new List<ImageLink>();
@@ -113,8 +113,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public SpecimenDetailsExtensions()
         {
-            DataProvider = string.Empty;
-            LoanStatus = string.Empty;
+            DataProvider = String.Empty;
+            LoanStatus = String.Empty;
         }
     }
 
@@ -127,7 +127,7 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public ImageLink()
         {
-            ImageURL = string.Empty;
+            ImageURL = String.Empty;
         }
     }
 
@@ -154,10 +154,10 @@ namespace SystematicsPortal.Search.Tools.Models.Search
         public SpecimenComponent()
         {
             IsPrimary = false;
-            Type = string.Empty;
+            Type = String.Empty;
             IsPresent = true;
-            Substrate = string.Empty;
-            PartAffected = string.Empty;
+            Substrate = String.Empty;
+            PartAffected = String.Empty;
 
             Extensions = new List<ComponentExtension>();
             Identifications = new List<Identification>();
@@ -173,7 +173,7 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public ComponentExtension()
         {
-            Association = string.Empty;
+            Association = String.Empty;
         }
     }
 
@@ -211,18 +211,18 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public Identification()
         {
-            TaxonName = string.Empty;
-            Determiner = string.Empty;
-            DeterminerReferenceNumber = string.Empty;
-            VerbatimDeterminationDate = string.Empty;
-            ISODate = string.Empty;
+            TaxonName = String.Empty;
+            Determiner = String.Empty;
+            DeterminerReferenceNumber = String.Empty;
+            VerbatimDeterminationDate = String.Empty;
+            ISODate = String.Empty;
             IsUncertain = false;
             IsActive = false;
-            VernacularName = string.Empty;
-            IdentificationType = string.Empty;
-            IdentificationNote = string.Empty;
-            ReferenceText = string.Empty;
-            TypeStatus = string.Empty;
+            VernacularName = String.Empty;
+            IdentificationType = String.Empty;
+            IdentificationNote = String.Empty;
+            ReferenceText = String.Empty;
+            TypeStatus = String.Empty;
 
             IdentificationNames = new List<IdentificationName>();
         }
@@ -240,7 +240,7 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public IdentificationName()
         {
-            WorkingName = string.Empty;
+            WorkingName = String.Empty;
 
             Extensions = new List<IdentificationNameExtension>();
         }
@@ -263,11 +263,11 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public IdentificationNameExtension()
         {
-            Division = string.Empty;
-            Phylum = string.Empty;
-            Class = string.Empty;
-            Order = string.Empty;
-            Family = string.Empty;
+            Division = String.Empty;
+            Phylum = String.Empty;
+            Class = String.Empty;
+            Order = String.Empty;
+            Family = String.Empty;
         }
     }
 
@@ -296,9 +296,9 @@ namespace SystematicsPortal.Search.Tools.Models.Search
             CollectionEvent = new List<CollectionEvent>();
 
             IsPrimary = false;
-            CollectorsRefNumber = string.Empty;
-            MicroHabitat = string.Empty;
-            Abundance = string.Empty;
+            CollectorsRefNumber = String.Empty;
+            MicroHabitat = String.Empty;
+            Abundance = String.Empty;
         }
     }
 
@@ -311,7 +311,7 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public CollectionEventSpecimenRepresentation()
         {
-            MicroHabitat = string.Empty;
+            MicroHabitat = String.Empty;
         }
     }
 
@@ -355,15 +355,15 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public CollectionEvent()
         {
-            Type = string.Empty;
-            VerbatimLocality = string.Empty;
-            GazeteerLocality = string.Empty;
-            Collector = string.Empty;
-            CollectionDate = string.Empty;
-            StartDate = string.Empty;
-            EndDate = string.Empty;
-            CollectionEventCode = string.Empty;
-            MethodId = string.Empty;
+            Type = String.Empty;
+            VerbatimLocality = String.Empty;
+            GazeteerLocality = String.Empty;
+            Collector = String.Empty;
+            CollectionDate = String.Empty;
+            StartDate = String.Empty;
+            EndDate = String.Empty;
+            CollectionEventCode = String.Empty;
+            MethodId = String.Empty;
 
             Representation = new List<CollectionEventRepresentation>();
             LocalHeights = new List<LocalHeight>();
@@ -386,8 +386,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public CollectionEventRepresentation()
         {
-            Habitat = string.Empty;
-            CollectionEventNotes = string.Empty;
+            Habitat = String.Empty;
+            CollectionEventNotes = String.Empty;
         }
     }
 
@@ -405,8 +405,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public GeoReference()
         {
-            CoordinateSystem = string.Empty;
-            Datum = string.Empty;
+            CoordinateSystem = String.Empty;
+            Datum = String.Empty;
 
             Representation = new List<Representation>();
         }
@@ -421,7 +421,7 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public Representation()
         {
-            Georeference = string.Empty;
+            Georeference = String.Empty;
         }
     }
 
@@ -438,9 +438,9 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public CollectionEventRegion()
         {
-            Schema = string.Empty;
-            Region = string.Empty;
-            VerbatimRegion = string.Empty;
+            Schema = String.Empty;
+            Region = String.Empty;
+            VerbatimRegion = String.Empty;
         }
     }
 
@@ -459,9 +459,9 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public ObservedSpecies()
         {
-            AssociationType = string.Empty;
-            TaxonName = string.Empty;
-            WorkingName = string.Empty;
+            AssociationType = String.Empty;
+            TaxonName = String.Empty;
+            WorkingName = String.Empty;
             IsDerived = false;
         }
     }
@@ -475,7 +475,7 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public CollectionEventKeywords()
         {
-            Word = string.Empty;
+            Word = String.Empty;
         }
     }
 
@@ -503,8 +503,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public AltitudeRepresentation()
         {
-            CalculatedLower = string.Empty;
-            CalculatedUpper = string.Empty;
+            CalculatedLower = String.Empty;
+            CalculatedUpper = String.Empty;
         }
     }
 
@@ -534,9 +534,9 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public SpecimenFlag()
         {
-            Type = string.Empty;
-            Value = string.Empty;
-            Note = string.Empty;
+            Type = String.Empty;
+            Value = String.Empty;
+            Note = String.Empty;
         }
     }
 
@@ -555,10 +555,10 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public SpecimenNote()
         {
-            NoteType = string.Empty;
-            Text = string.Empty;
-            Author = string.Empty;
-            Date = string.Empty;
+            NoteType = String.Empty;
+            Text = String.Empty;
+            Author = String.Empty;
+            Date = String.Empty;
         }
     }
 
@@ -576,8 +576,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public SpecimenRelationship()
         {
-            Type = string.Empty;
-            Note = string.Empty;
+            Type = String.Empty;
+            Note = String.Empty;
 
             Members = new List<SpecimenRelationshipMember>();
         }
@@ -594,8 +594,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public SpecimenRelationshipMember()
         {
-            AccessionNumber = string.Empty;
-            Note = string.Empty;
+            AccessionNumber = String.Empty;
+            Note = String.Empty;
         }
     }
 
@@ -620,13 +620,13 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public SpecimenEvent()
         {
-            Type = string.Empty;
-            SpecimenEventMethod = string.Empty;
-            SpecimenEventNote = string.Empty;
-            ActionedBy = string.Empty;
-            ActionedByReferenceNumber = string.Empty;
-            VerbatimDate = string.Empty;
-            ISODate = string.Empty;
+            Type = String.Empty;
+            SpecimenEventMethod = String.Empty;
+            SpecimenEventNote = String.Empty;
+            ActionedBy = String.Empty;
+            ActionedByReferenceNumber = String.Empty;
+            VerbatimDate = String.Empty;
+            ISODate = String.Empty;
         }
     }
 
@@ -647,11 +647,11 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public Duplicate()
         {
-            Collection = string.Empty;
-            AccessionNumber = string.Empty;
-            Direction = string.Empty;
-            DateReceived = string.Empty;
-            DuplicateNote = string.Empty;
+            Collection = String.Empty;
+            AccessionNumber = String.Empty;
+            Direction = String.Empty;
+            DateReceived = String.Empty;
+            DuplicateNote = String.Empty;
         }
     }
 
@@ -666,8 +666,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public AssignedRefNumber()
         {
-            ReferenceNumber = string.Empty;
-            Value = string.Empty;
+            ReferenceNumber = String.Empty;
+            Value = String.Empty;
         }
     }
 
@@ -688,10 +688,10 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public ExternalLink()
         {
-            ExternalLinkType = string.Empty;
-            Value = string.Empty;
-            Url = string.Empty;
-            Note = string.Empty;
+            ExternalLinkType = String.Empty;
+            Value = String.Empty;
+            Url = String.Empty;
+            Note = String.Empty;
             IsValid = false;
         }
     }
@@ -725,14 +725,14 @@ namespace SystematicsPortal.Search.Tools.Models.Search
         {
             DateCreated = DateTime.MinValue;
             DateFrozen = DateTime.MinValue;
-            PhysicalLocation = string.Empty;
-            OriginalViability = string.Empty;
-            Viability = string.Empty;
-            ViabilityDate = string.Empty;
-            BatchNote = string.Empty;
+            PhysicalLocation = String.Empty;
+            OriginalViability = String.Empty;
+            Viability = String.Empty;
+            ViabilityDate = String.Empty;
+            BatchNote = String.Empty;
             IsGone = false;
-            StorageMethod = string.Empty;
-            BatchQuantity = string.Empty;
+            StorageMethod = String.Empty;
+            BatchQuantity = String.Empty;
         }
     }
 
@@ -768,17 +768,17 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public InventoryItem()
         {
-            TransactionReferenceNumber = string.Empty;
-            LCRCatalogueId = string.Empty;
-            TaxonName = string.Empty;
-            ItemStatus = string.Empty;
+            TransactionReferenceNumber = String.Empty;
+            LCRCatalogueId = String.Empty;
+            TaxonName = String.Empty;
+            ItemStatus = String.Empty;
             IsApprovedForDestruction = false;
             IsType = false;
             Quantity = 0;
-            Comments = string.Empty;
-            DamageLevelIn = string.Empty;
-            DamageLevelOut = string.Empty;
-            PreservationMethod = string.Empty;
+            Comments = String.Empty;
+            DamageLevelIn = String.Empty;
+            DamageLevelOut = String.Empty;
+            PreservationMethod = String.Empty;
         }
     }
 
@@ -791,7 +791,7 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public InventoryItemExtension()
         {
-            OrganisationAcronym = string.Empty;
+            OrganisationAcronym = String.Empty;
         }
     }
 }

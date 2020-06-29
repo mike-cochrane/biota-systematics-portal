@@ -25,8 +25,8 @@ namespace SystematicsPortal.Web.Controllers
         [HttpPost]
         public IActionResult ContactUs([FromBody] ContactUsViewModel model)
         {
-            string info = string.Empty;
-            string error = string.Empty;
+            string info = String.Empty;
+            string error = String.Empty;
 
             try
             {
@@ -35,15 +35,15 @@ namespace SystematicsPortal.Web.Controllers
                     string recipient = "nikoos@landcareresearch.co.nz";
 
                     string message = "<p>" + model.Name;
-                    if (model.Organisation != null && !model.Organisation.Equals(string.Empty))
+                    if (model.Organisation != null && !model.Organisation.Equals(String.Empty))
                     {
                         message += ", " + model.Organisation;
-                        if (model.Location != null && !model.Location.Equals(string.Empty))
+                        if (model.Location != null && !model.Location.Equals(String.Empty))
                         {
                             message += ", " + model.Location;
                         }
                     }
-                    else if (model.Location != null && !model.Location.Equals(string.Empty))
+                    else if (model.Location != null && !model.Location.Equals(String.Empty))
                     {
                         message += " from " + model.Location;
                     }

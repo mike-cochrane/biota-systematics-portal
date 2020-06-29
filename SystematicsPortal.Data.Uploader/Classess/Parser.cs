@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsPortal.Data.Uploader.Models;
-using SystematicsPortal.Model.Interfaces;
+using SystematicsPortal.Models.Interfaces;
 
 namespace SystematicsPortal.Data.Uploader.Classess
 {

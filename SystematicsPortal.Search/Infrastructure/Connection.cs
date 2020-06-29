@@ -17,7 +17,7 @@ namespace SearchLibrary.Implementation
         public Connection(string coreUrl, string userName, string password)
         {
             SolrNet.Impl.SolrConnection solrConnection;
-            if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
+            if (String.IsNullOrEmpty(userName) && String.IsNullOrEmpty(password))
             {
                 solrConnection = new SolrNet.Impl.SolrConnection(coreUrl);
             }
@@ -57,7 +57,7 @@ namespace SearchLibrary.Implementation
             {
                 var req = (HttpWebRequest)WebRequest.Create(url);
 
-                if (!(string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password)))
+                if (!(String.IsNullOrEmpty(_username) || String.IsNullOrEmpty(_password)))
                 {
                     var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(_username + ":" + _password));
 

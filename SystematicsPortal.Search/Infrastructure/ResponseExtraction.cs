@@ -110,7 +110,7 @@ namespace SearchLibrary.Implementation
                                         bool first = true;
                                         foreach (int count in sparklineCounts.Values)
                                         {
-                                            string value = string.Empty;
+                                            string value = String.Empty;
                                             if (count > 0)
                                             {
                                                 value = Convert.ToString(Math.Log10(count + 10));
@@ -182,7 +182,7 @@ namespace SearchLibrary.Implementation
                                             bool first = true;
                                             foreach (int count in sparklineCounts.Values)
                                             {
-                                                string value = string.Empty;
+                                                string value = String.Empty;
                                                 if (count > 0)
                                                 {
                                                     value = Convert.ToString(Math.Log10(count + 10));

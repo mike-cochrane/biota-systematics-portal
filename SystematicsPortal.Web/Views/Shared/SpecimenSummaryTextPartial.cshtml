@@ -3,18 +3,18 @@
     <div class="row">
         <span class="col-lg-9">
             <p class="ml-4">
-                @if (Model.DocumentClass != null && !Model.DocumentClass.Equals(string.Empty))
+                @if (Model.DocumentClass != null && !Model.DocumentClass.Equals(String.Empty))
                 {
                     @:&nbsp;&nbsp;<span class="heading">Record class:</span>&nbsp;@Model.DocumentClass
                 }
 
                 @if (Model.DocumentClass == "name")
                 {
-                    @if (Model.NameFull != null && !Model.NameFull.Equals(string.Empty))
+                    @if (Model.NameFull != null && !Model.NameFull.Equals(String.Empty))
                     {
                         @:&nbsp;&nbsp;<span class="heading">Preferred name:</span>&nbsp;@Model.NameFull
                     }
-                    @if (Model.Kingdom != null && !Model.Kingdom.Equals(string.Empty) && Model.Class != null && !Model.Class.Equals(string.Empty) && Model.Order != null && !Model.Order.Equals(string.Empty) && Model.Family != null && !Model.Family.Equals(string.Empty))
+                    @if (Model.Kingdom != null && !Model.Kingdom.Equals(String.Empty) && Model.Class != null && !Model.Class.Equals(String.Empty) && Model.Order != null && !Model.Order.Equals(String.Empty) && Model.Family != null && !Model.Family.Equals(String.Empty))
                     {
                         <br />
                         @:&nbsp;&nbsp;<span class="heading">Rank title:</span>&nbsp;@Model.Kingdom > @Model.Class > @Model.Order > @Model.Family
@@ -23,32 +23,32 @@
                 }
                 else if (Model.DocumentClass == "vernacular")
                 {
-                    @if (Model.VernacularLanguageOfUse != null && !Model.VernacularLanguageOfUse.Equals(string.Empty))
+                    @if (Model.VernacularLanguageOfUse != null && !Model.VernacularLanguageOfUse.Equals(String.Empty))
                     {
                         @:&nbsp;&nbsp;<span class="heading">Language of use:</span>&nbsp;@Model.VernacularLanguageOfUse
                     }
-                    @if (Model.VernacularLanguageOfOrigin != null && !Model.VernacularLanguageOfOrigin.Equals(string.Empty))
+                    @if (Model.VernacularLanguageOfOrigin != null && !Model.VernacularLanguageOfOrigin.Equals(String.Empty))
                     {
                         @:&nbsp;&nbsp;<span class="heading">Language of origin:</span>&nbsp;@Model.VernacularLanguageOfOrigin
                     }
                 }
                 else
                 {
-                    @if (Model.ReferenceType != null && !Model.ReferenceType.Equals(string.Empty))
+                    @if (Model.ReferenceType != null && !Model.ReferenceType.Equals(String.Empty))
                     {
                         @:&nbsp;&nbsp;<span class="heading">Reference type:</span>&nbsp;@Model.ReferenceType
                     }
                 }
                 <br />
-                @if (Model.Source != null && !Model.Source.Equals(string.Empty))
+                @if (Model.Source != null && !Model.Source.Equals(String.Empty))
                 {
                     @:&nbsp;&nbsp;<span class="heading">Source:</span>&nbsp;@Model.Source
                 }
-                @if (Model.Added != null && !Model.Added.Equals(string.Empty))
+                @if (Model.Added != null && !Model.Added.Equals(String.Empty))
                 {
                     @:&nbsp;&nbsp;<span class="heading">Added:</span>&nbsp;@Model.Added
                 }
-                @if (Model.Updated != null && !Model.Updated.Equals(string.Empty))
+                @if (Model.Updated != null && !Model.Updated.Equals(String.Empty))
                 {
                     @:&nbsp;&nbsp;<span class="heading">Updated:</span>&nbsp;@Model.Updated
                 }

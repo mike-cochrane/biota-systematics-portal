@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SystematicsPortal.Web.ViewModels
 {
@@ -22,12 +23,12 @@ namespace SystematicsPortal.Web.ViewModels
 
         public ContactUsViewModel()
         {
-            Name = string.Empty;
-            Email = string.Empty;
-            Organisation = string.Empty;
-            Location = string.Empty;
-            Subject = string.Empty;
-            Message = string.Empty;
+            Name = String.Empty;
+            Email = String.Empty;
+            Organisation = String.Empty;
+            Location = String.Empty;
+            Subject = String.Empty;
+            Message = String.Empty;
         }
     }
 }

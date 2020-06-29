@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SystematicsPortal.Data;
-using SystematicsPortal.Model.Interfaces;
+using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Web.Api.Infrastructure;
 using SystematicsPortal.Web.Api.Services;
 
@@ -42,8 +42,6 @@ namespace SystematicsPortal.Web.Api
             services.AddSingleton<ISearchService, SearchService>();
 
             services.AddScoped<IDocumentsService, DocumentsService>();
-
-
 
             services.AddControllers(opt => opt.OutputFormatters.Add(new XmlSerializerOutputFormatter())).AddNewtonsoftJson(options =>
                  {

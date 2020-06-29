@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using SystematicsPortal.Model.Models.Database;
-using SystematicsPortal.Model.Models.DTOs;
+using SystematicsPortal.Models.Entities.Database;
+using SystematicsPortal.Models.Entities.DTOs;
 using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data.Extensions
@@ -9,8 +9,7 @@ namespace SystematicsPortal.Data.Extensions
     {
         public static DocumentDto ToDto(this Document nameDocument)
         {
-            var name = SerializationHelper.Deserialize<Model.Models.Documents.Name.NameDocument>(nameDocument.SerializedDocument);
-
+            var name = SerializationHelper.Deserialize<Models.Entities.Documents.Name.NameDocument>(nameDocument.SerializedDocument);
 
             var docDto = new DocumentDto();
 

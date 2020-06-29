@@ -34,7 +34,7 @@ namespace SystematicsPortal.Web.Api.Services
         {
             var filterQueries = new List<KeyValuePair<string, string>>();
 
-            if (!string.IsNullOrWhiteSpace(filter))
+            if (!String.IsNullOrWhiteSpace(filter))
             {
                 List<string> filters = filter.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 

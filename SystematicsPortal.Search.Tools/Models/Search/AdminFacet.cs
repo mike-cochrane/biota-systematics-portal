@@ -1,4 +1,6 @@
-﻿namespace SystematicsPortal.Search.Tools.Models.Search
+﻿using System;
+
+namespace SystematicsPortal.Search.Tools.Models.Search
 {
     public class AdminFacet
     {
@@ -12,10 +14,10 @@
         public AdminFacet()
         {
             AdminFacetId = -1;
-            FacetGroup = string.Empty;
-            Facet = string.Empty;
-            Type = string.Empty;
-            SolrFieldName = string.Empty;
+            FacetGroup = String.Empty;
+            Facet = String.Empty;
+            Type = String.Empty;
+            SolrFieldName = String.Empty;
             DisplayOrder = int.MaxValue;
         }
     }

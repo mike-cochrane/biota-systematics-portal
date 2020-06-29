@@ -1,4 +1,6 @@
-﻿namespace SystematicsPortal.Search.Tools.Models.Search
+﻿using System;
+
+namespace SystematicsPortal.Search.Tools.Models.Search
 {
     public class Range : Filter
     {
@@ -12,13 +14,13 @@
 
         public Range()
         {
-            Name = string.Empty;
-            DisplayText = string.Empty;
+            Name = String.Empty;
+            DisplayText = String.Empty;
             MinimumValue = 0;
             MaximumValue = 0;
             Type = "numeric";
             IncludeNulls = false;
-            SparklineData = string.Empty;
+            SparklineData = String.Empty;
         }
     }
 }
