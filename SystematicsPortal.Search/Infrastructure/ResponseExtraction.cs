@@ -6,7 +6,7 @@ using SystematicsPortal.Search.Tools.Helpers;
 using SystematicsPortal.Search.Tools.Models;
 using SystematicsPortal.Search.Tools.Models.Search;
 
-namespace SearchLibrary.Implementation
+namespace SystematicsPortal.Search.Infrastructure
 {
     public class ResponseExtraction
     {
@@ -68,7 +68,7 @@ namespace SearchLibrary.Implementation
                                 {
                                     if (range.MaximumValue != range.MinimumValue)
                                     {
-                                        float sparklineIncrement = ((float)range.MaximumValue - (float)range.MinimumValue) / Range.NUMBER_SPARKLINES;
+                                        float sparklineIncrement = (range.MaximumValue - (float)range.MinimumValue) / Range.NUMBER_SPARKLINES;
                                         Dictionary<float, int> sparklineCounts = new Dictionary<float, int>();
                                         float currentKey = range.MinimumValue;
                                         sparklineCounts.Add(currentKey, 0);
@@ -110,7 +110,7 @@ namespace SearchLibrary.Implementation
                                         bool first = true;
                                         foreach (int count in sparklineCounts.Values)
                                         {
-                                            string value = String.Empty;
+                                            string value = string.Empty;
                                             if (count > 0)
                                             {
                                                 value = Convert.ToString(Math.Log10(count + 10));
@@ -182,7 +182,7 @@ namespace SearchLibrary.Implementation
                                             bool first = true;
                                             foreach (int count in sparklineCounts.Values)
                                             {
-                                                string value = String.Empty;
+                                                string value = string.Empty;
                                                 if (count > 0)
                                                 {
                                                     value = Convert.ToString(Math.Log10(count + 10));

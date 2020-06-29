@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Api.Services
 {
-    public interface ISearchService : IDisposable
+    public interface ISearchService 
     {
         List<KeyValuePair<string, string>> ParseFilterQueries(string filter);
-        Search.Search GetSearch();
+        SearchResult Search(string query, int pageNumber, int resultsPerPage, string facets);
     }
 }

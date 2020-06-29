@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SearchLibrary.Implementation
+namespace SystematicsPortal.Search.Infrastructure
 {
     internal class ExtraParameters
     {

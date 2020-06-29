@@ -7,17 +7,17 @@ using System.Net;
 using System.Text;
 using SystematicsPortal.Search.Tools.Models;
 
-namespace SearchLibrary.Implementation
+namespace SystematicsPortal.Search.Infrastructure
 {
-    public class Connection
+    public class SolrConnection : Tools.Models.Interfaces.ISolrConnection
     {
-        public readonly ISolrOperations<SolrDocument> SolrCore;
+        public readonly ISolrOperations<SolrDocument> _solrCore;
 
         // Initialize the connection and provide it to the search library
-        public Connection(string coreUrl, string userName, string password)
+        public SolrConnection(string coreUrl, string userName, string password)
         {
             SolrNet.Impl.SolrConnection solrConnection;
-            if (String.IsNullOrEmpty(userName) && String.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
             {
                 solrConnection = new SolrNet.Impl.SolrConnection(coreUrl);
             }
@@ -34,8 +34,14 @@ namespace SearchLibrary.Implementation
             //Startup.Init<Document>(new MyPostSolrConnection(solrConnection, coreUrl,userName,password));
             Startup.Init<SolrDocument>(solrConnection);
 
-            SolrCore = ServiceLocator.Current.GetInstance<ISolrOperations<SolrDocument>>();
+            _solrCore = ServiceLocator.Current.GetInstance<ISolrOperations<SolrDocument>>();
         }
+
+        public ISolrOperations<SolrDocument> GetSolrCore()
+        {
+            return _solrCore;
+        }
+
 
         private class SecureHttpWebRequestFactory : IHttpWebRequestFactory
         {
@@ -57,7 +63,7 @@ namespace SearchLibrary.Implementation
             {
                 var req = (HttpWebRequest)WebRequest.Create(url);
 
-                if (!(String.IsNullOrEmpty(_username) || String.IsNullOrEmpty(_password)))
+                if (!(string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password)))
                 {
                     var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(_username + ":" + _password));
 

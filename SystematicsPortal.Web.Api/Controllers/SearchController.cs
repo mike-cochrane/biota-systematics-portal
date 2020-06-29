@@ -1,28 +1,23 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
-using SystematicsPortal.Search.Tools.Models;
 using SystematicsPortal.Search.Tools.Models.Search;
-using SystematicsPortal.Web.Api.Infrastructure;
 using SystematicsPortal.Web.Api.Services;
 
 namespace SystematicsPortal.Web.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class SearchController : ControllerBase
     {
         private readonly ISearchService _searchService;
-        private readonly AppSettings _appSettings;
         private readonly ILogger<SearchController> _logger;
 
 
-        public SearchController(ISearchService searchService, IOptions<AppSettings> appSettings, ILogger<SearchController> logger )
+        public SearchController(ISearchService searchService, ILogger<SearchController> logger )
         {
             _searchService = searchService;
-            _appSettings = appSettings.Value;
             _logger = logger;
         }
 
@@ -32,27 +27,12 @@ namespace SystematicsPortal.Web.Api.Controllers
             SearchResult response;
 
             _logger.LogDebug(
-                "ImagesController - Get - query: {query} - pageNumber {pageNumber} - resultsPerPage {resultsPerPage}",
+                "SearchController - Get - query: {query} - pageNumber {pageNumber} - resultsPerPage {resultsPerPage}",
                              query, pageNumber, resultsPerPage);
 
             try
             {
-                // This is the object that will be used to parse the query and the parameter. Start Position equals to pageNumber * resultsPerPage. Rows number will be the results per page.
-                var queryToUse = new Query(pageNumber * resultsPerPage, resultsPerPage) { TextQuery = query };
-
-                var appliedFacets = _searchService.ParseFilterQueries(facets);
-
-                if (appliedFacets != null && appliedFacets.Count > 0)
-                {
-                    queryToUse.FacetFilters = appliedFacets;
-                }
-
-                _logger.LogDebug(
-                    "ImagesController - Get - queryToUse: {@queryToUse}",
-                    queryToUse);
-
-                // Actually using search library
-                response = _searchService.GetSearch().DoSearch(queryToUse);
+                response = _searchService.Search(query, pageNumber, resultsPerPage, facets);
             }
             catch (Exception exception)
             {

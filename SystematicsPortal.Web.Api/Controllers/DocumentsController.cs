@@ -8,7 +8,7 @@ using SystematicsPortal.Web.Api.Services;
 namespace SystematicsPortal.Web.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class DocumentsController : ControllerBase
     {
         private readonly ILogger<SearchController> _logger;

@@ -3,7 +3,7 @@ using SolrNet.Commands.Parameters;
 using System.Collections.Generic;
 using SystematicsPortal.Search.Tools.Models;
 
-namespace SearchLibrary.Implementation
+namespace SystematicsPortal.Search.Infrastructure
 {
     internal class FilterFacets
     {

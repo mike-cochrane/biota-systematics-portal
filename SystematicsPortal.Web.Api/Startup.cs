@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SystematicsPortal.Data;
 using SystematicsPortal.Models.Interfaces;
+using SystematicsPortal.Search.Tools.Models.Interfaces;
 using SystematicsPortal.Web.Api.Infrastructure;
 using SystematicsPortal.Web.Api.Services;
 
@@ -27,7 +28,7 @@ namespace SystematicsPortal.Web.Api
             services.AddLogging();
 
             var appSettingsConfigurationSection = Configuration.GetSection("AppSettings");
-
+            AppSettings appSettings = appSettingsConfigurationSection.Get<AppSettings>();
             services.Configure<AppSettings>(appSettingsConfigurationSection);
 
 
@@ -39,7 +40,13 @@ namespace SystematicsPortal.Web.Api
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
-            services.AddSingleton<ISearchService, SearchService>();
+            services.AddScoped<ISolrConnection>(x =>
+                new Search.Infrastructure.SolrConnection(appSettings.Solr.Url, appSettings.Solr.UserName, 
+                            appSettings.Solr.Password));
+
+            services.AddScoped<ISearch, Search.Search>();
+
+            services.AddScoped<ISearchService, SearchService>();
 
             services.AddScoped<IDocumentsService, DocumentsService>();
 

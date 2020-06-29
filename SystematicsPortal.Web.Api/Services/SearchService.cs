@@ -1,27 +1,56 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SystematicsPortal.Web.Api.Infrastructure;
+using SystematicsPortal.Search.Tools.Models;
+using SystematicsPortal.Search.Tools.Models.Interfaces;
+using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Api.Services
 {
     public class SearchService : ISearchService
     {
-        public Search.Search Search { get; }
+        public readonly ISearch _search;
+        private readonly ILogger<SearchService> _logger;
 
-        public SearchService(IOptions<AppSettings> appSettings, ILogger<SearchService> logger)
+
+
+        public SearchService(ISearch search,  ILogger<SearchService> logger)
         {
-            var solrUrl = appSettings.Value.Solr.Url;
-            var userName = appSettings.Value.Solr.UserName;
-            var password = appSettings.Value.Solr.Password;
-            Search = new Search.Search(solrUrl, userName, password, logger);
+            //var solrUrl = appSettings.Value.Solr.Url;
+            //var userName = appSettings.Value.Solr.UserName;
+            //var password = appSettings.Value.Solr.Password;
+            //_search = new Search.Search(solrUrl, userName, password, logger);
+            _search = search;
+            _logger = logger;
         }
 
-        public Search.Search GetSearch()
+        /// <summary>
+        /// Assembly the query and call the search library to do search
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="resultsPerPage"></param>
+        /// <param name="facets"></param>
+        /// <returns>Search result with solr documents and properties to enable paging and facting</returns>
+        public SearchResult Search(string query, int pageNumber, int resultsPerPage, string facets)
         {
-            return Search;
+            // This is the object that will be used to parse the query and the parameter. Start Position equals to pageNumber * resultsPerPage. Rows number will be the results per page.
+            var queryToUse = new Query(pageNumber * resultsPerPage, resultsPerPage) { TextQuery = query };
+
+            var appliedFacets = ParseFilterQueries(facets);
+
+            if (appliedFacets != null && appliedFacets.Count > 0)
+            {
+                queryToUse.FacetFilters = appliedFacets;
+            }
+
+            _logger.LogDebug(
+                "ImagesController - Get - queryToUse: {@queryToUse}",
+                queryToUse);
+
+            // Actually using search library
+            return _search.DoSearch(queryToUse);
         }
 
         /// <summary>
@@ -55,11 +84,6 @@ namespace SystematicsPortal.Web.Api.Services
             }
 
             return filterQueries;
-        }
-
-        public void Dispose()
-        {
-            Search?.Dispose();
         }
     }
 }
