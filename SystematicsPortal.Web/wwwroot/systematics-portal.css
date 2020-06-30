@@ -35,7 +35,7 @@
 }
 
 .home-nav-search {
-    height: 350px;
+    height: 450px;
     background-image:url(images/petr-vysohlid-9fqwGqGLUxc-unsplash-1__FillMaxWzIwMDAsNTQwXQ.jpg)
 }
 
@@ -89,13 +89,27 @@
     }
 
 footer {
+    max-height: 500px;
     height: 300px;
     background-color: black;
-    background-image:url();
+    background-image: url();
     color: white;
 }
 
 footer ul li {
     list-style-type: none;
     line-height: 1.5em;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.container-fluid {
+    padding-bottom: 80px;
 }
