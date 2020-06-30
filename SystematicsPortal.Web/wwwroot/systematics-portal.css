@@ -13,17 +13,17 @@
 
 .search-icon {
     border: 1px solid black;
-    height: 34px;
-    width: 34px;
+    height: 45px;
+    width: 45px;
     padding-top: 0px;
     padding-left: 8px;
     margin-bottom: 0px;
     top: 0px;
 }
 
-    .search-icon:hover {
-        background-color: grey;
-    }
+.search-icon:hover {
+    background-color: grey;
+}
 
 .search-field-wrapper, .search-icon-wrapper {
     padding-left: 0px;
@@ -35,5 +35,67 @@
 }
 
 .home-nav-search {
+    height: 350px;
+    background-image:url(images/petr-vysohlid-9fqwGqGLUxc-unsplash-1__FillMaxWzIwMDAsNTQwXQ.jpg)
+}
+
+.home-nav-search .search-row {
+    margin-top: 100px;
+}
+
+.nav-item a {
+    color: white;
+}
+
+.btn-secondary {
+    color: black;
+    background-color: white;
+    border-color: white;
+}
+
+#main-nav-buttons {
+    margin-top: 30px;
+}
+
+#main-nav-buttons .btn {
+    margin-left: 15px;
+    border-radius: 0;
+    font-weight: 700;
+}
+
+.green-background {
+    background-color: #6E9E40;
+}
+
+.content-wrapper {
+    margin-top: 50px;
+}
+
+.nav-item a {
+    font-weight:600;
+    font-size: 1.1rem;
+    border-right: 2px solid;
+}
+
+.nav-item:first-child a {
+    padding-left: 0px;
+}
+
+    /*.nav, .nav-item, .nav-link, .nav-item a {
+    height: 30px;
+}*/
+    .nav-link {
+        padding: 0rem 1rem;
+    }
+
+footer {
     height: 300px;
+    background-color: black;
+    background-image:url();
+    color: white;
+}
+
+footer ul li {
+    list-style-type: none;
+    line-height: 1.5em;
 }

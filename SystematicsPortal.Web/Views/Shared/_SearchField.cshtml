@@ -1,13 +1,29 @@
-﻿<div class="row">
+﻿<div class="row search-row">
     <div class="col-md-2"></div>
     <div class="form-group col-lg-8">
         <form method="post" id="form" enctype="multipart/form-data" asp-controller="Search" asp-action="Index">
             <div class="row">
-                <div class="col-lg-11 search-field-wrapper">
-                    <input class="form-control search-form" type="text" placeholder="Search" aria-label="Search" name="query">
+                <div class="col-md-11 search-field-wrapper d-none d-md-block d-lg-non">
+                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query">
                 </div>
-                <div class="float-lg-right col-lg-1 search-icon-wrapper">
-                    <button type="submit" form="form" class="glyphicon glyphicon-search search-icon"></button>
+                <div class="float-md-right col-md-1 search-icon-wrapper d-none d-md-block d-lg-non">
+                    <button type="submit" form="form" class="fa fa-search search-icon"></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-11 search-field-wrapper d-none d-sm-block d-md-none">
+                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query">
+                </div>
+                <div class="float-sm-right col-sm-1 search-icon-wrapper d-none d-sm-block d-md-none">
+                    <button type="submit" form="form" class="fa fa-search search-icon"></button>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xs-11 search-field-wrapper d-block d-sm-none">
+                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query">
+                </div>
+                <div class="float-xl-right col-xs-1 search-icon-wrapper d-block d-sm-none">
+                    <button type="submit" form="form" class="fa fa-search search-icon"></button>
                 </div>
             </div>
         </form>
