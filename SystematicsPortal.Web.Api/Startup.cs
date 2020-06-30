@@ -32,23 +32,10 @@ namespace SystematicsPortal.Web.Api
             services.Configure<AppSettings>(appSettingsConfigurationSection);
 
 
-            var connectionString = Configuration.GetConnectionString("NamesWebConnectionString");
+            var connectionString = Configuration.GetConnectionString("NamesWeb");
 
-            services.AddDbContext<NamesWebContext>(options =>
-                options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
-                ServiceLifetime.Transient);
+            services.RegisterDependencies(appSettings, connectionString);
 
-            services.AddTransient<IDocumentsRepository, DocumentsRepository>();
-
-            services.AddScoped<ISolrConnection>(x =>
-                new Search.Infrastructure.SolrConnection(appSettings.Solr.Url, appSettings.Solr.UserName, 
-                            appSettings.Solr.Password));
-
-            services.AddScoped<ISearch, Search.Search>();
-
-            services.AddScoped<ISearchService, SearchService>();
-
-            services.AddScoped<IDocumentsService, DocumentsService>();
 
             services.AddControllers(opt => opt.OutputFormatters.Add(new XmlSerializerOutputFormatter())).AddNewtonsoftJson(options =>
                  {

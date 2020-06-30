@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Org.XmlUnit.Builder;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,12 @@ namespace SystematicsPortal.Data
     public class DocumentsRepository : IDocumentsRepository
     {
         private readonly NamesWebContext _context;
+        private readonly ILogger _logger;
 
-
-        public DocumentsRepository(NamesWebContext context)
+        public DocumentsRepository(NamesWebContext context, ILogger<DocumentsRepository> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         /// <summary>
@@ -69,13 +71,16 @@ namespace SystematicsPortal.Data
 
             foreach (var document in documentsList)
             {
-                // _logger.Verbose("{Action} {NameFullName} (Record {Index} of {NameCount})", "Process Consensus Name Document", name.FullName, index, consensusNameCount);
                 string documentId = (string)document.Attribute("documentId");
+
 
                 if (String.IsNullOrEmpty(documentId))
                 {
                     throw new InvalidInputException("DocumentId has not been found");
                 }
+
+                _logger.LogDebug("{Action} - DocumentId: {documentId} - Document: {document}", "WriteDocuments", documentId, document);
+
 
                 if (allStoreNames.TryGetValue(Guid.Parse(documentId), out var storeDocument))
                 {
@@ -89,19 +94,20 @@ namespace SystematicsPortal.Data
                         storeDocument.Version += 1;
                         storeDocument.SerializedDocument = document.ToString();
 
-                        // _logger.Verbose("{Action} {NameId} {NameFullName} {Differences}", "Update Consensus Name Document", name.NameId, name.FullName, xmlComparer.ToString());
+                        _logger.LogDebug("{Action} {DocumentId} {Differences}", "Update Document", documentId, xmlComparer.ToString());
                     }
                 }
                 else
                 {
-                    storeDocument = new Models.Entities.Database.Document();
-
-                    storeDocument.DocumentId = Guid.Parse(documentId);
-                    storeDocument.Version = 1;
-                    storeDocument.SerializedDocument = document.ToString();
+                    storeDocument = new Models.Entities.Database.Document
+                    {
+                        DocumentId = Guid.Parse(documentId),
+                        Version = 1,
+                        SerializedDocument = document.ToString()
+                    };
 
                     await InsertDocumentDbAsync(storeDocument);
-                    //_logger.Verbose("{Action} {NameId} {NameFullName}", "Add Consensus Name Document", name.NameId, name.FullName);
+                    _logger.LogDebug("{Action} {DocumentId} {NameFullName}", "Add Document", documentId);
                 }
 
             }
