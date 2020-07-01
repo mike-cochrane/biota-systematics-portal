@@ -88,6 +88,10 @@
     padding-left: 0px;
 }
 
+.nav-item:last-child a {
+    border-right: 0px solid;
+}
+
     /*.nav, .nav-item, .nav-link, .nav-item a {
     height: 30px;
 }*/
@@ -99,7 +103,7 @@ footer {
     max-height: 500px;
     height: auto;
     background-color: black;
-    background-image: url();
+    background-image: url(images/ft-bg-pattern.png);
     color: white;
 }
 
