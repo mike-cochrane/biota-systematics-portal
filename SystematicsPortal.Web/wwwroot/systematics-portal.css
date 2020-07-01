@@ -49,6 +49,16 @@
     margin-top: 100px;
 }
 
+.other-nav-search {
+    max-height: 220px;
+    height: auto;
+    background-color: #6E9E40;
+}
+
+.other-nav-search .search-row {
+    margin-top: 10px;
+}
+
 .nav-item a {
     color: white;
 }
@@ -123,4 +133,9 @@ a:hover, .nav-link a:hover {
 
 .container-fluid {
     padding-bottom: 80px;
+}
+
+.sidebar{
+    background-color: silver;
+    width: 100%;
 }

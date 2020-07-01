@@ -2,6 +2,8 @@
     ViewData["Title"] = "Detail";
 }
 
+@await Html.PartialAsync("~/Views/Shared/_NavAndSearch.cshtml")
+
 <h1>Cranwell, E. 1956: Fungi of Marotiri Island.<i>Tane 7</i>: 22.</h1>
 
 <div class="container-fluid">
@@ -89,18 +91,18 @@
 
 <h3>Fields</h3>
 <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Author</label>
-        <div class="col-sm-10">
-            Cranwell, E.
-        </div>
+    <label class="col-sm-2 col-form-label">Author</label>
+    <div class="col-sm-10">
+        Cranwell, E.
+    </div>
 </div>
 
 <h3>Concepts</h3>
 <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Cited Name</label>
-        <div class="col-sm-10">
-            <a href="">Clavaria L. 1753</a>
-        </div>
+    <label class="col-sm-2 col-form-label">Cited Name</label>
+    <div class="col-sm-10">
+        <a href="">Clavaria L. 1753</a>
+    </div>
 </div>
 
 <h4>Other taxa cited</h4>

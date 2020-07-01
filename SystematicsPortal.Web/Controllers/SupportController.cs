@@ -21,6 +21,10 @@ namespace SystematicsPortal.Web.Controllers
         {
             return View();
         }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
         public IActionResult FAQ()
         {
             return View();
