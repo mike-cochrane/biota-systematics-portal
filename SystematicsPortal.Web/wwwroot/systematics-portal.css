@@ -7,22 +7,28 @@
 }
 
 .search-form {
-    padding: 10px;
+    padding: 30px;
     font-size: 1.3em;
 }
 
 .search-icon {
     border: 1px solid black;
-    height: 45px;
-    width: 45px;
+    height: 62px;
+    width: 62px;
     padding-top: 0px;
     padding-left: 8px;
     margin-bottom: 0px;
     top: 0px;
+    background-color: black;
+}
+
+.fa-search {
+    color: white;
 }
 
 .search-icon:hover {
     background-color: grey;
+    border: 1px solid grey;
 }
 
 .search-field-wrapper, .search-icon-wrapper {
@@ -61,6 +67,7 @@
     margin-left: 15px;
     border-radius: 0;
     font-weight: 700;
+    width: 100px;
 }
 
 .green-background {
@@ -90,7 +97,7 @@
 
 footer {
     max-height: 500px;
-    height: 300px;
+    height: auto;
     background-color: black;
     background-image: url();
     color: white;
@@ -105,7 +112,7 @@ a {
     color: white;
 }
 
-a:hover {
+a:hover, .nav-link a:hover {
     text-decoration: underline;
     color: white;
 }
