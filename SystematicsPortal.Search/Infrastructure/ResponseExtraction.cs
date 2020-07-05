@@ -1,12 +1,12 @@
-﻿using System;
+﻿using SolrNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SolrNet;
 using SystematicsPortal.Search.Tools.Helpers;
 using SystematicsPortal.Search.Tools.Models;
 using SystematicsPortal.Search.Tools.Models.Search;
 
-namespace SearchLibrary.Implementation
+namespace SystematicsPortal.Search.Infrastructure
 {
     public class ResponseExtraction
     {
@@ -68,7 +68,7 @@ namespace SearchLibrary.Implementation
                                 {
                                     if (range.MaximumValue != range.MinimumValue)
                                     {
-                                        float sparklineIncrement = ((float)range.MaximumValue - (float)range.MinimumValue) / Range.NUMBER_SPARKLINES;
+                                        float sparklineIncrement = (range.MaximumValue - (float)range.MinimumValue) / Range.NUMBER_SPARKLINES;
                                         Dictionary<float, int> sparklineCounts = new Dictionary<float, int>();
                                         float currentKey = range.MinimumValue;
                                         sparklineCounts.Add(currentKey, 0);
@@ -230,7 +230,7 @@ namespace SearchLibrary.Implementation
                                 }
                             }
 
-                           
+
                             if (facet.Values.Any())
                             {
                                 searchResult.Filters.Add(facet);

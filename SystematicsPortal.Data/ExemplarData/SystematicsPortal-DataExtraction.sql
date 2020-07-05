@@ -266,6 +266,11 @@ CREATE TABLE #Name (
 	, NamePartFormattedEscaped nvarchar(300)
 	, Orthography nvarchar(100)
 	, Authors nvarchar(255)
+	, BasionymAuthors nvarchar(255)
+	, CombinationAuthors nvarchar(255)
+	, AuthorsXML XML
+	, BasionymAuthorsXML XML
+	, CombinationAuthorsXML XML
 	, [Page] nvarchar(20)
 	, YearOfPublication nvarchar(10)
 	, YearOnPublication nvarchar(10)
@@ -534,7 +539,7 @@ CREATE INDEX idx_InputRelationshipType ON #BibliographyRelationshipType(InputRel
 
 GO
 
-INSERT INTO #Name(NameGuid, Canonical, NameFull, Orthography
+INSERT INTO #Name(NameGuid, Canonical, NameFull, Orthography, Authors
 	, [Page], YearOfPublication, YearOnPublication
 	, InCitation, Misapplied, Dubium, ProParte 
 	, Novum, Invalid, Illegitimate, Autonym 
@@ -549,7 +554,7 @@ INSERT INTO #Name(NameGuid, Canonical, NameFull, Orthography
 	, TaxonRank, TaxonRankSort, IsCurrent
 )
 
-SELECT NameGuid, NameCanonical, NameFull, NameOrthographyVariant
+SELECT NameGuid, NameCanonical, NameFull, NameOrthographyVariant, NameAuthors
 	, NamePage, NameYearOfPublication, NameYearOnPublication
 	, NameInCitation, NameMisapplied, NameDubium, NameProParte 
 	, NameNovum, NameInvalid, NameIllegitimate, NameAutonym 
@@ -705,6 +710,50 @@ FROM #Name N
 GO
 -- delete extraneous names here
 
+
+GO
+-- get authors strings
+UPDATE #Name SET Authors = NULL WHERE ISNULL(Authors, '') = ''
+
+UPDATE #Name
+	SET  BasionymAuthors =  CASE CHARINDEX(')', Authors) 
+								WHEN 0 THEN NULL 
+								ELSE RTRIM(REPLACE(REPLACE(SUBSTRING(Authors, 1, CHARINDEX(')', Authors)), '(', ''), ')', ''))
+							END 
+	, CombinationAuthors =  CASE CHARINDEX(')', Authors)
+								 WHEN 0 THEN Authors
+								 ELSE LTRIM(SUBSTRING(Authors, CHARINDEX(')', Authors)+1, LEN(Authors)))
+							 END  
+WHERE ISNULL(Authors, '') <> ''
+
+UPDATE #Name SET CombinationAuthors = SUBSTRING(CombinationAuthors, CHARINDEX(' ex ', CombinationAuthors) + 4, LEN(CombinationAuthors))  WHERE CombinationAuthors like '% ex %'
+UPDATE #Name SET BasionymAuthors    = SUBSTRING(BasionymAuthors   , CHARINDEX(' ex ', BasionymAuthors   ) + 4, LEN(BasionymAuthors   ))  WHERE BasionymAuthors    like '% ex %'
+
+; WITH BasioA AS (SELECT NameGuid, S.value Author
+FROM #Name N
+	CROSS APPLY STRING_SPLIT(REPLACE(BasionymAuthors, ' & ', ','), ',') S
+WHERE BasionymAuthors IS NOT NULL)
+, CombA AS (SELECT NameGuid, S.value Author
+FROM #Name N
+	CROSS APPLY STRING_SPLIT(REPLACE(CombinationAuthors, ' & ', ','), ',') S
+WHERE CombinationAuthors IS NOT NULL)
+, AllAuthors AS (
+		SELECT DISTINCT NameGuid, Author FROM BasioA
+		UNION ALL
+		SELECT DISTINCT NameGuid, Author FROM CombA
+		)
+UPDATE N
+	SET BasionymAuthorsXML	= (SELECT (SELECT 'basionymAuthor'					as '@name'			,	Author		as 'text()' for xml path('field'), TYPE) 
+			FROM BasioA BA 
+			WHERE BA.NameGuid = N.NameGuid FOR XML PATH(''), TYPE)
+	, CombinationAuthorsXML = (SELECT (SELECT 'combinationAuthor'				as '@name'			,	Author		as 'text()' for xml path('field'), TYPE) 
+			FROM CombA CA 
+			WHERE CA.NameGuid = N.NameGuid FOR XML PATH(''), TYPE)
+	, AuthorsXML			= (SELECT (SELECT 'nameAuthor'						as '@name'			,	Author		as 'text()' for xml path('field'), TYPE) 
+			FROM AllAuthors AA 
+			WHERE AA.NameGuid = N.NameGuid FOR XML PATH(''), TYPE)
+FROM #Name N
+WHERE Authors IS NOT NULL
 
 GO
 DECLARE @DB nvarchar(50)
@@ -1821,7 +1870,8 @@ GO
 
 
 -- generate result
-SELECT LOWER(NameGuid) as '@nameId'
+SELECT LOWER(NameGuid) as '@documentId'
+	, LOWER(NameGuid) as '@nameId'
 	, 'name' as '@documentClass'
 	, [Source] '@source'
 	, AddedDate  '@added'
@@ -1857,6 +1907,9 @@ SELECT LOWER(NameGuid) as '@nameId'
 	, CAST(REPLACE(NameFormatted, '&', '&amp;') as XML) AS NameFormatted
 	, NameScientificXML AS NameScientific
 	, CAST(REPLACE(NamePartFormatted, '&', '&amp;') as XML) AS NamePartFormatted
+	, Authors
+	, BasionymAuthors
+	, CombinationAuthors
 	, Orthography
 	, [Page]
 	, YearOfPublication
@@ -1958,6 +2011,7 @@ SELECT
 	,   (SELECT 'namePartFormatted'  as '@name'		,  NamePartFormattedEscaped as 'text()' for xml path('field'), TYPE)
 	,   (SELECT 'nameFormatted' as '@name'			,   NameFormattedEscaped	as 'text()' for xml path('field'), TYPE)
 	,   (SELECT 'canonical'		as '@name'			,	Canonical				as 'text()' for xml path('field'), TYPE)
+	,   (SELECT 'authors'		as '@name'			,	Authors					as 'text()' for xml path('field'), TYPE)
 	,   (SELECT 'nomCode'		as '@name'			,	NomCode					as 'text()' for xml path('field'), TYPE)
 	,   (SELECT 'nzRelevance'	as '@name'			,	NZRelevance				as 'text()' for xml path('field'), TYPE)
 	,   (SELECT 'kingdom'		as '@name'			,	Kingdom					as 'text()' for xml path('field'), TYPE)
@@ -2034,10 +2088,13 @@ SELECT
 	, CASE IsSuperfluous				WHEN 0 THEN NULL else (SELECT 'nomenclaturalStatus' AS '@name', 'superfluous (nom. sup.)'			as 'text()' FOR XML PATH('field'), TYPE) end 
 	, CASE IsConserved					WHEN 0 THEN NULL else (SELECT 'nomenclaturalStatus' AS '@name', 'conserved  (nom. con.)'			as 'text()' FOR XML PATH('field'), TYPE) end 
 
-	, (SELECT ConceptsSOLRXML.query('(//field)') for xml path(''), TYPE)
-	, (SELECT VernacularSOLRXML.query('(//field)') for xml path(''), TYPE)
-	, (SELECT BiostatusSOLRXML.query('(//field)') for xml path(''), TYPE)
-	, (SELECT NotesSOLRXML.query('(//field)') for xml path(''), TYPE)
+	, (SELECT AuthorsXML.query('(//field)')				for xml path(''), TYPE)
+	, (SELECT BasionymAuthorsXML.query('(//field)')		for xml path(''), TYPE)
+	, (SELECT CombinationAuthorsXML.query('(//field)')	for xml path(''), TYPE)
+	, (SELECT ConceptsSOLRXML.query('(//field)')		for xml path(''), TYPE)
+	, (SELECT VernacularSOLRXML.query('(//field)')		for xml path(''), TYPE)
+	, (SELECT BiostatusSOLRXML.query('(//field)')		for xml path(''), TYPE)
+	, (SELECT NotesSOLRXML.query('(//field)')			for xml path(''), TYPE)
 	, (SELECT ImageSOLRXML.query('(//field)') for xml path(''), TYPE)
 	, (SELECT ExternalLinkSOLRXML.query('(//field)') for xml path(''), TYPE)
 	, (SELECT ExternalLinkSOLRXML.query('(//field)') for xml path(''), TYPE)
@@ -2322,7 +2379,8 @@ UPDATE #Reference SET ParentReference	= NULL WHERE ParentReference = ''
 UPDATE #Reference SET Added				= NULL WHERE Added = ''
 UPDATE #Reference SET Updated			= NULL WHERE Updated = ''
 
-SELECT LOWER(ReferenceId) AS '@referenceId'
+SELECT LOWER(ReferenceId) AS '@documentId' 
+	, LOWER(ReferenceId) AS '@referenceId'
 	, 'reference' as '@documentClass'
 	, [Source] as '@source'
 	, Added as '@added'
@@ -2469,7 +2527,8 @@ UPDATE #Vernacular SET Translation		= NULL WHERE Translation = ''
 UPDATE #Vernacular SET Transliteration	= NULL WHERE Transliteration = ''
 --SELECT * FROM #Vernacular
 
-SELECT LOWER(VernacularId) AS '@vernacularId'
+SELECT LOWER(VernacularId) AS '@documentId'
+	, LOWER(VernacularId) AS '@vernacularId'
 	, 'vernacular' as '@documentClass'
 	, DB_Name() as '@source'
 	

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SystematicsPortal.Model.Models.Access;
-using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Models.Entities.Access;
+using SystematicsPortal.Models.Entities.Documents;
 using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Services

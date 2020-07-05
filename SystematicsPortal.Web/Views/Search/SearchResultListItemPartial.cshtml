@@ -5,7 +5,7 @@
         <h1><a href="Specimen/@Model.AccessionNumber.Replace(' ', '_')">@Model.AccessionNumber : @Model.TaxonName</a></h1>
     </div>
     <div class="pull-right">
-        @if (Model.TypeStatus != null && !Model.TypeStatus.Equals(string.Empty)) {
+        @if (Model.TypeStatus != null && !Model.TypeStatus.Equals(String.Empty)) {
             <i class="icon-tag" title="Type status: @Model.TypeStatus"></i>
         }
         @if (Model.HasImages) {
@@ -17,13 +17,13 @@
         &nbsp;&nbsp;<span class="heading">Data&nbsp;provider:</span>&nbsp;@Model.Collection
         &nbsp;&nbsp;<span class="heading">Collection:</span>&nbsp;@Model.SubCollection 
         &nbsp;&nbsp;<span class="heading">Specimen&nbsp;type:</span>&nbsp;@Model.SpecimenType
-        @if (Model.Country != null && !Model.Country.Equals(string.Empty)) {
+        @if (Model.Country != null && !Model.Country.Equals(String.Empty)) {
             @:&nbsp;&nbsp;<span class="heading">Country:</span>&nbsp;@Model.Country
         }
-        @if (Model.Locality != null && !Model.Locality.Equals(string.Empty)) {
+        @if (Model.Locality != null && !Model.Locality.Equals(String.Empty)) {
             @:&nbsp;&nbsp;<span class="heading">Standard locality:</span>&nbsp;@Model.Locality
         }
-        @if (Model.NZAreaCode != null && !Model.NZAreaCode.Equals(string.Empty)) {
+        @if (Model.NZAreaCode != null && !Model.NZAreaCode.Equals(String.Empty)) {
             @:&nbsp;&nbsp;<span class="heading">NZ&nbsp;area&nbsp;code:</span>&nbsp;@Model.NZAreaCode
         }
     </p>*@

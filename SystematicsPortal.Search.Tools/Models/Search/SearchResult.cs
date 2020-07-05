@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SystematicsPortal.Search.Tools.Models;
 
 namespace SystematicsPortal.Search.Tools.Models.Search
 {
@@ -24,9 +23,9 @@ namespace SystematicsPortal.Search.Tools.Models.Search
         //public int SecondsToProcessData { get; set; }
         //public int SecondsToRenderData { get; set; }
 
-        public SearchResult(): this("relevance")
+        public SearchResult() : this("relevance")
         {
-            
+
         }
 
         public SearchResult(string sortBy = "relevance")
@@ -49,11 +48,11 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public string GetAppliedFacets()
         {
-            string appliedFacets = string.Empty;
+            string appliedFacets = String.Empty;
 
             foreach (SelectedFacetValue facet in AppliedFacets)
             {
-                if (!appliedFacets.Equals(string.Empty))
+                if (!appliedFacets.Equals(String.Empty))
                 {
                     appliedFacets += "|";
                 }
@@ -127,11 +126,11 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public string GetAppliedRanges()
         {
-            string appliedRanges = string.Empty;
+            string appliedRanges = String.Empty;
 
             foreach (SelectedRange range in AppliedRanges)
             {
-                if (!appliedRanges.Equals(string.Empty))
+                if (!appliedRanges.Equals(String.Empty))
                 {
                     appliedRanges += "|";
                 }

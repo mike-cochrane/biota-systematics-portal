@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Systematics.Portal.Model.Models.Annotations;
+using SystematicsPortal.Models.Entities.Annotations;
 
 namespace SystematicsPortal.Web.Services
 {

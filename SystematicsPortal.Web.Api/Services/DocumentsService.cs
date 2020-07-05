@@ -1,35 +1,30 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Model.Interfaces;
-using SystematicsPortal.Model.Models.DTOs;
+using SystematicsPortal.Models.Entities.Access;
+using SystematicsPortal.Models.Interfaces;
 
 namespace SystematicsPortal.Web.Api.Services
 {
     public class DocumentsService : IDocumentsService
     {
-        private readonly IDocumentsRepository _namesRepository;
-        private readonly IDocumentsRepository _vernacularRepository;
-        private readonly IDocumentsRepository _referenceRepository;
+        private readonly IDocumentsRepository _documentsRepository;
 
         private readonly ILogger<DocumentsService> _logger;
 
-        public DocumentsService(IDocumentsRepository namesRepository, ILogger<DocumentsService> logger)
+        public DocumentsService(IDocumentsRepository documentsRepository, ILogger<DocumentsService> logger)
         {
-            _namesRepository = namesRepository;
+            _documentsRepository = documentsRepository;
             _logger = logger;
         }
 
-        public async Task<Model.Models.Access.Document> GetDocument(string id)
+        public async Task<Document> GetDocument(string id)
         {
-            Model.Models.Access.Document document;
+            Document document;
 
             if (Guid.TryParse(id, out var idGuid))
             {
-                document = await _namesRepository.GetDocument(idGuid);
+                document = await _documentsRepository.GetDocumentAsync(idGuid);
             }
             else
             {
@@ -37,8 +32,6 @@ namespace SystematicsPortal.Web.Api.Services
             }
 
             return document;
-
-
         }
     }
 }

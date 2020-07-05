@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SystematicsPortal.Web.Api.Infrastructure;
 using SystematicsPortal.Web.Api.Services;
@@ -12,36 +8,31 @@ using SystematicsPortal.Web.Api.Services;
 namespace SystematicsPortal.Web.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class DocumentsController : ControllerBase
     {
         private readonly ILogger<SearchController> _logger;
         private readonly AppSettings _appSettings;
-        private readonly IDocumentsService _namesService;
+        private readonly IDocumentsService _documentsService;
 
 
-        public DocumentsController(IOptions<AppSettings> appSettings, ILogger<SearchController> logger, IDocumentsService namesService)
+        public DocumentsController(IDocumentsService namesService, IOptions<AppSettings> appSettings, ILogger<SearchController> logger)
         {
-            _logger = logger;
-            _namesService = namesService;
+            _documentsService = namesService;
             _appSettings = appSettings.Value;
+            _logger = logger;
         }
 
         [HttpGet("{id}", Name = "GetName")]
-        public async Task<IActionResult> Get(string id/*, string documentType*/)
+        public async Task<IActionResult> Get(string id)
         {
             _logger.LogDebug(
                 "NamesController - Get - id: {id}",
                              id);
 
-            var response = await _namesService.GetDocument(id);
-
-
+            var response = await _documentsService.GetDocument(id);
 
             return Ok(response.XmlDocument);
-
-            // return Ok(response.XDocument.Document);
         }
-
     }
 }

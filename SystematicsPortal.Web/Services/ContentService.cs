@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Systematics.Portal.Model.Models.Annotations;
+using SystematicsPortal.Models.Entities.Annotations;
 using SystematicsPortal.Web.Api.Client.Extensions;
-using SystematicsPortal.Search.Tools.Models;
-using SystematicsPortal.Search.Tools.Models.Search;
-using SystematicsPortal.Model.Models.Access;
-using System.Xml.Linq;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
 using SystematicsPortal.Web.Infrastructure;
@@ -59,7 +54,7 @@ namespace SystematicsPortal.Web.Services
                     // _logger.Verbose("{Action} {NameFullName} (Record {Index} of {NameCount})", "Process Consensus Name Document", name.FullName, index, consensusNameCount);
                     string resourceId = (string)resource.Attribute("resourceId");
 
-                    if (!string.IsNullOrEmpty(resourceId))
+                    if (!String.IsNullOrEmpty(resourceId))
                     {
                         resourcesList.Add(resourceId);
                     }

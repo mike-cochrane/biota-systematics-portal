@@ -27,36 +27,36 @@ namespace SystematicsPortal.Search.Tools.Client
 
         public string AssemblyQuery()
         {
-            string queryForFacets = string.Empty;
+            string queryForFacets = String.Empty;
 
-            string query = string.Empty;
+            string query = String.Empty;
 
-            if (!(string.IsNullOrEmpty(Query) || string.IsNullOrWhiteSpace(Query)))
+            if (!(String.IsNullOrEmpty(Query) || String.IsNullOrWhiteSpace(Query)))
             {
                 query = query + "?query=" + Query;
             }
 
-           
-            if (!(string.IsNullOrEmpty(PageNumber) || string.IsNullOrWhiteSpace(PageNumber)))
+
+            if (!(String.IsNullOrEmpty(PageNumber) || String.IsNullOrWhiteSpace(PageNumber)))
             {
                 query = query + "&pageNumber=" + PageNumber;
             }
-            if (!(string.IsNullOrEmpty(ResultsPerPage) || string.IsNullOrWhiteSpace(ResultsPerPage)))
+            if (!(String.IsNullOrEmpty(ResultsPerPage) || String.IsNullOrWhiteSpace(ResultsPerPage)))
             {
                 query = query + "&ResultsPerPage=" + ResultsPerPage;
             }
-            if (!(string.IsNullOrEmpty(ReturnType) || string.IsNullOrWhiteSpace(ReturnType)))
+            if (!(String.IsNullOrEmpty(ReturnType) || String.IsNullOrWhiteSpace(ReturnType)))
             {
                 query = query + "&returnType=" + ReturnType;
             }
 
             foreach (var facet in Facets)
             {
-                queryForFacets = string.IsNullOrEmpty(queryForFacets) || string.IsNullOrWhiteSpace(queryForFacets) ? "facets=" : $"{queryForFacets};";
+                queryForFacets = String.IsNullOrEmpty(queryForFacets) || String.IsNullOrWhiteSpace(queryForFacets) ? "facets=" : $"{queryForFacets};";
 
                 queryForFacets = $"{queryForFacets}{facet.Key}:{facet.Value}";
             }
-            if (!(string.IsNullOrEmpty(queryForFacets) || string.IsNullOrWhiteSpace(queryForFacets)))
+            if (!(String.IsNullOrEmpty(queryForFacets) || String.IsNullOrWhiteSpace(queryForFacets)))
             {
                 query = $"{query}&{queryForFacets}";
             }

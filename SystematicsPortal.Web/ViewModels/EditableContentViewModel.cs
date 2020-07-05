@@ -1,4 +1,6 @@
-﻿namespace SystematicsPortal.Web.Models
+﻿using System;
+
+namespace SystematicsPortal.Web.Models
 {
     public class EditableContentViewModel : ViewModelBase
     {
@@ -7,7 +9,7 @@
 
         public EditableContentViewModel() : base()
         {
-            Section = string.Empty;
+            Section = String.Empty;
             ContentToRender = "Sorry, but this content is not available right now.";
         }
     }

@@ -1,34 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using SystematicsPortal.Data.Uploader.Models;
-using SystematicsPortal.Model.Interfaces;
-using SystematicsPortal.Model.Models.Documents;
+using SystematicsPortal.Models.Interfaces;
 
 namespace SystematicsPortal.Data.Uploader.Classess
 {
     public class Parser
     {
-        private readonly Serilog.ILogger _logger;
+        private readonly ILogger<Parser> _logger;
         private readonly string _sourcePath;
         private readonly IDocumentsRepository _repository;
 
-        public Parser(Serilog.ILogger logger, string connectionString, string sourcePath)
+        public Parser(IDocumentsRepository repository, string sourcePath, ILogger<Parser> logger)
         {
-            _logger = logger;
+            _repository = repository; //new DocumentsRepository(new NamesWebContext(connectionString),_logger);
             _sourcePath = sourcePath;
-            _repository = new DocumentsRepository(new NamesWebContext(connectionString));
+            _logger = logger;
         }
-        public async Task<List<Result>> StoreFilesInDocumentStore()
+        public async Task<List<Result>> StoreFilesInDocumentStoreAsync()
         {
-            _logger.Debug("SystematicsPortal.Data.Uploader: Starting upload process for files");
+            _logger.LogDebug("SystematicsPortal.Data.Uploader: Starting upload process for files");
+
             var results = new List<Result>();
             Result result;
             var files = Directory.GetFiles(_sourcePath, "*DOCUMENT*.xml");

@@ -1,10 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using SystematicsPortal.Data;
 using SystematicsPortal.Data.Uploader.Classess;
 using SystematicsPortal.Data.Uploader.Helpers;
+using SystematicsPortal.Models.Interfaces;
+using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Web.Api.Demo
 {
@@ -12,8 +18,7 @@ namespace SystematicsPortal.Web.Api.Demo
     {
         static void Main(string[] args)
         {
-                // Start!
-                MainAsync(args).Wait();
+            MainAsync(args).Wait();
         }
 
         private static async Task MainAsync(string[] args)
@@ -24,47 +29,63 @@ namespace SystematicsPortal.Web.Api.Demo
 
             IConfigurationRoot configuration = builder.Build();
 
-            using (var logger = new LoggerConfiguration()
+            var connectionString = configuration.GetConnectionString("NamesWeb");
+            var settingsConfigurationSection = configuration.GetSection("AppSettings");
+            AppSettings appSettings = settingsConfigurationSection.Get<AppSettings>();
+
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection, configuration, appSettings, connectionString);
+
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+            var logger = serviceProvider.GetService<ILogger<Program>>();
+
+            try
+            {
+                logger.LogInformation("SystematicsPortal.Data.Uploader - Started");
+                logger.LogInformation("Machine: {MachineName}", Environment.MachineName);
+                logger.LogInformation("Version: {Version}", AssemblyInfoHelper.GetInformationalVersion());
+                logger.LogInformation("User Name: {UserName}", Environment.UserName);
+                logger.LogInformation("Configuration - Connection String: {ConnectionString}", ConnectionStringHelper.ReplacePassword(connectionString, "*REMOVED*"));
+                logger.LogInformation("Configuration - Source Folder Name: {SourceFolder}", appSettings.SourcePath);
+
+                var results = await serviceProvider.GetService<Parser>().StoreFilesInDocumentStoreAsync();
+
+                logger.LogInformation("SystematicsPortal.Data.Uploader process results:");
+
+
+                foreach (var result in results)
+                {
+                    logger.LogInformation("File: {FileName}", result.FileName);
+                    logger.LogInformation("Result: {UploadResult}", result.UploadResult);
+                    logger.LogInformation("Message: {Message}", result.Message);
+                }
+
+                logger.LogInformation("SystematicsPortal.Data.Uploader - Finished");
+            }
+            catch (Exception exception)
+            {
+                logger.LogError("SystematicsPortal.Data.Uploader failed {exception}", exception.Message);
+            }
+        }
+
+        private static void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration, AppSettings appSettings, string connectionString)
+        {
+            var logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .Enrich.WithProperty("CorrelationId", Guid.NewGuid())
-                .CreateLogger())
-            {
-                try
-                {
-                    logger.Information("SystematicsPortal.Data.Uploader - Started");
-                    logger.Information("Machine: {MachineName}", Environment.MachineName);
-                    logger.Information("Version: {Version}", AssemblyInfoHelper.GetInformationalVersion());
-                    logger.Information("User Name: {UserName}", Environment.UserName);
+                .CreateLogger();
 
-                    var connectionString = configuration.GetConnectionString("NamesWebConnectionString");
-                    var settingsConfigurationSection = configuration.GetSection("AppSettings");
-                    AppSettings appSettings = settingsConfigurationSection.Get<AppSettings>();
+            services.AddLogging(conf => conf.AddSerilog(logger));
 
+            services.AddDbContext<NamesWebContext>(options =>
+                options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
+                ServiceLifetime.Transient);
 
-                    logger.Information("Configuration - Connection String: {ConnectionString}", ConnectionStringHelper.ReplacePassword(connectionString, "*REMOVED*"));
-                    logger.Information("Configuration - Source Folder Name: {SourceFolder}", appSettings.SourcePath);
+            services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
-                    Parser parser = new Parser(logger, connectionString, appSettings.SourcePath);
-
-                    var results = await parser.StoreFilesInDocumentStore();
-
-                    logger.Information("SystematicsPortal.Data.Uploader process results:");
-
-
-                    foreach (var result in results)
-                    {
-                        logger.Information("File: {FileName}", result.FileName);
-                        logger.Information("Result: {UploadResult}", result.UploadResult);
-                        logger.Information("Message: {Message}", result.Message);
-                    }
-
-                    logger.Information("SystematicsPortal.Data.Uploader - Finished");
-                }
-                catch (Exception exception)
-                {
-                    logger.Information("SystematicsPortal.Data.Uploader failed {exception}", exception.Message);
-                }
-            }
+            services.AddTransient<Parser>(x =>
+            new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
     }
 }

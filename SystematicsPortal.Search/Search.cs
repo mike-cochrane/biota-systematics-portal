@@ -1,23 +1,23 @@
 ﻿using Microsoft.Extensions.Logging;
-using SearchLibrary.Implementation;
 using SolrNet;
 using SolrNet.Commands.Parameters;
 using System;
-using System.Collections.Generic;
+using SystematicsPortal.Search.Infrastructure;
 using SystematicsPortal.Search.Tools.Models;
+using SystematicsPortal.Search.Tools.Models.Interfaces;
 using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Search
 {
-    public class Search : IDisposable
+    public class Search : ISearch, IDisposable
     {
-        private readonly Connection _connection;
+        private readonly Tools.Models.Interfaces.ISolrConnection _connection;
 
-         private readonly ILogger _logger;
+        private readonly ILogger _logger;
 
-        public Search(string connection, string userName, string password, ILogger logger)
+        public Search(Tools.Models.Interfaces.ISolrConnection solrConnection, ILogger<Search> logger)
         {
-            _connection = new Connection(connection, userName, password);
+            _connection = solrConnection;
             _logger = logger;
         }
 
@@ -34,18 +34,14 @@ namespace SystematicsPortal.Search
                 var filterFacets = new FilterFacets();
 
                 // Create an object to hold results
-                queryResponse = new SearchResult
-                {
-                    // Store the original query
-                    //OriginalQuery = query
-                };
+                queryResponse = new SearchResult();
 
                 // Get a connection 
-                var solr = _connection.SolrCore;
+                var solr = _connection.GetSolrCore();
 
                 if (solr == null)
                 {
-                    //_logger.LogError("Problem to get solr instance");
+                    _logger.LogError("Problem to get solr instance");
                     throw new Exception("Problem to get solr instance");
                 }
 
@@ -76,11 +72,11 @@ namespace SystematicsPortal.Search
                 extractResponse.SetFacets(queryResponse, solrResults);
 
                 //log result
-                //_logger.LogDebug($"Search results:  {queryResponse.Results}");
+                _logger.LogDebug($"Search results:  {queryResponse.FoundDocuments}");
             }
             catch (Exception e)
             {
-                //_logger.LogError(e, e.Message);
+                _logger.LogError(e, e.Message);
                 throw;
             }
 

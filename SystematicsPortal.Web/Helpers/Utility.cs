@@ -49,7 +49,7 @@ namespace SystematicsPortal.Web.Helpers
                 return null;
             }
 
-            if (!text.Equals(string.Empty))
+            if (!text.Equals(String.Empty))
             {
                 int index = 0;
 
@@ -162,7 +162,7 @@ namespace SystematicsPortal.Web.Helpers
 
                 // TODO: Get configuration using DI
                 //string SMTPServer = ConfigurationManager.AppSettings["SMTPServer"].ToString();
-                //var SMTPServer = string.Empty;
+                //var SMTPServer = String.Empty;
                 var SMTPServer = "smtp.landcareresearch.co.nz"; // TODO testing this if it works...
                 SmtpClient client = new SmtpClient(SMTPServer);
 
@@ -188,7 +188,7 @@ namespace SystematicsPortal.Web.Helpers
 
         /*public static string GetImportantNotice()
         {
-            string notice = string.Empty;
+            string notice = String.Empty;
             try
             {
                 SectionContent content = SectionContentsRepository.GetCurrent("Home", "GeneralAlert");

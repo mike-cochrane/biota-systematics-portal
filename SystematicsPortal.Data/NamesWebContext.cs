@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using System.ComponentModel.DataAnnotations.Schema;
-using SystematicsPortal.Model.Models.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using SystematicsPortal.Models.Entities.Database;
 
 namespace SystematicsPortal.Data
 {
@@ -34,20 +32,7 @@ namespace SystematicsPortal.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Document>(entity =>
-            {
-                entity.ToTable("Document", "documents");
-
-                entity.Property(e => e.DocumentId).ValueGeneratedNever();
-
-                entity.Property(e => e.SerializedDocument)
-                    .IsRequired()
-                    .HasColumnType("xml");
-
-                entity.Property(e => e.ValidFrom).HasColumnType("datetime2(2)");
-
-                entity.Property(e => e.ValidTo).HasColumnType("datetime2(2)");
-            });
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             OnModelCreatingPartial(modelBuilder);
         }
