@@ -56,6 +56,9 @@
 				<xs:element name="NameFormatted" type="TextType"/>
 				<xs:element name="NameScientific" type="TextType"/>
 				<xs:element name="NamePartFormatted"/>
+				<xs:element name="Authors" type="xs:string" minOccurs="0"/>
+				<xs:element name="BasionymAuthors" type="xs:string" minOccurs="0"/>
+				<xs:element name="CombinationAuthors" type="xs:string" minOccurs="0"/>
 				<xs:element name="Orthography" type="xs:string" minOccurs="0"/>
 				<xs:element name="Page" type="xs:string" minOccurs="0"/>
 				<xs:element name="YearOfPublication" minOccurs="0"/>
@@ -582,6 +585,7 @@
 				</xs:element>
 			</xs:sequence>
 		</xs:choice>
+		<xs:attribute name="documentId" use="required"/>
 		<xs:attribute name="nameId"/>
 		<xs:attribute name="referenceId"/>
 		<xs:attribute name="vernacularId"/>

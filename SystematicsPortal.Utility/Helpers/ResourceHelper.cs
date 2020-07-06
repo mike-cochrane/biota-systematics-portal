@@ -15,7 +15,7 @@ namespace SystematicsPortal.Utility.Helpers
 
         public static string GetResourceString(Assembly assembly, string resourceName)
         {
-            string resource = string.Empty;
+            string resource = String.Empty;
 
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             using (var streamReader = new StreamReader(stream))

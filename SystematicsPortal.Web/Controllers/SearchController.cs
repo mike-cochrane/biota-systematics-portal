@@ -5,7 +5,8 @@ using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services;
 using System.Threading.Tasks;
 using System;
-using SystematicsPortal.Model.Models.DTOs;
+using SystematicsPortal.Models.Entities.DTOs;
+using System.Linq;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -13,10 +14,13 @@ namespace SystematicsPortal.Web.Controllers
     {
         const int NUMBER_OF_RESULTS_PER_PAGE = 10;
         public ISearchService _searchService;
+        public IContentService _contentService;
 
-        public SearchController(ISearchService searchService)
+
+        public SearchController(ISearchService searchService, IContentService contentService)
         {
             _searchService = searchService;
+            _contentService = contentService;
         }
 
         // GET: Search
@@ -25,17 +29,20 @@ namespace SystematicsPortal.Web.Controllers
         {
             try
             {
+                await CallContentServiceAsync();
+
+
                 bool success = false;
                 var viewData = new SearchViewModel(null, null);
 
-                string uncorrectedQuery = string.Empty;
+                string uncorrectedQuery = String.Empty;
                 if (query != null)
                 {
                     uncorrectedQuery = query;
                     //query = AutoCorrectQueryString(query);
                     if (uncorrectedQuery.Equals(query))
                     {
-                        uncorrectedQuery = string.Empty;
+                        uncorrectedQuery = String.Empty;
                     }
                     //update query log
                     //q.QueryString = query;
@@ -54,7 +61,7 @@ namespace SystematicsPortal.Web.Controllers
 
                 if (query == null)
                 {
-                    viewData.Query = string.Empty;
+                    viewData.Query = String.Empty;
                 }
                 else
                 {
@@ -178,6 +185,25 @@ namespace SystematicsPortal.Web.Controllers
             {
                 return View();
             }
+        }
+
+        private async Task CallContentServiceAsync()
+        {
+            var resources = await _contentService.GetResources();
+
+            var testResource = resources.ResourceList.FirstOrDefault(x => x.Value == "Test Data");
+
+            var itemTypes = await _contentService.GetItemTypes(testResource.ResourceId);
+
+            var itemType = itemTypes.Types.FirstOrDefault(x=>x.DisplayTitleSingular == "eFlora-Taxon");
+
+            var itemIds = await _contentService.GetItemIds(itemType.ItemTypeId);
+
+            var itemIdsList = itemIds.ItemsList.Select(x => x.ItemId).ToList();
+                
+            var items = await _contentService.GetItemsByIds(itemIdsList);
+
+
         }
     }
 }

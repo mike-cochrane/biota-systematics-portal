@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using SystematicsPortal.Web.ViewModels;
-using SystematicsPortal.Web.Helpers;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -26,8 +25,8 @@ namespace SystematicsPortal.Web.Controllers
         [HttpPost]
         public IActionResult ContactUs([FromBody] ContactUsViewModel model)
         {
-            string info = string.Empty;
-            string error = string.Empty;
+            string info = String.Empty;
+            string error = String.Empty;
 
             try
             {
@@ -36,22 +35,22 @@ namespace SystematicsPortal.Web.Controllers
                     string recipient = "nikoos@landcareresearch.co.nz";
 
                     string message = "<p>" + model.Name;
-                    if (model.Organisation != null && !model.Organisation.Equals(string.Empty))
+                    if (model.Organisation != null && !model.Organisation.Equals(String.Empty))
                     {
                         message += ", " + model.Organisation;
-                        if (model.Location != null && !model.Location.Equals(string.Empty))
+                        if (model.Location != null && !model.Location.Equals(String.Empty))
                         {
                             message += ", " + model.Location;
                         }
                     }
-                    else if (model.Location != null && !model.Location.Equals(string.Empty))
+                    else if (model.Location != null && !model.Location.Equals(String.Empty))
                     {
                         message += " from " + model.Location;
                     }
                     message += " has sent the following comment via the Systematics Collections Data website.</p>"
                         + model.Message;
 
-                    Utility.SendEmail(recipient, model.Subject, message, model.Email);
+                    //Utility.SendEmail(recipient, model.Subject, message, model.Email);
 
                     info = "Thank you for your feedback. Your comment will be attended to within the next few days.";
                 }

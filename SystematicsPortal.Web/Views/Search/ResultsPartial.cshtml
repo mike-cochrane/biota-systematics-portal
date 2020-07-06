@@ -238,8 +238,8 @@
                     <br />
                     @if (Model.Result.FoundDocuments.Count > 0)
                     {
-                        string listActiveClass = string.Empty;
-                        string gridActiveClass = string.Empty;
+                        string listActiveClass = String.Empty;
+                        string gridActiveClass = String.Empty;
                         var specimens = Model.Result.DisplayedDocuments();
                         if (Model.SelectedView.Equals("list"))
                         {
@@ -278,7 +278,7 @@
                                             @Html.ActionLink(@summary.GetHashCode() + " : " + @summary.TitleFormatted, "Details", "Specimen", new { id = @summary.GetHashCode(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
                                         </div>
                                         @*<div class="pull-right">
-                                            @if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
+                                            @if (summary.TypeStatus != null && !summary.TypeStatus.Equals(String.Empty))
                                             {
                                                 <i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
                                             }

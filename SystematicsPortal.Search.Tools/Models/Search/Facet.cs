@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SystematicsPortal.Search.Tools.Models.Search
 {
@@ -11,8 +9,8 @@ namespace SystematicsPortal.Search.Tools.Models.Search
 
         public Facet()
         {
-            Name = string.Empty;
-            DisplayText = string.Empty;
+            Name = String.Empty;
+            DisplayText = String.Empty;
             Values = new List<FacetValue>();
         }
 

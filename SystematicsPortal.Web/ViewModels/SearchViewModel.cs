@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SystematicsPortal.Web.Helpers;
 using SystematicsPortal.Search.Tools.Models.Search;
+using System;
 
 namespace SystematicsPortal.Web.Models
 {
@@ -38,7 +39,7 @@ namespace SystematicsPortal.Web.Models
         public SearchViewModel(ComboList collectionList, string selectedCollection, string sortBy = "relevance") : base() {
             //SelectedCollection = selectedCollection;
             //Collections = new SelectList(collectionList.Items, "Key", "DisplayText", SelectedCollection);
-            Query = string.Empty;
+            Query = String.Empty;
             SearchData = new SearchPartialViewModel(collectionList, selectedCollection);
             Result = new SearchResult(sortBy);
             SelectedView = "list";

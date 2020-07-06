@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using SystematicsPortal.Web.Api.Client.Extensions;
-using SystematicsPortal.Search.Tools.Models;
+using SystematicsPortal.Models.Entities.Access;
 using SystematicsPortal.Search.Tools.Models.Search;
+using SystematicsPortal.Web.Api.Client.Extensions;
 
 namespace SystematicsPortal.Web.Api.Client
 {
@@ -19,10 +16,39 @@ namespace SystematicsPortal.Web.Api.Client
             _url = url;
         }
 
-        public async Task<SearchResult> CallService(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
+        public async Task<SearchResult> Search(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
         {
             string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}&facets={facets}";
-            SearchResult queryResponse = null;
+            var baseAddress = urlToQuery;
+            SearchResult queryResponse;
+
+            // TODO: Use new .net core http client factory 
+            var client = new HttpClient()
+            {
+                BaseAddress = new Uri(baseAddress)
+            };
+
+
+            var response = await client.GetAsync(urlToQuery);
+
+            if (response.IsSuccessStatusCode)
+            {
+                queryResponse = await response.Content.ReadAsAsync<SearchResult>();
+            }
+            else
+            {
+                throw new HttpRequestException(response.ReasonPhrase);
+            }
+
+            // Do event logging
+
+            return queryResponse;
+        }
+
+        public async Task<Document> GetDocument(string documentId)
+        {
+            string urlToQuery = $"{_url}documents/{documentId}";
+            Document document = null;
 
             var baseAddress = urlToQuery;
 
@@ -33,21 +59,25 @@ namespace SystematicsPortal.Web.Api.Client
             };
 
 
-        var response = await client.GetAsync(urlToQuery);
+            var response = await client.GetAsync(urlToQuery);
 
             if (response.IsSuccessStatusCode)
             {
-                queryResponse = await response.Content.ReadAsAsync<SearchResult>();
+                string incomingText = await response.Content.ReadAsStringAsync();
 
+                document = new Document();
+
+                document.XmlDocument.LoadXml(incomingText);
             }
             else
-            { throw new HttpRequestException(response.ReasonPhrase); }
+            {
+                throw new HttpRequestException(response.ReasonPhrase);
+            }
 
             // Do event logging
-            //Console.WriteLine(response.ToString());
 
 
-            return queryResponse;
+            return document;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace SystematicsPortal.Search.Tools.Models.Search
+﻿using System;
+
+namespace SystematicsPortal.Search.Tools.Models.Search
 {
     public class SelectedRange
     {
@@ -23,8 +25,8 @@
 
         public SelectedRange()
         {
-            GroupName = string.Empty;
-            FacetName = string.Empty;
+            GroupName = String.Empty;
+            FacetName = String.Empty;
             MinimumValue = int.MaxValue;
             MaximumValue = int.MaxValue;
         }

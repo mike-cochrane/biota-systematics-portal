@@ -29,7 +29,7 @@ namespace SystematicsPortal.Utility.Helpers
 
         public static T Deserialize<T>(string data) where T : class
         {
-            if (string.IsNullOrWhiteSpace(data)) { return null; }
+            if (String.IsNullOrWhiteSpace(data)) { return null; }
 
             using (var reader = new StringReader(data))
             {

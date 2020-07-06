@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SystematicsPortal.Models.Entities.Access;
 using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Services
@@ -20,9 +21,28 @@ namespace SystematicsPortal.Web.Services
             string sortBy = "",
             string sortOrder = "")
         {
-            var response  = await _apiClient.CallService(searchTerm, pageNumber, resultsPerPage);
+            var response  = await _apiClient.Search(searchTerm, pageNumber, resultsPerPage);
 
             return response;
+        }
+
+        public async Task<Document> GetDocument(string id)
+        {
+            var documentXml = await _apiClient.GetDocument(id);
+
+            return documentXml;
+        }
+
+
+        public async Task<SystematicsPortal.Models.Entities.Documents.DocumentType> GetDocumentAsCSharpClass(string id)
+        {
+            var documentXml = await _apiClient.GetDocument(id);
+
+
+            SystematicsPortal.Models.Entities.Documents.DocumentType document = null; 
+
+
+            return document;
         }
     }
 }

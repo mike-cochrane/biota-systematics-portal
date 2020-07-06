@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SystematicsPortal.Search.Tools.Models.Search
 {
@@ -17,10 +14,10 @@ namespace SystematicsPortal.Search.Tools.Models.Search
         public AdminFacet()
         {
             AdminFacetId = -1;
-            FacetGroup = string.Empty;
-            Facet = string.Empty;
-            Type = string.Empty;
-            SolrFieldName = string.Empty;
+            FacetGroup = String.Empty;
+            Facet = String.Empty;
+            Type = String.Empty;
+            SolrFieldName = String.Empty;
             DisplayOrder = int.MaxValue;
         }
     }
