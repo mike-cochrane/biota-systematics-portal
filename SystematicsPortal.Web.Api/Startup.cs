@@ -40,7 +40,6 @@ namespace SystematicsPortal.Web.Api
             services.AddControllers(opt => opt.OutputFormatters.Add(new XmlSerializerOutputFormatter())).AddNewtonsoftJson(options =>
                  {
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-
                  }
             );
         }

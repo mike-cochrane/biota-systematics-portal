@@ -14,9 +14,9 @@ namespace SystematicsPortal.Web.Api.Services
         {
             services.AddDbContext<NamesWebContext>(options =>
                 options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
-                ServiceLifetime.Transient);
+                ServiceLifetime.Singleton);
 
-            services.AddTransient<IDocumentsRepository, DocumentsRepository>();
+            services.AddSingleton<IDocumentsRepository, DocumentsRepository>();
 
             services.AddSingleton<ISolrConnection>(x =>
                 new Search.Infrastructure.SolrConnection(appSettings.Solr.Url, appSettings.Solr.UserName,
