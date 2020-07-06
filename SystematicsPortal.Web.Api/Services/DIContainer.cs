@@ -18,15 +18,13 @@ namespace SystematicsPortal.Web.Api.Services
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
-            services.AddScoped<ISolrConnection>(x =>
+            services.AddSingleton<ISolrConnection>(x =>
                 new Search.Infrastructure.SolrConnection(appSettings.Solr.Url, appSettings.Solr.UserName,
                             appSettings.Solr.Password));
 
-            services.AddScoped<ISearch, Search.Search>();
-
-            services.AddScoped<ISearchService, SearchService>();
-
-            services.AddScoped<IDocumentsService, DocumentsService>();
+            services.AddSingleton<ISearch, Search.Search>();
+            services.AddSingleton<ISearchService, SearchService>();
+            services.AddSingleton<IDocumentsService, DocumentsService>();
         }
     }
 }
