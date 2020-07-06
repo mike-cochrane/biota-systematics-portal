@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System;
 using SystematicsPortal.Models.Entities.DTOs;
 using System.Linq;
+using SystematicsPortal.Models.Entities.Documents.Name;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -29,8 +32,7 @@ namespace SystematicsPortal.Web.Controllers
         {
             try
             {
-                await CallContentServiceAsync();
-
+                //await CallContentServiceAsync();
 
                 bool success = false;
                 var viewData = new SearchViewModel(null, null);
@@ -91,13 +93,36 @@ namespace SystematicsPortal.Web.Controllers
         // GET: Search/Details/5
         public ActionResult Details(int id)
         {
-            /*DocumentDto document;
-            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(DocumentDto));
+            XmlRootAttribute xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "Document";
+            xRoot.IsNullable = true;
 
-            using (StreamReader xml = new StreamReader("single-Document-References-Fungi.xml"))
+            NameDocument document;
+            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(NameDocument), xRoot);
+
+            using (StreamReader xml = new StreamReader("single-document.xml"))
             {
-                document = (DocumentDto)ser.Deserialize(xml);
-            }*/
+                document = (NameDocument)ser.Deserialize(xml);
+            }
+
+            string xmlConfig;
+            using (StreamReader reader = new StreamReader("config-fields.xml"))
+            {
+                xmlConfig = reader.ReadToEnd();
+            }
+
+            XmlReader rdr = XmlReader.Create(new System.IO.StringReader(xmlConfig));
+            while (rdr.Read())
+            {
+                if (rdr.NodeType == XmlNodeType.Element)
+                {
+                    Console.WriteLine(rdr.LocalName);
+                    if(rdr.GetAttribute("documentClass") != null && rdr.GetAttribute("documentClass") != "")
+                    {
+                        string documentClass = rdr.GetAttribute("documentClass");
+                    }
+                }
+            }
 
             //XmlDocument xmlString = new XmlDocument();
             //xmlString.Load("single-document.xml");
@@ -114,8 +139,8 @@ namespace SystematicsPortal.Web.Controllers
 
             //document = (Document)ser.Deserialize(xmlStream);
 
-            //return View(document);
-            return View();
+            return View(document);
+            //return View();
         }
 
 
