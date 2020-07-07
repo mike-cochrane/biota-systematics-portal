@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using SystematicsPortal.Web.Models;
@@ -94,7 +94,7 @@ namespace SystematicsPortal.Web.Controllers
         }
 
         // GET: Search/Details/5
-        [ResponseCache(NoStore = false, Location = ResponseCacheLocation.None)]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public ActionResult Details(int id)
         {
             XmlRootAttribute xRoot = new XmlRootAttribute();
