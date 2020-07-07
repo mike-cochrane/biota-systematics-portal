@@ -2,6 +2,8 @@
     ViewData["Title"] = "Detail";
 }
 
+@model SystematicsPortal.Web.ViewModels.FieldsViewModel;
+
 @await Html.PartialAsync("~/Views/Shared/_NavAndSearch.cshtml")
 
 <h1>Cranwell, E. 1956: Fungi of Marotiri Island.<i>Tane 7</i>: 22.</h1>
@@ -121,3 +123,17 @@
     </div>
 </div>
 -->
+
+@foreach (SystematicsPortal.Web.ViewModels.FieldViewModel field in Model.Fields)
+{
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">@Html.Raw(field.EnglishLabel)</label>
+    <div class="col-sm-10">
+        @if(field.FieldTextType != null) {
+            @Html.Raw(field.FieldTextType.Text[0])
+        } else {
+            @Html.Raw(field.Field)
+        }
+    </div>
+</div>  
+}
