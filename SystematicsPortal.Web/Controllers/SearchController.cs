@@ -132,18 +132,29 @@ namespace SystematicsPortal.Web.Controllers
                     if(rdr.LocalName == "Field")
                     {
                         FieldViewModel fieldViewModel = new FieldViewModel();
-                        //ject field = document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
+                        string type = document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null).GetType().Name;
 
-                        if (document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null) == "{SystematicsPortal.Models.Entities.Documents.SubDocuments.TextType}")
+                        /*if (type.Equals("TextType"))
                         {
                             fieldViewModel.FieldTextType = (TextType) document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
-                        } else
+                        }
+                        else if (type.Equals("ReferenceType"))
+                        {
+                            fieldViewModel.FieldReferenceType = (ReferenceType) document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
+                        }
+                        else if (type.Equals("LinkedNameType"))
+                        {
+                            fieldViewModel.FieldLinkedNameType = (LinkedNameType) document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
+                        }
+                        else
                         {
                             fieldViewModel.Field = document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
-                        }
+                        }*/
 
                         fieldViewModel.EnglishLabel = rdr.GetAttribute("english-label");
+                        fieldViewModel.FieldName = rdr.GetAttribute("type");
                         fieldViewModel.Order = Int32.Parse(rdr.GetAttribute("order"));
+                        fieldViewModel.FieldType = type;
                         list.Add(fieldViewModel);
                     }
                 }
@@ -168,6 +179,7 @@ namespace SystematicsPortal.Web.Controllers
 
             FieldsViewModel fields = new FieldsViewModel();
             fields.Fields = list;
+            fields.NameDocument = document;
             return View(fields);
             //return View();
         }

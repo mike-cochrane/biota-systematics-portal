@@ -14,5 +14,7 @@ namespace SystematicsPortal.Web.ViewModels
         public LinkedNameType FieldLinkedNameType { get; set; }
         public string EnglishLabel { get; set; }
         public int Order { get; set; }
+        public string FieldType { get; set; }
+        public string FieldName { get; set; }
     }
 }

@@ -129,10 +129,23 @@
 <div class="form-group row">
     <label class="col-sm-2 col-form-label">@Html.Raw(field.EnglishLabel)</label>
     <div class="col-sm-10">
-        @if(field.FieldTextType != null) {
-            @Html.Raw(field.FieldTextType.Text[0])
-        } else {
-            @Html.Raw(field.Field)
+
+        @if (field.FieldType != null && Model.NameDocument.GetType().GetProperty(field.FieldType) != null)
+        {
+            /*string fieldType = field.FieldType;
+            field.Field = Convert.ChangeType(field.Field, typeof(fieldType));
+
+            @Html.Raw(field.Field)*/
+            @Html.Raw(Model.NameDocument.GetType().GetProperty(field.FieldType).GetValue(Model.NameDocument, null));
+        }
+
+        @if (field.FieldTextType != null)
+        {
+            //@Html.Raw(field.FieldTextType.Text[0].Replace("+=", "<i>").Replace("=+", "</i>"))
+        }
+        else
+        {
+            //@Html.Raw(field.Field)
         }
     </div>
 </div>  
