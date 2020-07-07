@@ -36,7 +36,7 @@ namespace SystematicsPortal.Web.Api.Controllers
             }
             catch (Exception exception)
             {
-                _logger.LogError("ImageController - Get - exception: {@exception}", exception);
+                _logger.LogError(exception, $"SearchController - Get - exception: {exception.Message}");
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

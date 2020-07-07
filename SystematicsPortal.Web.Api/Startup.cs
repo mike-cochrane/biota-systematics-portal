@@ -5,9 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using SystematicsPortal.Data;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Search.Tools.Models.Interfaces;
+using SystematicsPortal.Web.Api.Filters;
+using SystematicsPortal.Web.Api.Helpers;
 using SystematicsPortal.Web.Api.Infrastructure;
 using SystematicsPortal.Web.Api.Services;
 
@@ -36,12 +39,16 @@ namespace SystematicsPortal.Web.Api
 
             services.RegisterDependencies(appSettings, connectionString);
 
+            services.AddControllers(opts =>
+            {
+                opts.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+                opts.Filters.Add<SerilogLoggingActionFilter>();
+            }).AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
-            services.AddControllers(opt => opt.OutputFormatters.Add(new XmlSerializerOutputFormatter())).AddNewtonsoftJson(options =>
-                 {
-                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                 }
-            );
+            }
+                                    );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +59,8 @@ namespace SystematicsPortal.Web.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = LogHelper.EnrichFromRequest);
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
