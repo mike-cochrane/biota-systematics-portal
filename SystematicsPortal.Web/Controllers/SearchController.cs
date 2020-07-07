@@ -94,6 +94,7 @@ namespace SystematicsPortal.Web.Controllers
         }
 
         // GET: Search/Details/5
+        [ResponseCache(NoStore = false, Location = ResponseCacheLocation.None)]
         public ActionResult Details(int id)
         {
             XmlRootAttribute xRoot = new XmlRootAttribute();
