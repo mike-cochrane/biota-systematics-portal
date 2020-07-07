@@ -1,0 +1,1043 @@
+﻿@{
+    ViewData["Title"] = "Detail";
+}
+
+@model SystematicsPortal.Model.Models.DTOs.DocumentDto;
+
+@if (Model.Class.Equals("reference"))
+{
+    <h1>@Html.Raw(Model.Title)</h1>
+}
+
+@if (Model.Class.Equals("vernacular"))
+{
+    <h1>@Html.Raw(Model.VernacularName)</h1>
+}
+
+@if (Model.Class.Equals("name"))
+{
+    <h1>@Html.Raw(Model.NameFormatted.Replace("+=", "<i>").Replace("=+", "</i>"))</h1>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Breadcrumb</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Breadcrumb</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Breadcrumb
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group btn-group-lg float-right hidden-xs-down" role="group">
+                <button class="btn btn-secondary" type="button">
+                    Save to favorites
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Download
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Annotate
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    History
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Get citation
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Share
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Contact us
+                </button>
+            </div>
+            <div class="btn-group-vertical btn-group-lg hidden-sm-up" role="group">
+                <button class="btn btn-secondary" type="button">
+                    Save to favorites
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Download
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Annotate
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    History
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Get citation
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Share
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Contact us
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<!--<div class="row">
+    <div class="col-md-12">
+        <div class="tabbable" id="tabs-737450">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active show" href="#tab1" data-toggle="tab">Section 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tab2" data-toggle="tab">Section 2</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="panel-109669">
+                    <p>
+                        I'm in Section 1.
+                    </p>
+                </div>
+                <div class="tab-pane" id="tab2">
+                    <p>
+                        Howdy, I'm in Section 2.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+@if (Model.Class.Equals("reference"))
+{
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Title, "Title")</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Title)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            <a href="">@Html.Raw(Model.ParentReference)</a>
+        </div>
+    </div>
+
+    @if (Model.Fields != null)
+    {
+        <h3>Fields</h3>
+        <div class="form-group row">
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentField field in Model.Fields)
+            {
+                <label class="col-sm-2 col-form-label">@field.type</label>
+                <div class="col-sm-10">
+                    @if (field.type == "DOI")
+                    {
+                        <a href="">
+                            @Html.Raw(field.Value)
+                        </a>
+                    }
+                    else
+                    {
+                        @Html.Raw(field.Value)
+                    }
+                </div>
+            }
+        </div>
+    }
+
+    <h3>Concepts</h3>
+    @if (Model.DefinedConcepts != null)
+    {
+        <div class="form-group row">
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentDefinedConcept definedConcept in Model.DefinedConcepts)
+            {
+                <label class="col-sm-2 col-form-label">Cited Name</label>
+                <div class="col-sm-10">
+                    <a href="">@Html.Raw(definedConcept.nameFull)</a>
+                </div>
+                <label class="col-sm-2 col-form-label">TODO: add icon</label>
+                <div class="col-sm-10">
+                    <a href="">@Html.Raw(definedConcept.conceptId)<a />
+                </div>
+            }
+        </div>
+    }
+
+    @if (Model.Associations != null)
+    {
+        <h4>Cited Taxon</h4>
+        <div class="form-group row">
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentDefinedConceptAssociation association in Model.Associations)
+            {
+                <label class="col-sm-2 col-form-label">Associated taxon</label>
+                <div class="col-sm-10">
+                    <a href="">@Html.Raw(association.relatedName)</a>
+                </div>
+                <label class="col-sm-2 col-form-label">Association type</label>
+                <div class="col-sm-10">
+                    @Html.Raw(association.type)
+                </div>
+                <label class="col-sm-2 col-form-label">TODO: add icon</label>
+                <div class="col-sm-10">
+                    <a href="">@Html.Raw(association.relatedConceptId)</a>
+                </div>
+            }
+        </div>
+    }
+
+    @if (Model.CitedTaxa != null)
+    {
+        <h4>Other taxa cited</h4>
+        <div class="form-group row">
+            @foreach (Object citedTaxon in Model.CitedTaxa)
+            {
+                <label class="col-sm-2 col-form-label">Cited taxa</label>
+                <div class="col-sm-10">
+                    <a href="">@Html.Raw(citedTaxon)</a>
+                </div>
+            }
+        </div>
+    }
+
+    @if (Model.IncludedKeys != null)
+    {
+        <h4>Identification Key(s)</h4>
+        <div class="form-group row">
+            @foreach (SystematicsPortal.Model.Models.Documents.SubDocuments.DocumentKey key in Model.IncludedKeys)
+            {
+                <label class="col-sm-2 col-form-label">Cited taxa</label>
+                <div class="col-sm-10">
+                    @Html.Raw(key.title)
+                </div>
+                @foreach (SystematicsPortal.Model.Models.Documents.DocumentKeyLine line in key.Line)
+                {
+                    <label class="col-sm-2 col-form-label">Characteristic</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(line.Characteristic)
+                    </div>
+                }
+            }
+        </div>
+    }
+
+    @if (Model.ReferenceId)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Reference Identifier	</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.referenceId)
+            </div>
+        </div>
+    }
+}
+
+@if (Model.Class.Equals("vernacular"))
+{
+    @if (Model.languageOfOrigin != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Language of origin</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.languageOfOrigin)
+            </div>
+        </div>
+    }
+
+    @if (Model.regionOfOrigin != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Region of origin</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.regionOfOrigin)
+            </div>
+        </div>
+    }
+
+    @if (Model.Translation != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Translation</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.Translation.Value)
+            </div>
+        </div>
+    }
+
+    @if (Model.Transliteration != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Transliteration</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.Transliteration)
+            </div>
+        </div>
+    }
+
+    @if (Model.AppliedVernaculars != null)
+    {
+        <div class="form-group row">
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentVernacularUse vernacularUse in Model.VernacularUses)
+            {
+                <label class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <a href="">@Html.Raw(vernacularUse.NameFormatted.Value)</a>
+                </div>
+                <label class="col-sm-2 col-form-label">Applies to</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.AppliesTo.Value)
+                </div>
+                <label class="col-sm-2 col-form-label">Language of use</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.languageOfUse)
+                </div>
+                <label class="col-sm-2 col-form-label">Geographic region of use	</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.georegionOfUse)
+                </div>
+                @if (vernacularUse.References != null)
+                {
+                    <label class="col-sm-2 col-form-label">According to</label>
+                    @foreach (SystematicsPortal.Model.Models.Documents.SubDocuments.ReferenceType reference in vernacularUse.References)
+                    {
+                        <div class="col-sm-10">
+                            @Html.Raw(reference)
+                        </div>
+                    }
+                }
+            }
+        </div>
+    }
+
+    @if (Model.vernacularId)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Vernacular Name Identifier</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.vernacularId)
+            </div>
+        </div>
+    }
+}
+
+@if (Model.Class.Equals("name"))
+{
+    @if (Model.NameFormatted != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">TODO: add icon</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.Name.nzRelevance)
+            </div>
+        </div>
+    }
+
+    <h3>Taxonomy</h3>
+
+    @if (Model.CurrentName != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.CurrentName, "Name Status")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.CurrentName.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.TaxonomyReference != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.TaxonomyReference, "Taxonomy Reference")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.TaxonomyReference.Value)</a>
+            </div>
+        </div>
+    }
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            TODO: Image and meta data
+        </div>
+    </div>
+
+    @if (Model.BiostatusValues != null)
+    {
+        <h3>Biostatus Values</h3>
+        @foreach (SystematicsPortal.Model.Models.Documents.DocumentBiostatusValue biostatusValue in Model.BiostatusValues)
+        {
+            if (biostatusValue.isActive.Equals("true"))
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Origin</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Origin.Value)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Occurrence</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Occurrence.Value)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Georegion</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Georegion.Value)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Bio Status Reference</label>
+                    <div class="col-sm-10">
+                        <a href="">@Html.Raw(biostatusValue.BiostatusReference.Text[0].Replace("+=", "<i>").Replace("=+", "</i>"))</a>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Note</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Comment)
+                    </div>
+                </div>
+            }
+        }
+    }
+
+    <h3>Nomenclature</h3>
+
+    @if (Model.Basionym != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Basionym, "Basionym (ICN)")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Basionym.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.BasedOn != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.BasedOn, "Based on")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.BasedOn.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.Blocking != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Blocking, "Later homonym of")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Blocking.Value)</a>
+            </div>
+        </div>
+    }
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nomenclatural status</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.misapplied)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.misapplied)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.dubium)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.proParte)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.novum)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.invalid)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.illegitimate)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nomenclatural Code</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.nomCode)
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Taxonomic Rank</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.Name.taxonRank)
+        </div>
+    </div>
+
+    @if (Model.NameReference != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Place of publication</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.NameReference)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.YearOfPublication != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.YearOfPublication, "Publication date (actual)")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.YearOfPublication)
+            </div>
+        </div>
+    }
+
+    @if (Model.YearOnPublication != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.YearOnPublication, "Publication date (stated)")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.YearOnPublication)
+            </div>
+        </div>
+    }
+
+    @if (Model.Page != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Page, "Page")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.Page)
+            </div>
+        </div>
+    }
+
+    @if (Model.Orthography != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Orthography, "Orthography")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.Orthography.Value)
+            </div>
+        </div>
+    }
+
+    @if (Model.TypeTaxon != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.TypeTaxon, "Type taxon")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.TypeTaxon.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.SanctioningAuthor != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.SanctioningAuthor, "Sanctioning Author")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.SanctioningAuthor.Value)
+            </div>
+        </div>
+    }
+
+    @if (Model.SanctioningPage != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.SanctioningPage, "Sanctioning Page")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.SanctioningPage.Value)
+            </div>
+        </div>
+    }
+
+    @if (Model.AnamorphGenus != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.AnamorphGenus, "Anamorph Genus")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.AnamorphGenus.Value)
+            </div>
+        </div>
+    }
+
+    @if (Model.AnamorphReference != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.AnamorphReference, "Anamorph Reference")</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.AnamorphReference.Value)
+            </div>
+        </div>
+    }
+
+    <h3>Classification</h3>
+
+    @if (Model.Kingdom != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Kingdom, "Kingdom")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Kingdom.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.Phylum != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Phylum, "Phylum")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Phylum.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.Class != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Class, "Class")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Class.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.Order != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Order, "Order")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Order.Value)
+            </div>
+        </div>
+    }
+
+    @if (Model.Family != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Family, "Family")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Family.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.Genus != null)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Genus, "Genus")</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(Model.Genus.Value)</a>
+            </div>
+        </div>
+    }
+
+    @if (Model.AppliedVernaculars != null)
+    {
+        <h3>Vernacular Names</h3>
+        <div class="form-group row">
+            @foreach (SystematicsPortal.Model.Models.Documents.DocumentAppliedVernacular vernacularUse in Model.AppliedVernaculars)
+            {
+                <label class="col-sm-2 col-form-label">Vernacular Name</label>
+                <div class="col-sm-10">
+                    <a href="">@Html.Raw(vernacularUse.VernacularName.Value)</a>
+                </div>
+                <label class="col-sm-2 col-form-label">Language of origin</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.VernacularName.languageOfOrigin)
+                </div>
+                <label class="col-sm-2 col-form-label">Language of use</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.languageOfUse)
+                </div>
+                <label class="col-sm-2 col-form-label">Region of use</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.regionOfUse)
+                </div>
+                <label class="col-sm-2 col-form-label">Notes</label>
+                <div class="col-sm-10">
+                    @Html.Raw(vernacularUse.VernacularUseNote)
+                </div>
+            }
+        </div>
+    }
+
+    @if (Model.HybridData.HybridParentNames != null)
+    {
+        <h3>Hybridisation</h3>
+        <h4>HybridData</h4>
+        @foreach (SystematicsPortal.Model.Models.Documents.DocumentHybridParentName hybridParentName in Model.HybridData.HybridParentNames)
+        {
+            <label class="col-sm-2 col-form-label">&nbsp;</label>
+            <div class="col-sm-10">
+                <a href="">@Html.Raw(hybridParentName.NameFull.Value)</a>
+            </div>
+        }
+    }
+
+    @if (Model.Concepts != null)
+    {
+        <h3>Concepts</h3>
+        @foreach (SystematicsPortal.Model.Models.Documents.DocumentConcept concept in Model.Concepts)
+        {
+            @*@if (concept.Name != null)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            @Html.Raw(concept.Name)
+                        </div>
+                    </div>
+                }*@
+
+            @if (concept.AccordingTo != null)
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">According To</label>
+                    <div class="col-sm-10">
+                        <a href="">@Html.Raw(concept.AccordingTo)</a>
+                    </div>
+                </div>
+            }
+
+            @if (concept.Page != null)
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Page</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(concept.Page)
+                    </div>
+                </div>
+            }
+
+            @if (concept.Orthography != null)
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">@Html.LabelFor(concept => concept.Orthography, "Orthography")</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(concept.Orthography)
+                    </div>
+                </div>
+            }
+
+            @*@if (concept.Keywords != null)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Keywords</label>
+                        <div class="col-sm-10">
+                            @foreach (SystematicsPortal.Model.Models.DTOs.DocumentKeywords keyword in concept.Keywords)
+                            {
+                                @Html.Raw(keyword.Keyword.Value)<br />
+                            }
+                        </div>
+                    </div>
+                }*@
+
+            @if (concept.RelatedConcepts != null)
+            {
+                <h4>Associations</h4>
+                <div class="form-group row">
+                    @foreach (SystematicsPortal.Model.Models.Documents.DocumentConceptRelatedConcept relatedConcept in concept.RelatedConcepts)
+                    {
+                        if (relatedConcept.type == "has parent")
+                        {
+                            <label class="col-sm-2 col-form-label">Cited Parent</label>
+                            <div class="col-sm-10">
+                                <a href="">@Html.Raw(relatedConcept.RelatedTaxon)</a>
+                            </div>
+                        }
+                        if (relatedConcept.type == "has current name")
+                        {
+                            <label class="col-sm-2 col-form-label">Cited Current Name</label>
+                            <div class="col-sm-10">
+                                @Html.Raw(relatedConcept.RelatedTaxon)
+                            </div>
+                        }
+                        if (relatedConcept.type == "has alternative name")
+                        {
+                            <label class="col-sm-2 col-form-label">Cited Alternative Name</label>
+                            <div class="col-sm-10">
+                                @Html.Raw(relatedConcept.RelatedTaxon)
+                            </div>
+                        }
+                        if (relatedConcept.type != "has parent" && relatedConcept.type != "has current name" && relatedConcept.type != "has alternative name")
+                        {
+                            <label class="col-sm-2 col-form-label">Cited Association</label>
+                            <div class="col-sm-10">
+                                @Html.Raw(relatedConcept.RelatedTaxon)
+                            </div>
+                        }
+                    }
+                </div>
+
+                <h4>Relationships</h4>
+                <div class="form-group row">
+                    @foreach (SystematicsPortal.Model.Models.Documents.DocumentConceptRelatedConcept relatedConcept in concept.RelatedConcepts)
+                    {
+                        if (relatedConcept.RelatedTaxon.type == "is congruent" || relatedConcept.RelatedTaxon.type == "is included in" || relatedConcept.RelatedTaxon.type == "overlaps with" || relatedConcept.RelatedTaxon.type == "is excluded from")
+                        {
+                            <label class="col-sm-2 col-form-label">Taxon</label>
+                            <div class="col-sm-10">
+                                @Html.Raw(relatedConcept.RelatedTaxon)
+                            </div>
+                        }
+
+                        if (relatedConcept.type != null)
+                        {
+                            <label class="col-sm-2 col-form-label">Relationship</label>
+                            <div class="col-sm-10">
+                                @Html.Raw(relatedConcept.RelatedTaxon)
+                            </div>
+                        }
+                    }
+                </div>
+
+                @if (concept.Descriptions != null)
+                {
+                    <h4>Descriptions</h4>
+                    <div class="form-group row">
+                        @foreach (SystematicsPortal.Model.Models.Documents.DocumentConceptDescription description in concept.Descriptions)
+                        {
+                            if (description.DescriptionTextName != null)
+                            {
+                                <label class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    @Html.Raw(description.Name)
+                                </div>
+                            }
+                            if (description.DescriptionText != null)
+                            {
+                                <label class="col-sm-2 col-form-label">Description</label>
+                                <div class="col-sm-10">
+                                    @Html.Raw(description.DescriptionText)
+                                </div>
+                            }
+                            if (description.type != null)
+                            {
+                                <label class="col-sm-2 col-form-label">Type</label>
+                                <div class="col-sm-10">
+                                    @Html.Raw(description.type)
+                                </div>
+                            }
+                            if (description.category != null)
+                            {
+                                <label class="col-sm-2 col-form-label">Category</label>
+                                <div class="col-sm-10">
+                                    @Html.Raw(description.category)
+                                </div>
+                            }
+                            if (description.DescriptionUrl != null)
+                            {
+                                <label class="col-sm-2 col-form-label">&nbsp;</label>
+                                <div class="col-sm-10">
+                                    <a href="">@Html.Raw(description.DescriptionUrl.Value)</a>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            }
+        }
+    }
+
+    @if (Model.BiostatusValues != null)
+    {
+        <h3>Biostatus Values</h3>
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentBiostatusValue biostatusValue in Model.BiostatusValues)
+        {
+            if (!biostatusValue.isActive)
+            {
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Origin</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Origin.Value)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Occurrence</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Occurrence.Value)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Georegion</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Georegion.Value)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Reference</label>
+                    <div class="col-sm-10">
+                        <a href="">@Html.Raw(biostatusValue.BiostatusReference.Text[0].Replace("+=", "<i>").Replace("=+", "</i>"))</a>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Note</label>
+                    <div class="col-sm-10">
+                        @Html.Raw(biostatusValue.Comment.Value)
+                    </div>
+                </div>
+            }
+        }
+    }
+
+    <h3>Links</h3>
+
+    @if (Model.HyperLinks != null)
+    {
+        @foreach (SystematicsPortal.Model.Documents.DocumentHyperlink hyperlink in Model.Hyperlinks)
+        {
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">&nbsp;</label>
+                <div class="col-sm-10">
+                    <a href="@Html.Raw(hyperlink.LinkUrl.Value)">@Html.Raw(hyperlink.Caption.Value)</a>
+                </div>
+            </div>
+        }
+    }
+
+    @if (Model.ExternalLinks != null)
+    {
+        <h4>Nomenclators</h4>
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentDto.DocumentExternalLink externalLink in Model.ExternalLinks)
+        {
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">&nbsp;</label>
+                <div class="col-sm-10">
+                    <a href="@Html.Raw(externalLink.externalId)">@Html.Raw(externalLink.ExternalFullName.Value)</a>
+                </div>
+            </div>
+        }
+    }
+
+    <!-- TODO: add Identification Keys -->
+
+    @if (Model.CollectionObjects != null)
+    {
+        <h3>Collections</h3>
+        @foreach (SystematicsPortal.Model.Models.DTOs.DocumentCollectionObject collectionObject in Model.CollectionObjects)
+        {
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Accession Number</label>
+                <div class="col-sm-10">
+                    @Html.Raw(collectionObject.accessionNumber)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Determined Name</label>
+                <div class="col-sm-10">
+                    @Html.Raw(collectionObject.determinedName)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Collector</label>
+                <div class="col-sm-10">
+                    @Html.Raw(collectionObject.Collector)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Collection Date</label>
+                <div class="col-sm-10">
+                    @Html.Raw(collectionObject.collectionDateISO)
+                </div>
+            </div>
+            @if (Model.CollectionObjects != null)
+            {
+                @foreach (SystematicsPortal.Model.Models.DTOs.DocumentCollectionObjectCollectionEventRegion collectionEventRegion in collectionObject.CollectionEventRegions)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Country</label>
+                        <div class="col-sm-10">@Html.Raw(collectionEventRegion.georegion)</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Region</label>
+                        <div class="col-sm-10">@Html.Raw(collectionEventRegion.georegionSchema)</div>
+                    </div>
+                }
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Host</label>
+                    <div class="col-sm-10">@Html.Raw(collectionObject.host)</div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Substrate</label>
+                    <div class="col-sm-10">@Html.Raw(collectionObject.substrate)</div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Type status</label>
+                    <div class="col-sm-10">@Html.Raw(collectionObject.typeStatus)</div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">&nbsp;</label>
+                    <div class="col-sm-10">TODO: add image and meta data</div>
+                </div>
+            }
+        }
+    }
+
+    @if (Model.nameId)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Name Identifier</label>
+            <div class="col-sm-10">
+                @Html.Raw(Model.nameId)
+            </div>
+        </div>
+    }
+}
+
+@if (Model.added)
+{
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date Added</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.added)
+        </div>
+    </div>
+}
+
+@if (Model.updated)
+{
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date Updated</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.updated)
+        </div>
+    </div>
+}
+
+@if (Model.source)
+{
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Source database</label>
+        <div class="col-sm-10">
+            @Html.Raw(Model.source)
+        </div>
+    </div>
+}

@@ -1,14 +1,161 @@
-﻿#sort-option {
-    width: 175px;
+﻿#header {
+    background-color: black;
+}
+
+.page-header {
+    color: white;
+}
+
+.search-form {
+    padding: 30px;
+    font-size: 1.3em;
+}
+
+.search-icon {
+    border: 1px solid black;
+    height: 62px;
+    width: 62px;
+    padding-top: 0px;
+    padding-left: 8px;
+    margin-bottom: 0px;
+    top: 0px;
+    background-color: black;
+}
+
+.fa-search {
+    color: white;
+}
+
+.search-icon:hover {
+    background-color: grey;
+    border: 1px solid grey;
+}
+
+.search-field-wrapper, .search-icon-wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.home-nav-search {
+    height: 450px;
+    background-image:url(images/petr-vysohlid-9fqwGqGLUxc-unsplash-1__FillMaxWzIwMDAsNTQwXQ.jpg)
+}
+
+.home-nav-search .search-row {
+    margin-top: 250px;
+}
+
+.other-nav-search {
+    max-height: 220px;
+    height: auto;
+    background-color: #6E9E40;
+}
+
+.other-nav-search .search-row {
+    margin-top: 10px;
+}
+
+.nav-item a {
+    color: white;
+}
+
+.btn-secondary {
+    color: black;
+    background-color: white;
+    border-color: white;
+}
+
+#main-nav-buttons {
+    margin-top: 30px;
+}
+
+#main-nav-buttons .btn {
+    margin-left: 15px;
+    border-radius: 0;
+    font-weight: 700;
+    width: 100px;
+}
+
+.green-background {
+    background-color: #6E9E40;
+}
+
+.content-wrapper {
+    margin-top: 50px;
+}
+
+.nav-item a {
+    font-weight:600;
+    font-size: 1.1rem;
+    border-right: 2px solid;
+}
+
+.nav-item:first-child a {
+    padding-left: 0px;
+}
+
+.nav-item:last-child a {
+    border-right: 0px solid;
+}
+
+    /*.nav, .nav-item, .nav-link, .nav-item a {
+    height: 30px;
+}*/
+    .nav-link {
+        padding: 0rem 1rem;
+    }
+
+footer {
+    max-height: 500px;
+    height: auto;
+    background-color: black;
+    background-image: url(images/ft-bg-pattern.png);
+    color: white;
+}
+
+footer ul li, .sidebar ul li {
+    list-style-type: none;
+    line-height: 1.5em;
+}
+
+a {
+    color: white;
+}
+
+a:hover, .nav-link a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.sidebar a {
+    color: black;
+}
+
+.sidebar a:hover {
+    color: black;
+}
+
+.container-fluid {
+    padding-bottom: 80px;
+}
+
+.sidebar {
+    background-color: #E6E7E9;
+    width: 100%;
+}
+
+.sidebar-divider {
+    width: 100px;
+    height: 50px;
+    border-bottom: 3px solid;
     margin-bottom: 10px;
 }
 
-.specimen-list-item {
-    border-bottom: 1px solid #e6e6e6;
-    padding: 10px 0;
-    color: #696969;
-}
-
-.heading {
-    font-weight: bold;
+.sidebar ul li {
+    font-size: larger;
+    line-height: 2.25em;
 }

@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 using System;
 using SystematicsPortal.Models.Entities.DTOs;
 using System.Linq;
+using SystematicsPortal.Models.Entities.Documents.Name;
+using System.Xml.Serialization;
+using System.Xml;
+using SystematicsPortal.Web.ViewModels;
+using System.Collections.Generic;
+using SystematicsPortal.Models.Entities.Documents.SubDocuments;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -29,8 +35,7 @@ namespace SystematicsPortal.Web.Controllers
         {
             try
             {
-                await CallContentServiceAsync();
-
+                //await CallContentServiceAsync();
 
                 bool success = false;
                 var viewData = new SearchViewModel(null, null);
@@ -91,13 +96,60 @@ namespace SystematicsPortal.Web.Controllers
         // GET: Search/Details/5
         public ActionResult Details(int id)
         {
-            DocumentDto document;
-            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(DocumentDto));
+            XmlRootAttribute xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "Document";
+            xRoot.IsNullable = true;
 
-            using (StreamReader xml = new StreamReader("single-Document-References-Fungi.xml"))
+            NameDocument document;
+            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(NameDocument), xRoot);
+
+            // TODO: need to get document detail page from API
+            using (StreamReader xml = new StreamReader("single-document.xml"))
             {
-                document = (DocumentDto)ser.Deserialize(xml);
+                document = (NameDocument)ser.Deserialize(xml);
             }
+
+            string xmlConfig;
+            using (StreamReader reader = new StreamReader("config-fields.xml"))
+            {
+                xmlConfig = reader.ReadToEnd();
+            }
+
+            List<FieldViewModel> list = new List<FieldViewModel>();
+
+            XmlReader rdr = XmlReader.Create(new System.IO.StringReader(xmlConfig));
+            while (rdr.Read())
+            {
+                if (rdr.NodeType == XmlNodeType.Element)
+                {
+                    Console.WriteLine(rdr.LocalName);
+                    // maybe do xpath to right document so can traverse from there.
+                    if(rdr.GetAttribute("documentClass") != null && rdr.GetAttribute("documentClass") == "name")
+                    {
+                        //string documentClass = rdr.GetAttribute("documentClass");
+                    }
+
+                    if(rdr.LocalName == "Field")
+                    {
+                        FieldViewModel fieldViewModel = new FieldViewModel();
+                        //ject field = document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
+
+                        if (document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null) == "{SystematicsPortal.Models.Entities.Documents.SubDocuments.TextType}")
+                        {
+                            fieldViewModel.FieldTextType = (TextType) document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
+                        } else
+                        {
+                            fieldViewModel.Field = document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
+                        }
+
+                        fieldViewModel.EnglishLabel = rdr.GetAttribute("english-label");
+                        fieldViewModel.Order = Int32.Parse(rdr.GetAttribute("order"));
+                        list.Add(fieldViewModel);
+                    }
+                }
+            }
+
+            list.Sort((x, y) => x.Order.CompareTo(y.Order));
 
             //XmlDocument xmlString = new XmlDocument();
             //xmlString.Load("single-document.xml");
@@ -114,7 +166,10 @@ namespace SystematicsPortal.Web.Controllers
 
             //document = (Document)ser.Deserialize(xmlStream);
 
-            return View(document);
+            FieldsViewModel fields = new FieldsViewModel();
+            fields.Fields = list;
+            return View(fields);
+            //return View();
         }
 
 
@@ -203,7 +258,7 @@ namespace SystematicsPortal.Web.Controllers
                 
             var items = await _contentService.GetItemsByIds(itemIdsList);
 
-
+            var test = 1;
         }
     }
 }

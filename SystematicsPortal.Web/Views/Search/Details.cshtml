@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Detail";
+}
+
+@model SystematicsPortal.Web.ViewModels.FieldsViewModel;
+
+@await Html.PartialAsync("~/Views/Shared/_NavAndSearch.cshtml")
+
+<h1>Cranwell, E. 1956: Fungi of Marotiri Island.<i>Tane 7</i>: 22.</h1>
+
+<!--<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Breadcrumb</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Breadcrumb</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Breadcrumb
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group btn-group-lg float-right hidden-xs-down" role="group">
+                <button class="btn btn-secondary" type="button">
+                    Save to favorites
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Download
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Annotate
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    History
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Get citation
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Share
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Contact us
+                </button>
+            </div>
+            <div class="btn-group-vertical btn-group-lg hidden-sm-up" role="group">
+                <button class="btn btn-secondary" type="button">
+                    Save to favorites
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Download
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Annotate
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    History
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Get citation
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Share
+                </button>
+                <button class="btn btn-secondary" type="button">
+                    Contact us
+                </button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<br />
+<!--
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Title</label>
+    <div class="col-sm-10">
+        Cranwell, E. 1956: Fungi of Marotiri Island.<i>Tane 7</i>: 22.
+    </div>
+</div>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">&nbsp;</label>
+    <div class="col-sm-10">
+        <a href="">Tane</a>
+    </div>
+</div>
+
+<h3>Fields</h3>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Author</label>
+    <div class="col-sm-10">
+        Cranwell, E.
+    </div>
+</div>
+
+<h3>Concepts</h3>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Cited Name</label>
+    <div class="col-sm-10">
+        <a href="">Clavaria L. 1753</a>
+    </div>
+</div>
+
+<h4>Other taxa cited</h4>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Cited taxa</label>
+    <div class="col-sm-10">
+        <a href="">Clavaria L. 1753</a>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Reference Identifier	</label>
+    <div class="col-sm-10">
+        7b217b65-8a7b-11d5-bebb-00508bca8dd2
+    </div>
+</div>
+-->
+
+@foreach (SystematicsPortal.Web.ViewModels.FieldViewModel field in Model.Fields)
+{
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">@Html.Raw(field.EnglishLabel)</label>
+    <div class="col-sm-10">
+        @if(field.FieldTextType != null) {
+            @Html.Raw(field.FieldTextType.Text[0])
+        } else {
+            @Html.Raw(field.Field)
+        }
+    </div>
+</div>  
+}
