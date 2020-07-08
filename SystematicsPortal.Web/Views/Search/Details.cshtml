@@ -141,12 +141,12 @@
                 if (xmlNode.InnerText != null)
                 {
                     @Html.Raw(xmlNode.Name) <br />
-                    @Html.Raw(xmlNode.InnerText)
+                    @Html.Raw(xmlNode.InnerText) <br />
                 }
                 else if (xmlNode.OuterXml != null)
                 {
                     @Html.Raw(xmlNode.Name) <br />
-                    @Html.Raw(xmlNode.OuterXml)
+                    @Html.Raw(xmlNode.OuterXml) <br />
                 }
 
             }

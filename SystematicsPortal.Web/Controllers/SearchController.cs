@@ -183,7 +183,7 @@ namespace SystematicsPortal.Web.Controllers
             FieldViewModel fieldViewModel2 = new FieldViewModel();
             fieldViewModel2.Label = "Collector";
             fieldViewModel2.Order = 2;
-            fieldViewModel2.xmlNodeList = xmlNodeList;
+            fieldViewModel2.xmlNodeList = xmlNodesList;
 
             list.Add(fieldViewModel2);
 
