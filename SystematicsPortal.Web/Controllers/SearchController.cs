@@ -100,24 +100,37 @@ namespace SystematicsPortal.Web.Controllers
             xRoot.ElementName = "Document";
             xRoot.IsNullable = true;
 
-            NameDocument document;
+            /*NameDocument document;
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(NameDocument), xRoot);
 
             // TODO: need to get document detail page from API
             using (StreamReader xml = new StreamReader("single-document.xml"))
             {
                 document = (NameDocument)ser.Deserialize(xml);
-            }
+            }*/
 
-            string xmlConfig;
+            /*string xmlConfig;
             using (StreamReader reader = new StreamReader("config-fields.xml"))
             {
                 xmlConfig = reader.ReadToEnd();
+            }*/
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load("single-document.xml");
+
+            XmlNode xmlNode = xmlDoc.SelectSingleNode("//Document/NameFull");
+            XmlNodeList xmlNodeList = xmlDoc.SelectNodes("//Document/CollectionObjects/CollectionObject");
+            List<XmlNode> xmlNodesList = new List<XmlNode>();
+
+            if (xmlNodeList.Count > 0)
+            {
+                List<XmlNode> foundNodes = new List<XmlNode>();
+                xmlNodesList = ReadAllNodes(xmlNodeList.Item(0), xmlNodesList);
             }
 
             List<FieldViewModel> list = new List<FieldViewModel>();
 
-            XmlReader rdr = XmlReader.Create(new System.IO.StringReader(xmlConfig));
+            /* XmlReader rdr = XmlReader.Create(new System.IO.StringReader(xmlConfig));
             while (rdr.Read())
             {
                 if (rdr.NodeType == XmlNodeType.Element)
@@ -131,10 +144,10 @@ namespace SystematicsPortal.Web.Controllers
 
                     if(rdr.LocalName == "Field")
                     {
-                        FieldViewModel fieldViewModel = new FieldViewModel();
+                        //FieldViewModel fieldViewModel = new FieldViewModel();
                         string type = document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null).GetType().Name;
 
-                        /*if (type.Equals("TextType"))
+                        if (type.Equals("TextType"))
                         {
                             fieldViewModel.FieldTextType = (TextType) document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
                         }
@@ -149,16 +162,30 @@ namespace SystematicsPortal.Web.Controllers
                         else
                         {
                             fieldViewModel.Field = document.GetType().GetProperty(rdr.GetAttribute("type")).GetValue(document, null);
-                        }*/
+                        }
 
                         fieldViewModel.EnglishLabel = rdr.GetAttribute("english-label");
                         fieldViewModel.FieldName = rdr.GetAttribute("type");
                         fieldViewModel.Order = Int32.Parse(rdr.GetAttribute("order"));
-                        fieldViewModel.FieldType = type;
+                        //fieldViewModel.FieldType = type;
                         list.Add(fieldViewModel);
                     }
                 }
-            }
+            }*/
+
+            FieldViewModel fieldViewModel = new FieldViewModel();
+            fieldViewModel.Label = xmlNode.Name;
+            fieldViewModel.Order = 1;
+            fieldViewModel.xmlNode = xmlNode;
+
+            list.Add(fieldViewModel);
+
+            FieldViewModel fieldViewModel2 = new FieldViewModel();
+            fieldViewModel2.Label = "Collector";
+            fieldViewModel2.Order = 2;
+            fieldViewModel2.xmlNodeList = xmlNodeList;
+
+            list.Add(fieldViewModel2);
 
             list.Sort((x, y) => x.Order.CompareTo(y.Order));
 
@@ -179,11 +206,28 @@ namespace SystematicsPortal.Web.Controllers
 
             FieldsViewModel fields = new FieldsViewModel();
             fields.Fields = list;
-            fields.NameDocument = document;
+            //fields.NameDocument = document;
             return View(fields);
             //return View();
         }
 
+
+
+        public List<XmlNode> ReadAllNodes(XmlNode node, List<XmlNode> xmlNodesList)
+        {
+            if (node.ChildNodes.Count > 0)
+            {
+                foreach (XmlNode subNode in node.ChildNodes)
+                {
+                    ReadAllNodes(subNode, xmlNodesList);
+                }
+            }
+            else
+            {
+                xmlNodesList.Add(node);
+            }
+            return xmlNodesList;
+        }
 
         // GET: Search/Create
         public ActionResult Create()
