@@ -118,6 +118,9 @@ namespace SystematicsPortal.Web.Controllers
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load("single-document.xml");
 
+            // TODO: need to traverse config xml as object and carry out an xpath query per field and build FieldViewModel collection.
+            // similar to Ragnar.
+
             XmlNode xmlNode = xmlDoc.SelectSingleNode("//Document/NameFull");
             XmlNodeList xmlNodeList = xmlDoc.SelectNodes("//Document/CollectionObjects/CollectionObject");
             List<XmlNode> xmlNodesList = new List<XmlNode>();
