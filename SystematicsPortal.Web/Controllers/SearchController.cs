@@ -13,6 +13,7 @@ using System.Xml;
 using SystematicsPortal.Web.ViewModels;
 using System.Collections.Generic;
 using SystematicsPortal.Models.Entities.Documents.SubDocuments;
+using SystematicsPortal.Web.Helpers;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -117,21 +118,63 @@ namespace SystematicsPortal.Web.Controllers
 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load("single-document.xml");
+            List<FieldViewModel> list = new List<FieldViewModel>();
 
             // TODO: need to traverse config xml as object and carry out an xpath query per field and build FieldViewModel collection.
             // similar to Ragnar.
 
-            XmlNode xmlNode = xmlDoc.SelectSingleNode("//Document/NameFull");
-            XmlNodeList xmlNodeList = xmlDoc.SelectNodes("//Document/CollectionObjects/CollectionObject");
-            List<XmlNode> xmlNodesList = new List<XmlNode>();
+            List<RenderConfig> renderConfigList = new List<RenderConfig>();
+            RenderConfig renderConfig1 = new RenderConfig();
+            renderConfig1.Order = 1;
+            renderConfig1.XpathQuery = "//Document/NameFull";
+            renderConfig1.XpathQueryType = "XmlNode";
+            renderConfig1.IsSection = false;
+            renderConfigList.Add(renderConfig1);
 
-            if (xmlNodeList.Count > 0)
+            RenderConfig renderConfig2 = new RenderConfig();
+            renderConfig2.Order = 2;
+            renderConfig2.XpathQuery = "//Document/CollectionObjects/CollectionObject";
+            renderConfig2.XpathQueryType = "XmlNodeList";
+            renderConfig2.IsSection = true;
+            renderConfig2.SectionHeading = "Collections";
+            renderConfigList.Add(renderConfig2);
+
+            RenderConfig renderConfig3 = new RenderConfig();
+            renderConfig3.Order = 3;
+            renderConfig3.XpathQuery = "//Document/BiostatusValues/BiostatusValue";
+            renderConfig3.XpathQueryType = "XmlNodeList";
+            renderConfig3.IsSection = true;
+            renderConfig3.SectionHeading = "Biota Status Values";
+            renderConfigList.Add(renderConfig3);
+
+            foreach (RenderConfig renderConfig in renderConfigList)
             {
-                List<XmlNode> foundNodes = new List<XmlNode>();
-                xmlNodesList = ReadAllNodes(xmlNodeList.Item(0), xmlNodesList);
+                if(renderConfig.XpathQueryType.Equals("XmlNode"))
+                {
+                    XmlNode xmlNode = xmlDoc.SelectSingleNode(renderConfig.XpathQuery);
+                    FieldViewModel fieldViewModel = new FieldViewModel();
+                    fieldViewModel.Label = xmlNode.Name;
+                    fieldViewModel.IsSection = renderConfig.IsSection;
+                    fieldViewModel.Order = renderConfig.Order;
+                    fieldViewModel.xmlNode = xmlNode;
+                    list.Add(fieldViewModel);
+                } else
+                {
+                    XmlNodeList xmlNodeList = xmlDoc.SelectNodes(renderConfig.XpathQuery);
+                    List<XmlNode> xmlNodesList = new List<XmlNode>();
+                    if (xmlNodeList.Count > 0)
+                    {
+                        List<XmlNode> foundNodes = new List<XmlNode>();
+                        xmlNodesList = ReadAllNodes(xmlNodeList.Item(0), xmlNodesList);
+                    }
+                    FieldViewModel fieldViewModel2 = new FieldViewModel();
+                    fieldViewModel2.SectionHeading = renderConfig.SectionHeading;
+                    fieldViewModel2.IsSection = renderConfig.IsSection;
+                    fieldViewModel2.Order = renderConfig.Order;
+                    fieldViewModel2.xmlNodeList = xmlNodesList;
+                    list.Add(fieldViewModel2);
+                }
             }
-
-            List<FieldViewModel> list = new List<FieldViewModel>();
 
             /* XmlReader rdr = XmlReader.Create(new System.IO.StringReader(xmlConfig));
             while (rdr.Read())
@@ -176,20 +219,6 @@ namespace SystematicsPortal.Web.Controllers
                 }
             }*/
 
-            FieldViewModel fieldViewModel = new FieldViewModel();
-            fieldViewModel.Label = xmlNode.Name;
-            fieldViewModel.Order = 1;
-            fieldViewModel.xmlNode = xmlNode;
-
-            list.Add(fieldViewModel);
-
-            FieldViewModel fieldViewModel2 = new FieldViewModel();
-            fieldViewModel2.Label = "Collector";
-            fieldViewModel2.Order = 2;
-            fieldViewModel2.xmlNodeList = xmlNodesList;
-
-            list.Add(fieldViewModel2);
-
             list.Sort((x, y) => x.Order.CompareTo(y.Order));
 
             //XmlDocument xmlString = new XmlDocument();
@@ -209,9 +238,7 @@ namespace SystematicsPortal.Web.Controllers
 
             FieldsViewModel fields = new FieldsViewModel();
             fields.Fields = list;
-            //fields.NameDocument = document;
             return View(fields);
-            //return View();
         }
 
 

@@ -126,8 +126,17 @@
 
 @foreach (SystematicsPortal.Web.ViewModels.FieldViewModel field in Model.Fields)
 {
+    if(field.IsSection && field.SectionHeading != null)
+    {
+        <h3>@Html.Raw(field.SectionHeading)</h3>
+    }
 <div class="form-group row">
-    <label class="col-sm-2 col-form-label">@Html.Raw(field.Label)</label>
+    <label class="col-sm-2 col-form-label">
+        @if (!field.IsSection && field.Label != null)
+        {
+            @Html.Raw(field.Label)
+        }
+    </label>
     <div class="col-sm-10">
         @if (field.xmlNode != null)
         {
@@ -140,15 +149,19 @@
             {
                 if (xmlNode.InnerText != null)
                 {
-                    @Html.Raw(xmlNode.Name) <br />
-                    @Html.Raw(xmlNode.InnerText) <br />
+                    @Html.Raw("Inner") <strong>@Html.Raw(xmlNode.Name)</strong> @Html.Raw(xmlNode.InnerText);<br />
+                    if (xmlNode.Attributes != null)
+                    {
+                        @foreach (System.Xml.XmlAttribute attribute in xmlNode.Attributes)
+                        {
+                            @Html.Raw("Attribute") <strong>@Html.Raw(attribute.Name)</strong> @Html.Raw(attribute.Value); <br />
+                        }
+                    }
+                    else if (xmlNode.OuterXml != null)
+                    {
+                        //@Html.Raw("Outer") @Html.Raw(xmlNode.Name) @Html.Raw(xmlNode.OuterXml); <br />
+                    }
                 }
-                else if (xmlNode.OuterXml != null)
-                {
-                    @Html.Raw(xmlNode.Name) <br />
-                    @Html.Raw(xmlNode.OuterXml) <br />
-                }
-
             }
         }
     </div>
