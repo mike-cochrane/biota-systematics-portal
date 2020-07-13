@@ -1,5 +1,13 @@
 ﻿@model SystematicsPortal.Web.Models.SearchViewModel
-    <div class="container-fluid">
+    <!--<div class="container-fluid">-->
+
+@await Html.PartialAsync("~/Views/Shared/_NavAndSearch.cshtml")
+
+<div class="row">
+    @await Html.PartialAsync("~/Views/Shared/_SideBar.cshtml")
+    <div class="col-md-7 mw-100 pt-5 pl-5 pb-5">
+        <h1 class="pb-4">@ViewData["Title"]</h1>
+
         <div id="results" class="row-fluid">
             <div id="applied-facets">
                 @foreach (SystematicsPortal.Search.Tools.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets)
@@ -245,18 +253,18 @@
                         if (Model.SelectedView.Equals("list"))
                         {
                             listActiveClass = "active";
-                            <!--<ul class="nav nav-tabs" id="search-results">
-                                <li class="active"><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
-                                <li><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
-                            </ul>-->
+                            <ul class="nav nav-tabs" id="search-results">
+                            <li class="active"><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
+                            <li><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
+                        </ul>
                         }
                         else if (Model.SelectedView.Equals("grid"))
                         {
                             gridActiveClass = "active";
-                            <!--<ul class="nav nav-tabs" id="search-results">
-                                <li><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
-                                <li class="active"><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
-                            </ul>-->
+                            <ul class="nav nav-tabs" id="search-results">
+                            <li><a id="list" href="#list-result" data-toggle="tab">List View</a></li>
+                            <li class="active"><a id="grid" href="#grid-result" data-toggle="tab">Grid View</a></li>
+                        </ul>
                         }
                         <br />
                         <div class="tab-content">
@@ -276,22 +284,23 @@
                             <div class="specimen-list-item">
                                 <div class="pull-left">
                                     <input type="checkbox" name="selected" id="@summary.Id.ToString()" class="@summary.Id.ToString()" onclick="toggleSpecimen(this)" @*checked="@summary.Selected"*@ />
-                                    @Html.ActionLink(@summary.GetHashCode() + " : " + @summary.Title, "Details", "Specimen", new { id = @summary.GetHashCode(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                    @Html.ActionLink(@summary.GetHashCode() + " : " + summary.Title, "Details", "Specimen", new { id = @summary.GetHashCode(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
                                 </div>
-                                @*<div class="pull-right">
-            @if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
-            {
-                <i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
-            }
-            @if (summary.HasImages)
-            {
-                <i class= "icon-camera" title="Images are available for this record"></i>
-            }
-        </div>*@
+                                <div class="pull-right">
+                                    @*@if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
+                                    {*@
+                                                                @*<i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
+                                    }
+                                    @if (summary.HasImages)
+                                    {
+                                    *@
+                                    <i class="icon-camera" title="Images are available for this record"></i>
+                                    @*}*@
+                                </div>
                                 <div class="clear"></div>
-                                <br /><br />
-                                @Html.Partial("SpecimenSummaryTextPartial", summary)
-                            </div>
+                                    <br />
+                                    @Html.Partial("SpecimenSummaryTextPartial", summary)
+                                 </div>
                                 }
                             </div>
                             <div class="tab-pane @gridActiveClass" id="grid-result">
@@ -403,10 +412,14 @@
                 <button class="btn btn-home" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
         </div>
-</div>
-        @*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@
 
-        <script type="text/javascript">
+    </div> <!-- end2 -->
+</div> <!-- end1 -->
+
+<!--</div>-->
+@*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@
+
+<script type="text/javascript">
     var currentTab = '@Model.SelectedView';
     var sortBy = '@Model.SelectedSortOption';
 
@@ -785,4 +798,4 @@
         actionDownloadUrl("DownloadSelection", "Search", null, 0);
     }
 
-        </script>
+</script>

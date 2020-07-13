@@ -123,10 +123,23 @@ footer ul li, .sidebar ul li {
 }
 
 a {
-    color: white;
+    color: black;
 }
 
-a:hover, .nav-link a:hover {
+.specimen-list-item a {
+    color: #56A3D6;
+}
+
+.specimen-list-item {
+    border-bottom: 1px solid #F3F3F3;
+    margin-bottom: 15px;
+}
+
+.search-result-item-summary .heading {
+    color: #ABABBC;
+}
+
+.nav-link a:hover {
     text-decoration: underline;
     color: white;
 }
@@ -158,4 +171,8 @@ a:hover, .nav-link a:hover {
 .sidebar ul li {
     font-size: larger;
     line-height: 2.25em;
+}
+
+.nav-tabs {
+    border: none;
 }
