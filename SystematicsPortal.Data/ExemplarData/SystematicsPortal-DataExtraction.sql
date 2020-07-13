@@ -1,4 +1,4 @@
-USE Names_Plants
+USE Names_Fungi
 GO
 
 IF EXISTS(SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#Name'))
@@ -1176,11 +1176,27 @@ UPDATE N
 
 							  (SELECT 'nzBiostatusAdded'			as '@name'			, B.Added								as 'text()' for xml path('field'), TYPE)
 							, (SELECT CASE ISNULL(B.Updated, '')		WHEN '' THEN NULL ELSE 'nzbiostatusupdated'	END	as 'field/@name',	B.Updated	as 'field/text()' for xml path(''), TYPE) 	
-							, (SELECT 'nzBiostatusReferenceId'		as '@name'			, LOWER(B.ReferenceID)					as 'text()' for xml path('field'), TYPE)
-							, (SELECT 'nzBiostatusReference'		as '@name'			, CitationUnformated					as 'text()'	for xml path('field'), TYPE)
-							, (SELECT 'nzBiostatusReferenceDisplay'	as '@name'			, Citation								as 'text()'	for xml path('field'), TYPE)
-							, (SELECT 'nzOrigin'					as '@name'			, B.Origin								as 'text()' for xml path('field'), TYPE)
-							, (SELECT 'nzOccurrence'				as '@name'			, B.Occurrence							as 'text()' for xml path('field'), TYPE)
+							, CASE ISNULL(CitationUnformated, '')
+									WHEN '' THEN NULL
+									ELSE (SELECT 'nzBiostatusReferenceId'		as '@name'			, LOWER(B.ReferenceID)					as 'text()' for xml path('field'), TYPE)
+							 END
+							, CASE ISNULL(CitationUnformated, '')
+									WHEN '' THEN NULL
+									ELSE (SELECT 'nzBiostatusReference'		as '@name'			, CitationUnformated					as 'text()'	for xml path('field'), TYPE)
+							 END 
+							, CASE ISNULL(CitationUnformated, '')
+									WHEN '' THEN NULL
+									ELSE (SELECT 'nzBiostatusReferenceDisplay'	as '@name'			, Citation								as 'text()'	for xml path('field'), TYPE)
+							 END  
+							, CASE ISNULL(B.Origin, '')
+									WHEN '' THEN NULL
+									ELSE (SELECT 'nzOrigin'					as '@name'			, B.Origin								as 'text()' for xml path('field'), TYPE)
+							 END  
+							, CASE ISNULL(B.Occurrence, '')
+									WHEN '' THEN NULL
+									ELSE (SELECT 'nzOccurrence'				as '@name'			, B.Occurrence							as 'text()' for xml path('field'), TYPE)
+							 END
+							  
 						FROM Biostatus B
 						WHERE B.NameBiostatusNameFk = N.NameGuid	
 							AND B.UseOrder = 1					
@@ -1308,7 +1324,7 @@ GO
 				FOR XML PATH('CollectionEventRegion'), TYPE) AS CollectionEventRegions
 		, CASE ISNULL(SC.Substrate, '') WHEN '' THEN NULL ELSE SC.Substrate END AS Substrate
 		, CASE ISNULL(SC.PartAffected, '') WHEN '' THEN NULL ELSE SC.PartAffected END AS PartAffected
-		, CAT.ComponentAssociationType AssociationType
+		, REPLACE(CAT.ComponentAssociationType, 'Host', 'has host') AS AssociationType
 		, PSCWN.SourceNameId AS AssociatedTaxonId
 		, PSCWN.SourceFullName AS AssociatedTaxon
 		, (SELECT IL.ImageURL as '@imageUrl'
@@ -1492,6 +1508,10 @@ GO
 		INNER JOIN CIS_PDD.spec.[Collection] CO ON S.CollectionId = CO.CollectionId		
 	WHERE S.SecurityLevelId = 40
 )
+, Substrate AS (SELECT DISTINCT  SourceNameId, Substrate FROM SpecimenSummary S WHERE ISNULL(Substrate, '') <> '')
+, Host AS (SELECT DISTINCT  SourceNameId, AssociationType, AssociatedTaxonId, AssociatedTaxon FROM SpecimenSummary S WHERE ISNULL(AssociationType, '') ='has host')
+, DistinctAssociationType AS (SELECT DISTINCT  SourceNameId, AssociationType  FROM SpecimenSummary S WHERE ISNULL(AssociationType, '') <> '')
+, Partaffected AS (SELECT DISTINCT  SourceNameId, PartAffected FROM SpecimenSummary S WHERE ISNULL(PartAffected, '') <> '')
 UPDATE N
 	SET  CollectionObjectXML = (SELECT LOWER(SpecimenGuid) as '@specimenGuid'
 								, SpecimenId as '@specimenId'
@@ -1516,6 +1536,30 @@ UPDATE N
 								--SourceNameId = N.NameGuid
 								--OR SourceNameId IN (SELECT NameGuid FROM #Name WHERE CurrentFK = N.NameGuid)
 							FOR XML PATH('CollectionObject'), ROOT('CollectionObjects'), TYPE)
+		, CollectionObjectSOLRXML = (SELECT
+										(SELECT					
+												(SELECT 'host'					as '@name'			, AssociatedTaxon  			as 'text()' for xml path('field'), TYPE)
+											  , (SELECT 'hostId'				as '@name'			, LOWER(AssociatedTaxonId)	as 'text()' for xml path('field'), TYPE)
+											  --, (SELECT 'associationType'		as '@name'			, AssociationType			as 'text()' for xml path('field'), TYPE)
+										FROM Host H
+										WHERE H.SourceNameId = N.NameGuid
+										FOR XML PATH(''), TYPE)
+										, (SELECT					
+													(SELECT 'substrate'			as '@name'			, Substrate  			as 'text()' for xml path('field'), TYPE)
+											FROM Substrate S
+											WHERE S.SourceNameId = N.NameGuid
+										FOR XML PATH(''), TYPE)
+										, (SELECT					
+													(SELECT 'partAffected'			as '@name'			, Partaffected  			as 'text()' for xml path('field'), TYPE)
+											FROM Partaffected PA
+											WHERE PA.SourceNameId = N.NameGuid
+										FOR XML PATH(''), TYPE)
+										, (SELECT					
+													(SELECT 'associationType'			as '@name'			, AssociationType  			as 'text()' for xml path('field'), TYPE)
+											FROM DistinctAssociationType DAT
+											WHERE DAT.SourceNameId = N.NameGuid
+										FOR XML PATH(''), TYPE)
+									FOR XML PATH(''), TYPE)
 
 FROM #Name N 
 
@@ -1675,15 +1719,17 @@ FROM #Name N
 , Relationships AS
 (
 	SELECT 'normal'  as direction
+		, C.NameId
 		, BR.BibliographyRelationshipBibliographyFromFk  ConceptId1
 		, BR.BibliographyRelationshipBibliographyToFk  ConceptId2
-		, N.NameGuid AS NameId
+		, N.NameGuid AS NameId2
 		, N.NameFull NameFullConcept2
 		, BR.BibliographyRelationshipDateAdded  Added
 		, BR.BibliographyRelationshipPk    RelationshipId
 		, BRTnew.OutputRelationshipType RelationshipType
 		, BRTnew.Category as Category
 	FROM tblBibliographyRelationship BR
+		INNER JOIN Concepts C ON BR.BibliographyRelationshipBibliographyFromFk = C.Id
 		INNER JOIN tblBibliographyRelationshipType BRT ON BR.BibliographyRelationshipTypeFk = BRT.BibliographyRelationshipTypePk
 			INNER JOIN #BibliographyRelationshipType BRTnew ON BRT.BibliographyRelationshipTypeText = BRTnew.InputRelationshipType
 		INNER JOIN tblBibliography B ON BR.BibliographyRelationshipBibliographyToFk = B.BibliographyGuid
@@ -1693,22 +1739,25 @@ FROM #Name N
 UNION ALL
 
 	SELECT 'inverse'  as direction
+		, C.NameId
 		, BR.BibliographyRelationshipBibliographyToFk
 		, BR.BibliographyRelationshipBibliographyFromFk  
-		, N.NameGuid AS NameId
+		, N.NameGuid AS NameId2
 		, N.NameFull AS NameFullConcept2
 		, BR.BibliographyRelationshipDateAdded
 		, BR.BibliographyRelationshipPk
 		, BRTnew.OutputInverseRelationshipType
 		, BRTnew.Category as Category
 	FROM tblBibliographyRelationship BR
+		INNER JOIN Concepts C ON BR.BibliographyRelationshipBibliographyToFk = C.Id
 		INNER JOIN tblBibliographyRelationshipType BRT ON BR.BibliographyRelationshipTypeFk = BRT.BibliographyRelationshipTypePk
 			INNER JOIN #BibliographyRelationshipType BRTnew ON BRT.BibliographyRelationshipTypeText = BRTnew.InputRelationshipType
 		INNER JOIN tblBibliography B ON BR.BibliographyRelationshipBibliographyFromFk = B.BibliographyGuid
 			INNER JOIN tblName N ON B.BibliographyNameFk = N.NameGuid
 	WHERE ISNULL(B.BibliographyIsDeleted, 0) = 0
 )
-, RelationshipTypes AS (SELECT DISTINCT RelationshipType, NameId, Category FROM Relationships WHERE direction = 'normal')
+, RelationshipTypes AS     (SELECT DISTINCT RelationshipType, NameId, Category FROM Relationships WHERE direction = 'normal')
+, HostRelationships AS (SELECT DISTINCT  NameId, NameId2, NameFullConcept2 FROM Relationships WHERE direction = 'normal' AND Category = 'biology' and RelationshipType = 'Host')
 , Descriptions AS (
 		SELECT DescriptionGuid AS Id
 			, DT.[Type] AS [Type] 
@@ -1747,7 +1796,7 @@ UPDATE N
 									, R.RelationshipType  as '@type'
 									, LOWER(R.ConceptId2) AS '@conceptId'
 									, R.Added as '@added'
-									, LOWER(R.NameId) AS 'RelatedTaxon/@nameId'
+									, LOWER(R.NameId2) AS 'RelatedTaxon/@nameId'
 									, R.NameFullConcept2 AS 'RelatedTaxon/@nameFull'
 									, N.NameFormattedXML AS RelatedTaxon
 								FROM Relationships R
@@ -1788,6 +1837,13 @@ UPDATE N
 										FROM RelationshipTypes RD 
 										WHERE RD.NameId = N.NameGuid AND Category = 'concepts'
 									FOR XML PATH(''), TYPE)
+								, (SELECT 
+											  (SELECT 'host'			as '@name'		, NameFullConcept2				as 'text()' for xml path('field'), TYPE)
+											, (SELECT 'hostId'			as '@name'		, LOWER(NameId2)				as 'text()' for xml path('field'), TYPE)
+										 FROM HostRelationships HR
+										  
+										WHERE HR.NameId = N.NameGuid 
+										FOR XML PATH(''), TYPE)
 						FOR XML PATH(''), TYPE)
 FROM #Name N
 
@@ -2061,12 +2117,27 @@ SELECT
 		END
 	,   (SELECT 'taxonRank'		as '@name'			,	TaxonRank		as 'text()' for xml path('field'), TYPE)
 	,   (SELECT 'taxonRankSort' as '@name'			,	TaxonRankSort	as 'text()' for xml path('field'), TYPE)
-	,  (SELECT CASE ISNULL(Parent, '')			WHEN '' THEN NULL ELSE 'parent'				END	as 'field/@name',	Parent					as 'field/text()' for xml path(''), TYPE) 	
-	,  (SELECT CASE ISNULL(Parent, '')			WHEN '' THEN NULL ELSE 'parentId'			END	as 'field/@name',	LOWER(ParentFK)			as 'field/text()' for xml path(''), TYPE) 	
-	,  (SELECT CASE ISNULL(CurrentName, '')		WHEN '' THEN NULL ELSE 'current'			END	as 'field/@name',	CurrentName				as 'field/text()' for xml path(''), TYPE) 	
-	,  (SELECT CASE ISNULL(CurrentName, '')		WHEN '' THEN NULL ELSE 'currentId'			END	as 'field/@name',	LOWER(CurrentFK)		as 'field/text()' for xml path(''), TYPE) 	
-	,  (SELECT CASE ISNULL(CurrentName, '')		WHEN '' THEN NULL ELSE 'currentFormatted'	END	as 'field/@name',	CurrentNameEscaped	    as 'field/text()' for xml path(''), TYPE) 	
-	
+	,  CASE ISNULL(Parent, '')			
+			WHEN '' THEN NULL 
+			ELSE (SELECT 'parent'		as 'field/@name' ,	Parent				as 'field/text()' for xml path(''), TYPE) 	
+		END
+	,  CASE ISNULL(Parent, '')			
+			WHEN '' THEN NULL 
+			ELSE (SELECT 'parentId'		as 'field/@name' ,	LOWER(ParentFK)		as 'field/text()' for xml path(''), TYPE) 	
+		END
+
+	,  CASE ISNULL(CurrentName, '')			
+			WHEN '' THEN NULL 
+			ELSE (SELECT 'current'		as 'field/@name' ,	CurrentName			as 'field/text()' for xml path(''), TYPE) 	
+		END
+	,  CASE ISNULL(CurrentName, '')			
+			WHEN '' THEN NULL 
+			ELSE (SELECT 'currentId'		    as 'field/@name' ,	LOWER(CurrentFK)	as 'field/text()' for xml path(''), TYPE) 	
+		END
+	,  CASE ISNULL(CurrentName, '')			
+			WHEN '' THEN NULL 
+			ELSE (SELECT 'currentFormatted'		as 'field/@name' ,	CurrentNameEscaped	as 'field/text()' for xml path(''), TYPE) 	
+		END
 	,  (SELECT 'isCurrent'		as '@name'			,	CASE IsCurrent WHEN 0 THEN 'false' WHEN 1 THEN 'true' END 			as 'text()' for xml path('field'), TYPE)
 	
 
@@ -2088,19 +2159,20 @@ SELECT
 	, CASE IsSuperfluous				WHEN 0 THEN NULL else (SELECT 'nomenclaturalStatus' AS '@name', 'superfluous (nom. sup.)'			as 'text()' FOR XML PATH('field'), TYPE) end 
 	, CASE IsConserved					WHEN 0 THEN NULL else (SELECT 'nomenclaturalStatus' AS '@name', 'conserved  (nom. con.)'			as 'text()' FOR XML PATH('field'), TYPE) end 
 
-	, (SELECT AuthorsXML.query('(//field)')				for xml path(''), TYPE)
-	, (SELECT BasionymAuthorsXML.query('(//field)')		for xml path(''), TYPE)
-	, (SELECT CombinationAuthorsXML.query('(//field)')	for xml path(''), TYPE)
-	, (SELECT ConceptsSOLRXML.query('(//field)')		for xml path(''), TYPE)
-	, (SELECT VernacularSOLRXML.query('(//field)')		for xml path(''), TYPE)
-	, (SELECT BiostatusSOLRXML.query('(//field)')		for xml path(''), TYPE)
-	, (SELECT NotesSOLRXML.query('(//field)')			for xml path(''), TYPE)
-	, (SELECT ImageSOLRXML.query('(//field)') for xml path(''), TYPE)
-	, (SELECT ExternalLinkSOLRXML.query('(//field)') for xml path(''), TYPE)
-	, (SELECT ExternalLinkSOLRXML.query('(//field)') for xml path(''), TYPE)
-	, (SELECT DeprecatedIdSOLR.query('(//field)') for xml path(''), TYPE)
-	, (SELECT HybridSOLRXML.query('(//field)') for xml path(''), TYPE)
-	, (SELECT HyperLinkSOLRXML.query('(//field)') for xml path(''), TYPE)
+	, (SELECT AuthorsXML.query('(//field)')					for xml path(''), TYPE)
+	, (SELECT BasionymAuthorsXML.query('(//field)')			for xml path(''), TYPE)
+	, (SELECT CombinationAuthorsXML.query('(//field)')		for xml path(''), TYPE)
+	, (SELECT ConceptsSOLRXML.query('(//field)')			for xml path(''), TYPE)
+	, (SELECT VernacularSOLRXML.query('(//field)')			for xml path(''), TYPE)
+	, (SELECT BiostatusSOLRXML.query('(//field)')			for xml path(''), TYPE)
+	, (SELECT NotesSOLRXML.query('(//field)')				for xml path(''), TYPE)
+	, (SELECT ImageSOLRXML.query('(//field)')				for xml path(''), TYPE)
+	, (SELECT ExternalLinkSOLRXML.query('(//field)')		for xml path(''), TYPE)
+	, (SELECT ExternalLinkSOLRXML.query('(//field)')		for xml path(''), TYPE)
+	, (SELECT DeprecatedIdSOLR.query('(//field)')			for xml path(''), TYPE)
+	, (SELECT HybridSOLRXML.query('(//field)')				for xml path(''), TYPE)
+	, (SELECT HyperLinkSOLRXML.query('(//field)')			for xml path(''), TYPE)
+	, (SELECT CollectionObjectSOLRXML.query('(//field)')	for xml path(''), TYPE)
 
 FROM #Name
 FOR XML PATH('doc'), ROOT('update')
