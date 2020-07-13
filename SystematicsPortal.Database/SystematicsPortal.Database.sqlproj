@@ -70,8 +70,6 @@
     <Build Include="Security\documents.sql" />
     <Build Include="Security\web.sql" />
     <Build Include="Schemas\web\Tables\FieldConfiguration.sql" />
-    <Build Include="Schemas\web\Tables\Label.sql" />
-    <Build Include="Schemas\web\Tables\Language.sql" />
     <Build Include="Schemas\web\Tables\ContentConfiguration.sql" />
     <Build Include="Schemas\web\Tables\Facet.sql" />
     <Build Include="System Data\FieldConfigurationSystemData.sql" />
