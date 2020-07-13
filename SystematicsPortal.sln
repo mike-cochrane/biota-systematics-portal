@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Utility",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Data.Uploader", "SystematicsPortal.Data.Uploader\SystematicsPortal.Data.Uploader.csproj", "{01FF6345-6F64-44EC-88E8-3E62B2142601}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystematicsPortal.Data.Harvester", "SystematicsPortal.Data.Harvester\SystematicsPortal.Data.Harvester.csproj", "{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,14 @@ Global
 		{01FF6345-6F64-44EC-88E8-3E62B2142601}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01FF6345-6F64-44EC-88E8-3E62B2142601}.Test|Any CPU.ActiveCfg = Debug|Any CPU
 		{01FF6345-6F64-44EC-88E8-3E62B2142601}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.DevTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.DevTest|Any CPU.Build.0 = Debug|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

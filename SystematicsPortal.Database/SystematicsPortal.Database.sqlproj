@@ -60,11 +60,23 @@
     <Folder Include="Schemas\documents" />
     <Folder Include="Schemas\documents\Tables" />
     <Folder Include="Security" />
+    <Folder Include="Schemas\web" />
+    <Folder Include="Schemas\web\Tables" />
+    <Folder Include="System Data" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\documents\Tables\Document.sql" />
     <Build Include="Schemas\documents\Tables\DocumentHistory.sql" />
     <Build Include="Security\documents.sql" />
     <Build Include="Security\web.sql" />
+    <Build Include="Schemas\web\Tables\FieldConfiguration.sql" />
+    <Build Include="Schemas\web\Tables\Label.sql" />
+    <Build Include="Schemas\web\Tables\Language.sql" />
+    <Build Include="Schemas\web\Tables\ContentConfiguration.sql" />
+    <Build Include="Schemas\web\Tables\Facet.sql" />
+    <Build Include="System Data\FieldConfigurationSystemData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

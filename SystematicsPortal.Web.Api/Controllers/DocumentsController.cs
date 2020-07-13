@@ -12,23 +12,18 @@ namespace SystematicsPortal.Web.Api.Controllers
     public class DocumentsController : ControllerBase
     {
         private readonly ILogger<SearchController> _logger;
-        private readonly AppSettings _appSettings;
         private readonly IDocumentsService _documentsService;
 
-
-        public DocumentsController(IDocumentsService namesService, IOptions<AppSettings> appSettings, ILogger<SearchController> logger)
+        public DocumentsController(IDocumentsService namesService, ILogger<SearchController> logger)
         {
             _documentsService = namesService;
-            _appSettings = appSettings.Value;
             _logger = logger;
         }
 
         [HttpGet("{id}", Name = "GetName")]
         public async Task<IActionResult> Get(string id)
         {
-            _logger.LogDebug(
-                "NamesController - Get - id: {id}",
-                             id);
+            _logger.LogDebug("DocumentsController - Get - id: {id}", id);
 
             var response = await _documentsService.GetDocument(id);
 
