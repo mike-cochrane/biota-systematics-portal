@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using SystematicsPortal.Data;
-using SystematicsPortal.Data.Uploader.Classess;
+using SystematicsPortal.Data.Uploader.Classes;
 using SystematicsPortal.Data.Uploader.Helpers;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
