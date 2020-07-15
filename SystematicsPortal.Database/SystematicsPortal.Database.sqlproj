@@ -72,7 +72,7 @@
     <Build Include="Schemas\web\Tables\FieldConfiguration.sql" />
     <Build Include="Schemas\web\Tables\ContentConfiguration.sql" />
     <Build Include="Schemas\web\Tables\Facet.sql" />
-    <Build Include="System Data\FieldConfigurationSystemData.sql" />
+    <Build Include="System Data\FieldConfiguration-SystemData.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
