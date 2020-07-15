@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using SystematicsPortal.Data;
 using SystematicsPortal.Data.Harvester.Classes;
 using SystematicsPortal.Data.Harvester.Helpers;
+using SystematicsPortal.Data.Harvester.Services;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 using Topshelf;
