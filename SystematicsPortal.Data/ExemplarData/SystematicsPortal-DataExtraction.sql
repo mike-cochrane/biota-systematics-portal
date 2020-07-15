@@ -1,4 +1,4 @@
-USE Names_Fungi
+USE Names_Plants
 GO
 
 IF EXISTS(SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#Name'))
