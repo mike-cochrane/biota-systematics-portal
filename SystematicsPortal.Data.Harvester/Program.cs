@@ -109,7 +109,7 @@ namespace SystematicsPortal.Web.Api.Demo
                     configure.Service<HarvesterService>(service =>
                     {
                         service.ConstructUsing(s => new HarvesterService(client));
-                        service.WhenStarted(s => s.StartAsync());
+                        service.WhenStarted(async s => await s.StartAsync());
                         service.WhenStopped(s => s.Stop());
                     });
                     //Setup Account that window service use to run.  

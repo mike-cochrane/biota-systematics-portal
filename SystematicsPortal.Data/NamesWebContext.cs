@@ -24,7 +24,15 @@ namespace SystematicsPortal.Data
             return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
         }
 
+        public virtual DbSet<ContentConfiguration> ContentConfiguration { get; set; }
+
         public virtual DbSet<Document> Document { get; set; }
+
+        public virtual DbSet<Facet> Facet { get; set; }
+
+        public virtual DbSet<FieldConfiguration> FieldConfiguration { get; set; }
+
+        public virtual DbSet<FieldGroup> FieldGroup { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

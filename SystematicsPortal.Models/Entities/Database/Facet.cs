@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace SystematicsPortal.Models.Entities.Database
+{
+    public partial class Facet
+    {
+        public Guid FacetId { get; set; }
+        public string FacetGroup { get; set; }
+        public string Facet1 { get; set; }
+        public string Labels { get; set; }
+        public string FacetType { get; set; }
+        public string SolrFieldName { get; set; }
+        public int? DisplayOrder { get; set; }
+    }
+}
