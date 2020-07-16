@@ -63,21 +63,30 @@
     color: white;
 }
 
-.btn-secondary {
+#main-nav-buttons .btn-secondary, #detail-nav-buttons .btn-secondary {
     color: black;
     background-color: white;
     border-color: white;
+}
+
+#detail-nav-buttons .button-selected {
+    color: white;
+    background-color: black;
+    border-color: black;
 }
 
 #main-nav-buttons {
     margin-top: 30px;
 }
 
-#main-nav-buttons .btn {
-    margin-left: 15px;
+#main-nav-buttons .btn, #detail-nav-buttons .btn {
     border-radius: 0;
     font-weight: 700;
     width: 100px;
+}
+
+#main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
+    margin-left: 15px;
 }
 
 .green-background {
@@ -161,7 +170,7 @@ a {
     width: 100%;
 }
 
-.sidebar-divider {
+.heading-divider {
     width: 100px;
     height: 50px;
     border-bottom: 3px solid;
@@ -175,4 +184,18 @@ a {
 
 .nav-tabs {
     border: none;
+}
+
+.form-group label {
+    font-weight:700;
+}
+
+.detail-page h5 {
+    color: #6E9E40;
+}
+
+.detail-page h4 {
+    border-top: 1px solid #DCDCDC;
+    padding-top: 30px;
+    margin-top: 30px;
 }

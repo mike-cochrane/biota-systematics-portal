@@ -117,7 +117,7 @@ namespace SystematicsPortal.Web.Controllers
                 xmlConfig = reader.ReadToEnd();
             }*/
 
-            XmlDocument xmlDoc = new XmlDocument();
+            /*XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load("single-document.xml");
             List<FieldViewModel> list = new List<FieldViewModel>();
 
@@ -175,7 +175,7 @@ namespace SystematicsPortal.Web.Controllers
                     fieldViewModel2.xmlNodeList = xmlNodesList;
                     list.Add(fieldViewModel2);
                 }
-            }
+            }*/
 
             /* XmlReader rdr = XmlReader.Create(new System.IO.StringReader(xmlConfig));
             while (rdr.Read())
@@ -220,7 +220,7 @@ namespace SystematicsPortal.Web.Controllers
                 }
             }*/
 
-            list.Sort((x, y) => x.Order.CompareTo(y.Order));
+            //list.Sort((x, y) => x.Order.CompareTo(y.Order));
 
             //XmlDocument xmlString = new XmlDocument();
             //xmlString.Load("single-document.xml");
@@ -237,9 +237,10 @@ namespace SystematicsPortal.Web.Controllers
 
             //document = (Document)ser.Deserialize(xmlStream);
 
-            FieldsViewModel fields = new FieldsViewModel();
-            fields.Fields = list;
-            return View(fields);
+            /*FieldsViewModel fields = new FieldsViewModel();
+            fields.Fields = list;*/
+            //return View(fields); 
+            return View();
         }
 
 

@@ -18,10 +18,12 @@
 	<ItemGroup>
 	  <None Remove="Views\Search\Details.cshtml.ToBeFixed" />
 	  <None Remove="Views\Search\old-Details - Copy.cshtml.old" />
+	  <None Remove="Views\Search\old-v2-Details - Copy.cshtml.old" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="Views\Search\old-Details - Copy.cshtml.old" />
+	  <Content Include="Views\Search\old-v2-Details - Copy.cshtml.old" />
 	</ItemGroup>
 
 	<ItemGroup>
