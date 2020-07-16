@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using SystematicsPortal.Data;
 using SystematicsPortal.Data.Harvester.Classes;
+using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Data.Harvester.Helpers;
 using SystematicsPortal.Data.Harvester.Services;
 using SystematicsPortal.Models.Interfaces;
@@ -20,7 +21,16 @@ namespace SystematicsPortal.Web.Api.Demo
     {
         static void Main(string[] args)
         {
-            MainAsync(args).Wait();
+            try
+            {
+                MainAsync(args).Wait();
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
 
         private static async Task MainAsync(string[] args)
@@ -42,6 +52,10 @@ namespace SystematicsPortal.Web.Api.Demo
 
             var logger = serviceProvider.GetService<ILogger<Program>>();
 
+            var client = serviceProvider.GetService<AnnotationsClient>();
+
+
+
             try
             {
                 logger.LogInformation("SystematicsPortal.Data.Harvester - Started");
@@ -51,7 +65,7 @@ namespace SystematicsPortal.Web.Api.Demo
                 logger.LogInformation("Configuration - Connection String: {ConnectionString}", ConnectionStringHelper.ReplacePassword(connectionString, "*REMOVED*"));
                 logger.LogInformation("Configuration - Source Folder Name: {SourceFolder}", appSettings.SourcePath);
 
-                ConfigureService();
+                ConfigureService(client);
 
 
                 logger.LogInformation("SystematicsPortal.Data.Harvester process results:");
@@ -81,18 +95,21 @@ namespace SystematicsPortal.Web.Api.Demo
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
+            services.AddTransient(x =>
+            new AnnotationsClient(x.GetRequiredService<IDocumentsRepository>(), appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
+
             services.AddTransient<Parser>(x =>
             new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
     
-        private static void ConfigureService()
+        private static void ConfigureService(AnnotationsClient client)
         {
                 HostFactory.Run(configure =>
                 {
                     configure.Service<HarvesterService>(service =>
                     {
-                        service.ConstructUsing(s => new HarvesterService());
-                        service.WhenStarted(s => s.Start());
+                        service.ConstructUsing(s => new HarvesterService(client));
+                        service.WhenStarted(s => s.StartAsync());
                         service.WhenStopped(s => s.Stop());
                     });
                     //Setup Account that window service use to run.  

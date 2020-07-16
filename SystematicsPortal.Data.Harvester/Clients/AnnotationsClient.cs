@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,19 @@ using SystematicsPortal.Utility.Extensions;
 
 namespace SystematicsPortal.Data.Harvester.Clients
 {
-    public class AnnotationsClient : IAnnotationsClient
+    public class AnnotationsClient 
     {
         private readonly string _apiContentUrl;
+        private readonly IDocumentsRepository _repository;
+        private readonly ILogger<AnnotationsClient> _logger;
 
 
-        public AnnotationsClient(IOptions<AppSettings> appSettings)
+        public AnnotationsClient(IDocumentsRepository repository, string contentServiceUrl, ILogger<AnnotationsClient> logger)
         {
-            var appsettingsObject = appSettings.Value;
+            _repository = repository; //new DocumentsRepository(new NamesWebContext(connectionString),_logger);
+            _apiContentUrl = contentServiceUrl;
+            _logger = logger;
 
-            _apiContentUrl = appsettingsObject.ContentServiceUrl;
         }
 
         public async Task<List<string>> GetResourcesAsStringList()
