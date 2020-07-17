@@ -54,7 +54,9 @@ namespace SystematicsPortal.Web.Api.Demo
 
             var client = serviceProvider.GetService<AnnotationsClient>();
 
+            var repository = serviceProvider.GetRequiredService<IDocumentsRepository>();
 
+            var harvesterLogger = serviceProvider.GetService<ILogger<HarvesterService>>();
 
             try
             {
@@ -65,7 +67,7 @@ namespace SystematicsPortal.Web.Api.Demo
                 logger.LogInformation("Configuration - Connection String: {ConnectionString}", ConnectionStringHelper.ReplacePassword(connectionString, "*REMOVED*"));
                 logger.LogInformation("Configuration - Source Folder Name: {SourceFolder}", appSettings.SourcePath);
 
-                ConfigureService(client);
+                ConfigureService(repository, client, harvesterLogger);
 
 
                 logger.LogInformation("SystematicsPortal.Data.Harvester process results:");
@@ -102,13 +104,13 @@ namespace SystematicsPortal.Web.Api.Demo
             new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
     
-        private static void ConfigureService(AnnotationsClient client)
+        private static void ConfigureService(IDocumentsRepository repository, AnnotationsClient client, ILogger<HarvesterService> logger)
         {
                 HostFactory.Run(configure =>
                 {
                     configure.Service<HarvesterService>(service =>
                     {
-                        service.ConstructUsing(s => new HarvesterService(client));
+                        service.ConstructUsing(s => new HarvesterService(repository, client, logger));
                         service.WhenStarted(async s => await s.StartAsync());
                         service.WhenStopped(s => s.Stop());
                     });

@@ -9,6 +9,10 @@ namespace SystematicsPortal.Models.Entities.Annotations
     [XmlRoot(ElementName = "item")]
     public class Item
     {
+        [XmlAttribute("documentId")]
+        //[XmlElement("itemId")]
+        public string DocumentId { get; set; }
+
         [XmlAttribute("itemId")]
         //[XmlElement("itemId")]
         public string ItemId { get; set; }

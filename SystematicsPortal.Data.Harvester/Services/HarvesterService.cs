@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,19 @@ namespace SystematicsPortal.Data.Harvester.Services
     public class HarvesterService
     {
         public readonly AnnotationsClient _client;
-        public HarvesterService(AnnotationsClient client)
+        private readonly ILogger<HarvesterService> _logger;
+        private readonly IDocumentsRepository _repository;
+
+
+        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, ILogger<HarvesterService> logger)
         {
+            _repository = repository; 
             _client = client;
+            _logger = logger;
         }
         public async Task StartAsync()
         {
+            var documents = new List<string>();
             // TODO: Listen for a message
 
 
@@ -32,13 +40,13 @@ namespace SystematicsPortal.Data.Harvester.Services
 
             foreach (var item in fields)
             {
+                item.DocumentId = item.ItemId;
                 var serializedItem = SerializationHelper.Serialize<Item>(item);
 
-
+                await _repository.WriteDocument(serializedItem);
+                //documents.Add(serializedItem);
 
             }
-
-
         }
 
         public void Stop()

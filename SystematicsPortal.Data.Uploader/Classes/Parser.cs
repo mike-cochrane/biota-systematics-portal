@@ -17,7 +17,7 @@ namespace SystematicsPortal.Data.Uploader.Classes
 
         public Parser(IDocumentsRepository repository, string sourcePath, ILogger<Parser> logger)
         {
-            _repository = repository; //new DocumentsRepository(new NamesWebContext(connectionString),_logger);
+            _repository = repository; 
             _sourcePath = sourcePath;
             _logger = logger;
         }

@@ -13,5 +13,6 @@ namespace SystematicsPortal.Models.Interfaces
         Task InsertDocument(Entities.Database.Document document);
         void UpdateDocument(Entities.Access.Document document);
         Task<int> WriteDocuments(XDocument documents);
+        Task<int> WriteDocument(string document);
     }
 }
