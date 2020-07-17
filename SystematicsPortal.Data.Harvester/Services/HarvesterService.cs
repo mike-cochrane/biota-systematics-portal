@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Models.Entities.Annotations;
 using SystematicsPortal.Models.Interfaces;
+using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data.Harvester.Services
 {
@@ -29,6 +30,13 @@ namespace SystematicsPortal.Data.Harvester.Services
            var fields =await GetFieldsConfigurationAsync(resourceId, itemTypeId, itemId);
 
 
+            foreach (var item in fields)
+            {
+                var serializedItem = SerializationHelper.Serialize<Item>(item);
+
+
+
+            }
 
 
         }
