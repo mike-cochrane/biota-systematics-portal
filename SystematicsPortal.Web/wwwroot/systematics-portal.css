@@ -42,7 +42,7 @@
 
 .home-nav-search {
     height: 450px;
-    background-image:url(images/petr-vysohlid-9fqwGqGLUxc-unsplash-1__FillMaxWzIwMDAsNTQwXQ.jpg)
+    background-image:url(images/home-banner.jpg)
 }
 
 .home-nav-search .search-row {
@@ -119,11 +119,12 @@
     }
 
 footer {
-    max-height: 500px;
-    height: auto;
+    max-height: 100%;
     background-color: black;
-    background-image: url(images/ft-bg-pattern.png);
+    background-image: url(images/footer.jpg);
     color: white;
+    background-repeat: no-repeat;
+    background-position-y: 100%;
 }
 
 footer ul li, .sidebar ul li {
@@ -188,4 +189,25 @@ a {
 
 .form-group label {
     font-weight:700;
+}
+
+.detail-page h5 {
+    color: #6E9E40;
+}
+
+.detail-page h4 {
+    border-top: 1px solid #DCDCDC;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+.breadcrumb {
+    background-color: white;
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
+.breadcrumb .breadcrumb-item {
+    font-size: 1.1rem;
+    font-weight: 600;
 }

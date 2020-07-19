@@ -329,24 +329,5 @@ namespace SystematicsPortal.Web.Controllers
                 return View();
             }
         }
-
-        private async Task CallContentServiceAsync()
-        {
-            var resources = await _contentService.GetResources();
-
-            var testResource = resources.ResourceList.FirstOrDefault(x => x.Value == "Test Data");
-
-            var itemTypes = await _contentService.GetItemTypes(testResource.ResourceId);
-
-            var itemType = itemTypes.Types.FirstOrDefault(x=>x.DisplayTitleSingular == "eFlora-Taxon");
-
-            var itemIds = await _contentService.GetItemIds(itemType.ItemTypeId);
-
-            var itemIdsList = itemIds.ItemsList.Select(x => x.ItemId).ToList();
-                
-            var items = await _contentService.GetItemsByIds(itemIdsList);
-
-            var test = 1;
-        }
     }
 }

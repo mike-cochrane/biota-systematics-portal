@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using SystematicsPortal.Data.Uploader.Models;
 using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Uploader.Classess
+namespace SystematicsPortal.Data.Uploader.Classes
 {
     public class Parser
     {
