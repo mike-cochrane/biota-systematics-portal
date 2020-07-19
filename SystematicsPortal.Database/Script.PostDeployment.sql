@@ -17,3 +17,4 @@ PRINT N'Inserting system data...';
 --:r ".\ClearSystemData.sql"
 
 :r ".\System Data\FieldConfiguration-SystemData.sql"
+:r ".\System Data\ContentConfiguration-SystemData.sql"
