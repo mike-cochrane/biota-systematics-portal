@@ -16,5 +16,7 @@ PRINT N'Inserting system data...';
 -- Use the following script when updating DB with system value, but willing to keep data
 --:r ".\ClearSystemData.sql"
 
+:r ".\System Data\FieldGroup-SystemData.sql"
 :r ".\System Data\FieldConfiguration-SystemData.sql"
 :r ".\System Data\ContentConfiguration-SystemData.sql"
+:r ".\System Data\Facet-SystemData.sql"

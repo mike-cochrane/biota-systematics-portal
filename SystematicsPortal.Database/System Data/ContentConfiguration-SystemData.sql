@@ -11,7 +11,7 @@ DECLARE @ContentConfiguration TABLE(
 	DisplayOrder				int NULL)
 
 
-INSERT INTO @ContentConfiguration(ContentConfigurationId, [Page], Section, ExternalId)
+INSERT INTO @ContentConfiguration(ContentConfigurationId, [Page], Section, ExternalId, DisplayOrder)
 VALUES
 		 
 		 ('056236E4-DED1-477F-B930-233CC6A9103A','About'			,'Main Content'		,'C5CFCD67-9BBC-44AB-AD99-1ACD1E30470D', 1) -- page
@@ -48,8 +48,8 @@ WHEN MATCHED
 		UPDATE 
 			SET 
 				[Page]			= iCC.[Page]
-				, Section		= iCC.ExternalId
-				, ExternalId	= iFC.Labels
+				, Section		= iCC.Section
+				, ExternalId	= iCC.ExternalId
 				
 				
 WHEN NOT MATCHED BY SOURCE
