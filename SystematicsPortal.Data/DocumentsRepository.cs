@@ -80,6 +80,21 @@ namespace SystematicsPortal.Data
             return result;
         }
 
+        public async Task<int> WriteDocuments(IEnumerable<XElement> documentsList)
+        {
+            var allStoreNames = GetDocumentsDb().ToDictionary(o => o.DocumentId);
+
+            foreach (var document in documentsList)
+            {
+                await SaveDocument(allStoreNames, document);
+
+            }
+
+            var result = await SaveChangesAsync();
+
+            return result;
+        }
+
         /// <summary>
         /// Writes documents to the store and returns a number of documents that were updated.
         /// </summary>

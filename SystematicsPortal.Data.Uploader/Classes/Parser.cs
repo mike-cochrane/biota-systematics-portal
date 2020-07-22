@@ -38,8 +38,11 @@ namespace SystematicsPortal.Data.Uploader.Classes
 
                 try
                 {
-                    var document = XDocument.Load(file);
-                    int numberResults = await _repository.WriteDocuments(document);
+                    var documents = XDocument.Load(file);
+                    var documentsElements = documents.Element("Documents");
+                    var documentsList = documentsElements.Descendants("Document");
+
+                    int numberResults = await _repository.WriteDocuments(documentsList);
 
                     result.UploadResult = true;
                     result.Message = $"Upload Succesful - {numberResults} persisted";

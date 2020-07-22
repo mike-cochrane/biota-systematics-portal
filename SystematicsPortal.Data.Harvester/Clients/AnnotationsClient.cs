@@ -181,5 +181,44 @@ namespace SystematicsPortal.Data.Harvester.Clients
 
             return items;
         }
+
+ 
+        public async Task<List<XElement>> GetItemsXmlByIds(List<string> itemIds)
+        {
+            string urlToQuery = $"{_apiContentUrl}/items";
+            string items;
+            List<XElement> itemsList = new List<XElement>();
+
+            // TODO: Use new .net core http client factory 
+            var client = new HttpClient()
+            {
+                BaseAddress = new Uri(urlToQuery),
+
+            };
+
+            var jsonInString = JsonConvert.SerializeObject(itemIds);
+
+            var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                items = await response.Content.ReadAsStringAsync();
+
+
+                var itemsXDocument = XDocument.Load(items);
+                var documentsElements = itemsXDocument.Element("Items");
+                itemsList = documentsElements.Descendants("Item").ToList();
+
+            }
+            else
+            {
+                throw new HttpRequestException(response.ReasonPhrase);
+            }
+
+            return itemsList;
+        }
+
+
     }
 }
