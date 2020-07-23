@@ -71,21 +71,23 @@ VALUES ('b1f2ef2e-4de4-428d-a10f-0018878be220',  'name')  --names_plants
 	--, ('56A97ACD-D624-43AC-A7FB-06C72B67818C', 'name')    --names_plants
 	--, ('81680BF6-8AAC-4706-9875-33F62A78BA86', 'name') -- names_plants:  ×Agropogon P.Fourn.	
 	, ('49B6400E-6FBF-478A-80E6-361C15E65D44', 'name')  --	names_plants	Cordyline ×matthewsii Carse
+	, ('5CBC34B3-5987-45C5-A97E-943CD96E9A5A', 'name')  --	Brassica rapa
 
 	, ('1CB18142-36B9-11D5-9548-00D0592D548C', 'name') -- names_fungi -- Clavaria acuta Sowerby
 	, ('F18A0F26-4E13-444A-BDA2-A8FE52ADB18B', 'name') -- names_fungi -- Pseudomonas syringae pv. actinidiae Takikawa et al. 1989
 	, ('1CB182DC-36B9-11D5-9548-00D0592D548C', 'name') -- names_fungi -- Clavaria pallidoechinulata R.H. Petersen
 	, ('1CB18152-36B9-11D5-9548-00D0592D548C', 'name') -- names_fungi -- Clavaria flavopurpurea R.H. Petersen
 	, ('1CB1A13F-36B9-11D5-9548-00D0592D548C', 'name') -- names_fungi -- Ramariopsis alutacea R.H. Petersen
-	--, ('', 'name') -- names_fungi -- 
+	, ('19F8436D-5EA1-4DE9-9415-B83EA6BEE477', 'name') -- names_fungi -- Auricularia cornea
 	--, ('', 'name') -- names_fungi -- 
 	--, ('', 'name') -- names_fungi -- 
 
 	, ('B90EED88-CBFF-4AAA-8ED1-005A04A2C5B8', 'name') -- names_nzac -- Euplectopsis crassipes (Broun)
 	, ('0C631AA2-70F7-4466-B5F4-0DC0C2D289EC', 'name') -- names_nzac -- Ichneutica brunneosa (Fox)
 	, ('8E344273-3658-4908-AB28-F2DE676DCBCB', 'name') -- names_nzac -- Saphydrus suffusus Sharp
-	, ('DCBA5EDB-EFFD-4F08-B4A1-19B42207ABAD', 'name') -- names_nzac -- 2020-02-23 13:44:11.283
+	, ('DCBA5EDB-EFFD-4F08-B4A1-19B42207ABAD', 'name') -- names_nzac -- 
 	, ('098EE6E6-2ABB-4F5D-87F3-62092577483C', 'name') -- names_nzac -- Paropsis charybdis Stal
+	, ('6822108A-7CA4-44BF-9B7B-4B0E0F6776C9', 'name') -- names_nzac --	Bombus terrestris
 
 	--SELECT * FROM #TestList
 -- get related names
@@ -273,7 +275,9 @@ CREATE TABLE #Name (
 	, CombinationAuthorsXML XML
 	, [Page] nvarchar(20)
 	, YearOfPublication nvarchar(10)
+	, YearOfPublicationNumeric nvarchar(10)
 	, YearOnPublication nvarchar(10)
+	, YearOnPublicationNumeric nvarchar(10)
 	, InCitation bit
 	, Misapplied bit
 	, Dubium bit
