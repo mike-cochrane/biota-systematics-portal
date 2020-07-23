@@ -63,23 +63,6 @@ namespace SystematicsPortal.Data
         /// <summary>
         /// Writes documents to the store and returns a number of documents that were updated.
         /// </summary>
-        public async Task<int> WriteDocuments(XDocument documents)
-        {
-            var documentsElements = documents.Element("Documents");
-            var documentsList = documentsElements.Descendants("Document");
-            var allStoreNames = GetDocumentsDb().ToDictionary(o => o.DocumentId);
-
-            foreach (var document in documentsList)
-            {
-                await SaveDocument(allStoreNames, document);
-
-            }
-
-            var result = await SaveChangesAsync();
-
-            return result;
-        }
-
         public async Task<int> WriteDocuments(IEnumerable<XElement> documentsList)
         {
             var allStoreNames = GetDocumentsDb().ToDictionary(o => o.DocumentId);
@@ -89,23 +72,6 @@ namespace SystematicsPortal.Data
                 await SaveDocument(allStoreNames, document);
 
             }
-
-            var result = await SaveChangesAsync();
-
-            return result;
-        }
-
-        /// <summary>
-        /// Writes documents to the store and returns a number of documents that were updated.
-        /// </summary>
-        public async Task<int> WriteDocument(string document)
-        {
-            
-            var allStoreNames = GetDocumentsDb().ToDictionary(o => o.DocumentId);
-
-            XElement documentXml = XElement.Parse(document);
-            await SaveDocument(allStoreNames, documentXml);
-                       
 
             var result = await SaveChangesAsync();
 
@@ -171,6 +137,7 @@ namespace SystematicsPortal.Data
             {
                 await _context.Document.AddAsync(document);
 
+                var result = await SaveChangesAsync();
             }
             catch (Exception e)
             {
