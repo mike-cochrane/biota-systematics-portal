@@ -129,7 +129,16 @@ footer {
 
 footer ul li, .sidebar ul li {
     list-style-type: none;
-    line-height: 1.5em;
+    line-height: 2.5em;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    text-decoration:underline;
+    color: white;
 }
 
 a {
@@ -210,4 +219,36 @@ a {
 .breadcrumb .breadcrumb-item {
     font-size: 1.1rem;
     font-weight: 600;
+}
+
+#search-results li .btn {
+    font-size: larger;
+    border-radius: 0;
+    color: black;
+    background-color: white;
+    border-color: white;
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+#search-results .active .btn, #search-results li .btn:hover {
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+:-moz-placeholder {
+    font-style: italic;
+}
+
+::-moz-placeholder {
+    font-style: italic;
+}
+
+:-ms-input-placeholder {
+    font-style: italic;
 }
