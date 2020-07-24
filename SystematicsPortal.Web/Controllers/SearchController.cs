@@ -14,6 +14,8 @@ using SystematicsPortal.Web.ViewModels;
 using System.Collections.Generic;
 using SystematicsPortal.Models.Entities.Documents.SubDocuments;
 using SystematicsPortal.Web.Helpers;
+using SystematicsPortal.Web.Api.Client;
+using SystematicsPortal.Models.Entities.Access;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -96,11 +98,11 @@ namespace SystematicsPortal.Web.Controllers
 
         // GET: Search/Details/5
         [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            XmlRootAttribute xRoot = new XmlRootAttribute();
+            /*XmlRootAttribute xRoot = new XmlRootAttribute();
             xRoot.ElementName = "Document";
-            xRoot.IsNullable = true;
+            xRoot.IsNullable = true;*/
 
             /*NameDocument document;
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(NameDocument), xRoot);
@@ -240,7 +242,10 @@ namespace SystematicsPortal.Web.Controllers
             /*FieldsViewModel fields = new FieldsViewModel();
             fields.Fields = list;*/
             //return View(fields); 
-            return View();
+
+            Document document = await _searchService.GetDocument(id.ToString());
+
+            return View(document);
         }
 
 
