@@ -98,10 +98,13 @@ namespace SystematicsPortal.Data
                     .WithNodeFilter(o => String.Equals(o.Name, "ModifiedDate", StringComparison.OrdinalIgnoreCase))
                     .Build();
 
-                if (xmlComparer.HasDifferences())
+                //if (xmlComparer.HasDifferences())
+                if(true)
                 {
                     storeDocument.Version += 1;
                     storeDocument.SerializedDocument = document.ToString();
+
+                    await SaveChangesAsync();
 
                     _logger.LogDebug("{Action} {DocumentId} {Differences}", "Update Document", documentId, xmlComparer.ToString());
                 }
