@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
-using SystematicsPortal.Web.Api.Infrastructure;
 using SystematicsPortal.Web.Api.Services;
 
 namespace SystematicsPortal.Web.Api.Controllers

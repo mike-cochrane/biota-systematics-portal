@@ -28,9 +28,9 @@ namespace SystematicsPortal.Data
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns>Document access model with docuemnt as XmlDocument property</returns>
-        public async Task<Models.Entities.Access.Document> GetDocumentAsync(Guid documentId)
+        public async Task<Document> GetDocumentAsync(Guid documentId)
         {
-            Models.Entities.Access.Document documentAccess = new Models.Entities.Access.Document();
+            Document documentAccess = new Document();
 
             var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
 
@@ -49,16 +49,15 @@ namespace SystematicsPortal.Data
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Models.Entities.Access.Document> GetDocuments(IEnumerable<Guid> documentIds)
+        public IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(Models.Entities.Access.Document document)
+        public void UpdateDocument(Document document)
         {
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// Writes documents to the store and returns a number of documents that were updated.
@@ -70,7 +69,6 @@ namespace SystematicsPortal.Data
             foreach (var document in documentsList)
             {
                 await SaveDocument(allStoreNames, document);
-
             }
 
             var result = await SaveChangesAsync();
@@ -82,14 +80,12 @@ namespace SystematicsPortal.Data
         {
             string documentId = (string)document.Attribute("documentId");
 
-
             if (String.IsNullOrEmpty(documentId))
             {
                 throw new InvalidInputException("DocumentId has not been found");
             }
 
             _logger.LogDebug("{Action} - DocumentId: {documentId} - Document: {document}", "WriteDocuments", documentId, document);
-
 
             if (allStoreNames.TryGetValue(Guid.Parse(documentId), out var storeDocument))
             {
@@ -99,7 +95,7 @@ namespace SystematicsPortal.Data
                     .Build();
 
                 //if (xmlComparer.HasDifferences())
-                if(true)
+                if (true)
                 {
                     storeDocument.Version += 1;
                     storeDocument.SerializedDocument = document.ToString();
@@ -123,7 +119,7 @@ namespace SystematicsPortal.Data
             }
         }
 
-        public IEnumerable<Models.Entities.Access.Document> GetDocuments()
+        public IEnumerable<Document> GetDocuments()
         {
             throw new NotImplementedException();
         }
@@ -131,7 +127,6 @@ namespace SystematicsPortal.Data
         private IEnumerable<Models.Entities.Database.Document> GetDocumentsDb()
         {
             return _context.Document;
-
         }
 
         private async Task InsertDocumentDbAsync(Models.Entities.Database.Document document)
@@ -144,11 +139,9 @@ namespace SystematicsPortal.Data
             }
             catch (Exception e)
             {
-
                 throw;
             }
         }
-
 
         public async Task<int> SaveChangesAsync()
         {
@@ -159,10 +152,8 @@ namespace SystematicsPortal.Data
             }
             catch (Exception e)
             {
-
                 throw;
             }
-           
 
             return result;
         }

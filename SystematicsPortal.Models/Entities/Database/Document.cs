@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SystematicsPortal.Models.Entities.Database
 {
-    public partial class Document
+    public class Document
     {
         public Guid DocumentId { get; set; }
         public int Version { get; set; }

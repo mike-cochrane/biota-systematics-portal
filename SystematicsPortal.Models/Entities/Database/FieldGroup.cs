@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SystematicsPortal.Models.Entities.Database
 {
-    public partial class FieldGroup
+    public class FieldGroup
     {
         public FieldGroup()
         {

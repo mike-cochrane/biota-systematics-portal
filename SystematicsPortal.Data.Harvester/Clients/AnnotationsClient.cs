@@ -168,6 +168,9 @@ namespace SystematicsPortal.Data.Harvester.Clients
 
             var jsonInString = JsonConvert.SerializeObject(itemIds);
 
+            client.DefaultRequestHeaders.Add("Accept", "application/xml");
+
+
             var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
 
 
@@ -217,9 +220,6 @@ namespace SystematicsPortal.Data.Harvester.Clients
                     //var itemsXDocument = XDocument.Parse(items);
                     var documentsElements = itemsXDocument.Element("items");
                     itemsList = documentsElements.Descendants("item").ToList();
-
-                    //XAttribute attribute = new XAttribute("Server", comboBox1.Text);
-                    //element.Add(attribute);
 
                     itemsList = itemsList.Select(item =>
                     {

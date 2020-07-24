@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SystematicsPortal.Models.Entities.Database
 {
-    public partial class FieldConfiguration
+    public class FieldConfiguration
     {
         public Guid FieldConfigurationId { get; set; }
         public string DocumentClass { get; set; }

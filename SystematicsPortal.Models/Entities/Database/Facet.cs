@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SystematicsPortal.Models.Entities.Database
 {
-    public partial class Facet
+    public class Facet
     {
         public Guid FacetId { get; set; }
         public string FacetGroup { get; set; }

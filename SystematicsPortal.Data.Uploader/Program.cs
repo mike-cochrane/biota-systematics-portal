@@ -14,9 +14,9 @@ using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Web.Api.Demo
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             MainAsync(args).Wait();
         }
@@ -52,7 +52,6 @@ namespace SystematicsPortal.Web.Api.Demo
                 var results = await serviceProvider.GetService<Parser>().StoreFilesInDocumentStoreAsync();
 
                 logger.LogInformation("SystematicsPortal.Data.Uploader process results:");
-
 
                 foreach (var result in results)
                 {
