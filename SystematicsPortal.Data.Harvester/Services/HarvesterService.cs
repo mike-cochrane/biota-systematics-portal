@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using SystematicsPortal.Data.Harvester.Classes;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Models.Configuration;
+using SystematicsPortal.Models.Entities.Documents.Name;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 
@@ -31,29 +32,34 @@ namespace SystematicsPortal.Data.Harvester.Services
 
             var resourceId = "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7";
             var itemTypeId = "299B3954-6119-4265-AD5E-799CB7F53DE6";
-            var itemId = "8F766C02-BD56-4B9A-BB35-27ED8F2E1826";
+            // var itemId = "8F766C02-BD56-4B9A-BB35-27ED8F2E1826";
+            var itemId = "";
 
-            List<XElement> documentsToSave = new List<XElement>();
+            IEnumerable<XElement> documentsToSave = new List<XElement>();
 
             switch (resourceId)
             {
                 case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7":
-                    var fieldReceiver = new FieldConfigurationReceiver(_client, null);
+                    if(itemId == "8F766C02-BD56-4B9A-BB35-27ED8F2E1826")
+                    {
+                        var fieldReceiver = new FieldConfigurationReceiver(_client, null);
 
-                    documentsToSave = await fieldReceiver.GetDocumentsAsync(resourceId, itemTypeId, itemId);
+                        documentsToSave = await fieldReceiver.GetDocumentsAsync(resourceId, itemTypeId, itemId);
+                    }
+                    if(itemTypeId == "299B3954-6119-4265-AD5E-799CB7F53DE6")
+                    {
+                        var contentReceiver = new StaticContentReceiver(_client, null);
+
+                        documentsToSave = await contentReceiver.GetDocumentsAsync(resourceId, itemTypeId, itemId);
+                    }
                     break;
                 default:
                     //documentsToSave = await Get
                     break;
             }
 
-
-
-            var fields2 = documentsToSave.Take(1);
-
-
             // Am
-            await _repository.WriteDocuments(fields2);
+            await _repository.WriteDocuments(documentsToSave);
 
         }
 
@@ -61,6 +67,5 @@ namespace SystematicsPortal.Data.Harvester.Services
         {
             // write code here that runs when the Windows Service stops.
         }
-
     }
 }

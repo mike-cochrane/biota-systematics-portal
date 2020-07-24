@@ -23,7 +23,7 @@ namespace SystematicsPortal.Data.Harvester.Classes
             _logger = logger;
         }
 
-        public async Task<List<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
+        public async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
         {
             List<XElement> xFields = new List<XElement>();
 

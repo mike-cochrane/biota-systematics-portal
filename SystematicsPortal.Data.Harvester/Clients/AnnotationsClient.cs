@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -183,7 +184,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
         }
 
  
-        public async Task<List<XElement>> GetItemsXmlByIds(List<string> itemIds)
+        public async Task<IEnumerable<XElement>> GetItemsXmlByIds(List<string> itemIds)
         {
             string urlToQuery = $"{_apiContentUrl}/items";
             string items;
@@ -197,18 +198,45 @@ namespace SystematicsPortal.Data.Harvester.Clients
             };
 
             var jsonInString = JsonConvert.SerializeObject(itemIds);
+            
+            client.DefaultRequestHeaders.Add("Accept", "application/xml");
 
             var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
 
 
+
             if (response.IsSuccessStatusCode)
             {
-                items = await response.Content.ReadAsStringAsync();
+                try
+                {
+                    items = response.Content.ReadAsStringAsync().Result;
+
+                    TextReader tr = new StringReader(items);
+                    XDocument itemsXDocument = XDocument.Load(tr);
+
+                    //var itemsXDocument = XDocument.Parse(items);
+                    var documentsElements = itemsXDocument.Element("items");
+                    itemsList = documentsElements.Descendants("item").ToList();
+
+                    //XAttribute attribute = new XAttribute("Server", comboBox1.Text);
+                    //element.Add(attribute);
+
+                    itemsList = itemsList.Select(item =>
+                    {
+                        string itemId = (string)item.Attribute("itemId");
+                        item.Add(new XAttribute("documentId", itemId));
+                        return item;
+                    }
+                    ).ToList();
+
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
 
 
-                var itemsXDocument = XDocument.Load(items);
-                var documentsElements = itemsXDocument.Element("Items");
-                itemsList = documentsElements.Descendants("Item").ToList();
 
             }
             else
