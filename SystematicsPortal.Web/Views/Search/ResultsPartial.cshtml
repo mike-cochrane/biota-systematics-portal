@@ -292,7 +292,7 @@
                                             <div class="specimen-list-item">
                                                 <div class="pull-left">
                                                     <input type="checkbox" name="selected" id="@summary.Id.ToString()" class="@summary.Id.ToString()" onclick="toggleSpecimen(this)" @*checked="@summary.Selected"*@ />
-                                                    @Html.ActionLink(@summary.GetHashCode() + " : " + summary.Title, "Details", "Specimen", new { id = @summary.GetHashCode(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                                    @Html.ActionLink(@summary.GetHashCode() + " : " + summary.Title, "Details", "Search", new { id = @summary.GetHashCode(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
                                                 </div>
                                                 <div class="pull-right">
                                                     @*@if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
