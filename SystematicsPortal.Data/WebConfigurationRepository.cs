@@ -6,9 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsPortal.Data.Extensions;
+using SystematicsPortal.Models.Entities.Access;
 using SystematicsPortal.Models.Entities.Database;
 using SystematicsPortal.Models.Infrastructure.Exceptions;
 using SystematicsPortal.Models.Interfaces;
+using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data
 {
@@ -75,13 +78,32 @@ namespace SystematicsPortal.Data
         //}
 
         /// <summary>
-        /// Get specific document based on document id.
+        /// Get specific content configuration based on external id.
         /// </summary>
-        /// <param name="documentId"></param>
-        /// <returns>Document access model with docuemnt as XmlDocument property</returns>
-        public async Task<Models.Entities.Access.ContentConfiguration> GetDocumentAsync(Guid externalId)
+        /// <param name="externalId"></param>
+        /// <returns>Content configuration with content</returns>
+        public async Task<IEnumerable<Models.Entities.Access.ContentConfiguration>> GetContentConfigurations()
         {
-            var contentConfiguration = new Models.Entities.Access.ContentConfiguration();
+            IEnumerable<Models.Entities.Access.ContentConfiguration> contentConfigurations;
+
+            var contentConfigurationsDb = _context.ContentConfiguration;
+
+
+            contentConfigurations = contentConfigurationsDb.Select(cc =>
+               cc.ToDto( GetContentFromDocumentStore(Guid.NewGuid())));
+
+            return contentConfigurations;
+        }
+
+
+        /// <summary>
+        /// Get specific content configuration based on external id.
+        /// </summary>
+        /// <param name="externalId"></param>
+        /// <returns>Content configuration with content</returns>
+        public async Task<Models.Entities.Access.ContentConfiguration> GetContentConfiguration(Guid externalId)
+        {
+            Models.Entities.Access.ContentConfiguration contentConfiguration;
 
             var contentConfigurationDb = await _context.ContentConfiguration.FirstOrDefaultAsync(content => content.ExternalId == externalId);
 
@@ -90,12 +112,36 @@ namespace SystematicsPortal.Data
                 throw new NotFoundException($"Document with Id: {externalId} has not been found", null);
             }
 
-            var content = _context.Document.FirstOrDefault(doc => doc.DocumentId == contentConfigurationDb.ExternalId);
+            var content =  GetContentFromDocumentStore(externalId);
 
-            // TODO: Grab content from document store and put it in a class
-            //contentConfiguration
-
+            contentConfiguration =  contentConfigurationDb.ToDto(content);
+           
+           
             return contentConfiguration;
+        }
+
+        private Content GetContentFromDocumentStore(Guid externalId)
+        {
+
+            var documentDb = _context.Document.FirstOrDefault(doc => doc.DocumentId == externalId);
+
+            if (documentDb is null)
+            {
+                throw new NotFoundException($"Document with Id: {externalId} has not been found", null);
+            }
+
+           var item = SerializationHelper.Deserialize<Models.Entities.Annotations.Item>(documentDb.SerializedDocument);
+
+            var content = new Content()
+            {
+                // TODO: Ask if I need to do a conversion from xml to html
+                CitationTitle = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.CitationTitle)).Content.ToString(),
+                Lede = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.Lede)).Content.ToString(),
+                SectionTitle = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.SectionTitle)).Content.ToString(),
+                Text =  item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.Text)).Content.ToString(),
+            };
+
+            return content;
         }
     }
 }

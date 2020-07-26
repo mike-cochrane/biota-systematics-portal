@@ -131,7 +131,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
         public async Task<Items> GetItemIds(string itemTypeId)
         {
             string urlToQuery = $"{_apiContentUrl}/itemIds?itemTypeId={itemTypeId}";
-            Items itemIds = new Items();
+            Items itemIds;
 
             // TODO: Use new .net core http client factory 
             var client = new HttpClient()
@@ -157,7 +157,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
         public async Task<Items> GetItemsByIds(List<string> itemIds)
         {
             string urlToQuery = $"{_apiContentUrl}/items";
-            Items items = new Items();
+            Items items; ;
 
             // TODO: Use new .net core http client factory 
             var client = new HttpClient()

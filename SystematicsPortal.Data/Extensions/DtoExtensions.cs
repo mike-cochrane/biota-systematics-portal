@@ -70,5 +70,22 @@ namespace SystematicsPortal.Data.Extensions
             return docDto;
 
         }
+
+        public static Models.Entities.Access.ContentConfiguration ToDto(this ContentConfiguration contentConfigurationDb, Models.Entities.Access.Content content)
+        {
+            var contentConfigurationDto = new Models.Entities.Access.ContentConfiguration()
+            {
+                ContentConfigurationId = contentConfigurationDb.ContentConfigurationId,
+                DisplayOrder = contentConfigurationDb.DisplayOrder,
+                ExternalId = contentConfigurationDb.ExternalId,
+                Page = contentConfigurationDb.Page,
+                Section = contentConfigurationDb.Section,
+                SectionTitle = contentConfigurationDb.SectionTitle
+            };
+
+            contentConfigurationDto.Content = content;
+
+            return contentConfigurationDto;
+        }
     }
 }

@@ -12,6 +12,5 @@ namespace SystematicsPortal.Models.Entities.Access
         public string CitationTitle { get; set; }
         public string SectionTitle { get; set; }
         public string Text { get; set; }
-        
     }
 }
