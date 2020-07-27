@@ -1,10 +1,7 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using SystematicsPortal.Data.Harvester.Classes;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Models.Interfaces;
 
@@ -15,10 +12,10 @@ namespace SystematicsPortal.Data.Harvester.Services
         public readonly AnnotationsClient _client;
         private readonly IDocumentsRepository _repository;
         private readonly IBusControl _busControl;
-        private readonly IDictionary<string, IHarvesterActionReceiver> _strategies;
+        private readonly IDictionary<string, IHarvesterActionStrategy> _strategies;
         private readonly ILogger<HarvesterService> _logger;
 
-        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, IDictionary<string, IHarvesterActionReceiver> strategies, ILogger<HarvesterService> logger)
+        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, IDictionary<string, IHarvesterActionStrategy> strategies, ILogger<HarvesterService> logger)
         {
             _repository = repository;
             _client = client;

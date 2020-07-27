@@ -137,6 +137,7 @@ namespace SystematicsPortal.Web.Api.Demo
             }
             return strategies;
         }
+      
         private static void ConfigureService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, ILogger<HarvesterService> logger)
         {
             HostFactory.Run(configure =>
