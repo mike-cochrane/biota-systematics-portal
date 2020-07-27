@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using SystematicsPortal.Data;
 using SystematicsPortal.Data.Harvester.Classes;
@@ -107,6 +108,35 @@ namespace SystematicsPortal.Web.Api.Demo
             services.AddTransient(x => new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
 
+        private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client)
+        {
+
+            var strategies = new Dictionary<string, IHarvesterActionStrategy>
+                                   (StringComparer.OrdinalIgnoreCase);
+
+            foreach (var pair in strategiesFromConfig)
+            {
+                Type t = Type.GetType(pair.Value);
+                IHarvesterActionStrategy fieldReceiver;
+
+                switch (pair.Key)
+                {
+                    case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7|B3A06D22-A314-40A3-8BD7-346907561112":
+                        fieldReceiver = new FieldConfigurationStrategy(client, null);
+                        break;
+                    case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7|299B3954-6119-4265-AD5E-799CB7F53DE6":
+                        fieldReceiver = new StaticContentStrategy(client, null);
+                        break;
+                    default:
+                        fieldReceiver = null;
+                        break;
+                }
+
+                strategies[pair.Value] = fieldReceiver;
+
+            }
+            return strategies;
+        }
         private static void ConfigureService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, ILogger<HarvesterService> logger)
         {
             HostFactory.Run(configure =>

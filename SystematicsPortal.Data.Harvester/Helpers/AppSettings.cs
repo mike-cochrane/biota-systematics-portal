@@ -1,10 +1,13 @@
-﻿namespace SystematicsPortal.Data.Harvester.Helpers
+﻿using System.Collections.Generic;
+
+namespace SystematicsPortal.Data.Harvester.Helpers
 {
     public class AppSettings
     {
         public string SourcePath { get; set; }
 
         public ContentServiceSettings ContentService { get; set; }
+        public Dictionary<string,string> Strategies { get; set; }
 
         public RabbitMqSettings RabbitMq { get; set; }
     }
