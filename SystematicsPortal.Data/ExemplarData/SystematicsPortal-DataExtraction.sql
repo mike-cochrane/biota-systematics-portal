@@ -316,6 +316,7 @@ CREATE TABLE #Name (
 	, ParentReference xml
 	, Parent nvarchar(450)
 	, ParentFormatted xml
+	, ParentPartialFormatted xml
 	, ParentFK uniqueidentifier
 	, CurrentName nvarchar(450)
 	, CurrentNameFormatted xml
@@ -530,8 +531,8 @@ CREATE INDEX idx_InputRelationshipType ON #BibliographyRelationshipType(InputRel
 		, ('has mycorrhizal host', 'has mycorrhizal host', 'is mycorrhizal host of'	, 'biology')	
 		, ('Parent'				, 'has parent'			, 'is parent of'			, 'taxonomy')
 		, ('has parent'			, 'has parent'			, 'is parent of'			, 'taxonomy')
-		, ('Current Name'		, 'has current name'	, 'is synonym of'			, 'taxonomy')
-		, ('has current Name'	, 'has current name'	, 'is synonym of'			, 'taxonomy')
+		, ('Current Name'		, 'has current name'	, 'is current name for'		, 'taxonomy')
+		, ('has current Name'	, 'has current name'	, 'is current name for'		, 'taxonomy')
 		, ('Alternate name'		, 'has alternate name'	, 'has alternate name'		, 'taxonomy')
 		, ('has alternate name'	, 'has alternate name'	, 'has alternate name'		, 'taxonomy')	
 		, ('Is congruent'		, 'is congruent with'	, 'is congruent with'		, 'concepts')
@@ -842,12 +843,15 @@ WHERE ISNULL(NA.NameSuppress, 0) = 1
 UPDATE N
 	SET Parent = NA.NameFull
 		, ParentFormatted = NA.NameFormattedXML
+		, ParentPartialFormatted = NA.NamePartFormatted
 FROM #Name N
 	INNER JOIN #Name NA ON N.ParentFK = NA.NameGuid
 WHERE ISNULL(NA.Suppress, 0) = 0
 
 UPDATE N
 	SET ParentFK = NULL
+		, ParentFormatted = NULL
+		, ParentPartialFormatted = NULL
 FROM #Name N
 	INNER JOIN tblName NA ON N.ParentFK = NA.NameGuid
 WHERE ISNULL(NA.NameSuppress, 0) = 1
@@ -1030,6 +1034,7 @@ UPDATE N
 								, V.VernacularUseNote
 							FROM Vernacular V
 						 WHERE V.NameId = N.NameGuid
+						 ORDER BY V.VernacularName, LanguageOfOrigin DESC, LanguageOfUse DESC
 						FOR XML PATH('AppliedVernacular'), ROOT('AppliedVernaculars'), TYPE)
 		
 		, VernacularSOLRXML = (SELECT
@@ -1125,7 +1130,8 @@ UPDATE N
 							, B.Georegion AS Georegion
 							, B.Comment 						
 						FROM Biostatus B
-						WHERE B.NameId = N.NameGuid						
+						WHERE B.NameId = N.NameGuid	
+						ORDER BY REPLACE(B.Georegion, 'New Zealand', '_New Zealand')
 						FOR XML PATH ('BiostatusValue'), ROOT('BiostatusValues'), TYPE)
 		, NZRelevance = (SELECT TOP 1 NZRelevance FROM SortedList WHERE Nameid = N.NameGuid)
 FROM #Name N
@@ -1252,15 +1258,16 @@ UPDATE N
 						(SELECT RTRIM(FullHybrid)  FROM Hybrids H
 								INNER JOIN FinalSequence FS ON H.HybridId = FS.HybridId AND H.[sequence] = FS.FinalSequence
 							WHERE H.NameId = N.NameGuid) as HybridText
-						, (SELECT  ParentNameId '@nameId'
-								, PreText  AS '@prefixText'
-								, PostText AS '@suffixText'
-								, NameFull 
-								--TO DO -- ? ADD Formatted Name
+						, (SELECT  ParentNameId 'HybridParentName/@nameId'
+								, PreText  AS 'HybridParentName/@prefixText'
+								, PostText AS 'HybridParentName/@suffixText'
+								, NameFull as 'HybridParentName/@nameFull'
+								, NameFull AS HybridParentName
+								--TO DO --  ADD Formatted Name, using NameFull as placeholder
 							FROM Hybrids 
 							WHERE NameId = N.NameGuid
 							order by HybridId, [sequence] 
-							FOR XML PATH('HybridParentName'), ROOT('HybridParentNames'), type)
+							FOR XML PATH(''), ROOT('HybridParentNames'), type)
 						FOR XML PATH('HybridData'), ROOT('Hybridisation'), TYPE)
 		, HybridSOLRXML = (SELECT 
 								(SELECT 'hybridParentId'   as '@name', H.ParentNameId	as 'text()' for XML PATH('field'), TYPE)
@@ -1759,8 +1766,9 @@ UNION ALL
 		INNER JOIN tblBibliography B ON BR.BibliographyRelationshipBibliographyFromFk = B.BibliographyGuid
 			INNER JOIN tblName N ON B.BibliographyNameFk = N.NameGuid
 	WHERE ISNULL(B.BibliographyIsDeleted, 0) = 0
+		AND BR.BibliographyRelationshipBibliographyToFk <> BR.BibliographyRelationshipBibliographyFromFk -- do not include the self references in the inverse direction
 )
-, RelationshipTypes AS     (SELECT DISTINCT RelationshipType, NameId, Category FROM Relationships WHERE direction = 'normal')
+, RelationshipTypes AS (SELECT DISTINCT RelationshipType, NameId, Category FROM Relationships WHERE direction = 'normal')
 , HostRelationships AS (SELECT DISTINCT  NameId, NameId2, NameFullConcept2 FROM Relationships WHERE direction = 'normal' AND Category = 'biology' and RelationshipType = 'Host')
 , Descriptions AS (
 		SELECT DescriptionGuid AS Id
@@ -1798,6 +1806,7 @@ UPDATE N
 								FOR XML PATH('Keyword'), ROOT('Keywords'), TYPE)
 							, (SELECT R.direction as '@direction'
 									, R.RelationshipType  as '@type'
+									, R.Category as '@category'
 									, LOWER(R.ConceptId2) AS '@conceptId'
 									, R.Added as '@added'
 									, LOWER(R.NameId2) AS 'RelatedTaxon/@nameId'
@@ -1990,6 +1999,9 @@ SELECT LOWER(NameGuid) as '@documentId'
 	, LOWER(ParentFK)				as 'Parent/@nameId'
 	, Parent						as 'Parent/@nameFull'
 	, ParentFormatted				AS Parent
+	, LOWER(ParentFK)				as 'ParentPart/@nameId'
+	, Parent						as 'ParentPart/@nameFull'
+	, ParentPartialFormatted        AS ParentPart
 	, LOWER(CurrentFK)				as 'CurrentName/@nameId'
 	, CurrentName					as 'CurrentName/@nameFull'
 	, CurrentNameFormatted			AS  CurrentName
@@ -2223,7 +2235,7 @@ GO
 		, RF.ReferenceFieldText
 	FROM tblReferenceField RF
 		INNER JOIN tblReferenceFieldType RFT ON RF.ReferenceFieldTypeID = RFT.ReferenceFieldTypeID
-	WHERE RF.ReferenceFieldText NOT IN ('User def', 'Note', 'Reprint')
+	WHERE RFT.ReferenceFieldTypeText NOT IN ('User def', 'Note', 'Reprint')
 )
 UPDATE R
 	SEt FieldsXML = (SELECT FieldType '@type'
@@ -2407,7 +2419,7 @@ FROM #Reference R
 , DistinctList AS (SELECT DISTINCT CN.NameGuid, CN.NameFull, CN.ReferenceId  FROM CitedNames CN )
 UPDATE R
 	SET CitationsXML = (SELECT 
-							lower(CN.NameGuid) as 'CitedTaxon/@id'
+							lower(CN.NameGuid) as 'CitedTaxon/@nameId'
 							, CN.NameFull		as 'CitedTaxon/@nameFull'
 							, NameFormattedXML as CitedTaxon
 						FROM DistinctList CN

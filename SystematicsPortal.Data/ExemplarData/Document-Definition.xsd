@@ -81,6 +81,7 @@
 				<xs:element name="TaxonomyReference" type="ReferenceType" minOccurs="0"/>
 				<xs:element name="ParentReference" type="ReferenceType" minOccurs="0"/>
 				<xs:element name="Parent" type="LinkedNameType" minOccurs="0"/>
+				<xs:element name="ParentPart" type="LinkedNameType" minOccurs="0"/>
 				<xs:element name="CurrentName" type="LinkedNameType" minOccurs="0"/>
 				<xs:element name="Synonyms" minOccurs="0">
 					<xs:complexType>
@@ -225,6 +226,7 @@
 															<xs:attribute name="direction"/>
 															<xs:attribute name="type"/>
 															<xs:attribute name="added"/>
+															<xs:attribute name="category" type="xs:string"/>
 															<xs:attribute name="updated"/>
 														</xs:complexType>
 													</xs:element>
@@ -338,13 +340,13 @@
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="HybridParentName" maxOccurs="unbounded">
-														<xs:complexType>
-															<xs:sequence>
-																<xs:element name="NameFull" type="xs:string"/>
-															</xs:sequence>
-															<xs:attribute name="nameId" use="required"/>
-															<xs:attribute name="prefixText"/>
-															<xs:attribute name="suffixText"/>
+														<xs:complexType mixed="true">
+															<xs:complexContent>
+																<xs:extension base="LinkedNameType">
+																	<xs:attribute name="prefixText"/>
+																	<xs:attribute name="suffixText"/>
+																</xs:extension>
+															</xs:complexContent>
 														</xs:complexType>
 													</xs:element>
 												</xs:sequence>
