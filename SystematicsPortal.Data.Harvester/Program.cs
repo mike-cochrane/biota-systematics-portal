@@ -25,7 +25,7 @@ namespace SystematicsPortal.Web.Api.Demo
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddUserSecrets(typeof(Program).Assembly, optional: true)
                 .Build();
 
@@ -50,16 +50,15 @@ namespace SystematicsPortal.Web.Api.Demo
 
                 var busControl = Bus.Factory.CreateUsingRabbitMq(config =>
                 {
-                    config.Host("DEV-MQ-01", "/", host =>
+                    config.Host(appSettings.RabbitMq.Host, appSettings.RabbitMq.VirtualHost, host =>
                     {
-                        host.Username("names_user");
-                        host.Password("names");
+                        host.Username(appSettings.RabbitMq.Username);
+                        host.Password(appSettings.RabbitMq.Password);
                     });
 
                     config.ReceiveEndpoint("systematicsportal.web.queue", endpoint =>
                     {
-                        endpoint.Consumer<ItemSavedConsumer>();
-                        endpoint.Consumer<NotePublishedConsumer>();
+                        endpoint.Consumer<ItemUpdatedConsumer>();
                     });
                 });
 
@@ -104,15 +103,15 @@ namespace SystematicsPortal.Web.Api.Demo
                 ServiceLifetime.Transient);
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
-            services.AddTransient(x => new AnnotationsClient(x.GetRequiredService<IDocumentsRepository>(), appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
-            services.AddTransient(x => new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
+            services.AddTransient(x =>
+                new AnnotationsClient(x.GetRequiredService<IDocumentsRepository>(), appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
+            services.AddTransient(x =>
+                new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
 
         private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client)
         {
-
-            var strategies = new Dictionary<string, IHarvesterActionStrategy>
-                                   (StringComparer.OrdinalIgnoreCase);
+            var strategies = new Dictionary<string, IHarvesterActionStrategy>(StringComparer.OrdinalIgnoreCase);
 
             foreach (var pair in strategiesFromConfig)
             {
@@ -133,18 +132,18 @@ namespace SystematicsPortal.Web.Api.Demo
                 }
 
                 strategies[pair.Value] = fieldReceiver;
-
             }
+
             return strategies;
         }
-      
+
         private static void ConfigureService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, ILogger<HarvesterService> logger)
         {
             HostFactory.Run(configure =>
             {
                 configure.Service<HarvesterService>(service =>
                 {
-                    service.ConstructUsing(s => new HarvesterService(repository, client, busControl, null, logger));
+                    service.ConstructUsing(s => new HarvesterService(repository, client, busControl, logger));
                     service.WhenStarted(async s => await s.StartAsync());
                     service.WhenStopped(s => s.Stop());
                 });
