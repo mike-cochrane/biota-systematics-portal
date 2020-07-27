@@ -71,7 +71,7 @@ namespace SystematicsPortal.Data.Extensions
 
         }
 
-        public static Models.Entities.Access.ContentConfiguration ToDto(this ContentConfiguration contentConfigurationDb, Models.Entities.Access.Content content)
+        public static Models.Entities.Access.ContentConfiguration ToDto(this ContentConfiguration contentConfigurationDb)
         {
             var contentConfigurationDto = new Models.Entities.Access.ContentConfiguration()
             {
@@ -82,8 +82,6 @@ namespace SystematicsPortal.Data.Extensions
                 Section = contentConfigurationDb.Section,
                 SectionTitle = contentConfigurationDb.SectionTitle
             };
-
-            contentConfigurationDto.Content = content;
 
             return contentConfigurationDto;
         }

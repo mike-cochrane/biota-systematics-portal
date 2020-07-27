@@ -43,6 +43,5 @@ namespace SystematicsPortal.Web.Api.Controllers
 
             return Ok(response);
         }
-
     }
 }

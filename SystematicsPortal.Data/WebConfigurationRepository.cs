@@ -3,12 +3,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using SystematicsPortal.Data.Extensions;
 using SystematicsPortal.Models.Entities.Access;
-using SystematicsPortal.Models.Entities.Database;
 using SystematicsPortal.Models.Infrastructure.Exceptions;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
@@ -26,8 +23,7 @@ namespace SystematicsPortal.Data
             _logger = logger;
         }
 
-
-        /// TODO: Ask Aaron if we want to save static content also in the 
+        /// TODO: Ask Aaron if we want to save static content also in the
 
         /// <summary>
         /// Writes documents to the store and returns a number of documents that were updated.
@@ -78,32 +74,39 @@ namespace SystematicsPortal.Data
         //}
 
         /// <summary>
-        /// Get specific content configuration based on external id.
+        /// Get content configuration for the web site.
         /// </summary>
-        /// <param name="externalId"></param>
-        /// <returns>Content configuration with content</returns>
-        public async Task<IEnumerable<Models.Entities.Access.ContentConfiguration>> GetContentConfigurations()
+        /// <returns>Content configurations with specific content</returns>
+        public async Task<ContentConfigurations> GetContentConfigurationsAsync()
         {
-            IEnumerable<Models.Entities.Access.ContentConfiguration> contentConfigurations;
+            ContentConfigurations contentConfigurations = new ContentConfigurations();
 
             var contentConfigurationsDb = _context.ContentConfiguration;
 
+            var contentConfigurationsList = contentConfigurationsDb.Select(cc =>
+               cc.ToDto());
 
-            contentConfigurations = contentConfigurationsDb.Select(cc =>
-               cc.ToDto( GetContentFromDocumentStore(Guid.NewGuid())));
+            foreach (var contentConfiguration in contentConfigurationsList)
+            {
+                if (contentConfiguration.ExternalId != null)
+                {
+                    contentConfiguration.Content = await GetContentFromDocumentStoreAsync(contentConfiguration.ExternalId.Value);
+                }
+            }
+
+            contentConfigurations.ContentConfigurationList = contentConfigurationsList.ToList();
 
             return contentConfigurations;
         }
-
 
         /// <summary>
         /// Get specific content configuration based on external id.
         /// </summary>
         /// <param name="externalId"></param>
         /// <returns>Content configuration with content</returns>
-        public async Task<Models.Entities.Access.ContentConfiguration> GetContentConfiguration(Guid externalId)
+        public async Task<ContentConfiguration> GetContentConfiguration(Guid externalId)
         {
-            Models.Entities.Access.ContentConfiguration contentConfiguration;
+            ContentConfiguration contentConfiguration;
 
             var contentConfigurationDb = await _context.ContentConfiguration.FirstOrDefaultAsync(content => content.ExternalId == externalId);
 
@@ -112,34 +115,37 @@ namespace SystematicsPortal.Data
                 throw new NotFoundException($"Document with Id: {externalId} has not been found", null);
             }
 
-            var content =  GetContentFromDocumentStore(externalId);
+            contentConfiguration = contentConfigurationDb.ToDto();
 
-            contentConfiguration =  contentConfigurationDb.ToDto(content);
-           
-           
+            contentConfiguration.Content = await GetContentFromDocumentStoreAsync(externalId);
+
             return contentConfiguration;
         }
 
-        private Content GetContentFromDocumentStore(Guid externalId)
+        private async Task<Content> GetContentFromDocumentStoreAsync(Guid externalId)
         {
-
-            var documentDb = _context.Document.FirstOrDefault(doc => doc.DocumentId == externalId);
+            var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == externalId);
 
             if (documentDb is null)
             {
                 throw new NotFoundException($"Document with Id: {externalId} has not been found", null);
             }
 
-           var item = SerializationHelper.Deserialize<Models.Entities.Annotations.Item>(documentDb.SerializedDocument);
+            var item = SerializationHelper.Deserialize<Models.Entities.Annotations.Item>(documentDb.SerializedDocument);
 
-            var content = new Content()
-            {
-                // TODO: Ask if I need to do a conversion from xml to html
-                CitationTitle = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.CitationTitle)).Content.ToString(),
-                Lede = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.Lede)).Content.ToString(),
-                SectionTitle = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.SectionTitle)).Content.ToString(),
-                Text =  item.Notes.FirstOrDefault(n => n.NoteTypeTitle == nameof(Content.Text)).Content.ToString(),
-            };
+            var content = new Content();
+
+            var citationTitle = PropertyHelpers.GetPropertyDisplayName<Content>(nameof(Content.CitationTitle));
+            content.CitationTitle = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == citationTitle).Content.ToString();
+
+            var lede = PropertyHelpers.GetPropertyDisplayName<Content>(nameof(Content.Lede));
+            content.Lede = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == lede).Content.ToString();
+
+            var sectionTitle = PropertyHelpers.GetPropertyDisplayName<Content>(nameof(Content.SectionTitle));
+            content.SectionTitle = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == sectionTitle).Content.ToString();
+
+            var text = PropertyHelpers.GetPropertyDisplayName<Content>(nameof(Content.Text));
+            content.Text = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == text).Content.ToString();
 
             return content;
         }
