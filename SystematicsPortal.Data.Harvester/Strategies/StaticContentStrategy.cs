@@ -12,12 +12,12 @@ using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data.Harvester.Classes
 {
-    public class StaticContentReceiver :IHarvesterActionReceiver
+    public class StaticContentStrategy :IHarvesterActionStrategy
     {
         public readonly AnnotationsClient _client;
-        private readonly ILogger<StaticContentReceiver> _logger;
+        private readonly ILogger<StaticContentStrategy> _logger;
 
-        public StaticContentReceiver(AnnotationsClient client, ILogger<StaticContentReceiver> logger)
+        public StaticContentStrategy(AnnotationsClient client, ILogger<StaticContentStrategy> logger)
         {
             _client = client;
             _logger = logger;

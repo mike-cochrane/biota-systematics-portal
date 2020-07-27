@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using SystematicsPortal.Data;
@@ -102,24 +103,57 @@ namespace SystematicsPortal.Web.Api.Demo
 
             services.AddTransient<Parser>(x =>
             new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
+
+            // TODO: Solve how to pass an Annotations client instance
+           // var strategies = CreateStrategies(appSettings.Strategies, null);
         }
-    
+
+        private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client)
+        {
+
+            var strategies = new Dictionary<string, IHarvesterActionStrategy>
+                                   (StringComparer.OrdinalIgnoreCase);
+
+            foreach (var pair in strategiesFromConfig)
+            {
+                Type t = Type.GetType(pair.Value);
+                IHarvesterActionStrategy fieldReceiver;
+
+                switch (pair.Key)
+                {
+                    case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7|B3A06D22-A314-40A3-8BD7-346907561112":
+                        fieldReceiver = new FieldConfigurationStrategy(client, null);
+                        break;
+                    case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7|299B3954-6119-4265-AD5E-799CB7F53DE6":
+                        fieldReceiver = new StaticContentStrategy(client, null);
+                        break;
+                    default:
+                        fieldReceiver = null;
+                        break;
+                }
+
+                strategies[pair.Value] = fieldReceiver;
+
+            }
+            return strategies;
+        }
+
         private static void ConfigureService(IDocumentsRepository repository, AnnotationsClient client, ILogger<HarvesterService> logger)
         {
-                HostFactory.Run(configure =>
+            HostFactory.Run(configure =>
+            {
+                configure.Service<HarvesterService>(service =>
                 {
-                    configure.Service<HarvesterService>(service =>
-                    {
-                        service.ConstructUsing(s => new HarvesterService(repository, client, logger));
-                        service.WhenStarted(async s => await s.StartAsync());
-                        service.WhenStopped(s => s.Stop());
-                    });
+                    service.ConstructUsing(s => new HarvesterService(repository, client, null,logger));
+                    service.WhenStarted(async s => await s.StartAsync());
+                    service.WhenStopped(s => s.Stop());
+                });
                     //Setup Account that window service use to run.  
                     configure.RunAsLocalSystem();
-                    configure.SetServiceName("SystematicsPortal.Data.Harvester");
-                    configure.SetDisplayName("SystematicsPortal.Data.Harvester");
-                    configure.SetDescription("Harvester that receives messages and proceed to update documents in SOLR and Document Store");
-                });
+                configure.SetServiceName("SystematicsPortal.Data.Harvester");
+                configure.SetDisplayName("SystematicsPortal.Data.Harvester");
+                configure.SetDescription("Harvester that receives messages and proceed to update documents in SOLR and Document Store");
+            });
         }
     }
 }
