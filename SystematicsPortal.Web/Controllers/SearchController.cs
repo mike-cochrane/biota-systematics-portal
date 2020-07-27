@@ -98,7 +98,7 @@ namespace SystematicsPortal.Web.Controllers
 
         // GET: Search/Details/5
         [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Details(String id)
         {
             /*XmlRootAttribute xRoot = new XmlRootAttribute();
             xRoot.ElementName = "Document";
@@ -243,7 +243,7 @@ namespace SystematicsPortal.Web.Controllers
             fields.Fields = list;*/
             //return View(fields); 
 
-            Document document = await _searchService.GetDocument(id.ToString());
+            Document document = await _searchService.GetDocument(id);
 
             return View(document);
         }
