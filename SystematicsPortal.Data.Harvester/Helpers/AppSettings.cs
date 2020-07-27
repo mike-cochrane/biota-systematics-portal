@@ -6,10 +6,23 @@
 
         public ContentServiceSettings ContentService { get; set; }
 
+        public RabbitMqSettings RabbitMq { get; set; }
     }
+
     public class ContentServiceSettings
     {
         public string Url { get; set; }
         public string Name { get; set; }
+    }
+
+    public class RabbitMqSettings
+    {
+        public string Host { get; set; }
+
+        public string VirtualHost { get; set; }
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
     }
 }
