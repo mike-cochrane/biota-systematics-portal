@@ -9,19 +9,23 @@ using SystematicsPortal.Models.Entities.Annotations;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
 using SystematicsPortal.Web.Infrastructure;
+using SystematicsPortal.Models.Entities.Access;
 
 namespace SystematicsPortal.Web.Services
 {
     public class ContentService : IContentService
     {
-        private readonly string _apiContentUrl;
+        private readonly Api.Client.Client _apiClient;
 
 
-        public ContentService(IOptions<AppSettings> appSettings)
+        public ContentService(Api.Client.Client apiClient)
         {
-            var appsettingsObject = appSettings.Value;
+            _apiClient = apiClient;
+        }
 
-            _apiContentUrl = appsettingsObject.ContentService.Url;
+        public async Task<ContentConfigurations> GetContent()
+        {
+            return await _apiClient.GeContent();
         }
     }
 }
