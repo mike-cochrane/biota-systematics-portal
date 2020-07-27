@@ -1,13 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using SystematicsPortal.Web.Api.Services;
 
 namespace SystematicsPortal.Web.Api.Controllers
 {
-    public class ContentController
+    [ApiController]
+    [Route("v1/[controller]")]
+    public class ContentController : ControllerBase
     {
-        
+        private readonly ILogger<ContentController> _logger;
+        private readonly IContentService _contentservice;
+
+        public ContentController(IContentService contentservice, ILogger<ContentController> logger)
+        {
+            _contentservice = contentservice;
+            _logger = logger;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            _logger.LogDebug("ContentController - GetContent");
+
+            var response = await _contentservice.GetContentAsync();
+
+            return Ok(response);
+        }
     }
 }

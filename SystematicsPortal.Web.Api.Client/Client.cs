@@ -79,5 +79,30 @@ namespace SystematicsPortal.Web.Api.Client
 
             return document;
         }
+
+        public async Task<ContentConfigurations> GeContent()
+        {
+            ContentConfigurations contentConfigurations;
+            string urlToQuery = $"{_url}content/";
+
+            // TODO: Use new .net core http client factory 
+            var client = new HttpClient()
+            {
+                BaseAddress = new Uri(urlToQuery)
+            };
+
+            var response = await client.GetAsync(urlToQuery);
+
+            if (response.IsSuccessStatusCode)
+            {
+                contentConfigurations = await response.Content.ReadAsAsync<ContentConfigurations>();
+            }
+            else
+            {
+                throw new HttpRequestException(response.ReasonPhrase);
+            }
+
+            return contentConfigurations;
+        }
     }
 }

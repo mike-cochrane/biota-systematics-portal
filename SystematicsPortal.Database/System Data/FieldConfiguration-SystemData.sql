@@ -205,7 +205,7 @@ WHEN MATCHED
        THEN 
 		UPDATE 
 			SET 
-				DataDocumentXPath	= iFC.DatDocumentXPath
+				DataDocumentXPath	= iFC.DataDocumentXPath
 				, ExternalId		= iFC.ExternalId
 				, DocumentClass		= iFC.DocumentClass
 				, Labels			= iFC.Labels

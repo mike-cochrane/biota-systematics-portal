@@ -17,7 +17,5 @@ namespace SystematicsPortal.Web.Services
             string sortOrder="");
 
         Task<Document> GetDocument (string id);
-
-        Task<DocumentType> GetDocumentAsCSharpClass(string id);
     }
 }

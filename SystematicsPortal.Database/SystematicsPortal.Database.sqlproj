@@ -74,8 +74,8 @@
     <Build Include="Schemas\web\Tables\Facet.sql" />
     <None Include="System Data\FieldConfiguration-SystemData.sql" />
     <Build Include="Schemas\web\Tables\FieldGroup.sql" />
-    <Build Include="System Data\ContentConfiguration-SystemData.sql" />
-    <Build Include="System Data\Facet-SystemData.sql" />
+    <None Include="System Data\ContentConfiguration-SystemData.sql" />
+    <None Include="System Data\Facet-SystemData.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

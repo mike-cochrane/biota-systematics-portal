@@ -32,17 +32,5 @@ namespace SystematicsPortal.Web.Services
 
             return documentXml;
         }
-
-
-        public async Task<SystematicsPortal.Models.Entities.Documents.DocumentType> GetDocumentAsCSharpClass(string id)
-        {
-            var documentXml = await _apiClient.GetDocument(id);
-
-
-            SystematicsPortal.Models.Entities.Documents.DocumentType document = null; 
-
-
-            return document;
-        }
     }
 }

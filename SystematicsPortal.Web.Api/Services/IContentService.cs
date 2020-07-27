@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystematicsPortal.Models.Entities.Access;
-using SystematicsPortal.Models.Entities.Annotations;
 
-namespace SystematicsPortal.Web.Services
+namespace SystematicsPortal.Web.Api.Services
 {
     public interface IContentService
     {
-        Task<ContentConfigurations> GetContent();
+        Task<ContentConfigurations> GetContentAsync();
     }
 }

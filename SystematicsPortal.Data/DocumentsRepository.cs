@@ -94,8 +94,7 @@ namespace SystematicsPortal.Data
                     .WithNodeFilter(o => String.Equals(o.Name, "ModifiedDate", StringComparison.OrdinalIgnoreCase))
                     .Build();
 
-                //if (xmlComparer.HasDifferences())
-                if (true)
+                if (xmlComparer.HasDifferences())
                 {
                     storeDocument.Version += 1;
                     storeDocument.SerializedDocument = document.ToString();

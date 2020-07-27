@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using SystematicsPortal.Data;
-using SystematicsPortal.Models.Interfaces;
-using SystematicsPortal.Search.Tools.Models.Interfaces;
 using SystematicsPortal.Web.Api.Filters;
 using SystematicsPortal.Web.Api.Helpers;
 using SystematicsPortal.Web.Api.Infrastructure;
@@ -40,14 +36,13 @@ namespace SystematicsPortal.Web.Api
             services.RegisterDependencies(appSettings, connectionString);
 
             services.AddControllers(opts =>
-            {
-                opts.OutputFormatters.Add(new XmlSerializerOutputFormatter());
-                opts.Filters.Add<SerilogLoggingActionFilter>();
-            }).AddNewtonsoftJson(options =>
-            {
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-
-            }
+                                    {
+                                        opts.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+                                        opts.Filters.Add<SerilogLoggingActionFilter>();
+                                    }).AddNewtonsoftJson(options =>
+                                    {
+                                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                                    }
                                     );
         }
 
