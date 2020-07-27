@@ -7,16 +7,16 @@
 }
 
 .search-form {
-    padding: 30px;
-    font-size: 1.3em;
+    padding: 1.875em;
+    font-size: 1em;
 }
 
 .search-icon {
     border: 1px solid black;
-    height: 62px;
-    width: 62px;
+    height: 1.95em;
+    width: 1.95em;
     padding-top: 0px;
-    padding-left: 8px;
+    padding-left: 0.25em;
     margin-bottom: 0px;
     top: 0px;
     background-color: black;
@@ -41,23 +41,23 @@
 }
 
 .home-nav-search {
-    height: 450px;
-    background-image:url(images/home-banner.jpg)
+    height: 28.125em;
+    background-image: url(images/home-banner.jpg)
 }
 
 .home-nav-search .search-row {
-    margin-top: 250px;
+    margin-top: 15.625em;
 }
 
 .other-nav-search {
-    max-height: 220px;
+    max-height: 14.5em;
     height: auto;
     background-color: #6E9E40;
 }
 
-.other-nav-search .search-row {
-    margin-top: 10px;
-}
+    .other-nav-search .search-row {
+        margin-top: 1.25em;
+    }
 
 .nav-item a {
     color: white;
@@ -76,25 +76,25 @@
 }
 
 #main-nav-buttons {
-    margin-top: 30px;
+    margin-top: 3.75em;
 }
 
-#main-nav-buttons .btn, #detail-nav-buttons .btn {
-    border-radius: 0;
-    font-weight: 700;
-    width: 100px;
-}
+    #main-nav-buttons .btn, #detail-nav-buttons .btn {
+        border-radius: 0;
+        font-weight: 700;
+        width: 7em;
+    }
 
-#main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
-    margin-left: 15px;
-}
+        #main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
+            margin-left: 1em;
+        }
 
 .green-background {
     background-color: #6E9E40;
 }
 
 .content-wrapper {
-    margin-top: 50px;
+    margin-top: 6.25em;
 }
 
 .nav-item a {
@@ -129,7 +129,16 @@ footer {
 
 footer ul li, .sidebar ul li {
     list-style-type: none;
-    line-height: 1.5em;
+    line-height: 2.5em;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    text-decoration:underline;
+    color: white;
 }
 
 a {
@@ -142,7 +151,7 @@ a {
 
 .specimen-list-item {
     border-bottom: 1px solid #F3F3F3;
-    margin-bottom: 15px;
+    margin-bottom: 1.875em;
 }
 
 .search-result-item-summary .heading {
@@ -172,10 +181,10 @@ a {
 }
 
 .heading-divider {
-    width: 100px;
-    height: 50px;
+    width: 12.5em;
+    height: 6.25em;
     border-bottom: 3px solid;
-    margin-bottom: 10px;
+    margin-bottom: 1.25em;
 }
 
 .sidebar ul li {
@@ -197,8 +206,8 @@ a {
 
 .detail-page h4 {
     border-top: 1px solid #DCDCDC;
-    padding-top: 30px;
-    margin-top: 30px;
+    padding-top: 3.75em;
+    margin-top: 3.75em;
 }
 
 .breadcrumb {
@@ -210,4 +219,40 @@ a {
 .breadcrumb .breadcrumb-item {
     font-size: 1.1rem;
     font-weight: 600;
+}
+
+#search-results li .btn {
+    font-size: larger;
+    border-radius: 0;
+    color: black;
+    background-color: white;
+    border-color: white;
+    margin-right: 1.875em;
+    font-weight: 600;
+}
+
+#search-results .active .btn, #search-results li .btn:hover {
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+:-moz-placeholder {
+    font-style: italic;
+}
+
+::-moz-placeholder {
+    font-style: italic;
+}
+
+:-ms-input-placeholder {
+    font-style: italic;
+}
+
+#detail-nav-buttons img:hover {
+    opacity: 0.5;
 }

@@ -3,5 +3,24 @@
     ViewData["Title"] = "Getting started";
 }
 
-    <h1>@ViewData["Title"]</h1>
+@await Html.PartialAsync("~/Views/Shared/_NavAndSearch.cshtml")
+
+    <div class="row">
+        @await Html.PartialAsync("~/Views/Shared/_SideBar.cshtml")
+        <div class="col-md-7 mw-100 pt-5 pl-5 pb-5">
+            <h1 class="pb-4">@ViewData["Title"]</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere tincidunt vestibulum. Nullam ullamcorper laoreet ex. Aliquam nec erat in dui mollis egestas sit amet sed risus. Proin venenatis nisi ut felis vehicula commodo. Vestibulum malesuada imperdiet justo, ut commodo ipsum condimentum vitae. In sollicitudin feugiat orci a lacinia. Curabitur eu leo tortor. Curabitur vulputate molestie leo, finibus fermentum est volutpat sed. Aliquam iaculis iaculis pharetra. Nam pretium a nisi et ultricies. Etiam vehicula sed libero in condimentum. Sed ut elit quis ex finibus eleifend eget ut ex.
+
+                Aliquam ultricies ligula eget risus pharetra eleifend. Nullam luctus neque ac nibh rhoncus egestas. Ut pulvinar id quam ac euismod. Etiam semper pellentesque auctor. Etiam accumsan bibendum nunc, in ornare arcu porta quis. Ut hendrerit feugiat ante ullamcorper accumsan. Praesent a mollis lacus, sit amet molestie est. Fusce eget gravida lectus. Praesent et ultricies nunc. Aliquam erat volutpat.
+
+                Aliquam erat volutpat. Maecenas mi urna, auctor ac pellentesque sit amet, elementum ac nulla. Quisque eu dolor ultricies, placerat dolor nec, maximus tellus. Praesent nec pulvinar nibh, eu bibendum ex. Mauris euismod rhoncus nisl, non vestibulum sem ultricies at. Nam faucibus ex id nunc cursus eleifend. Proin vulputate metus lorem, eu eleifend ante mattis non. Nullam eu elit lorem.
+
+                Quisque consectetur nulla in tempor pharetra. Quisque et accumsan turpis, ultricies rutrum magna. Ut a pharetra diam, at aliquet libero. Proin sodales velit tortor, et congue sem porttitor quis. Nam congue urna purus, et pretium sem lobortis sed. Fusce mattis ante sodales, sodales lectus a, ultricies ipsum. Donec at massa in orci eleifend condimentum in eget dolor. Phasellus quam nibh, finibus id odio a, viverra pellentesque nulla. Morbi metus nunc, dapibus id erat ac, mattis aliquam mauris. Mauris aliquam metus ut nisi luctus pharetra.
+
+                Maecenas tempus tortor maximus magna convallis, vitae egestas justo blandit. Sed lacinia volutpat ipsum non accumsan. Suspendisse tristique maximus turpis sit amet pellentesque. Curabitur eu interdum mi. Duis consequat mauris et ex placerat consectetur. Nullam malesuada urna non congue maximus. Etiam maximus, est sed fringilla varius, leo ipsum fringilla felis, eget porta risus sem id felis. Suspendisse potenti. Ut lacinia ligula vel leo rutrum congue. Nullam efficitur varius congue. Nullam et lacus lacinia, egestas tortor et, iaculis mi.
+            </p>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
 

@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using MassTransit;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using SystematicsPortal.Data.Harvester.Classes;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Models.Interfaces;
 
@@ -12,21 +10,25 @@ namespace SystematicsPortal.Data.Harvester.Services
     public class HarvesterService
     {
         public readonly AnnotationsClient _client;
-        private readonly ILogger<HarvesterService> _logger;
         private readonly IDocumentsRepository _repository;
+        private readonly IBusControl _busControl;
         private readonly IDictionary<string, IHarvesterActionStrategy> _strategies;
-        
+        private readonly ILogger<HarvesterService> _logger;
 
-        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, IDictionary<string, IHarvesterActionStrategy> strategies, ILogger<HarvesterService> logger)
+        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, IDictionary<string, IHarvesterActionStrategy> strategies, ILogger<HarvesterService> logger)
         {
             _repository = repository;
             _client = client;
+            _busControl = busControl;
+
             _logger = logger;
             _strategies = strategies;
         }
 
         public async Task StartAsync()
         {
+            await _busControl.StartAsync();
+
             // TODO: Listen for a message
 
             var resourceId = "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7";
@@ -64,7 +66,7 @@ namespace SystematicsPortal.Data.Harvester.Services
 
         public void Stop()
         {
-            // write code here that runs when the Windows Service stops.
+            _busControl?.Stop();
         }
     }
 }
