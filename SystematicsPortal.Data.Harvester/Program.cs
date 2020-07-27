@@ -113,7 +113,7 @@ namespace SystematicsPortal.Web.Api.Demo
             {
                 configure.Service<HarvesterService>(service =>
                 {
-                    service.ConstructUsing(s => new HarvesterService(repository, client, busControl, logger));
+                    service.ConstructUsing(s => new HarvesterService(repository, client, busControl, null, logger));
                     service.WhenStarted(async s => await s.StartAsync());
                     service.WhenStopped(s => s.Stop());
                 });

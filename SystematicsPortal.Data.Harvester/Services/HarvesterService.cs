@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MassTransit;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -13,10 +15,10 @@ namespace SystematicsPortal.Data.Harvester.Services
         public readonly AnnotationsClient _client;
         private readonly IDocumentsRepository _repository;
         private readonly IBusControl _busControl;
-        private readonly ILogger<HarvesterService> _logger;
         private readonly IDictionary<string, IHarvesterActionReceiver> _strategies;
+        private readonly ILogger<HarvesterService> _logger;
 
-        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, IDictionary<string, IHarvesterActionReceiver> strategies, ILogger<HarvesterService> logger)
+        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, IDictionary<string, IHarvesterActionReceiver> strategies, ILogger<HarvesterService> logger)
         {
             _repository = repository;
             _client = client;
@@ -37,8 +39,7 @@ namespace SystematicsPortal.Data.Harvester.Services
             // var itemId = "8F766C02-BD56-4B9A-BB35-27ED8F2E1826";
             var itemId = "";
 
-            var strategies = new Dictionary<string, IHarvesterActionReceiver>
-                         (StringComparer.OrdinalIgnoreCase);
+            var strategies = new Dictionary<string, IHarvesterActionReceiver>(StringComparer.OrdinalIgnoreCase);
 
             IEnumerable<XElement> documentsToSave = new List<XElement>();
 
