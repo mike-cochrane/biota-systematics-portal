@@ -7,6 +7,7 @@ namespace SystematicsPortal.Data.Harvester.Helpers
         public string SourcePath { get; set; }
 
         public ContentServiceSettings ContentService { get; set; }
+
         public Dictionary<string,string> Strategies { get; set; }
 
         public RabbitMqSettings RabbitMq { get; set; }
@@ -15,6 +16,7 @@ namespace SystematicsPortal.Data.Harvester.Helpers
     public class ContentServiceSettings
     {
         public string Url { get; set; }
+
         public string Name { get; set; }
     }
 
