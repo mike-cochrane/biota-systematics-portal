@@ -234,9 +234,10 @@ namespace SystematicsPortal.Web.Controllers
             fields.Fields = list;*/
             //return View(fields); 
 
-            Document document = await _searchService.GetDocument(id);
+            /*Document document = await _searchService.GetDocument(id);
 
-            return View(document);
+            return View(document);*/
+            return View();
         }
 
 
