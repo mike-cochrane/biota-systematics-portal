@@ -1,6 +1,5 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Models.Interfaces;

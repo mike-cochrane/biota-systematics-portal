@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using SystematicsPortal.Models.Entities.Annotations;
-using Newtonsoft.Json;
-using Microsoft.Extensions.Options;
-using SystematicsPortal.Web.Infrastructure;
+﻿using System.Threading.Tasks;
 using SystematicsPortal.Models.Entities.Access;
 
 namespace SystematicsPortal.Web.Services

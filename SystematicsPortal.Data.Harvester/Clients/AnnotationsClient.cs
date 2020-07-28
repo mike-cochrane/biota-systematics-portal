@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using SystematicsPortal.Data.Harvester.Helpers;
 using SystematicsPortal.Models.Entities.Annotations;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Extensions;

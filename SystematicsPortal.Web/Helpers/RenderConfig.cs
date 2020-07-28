@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SystematicsPortal.Web.Helpers
+﻿namespace SystematicsPortal.Web.Helpers
 {
     public class RenderConfig
     {

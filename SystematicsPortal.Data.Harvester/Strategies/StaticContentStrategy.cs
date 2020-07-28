@@ -1,14 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsPortal.Data.Harvester.Clients;
-using SystematicsPortal.Models.Configuration;
 using SystematicsPortal.Models.Interfaces;
-using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Data.Harvester.Classes
 {
