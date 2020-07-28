@@ -11,11 +11,6 @@ namespace SystematicsPortal.Data.Harvester.Consumers
     {
         private readonly IDictionary<string, IHarvesterActionStrategy> _strategies;
 
-        public ItemUpdatedConsumer()
-        {
-
-        }
-
         public ItemUpdatedConsumer(IDictionary<string, IHarvesterActionStrategy> strategies)
         {
             _strategies = strategies;
