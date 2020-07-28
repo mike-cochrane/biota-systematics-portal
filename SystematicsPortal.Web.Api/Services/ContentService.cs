@@ -17,9 +17,9 @@ namespace SystematicsPortal.Web.Api.Services
             _logger = logger;
         }
         
-        public async Task<ContentConfigurations> GetContentAsync()
+        public async Task<ContentConfigurations> GetContentAsync(string page)
         {
-            return await _contentRepository.GetContentConfigurationsAsync();
+            return await _contentRepository.GetContentConfigurationsAsync(page);
         }
     }
 }

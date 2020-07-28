@@ -23,9 +23,9 @@ namespace SystematicsPortal.Web.Services
             _apiClient = apiClient;
         }
 
-        public async Task<ContentConfigurations> GetContent()
+        public async Task<ContentConfigurations> GetContent(string page)
         {
-            return await _apiClient.GeContent();
+            return await _apiClient.GeContent(page);
         }
     }
 }

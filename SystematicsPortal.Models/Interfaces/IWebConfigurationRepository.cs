@@ -9,6 +9,6 @@ namespace SystematicsPortal.Models.Interfaces
 {
     public interface IWebConfigurationRepository
     {
-        Task<ContentConfigurations> GetContentConfigurationsAsync();
+        Task<ContentConfigurations> GetContentConfigurationsAsync(string page);
     }
 }

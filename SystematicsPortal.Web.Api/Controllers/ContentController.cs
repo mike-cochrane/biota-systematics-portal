@@ -19,11 +19,11 @@ namespace SystematicsPortal.Web.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(string page)
         {
             _logger.LogDebug("ContentController - GetContent");
 
-            var response = await _contentservice.GetContentAsync();
+            var response = await _contentservice.GetContentAsync(page);
 
             return Ok(response);
         }

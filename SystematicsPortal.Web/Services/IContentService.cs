@@ -7,6 +7,6 @@ namespace SystematicsPortal.Web.Services
 {
     public interface IContentService
     {
-        Task<ContentConfigurations> GetContent();
+        Task<ContentConfigurations> GetContent(string page);
     }
 }

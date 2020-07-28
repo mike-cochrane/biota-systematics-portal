@@ -6,6 +6,6 @@ namespace SystematicsPortal.Web.Api.Services
 {
     public interface IContentService
     {
-        Task<ContentConfigurations> GetContentAsync();
+        Task<ContentConfigurations> GetContentAsync(string page);
     }
 }

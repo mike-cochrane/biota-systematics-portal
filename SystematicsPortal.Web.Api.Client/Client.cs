@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using SystematicsPortal.Models.Entities.Access;
 using SystematicsPortal.Search.Tools.Models.Search;
 using SystematicsPortal.Utility.Extensions;
+using SystematicsPortal.Utility.Helpers;
 
 namespace SystematicsPortal.Web.Api.Client
 {
@@ -80,10 +81,11 @@ namespace SystematicsPortal.Web.Api.Client
             return document;
         }
 
-        public async Task<ContentConfigurations> GeContent()
+        public async Task<ContentConfigurations> GeContent(string page)
         {
             ContentConfigurations contentConfigurations;
-            string urlToQuery = $"{_url}content/";
+            
+            string urlToQuery = $"{_url}content?page={page}";
 
             // TODO: Use new .net core http client factory 
             var client = new HttpClient()
@@ -95,7 +97,9 @@ namespace SystematicsPortal.Web.Api.Client
 
             if (response.IsSuccessStatusCode)
             {
-                contentConfigurations = await response.Content.ReadAsAsync<ContentConfigurations>();
+                var contentConfigurationsString = await response.Content.ReadAsStringAsync();
+
+                contentConfigurations = SerializationHelper.Deserialize<ContentConfigurations>(contentConfigurationsString);
             }
             else
             {
