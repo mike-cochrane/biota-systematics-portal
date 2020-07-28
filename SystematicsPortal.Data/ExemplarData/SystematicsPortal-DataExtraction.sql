@@ -1,4 +1,4 @@
-USE Names_Plants
+USE Names_Fungi
 GO
 
 IF EXISTS(SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#Name'))
@@ -25,6 +25,9 @@ GO
 
 IF EXISTS(SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#TestList'))
 	DROP TABLE #TestList
+GO
+IF EXISTS(SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#LinkedName'))
+	DROP TABLE #LinkedName
 GO
 
 CREATE TABLE #AllowedNoteTypes (TypeId int, NamesInstance nvarchar(50) )
@@ -89,7 +92,7 @@ VALUES ('b1f2ef2e-4de4-428d-a10f-0018878be220',  'name')  --names_plants
 	, ('098EE6E6-2ABB-4F5D-87F3-62092577483C', 'name') -- names_nzac -- Paropsis charybdis Stal
 	, ('6822108A-7CA4-44BF-9B7B-4B0E0F6776C9', 'name') -- names_nzac --	Bombus terrestris
 
-	--SELECT * FROM #TestList
+--SELECT * FROM #TestList
 -- get related names
 
 -- siblings - only current names
@@ -296,7 +299,8 @@ CREATE TABLE #Name (
 	, IsRejected bit DEFAULT(0)
 	, IsConserved bit DEFAULT(0)
 	, IsNonCodeName bit DEFAULT(0)
-
+	, NomenclaturalStatusSummary nvarchar(1000)
+	, NomenclaturalStatusTechnicalSummary nvarchar(1000)
 
 	, ClassificationFK int
 	, [Classification] nvarchar(255)
@@ -344,7 +348,7 @@ CREATE TABLE #Name (
 	, NamePart nvarchar(100)
 	, AddedDate datetime
 	, UpdatedDate datetime
-	, Source nvarchar(50)
+	, [Source] nvarchar(50)
 	, Kingdom nvarchar(500)
 	, KingdomId uniqueidentifier
 	, Phylum nvarchar(500)
@@ -384,9 +388,24 @@ CREATE TABLE #Name (
 	, KeyXML xml
 	, KeySOLRXML xml
 	)
-CREATE INDEX idxNameId		ON #Name(NameGUID)
-CREATE INDEX idxCurrentId	ON #Name(CurrentFK)
-CREATE INDEX idxParentId	ON #Name(ParentFK)
+CREATE INDEX idxNameId		ON #Name(NameGUID);
+CREATE INDEX idxCurrentId	ON #Name(CurrentFK);
+CREATE INDEX idxParentId	ON #Name(ParentFK);
+GO
+CREATE TABLE #LinkedName(
+	NameId UNIQUEIDENTIFIER
+	, NameFull nvarchar(250)                    -- unformatted, directly from DB
+	, NameFormatted nvarchar(300)				-- formatted without citation etc
+	, NameFormattedXML XML						-- formatted cast to xml
+	, NameScientific nvarchar(450)				-- scientific
+	, NameScientificXML xml
+	, NamePartFormatted nvarchar(300)
+	, NameFormattedEscaped nvarchar(300)
+	, NamePartFormattedEscaped nvarchar(300)
+	, IsSuppress bit DEFAULT(0)
+	)
+CREATE INDEX idxNameId ON #LinkedName(NameId);
+
 GO
 CREATE TABLE #Reference (
 	ReferenceId uniqueidentifier
@@ -639,12 +658,205 @@ FROM #Name N
 			AND ISNULL(NA.NameSuppress, 0) = 0
 
 GO
+-- get all the names associated with a name record
+-- needs to include suppressed names too
+
+INSERT INTO #LinkedName(Nameid)
+SELECT DISTINCT NameGuid	FROM #Name 
+	UNION ALL
+SELECT DISTINCT ParentFK	FROM #Name WHERE ParentFk IS NOT NULL
+	UNION ALL
+SELECT DISTINCT BasionymFK	FROM #Name where BasionymFK IS NOT NULL
+	UNION ALL
+SELECT DISTINCT BasedOnFk	FROM #Name where BasedOnFk IS NOT NULL
+	UNION ALL
+SELECT DISTINCT BlockingFk	FROM #Name where BlockingFk IS NOT NULL
+	UNION ALL
+SELECT DISTINCT CurrentFK	FROM #Name where CurrentFK IS NOT NULL
+	UNION ALL
+SELECT DISTINCT TypeTaxonFK FROM #Name where TypeTaxonFK IS NOT NULL
+	UNION ALL
+SELECT DISTINCT KingdomId	FROM #Name where KingdomId IS NOT NULL
+	UNION ALL
+SELECT DISTINCT PhylumId	FROM #Name where PhylumId IS NOT NULL
+	UNION ALL
+SELECT DISTINCT ClassId		FROM #Name where ClassId IS NOT NULL
+	UNION ALL
+SELECT DISTINCT OrderId		FROM #Name where OrderId IS NOT NULL
+	UNION ALL
+SELECT DISTINCT FamilyId	FROM #Name where FamilyId IS NOT NULL
+
+INSERT INTO #LinkedName(NameId)
+SELECT BT.BibliographyNameFk
+FROM #Name N
+	INNER JOIN tblBibliography B ON N.NameGuid = B.BibliographyNameFk
+			AND ISNULL(B.BibliographyIsDeleted, 0) = 0
+		INNER JOIN tblBibliographyRelationship BR ON B.BibliographyGuid = BR.BibliographyRelationshipBibliographyFromFk
+			INNER JOIN tblBibliography BT ON BR.BibliographyRelationshipBibliographyToFk = BT.BibliographyGuid
+				AND ISNULL(BT.BibliographyIsDeleted, 0) = 0
+WHERE BT.BibliographyNameFk NOT IN (SELECT Nameid FROM #LinkedName)
+
+
+INSERT INTO #LinkedName(NameId)
+SELECT BT.BibliographyNameFk
+FROM #Name N
+	INNER JOIN tblBibliography B ON N.NameGuid = B.BibliographyNameFk
+			AND ISNULL(B.BibliographyIsDeleted, 0) = 0
+		INNER JOIN tblBibliographyRelationship BR ON B.BibliographyGuid = BR.BibliographyRelationshipBibliographyToFk
+			INNER JOIN tblBibliography BT ON BR.BibliographyRelationshipBibliographyFromFk = BT.BibliographyGuid
+				AND ISNULL(BT.BibliographyIsDeleted, 0) = 0
+WHERE BT.BibliographyNameFk NOT IN (SELECT Nameid FROM #LinkedName)
+
+; WITH Hybrids AS
+(SELECT 
+	HybridPK as HybridId
+	, HybridNameFk AS NameId
+	, HybridNodeNameFk as ParentNameId
+	, HybridNodeNextHybridNodeFk as NextNodeId
+	
+FROM tblHybrid H
+	LEFT JOIN tblHybridNode HN ON H.HybridFirstHybridNodeFk = HN.HybridNodePk
+		AND HN.delme IS NULL
+	INNER JOIN tblName N ON HN.HybridNodeNameFk = N.NameGuid
+		AND ISNULL(N.NameSuppress, 0)  = 0
+WHERE H.delme is NULL
+	AND H.HybridNameFk IN (SELECT Nameguid FROM #Name)
+
+UNION ALL
+
+SELECT H.HybridId
+	, H.NameId
+
+	, HN.HybridNodeNameFk
+	, HN.HybridNodeNextHybridNodeFk
+FROM Hybrids H
+	INNER JOIN tblHybridNode HN ON H.NextNodeId = HN.HybridNodePk
+	INNER JOIN tblName N ON HN.HybridNodeNameFk = N.NameGuid
+		AND ISNULL(N.NameSuppress, 0)  = 0
+
+)
+INSERT INTO #LinkedName(NameId)
+SELECT DISTINCT ParentNameId
+FROM Hybrids
+WHERE ParentNameId NOT IN (SELECT NameId FROM #LinkedName)
+
+UPDATE LN
+	SET LN.NameFull = N.NameFull
+		, IsSuppress = ISNULL(N.NameSuppress, 0)
+FROM #LinkedName LN
+	INNER JOIN tblName N ON LN.NameId = N.NameGuid
+
+
+--- add collection object  names linked via secondary component.
+
+INSERT INTO #LinkedName(NameId)
+SELECT DISTINCT PWN.SourceNameId
+FROM CIS_CHR.spec.Specimen S
+	INNER JOIN CIS_CHR.spec.SpecimenComponent SC ON S.SpecimenId = Sc.SpecimenId
+		INNER JOIN CIS_CHR.spec.Identification I ON SC.SpecimenComponentId = I.SpecimenComponentId
+				AND I.IsActive = 1	
+			INNER JOIN CIS_CHR.spec.IdentificationName IdN ON I.IdentificationId = IdN.IdentificationId
+				INNER JOIN cis_chr.wName.WorkingName WN ON Idn.WorkingNameId = WN.WorkingNameId
+					AND WN.SourcePreferredNameId in (SELECT NameGUID from #Name)
+		INNER JOIN CIS_CHR.spec.SpecimenComponent SC2 ON SC.ParentSpecimenComponentId = SC2.SpecimenComponentId
+			INNER JOIN CIS_CHR.spec.Identification PaI ON SC2.SpecimenComponentId = PaI.SpecimenComponentId
+					AND PaI.IsActive = 1
+				INNER JOIN CIS_CHR.spec.IdentificationName PIdN ON PaI.IdentificationId = PIdN.IdentificationId
+					INNER JOIN cis_chr.wName.WorkingName PWN ON PIdn.WorkingNameId = PWN.WorkingNameId
+WHERE PWN.SourceNameId NOT IN (SELECT NameId FROM #LinkedName)
+UNION ALL
+
+SELECT DISTINCT PWN.SourceNameId
+FROM CIS_ICMP.spec.Specimen S
+	INNER JOIN CIS_ICMP.spec.SpecimenComponent SC ON S.SpecimenId = Sc.SpecimenId
+		INNER JOIN CIS_ICMP.spec.Identification I ON SC.SpecimenComponentId = I.SpecimenComponentId
+				AND I.IsActive = 1	
+			INNER JOIN CIS_ICMP.spec.IdentificationName IdN ON I.IdentificationId = IdN.IdentificationId
+				INNER JOIN CIS_ICMP.wName.WorkingName WN ON Idn.WorkingNameId = WN.WorkingNameId
+					AND WN.SourcePreferredNameId in (SELECT NameGUID from #Name)
+		INNER JOIN CIS_ICMP.spec.SpecimenComponent SC2 ON SC.ParentSpecimenComponentId = SC2.SpecimenComponentId
+			INNER JOIN CIS_ICMP.spec.Identification PaI ON SC2.SpecimenComponentId = PaI.SpecimenComponentId
+					AND PaI.IsActive = 1
+				INNER JOIN CIS_ICMP.spec.IdentificationName PIdN ON PaI.IdentificationId = PIdN.IdentificationId
+					INNER JOIN CIS_ICMP.wName.WorkingName PWN ON PIdn.WorkingNameId = PWN.WorkingNameId
+WHERE PWN.SourceNameId NOT IN (SELECT NameId FROM #LinkedName)
+
+UNION ALL
+
+SELECT DISTINCT PWN.SourceNameId
+FROM CIS_PDD.spec.Specimen S
+	INNER JOIN CIS_PDD.spec.SpecimenComponent SC ON S.SpecimenId = Sc.SpecimenId
+		INNER JOIN CIS_PDD.spec.Identification I ON SC.SpecimenComponentId = I.SpecimenComponentId
+				AND I.IsActive = 1	
+			INNER JOIN CIS_PDD.spec.IdentificationName IdN ON I.IdentificationId = IdN.IdentificationId
+				INNER JOIN CIS_PDD.wName.WorkingName WN ON Idn.WorkingNameId = WN.WorkingNameId
+					AND WN.SourcePreferredNameId in (SELECT NameGUID from #Name)
+		INNER JOIN CIS_PDD.spec.SpecimenComponent SC2 ON SC.ParentSpecimenComponentId = SC2.SpecimenComponentId
+			INNER JOIN CIS_PDD.spec.Identification PaI ON SC2.SpecimenComponentId = PaI.SpecimenComponentId
+					AND PaI.IsActive = 1
+				INNER JOIN CIS_PDD.spec.IdentificationName PIdN ON PaI.IdentificationId = PIdN.IdentificationId
+					INNER JOIN CIS_PDD.wName.WorkingName PWN ON PIdn.WorkingNameId = PWN.WorkingNameId
+WHERE PWN.SourceNameId NOT IN (SELECT NameId FROM #LinkedName)
+
+UNION ALL
+
+SELECT DISTINCT PWN.SourceNameId
+FROM CIS_NZAC.spec.Specimen S
+	INNER JOIN CIS_NZAC.spec.SpecimenComponent SC ON S.SpecimenId = Sc.SpecimenId
+		INNER JOIN CIS_NZAC.spec.Identification I ON SC.SpecimenComponentId = I.SpecimenComponentId
+				AND I.IsActive = 1	
+			INNER JOIN CIS_NZAC.spec.IdentificationName IdN ON I.IdentificationId = IdN.IdentificationId
+				INNER JOIN CIS_NZAC.wName.WorkingName WN ON Idn.WorkingNameId = WN.WorkingNameId
+					AND WN.SourcePreferredNameId in (SELECT NameGUID from #Name)
+		INNER JOIN CIS_NZAC.spec.SpecimenComponent SC2 ON SC.ParentSpecimenComponentId = SC2.SpecimenComponentId
+			INNER JOIN CIS_NZAC.spec.Identification PaI ON SC2.SpecimenComponentId = PaI.SpecimenComponentId
+					AND PaI.IsActive = 1
+				INNER JOIN CIS_NZAC.spec.IdentificationName PIdN ON PaI.IdentificationId = PIdN.IdentificationId
+					INNER JOIN CIS_NZAC.wName.WorkingName PWN ON PIdn.WorkingNameId = PWN.WorkingNameId
+WHERE PWN.SourceNameId NOT IN (SELECT NameId FROM #LinkedName)
+
+	-- get the formatted name variants for unsuppressed records
+DECLARE @DB nvarchar(50)
+SELECT @DB = DB_Name()
+
+IF @DB = 'Names_Plants'
+BEGIN
+	UPDATE #LinkedName  SET 
+					  NameFormatted =     dbo.GetFullName(NameId, 1, 0, 1, 0, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+					, NamePartFormatted = dbo.GetFullName(NameId, 1, 0, 0, 0, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+					, NameScientific =	  dbo.GetFullName(NameId, 1, 1, 1, 1, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+	WHERE IsSuppress = 0
+END
+ELSE IF @DB = 'Names_Fungi'
+BEGIN
+	UPDATE #LinkedName  SET 
+					  NameFormatted =     dbo.GetFullName(NameId, 1, 1, 1, 0, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+				    , NamePartFormatted = dbo.GetFullName(NameId, 1, 0, 0, 0, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+					, NameScientific =    dbo.GetFullName(NameId, 1, 1, 1, 1, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+	WHERE IsSuppress = 0
+END					
+ELSE IF @DB = 'Names_NZAC'
+BEGIN
+	UPDATE #LinkedName  SET 
+	                  NameFormatted =	  dbo.GetFullName(NameId, 1, 1, 1, 0, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+					, NamePartFormatted = dbo.GetFullName(NameId, 1, 0, 0, 0, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+					, NameScientific =	  dbo.GetFullName(NameId, 1, 1, 1, 1, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
+	WHERE IsSuppress = 0
+END
+
+
+UPDATE #LinkedName SET NameScientific = NameFormatted WHERE NameScientific LIKE '%Value cannot be null.%'
+
+UPDATE #LinkedName Set NameFormattedEscaped		= REPLACE(REPLACE(NameFormatted, '<i>', '-='), '</i>', '=-')     WHERE IsSuppress = 0
+UPDATE #LinkedName Set NamePartFormattedEscaped	= REPLACE(REPLACE(NamePartFormatted, '<i>', '-='), '</i>', '=-') WHERE IsSuppress = 0
+UPDATE #LinkedName SET NameFormattedXML			= TRY_CAST(REPLACE(NameFormatted, '&', '&amp;') AS xml)			 WHERE IsSuppress = 0
+UPDATE #LinkedName SET NameScientificXML		= TRY_CAST(REPLACE(NameScientific, '&', '&amp;') AS xml)		 WHERE IsSuppress = 0
+
+
+GO
+
 DECLARE @db nvarchar(250)
 SET @db = DB_NAME()
-
-	--, IsInEd bit DEFAULT(0)
-	
-
 
 UPDATE N
 	SET IsInEd = 1
@@ -713,6 +925,34 @@ FROM #Name N
 				AND ANST.NamesInstance = @db
 				AND ANST.IsNonCodeName = 1
 GO
+
+
+UPDATE #Name
+	SET NomenclaturalStatusSummary = CASE IsConserved			WHEN 1 THEN 'Conserved name'											ELSE '' END
+									+ CASE IsRecombination		WHEN 1 THEN ', Rejected name'											ELSE '' END
+									+ CASE IsSuperfluous		WHEN 1 THEN ', Superfluous name'											ELSE '' END
+									+ CASE IsNomNudum			WHEN 1 THEN ', Naked name (publication failed to meet all requirements)'	ELSE '' END
+									+ CASE Invalid				WHEN 1 THEN ', Invalidly published'										ELSE '' END
+									+ CASE Novum				WHEN 1 THEN ', Replacement name'											ELSE '' END
+									+ CASE Misapplied			WHEN 1 THEN ', Misapplication				'							ELSE '' END
+									+ CASE IsNonCodeName		WHEN 1 THEN ', Non Code Name'											ELSE '' END
+
+	, NomenclaturalStatusTechnicalSummary = CASE IsConserved WHEN 1 THEN 'nom. cons.' ELSE '' END
+									+ CASE IsRecombination		WHEN 1 THEN ', nom. rejic.'												ELSE '' END
+									+ CASE IsSuperfluous		WHEN 1 THEN ', nom. superfl.'											ELSE '' END
+									+ CASE IsNomNudum			WHEN 1 THEN ', nom. nud.'												ELSE '' END
+									+ CASE Invalid				WHEN 1 THEN ', nom. inval.'												ELSE '' END
+									+ CASE Novum				WHEN 1 THEN ', nom. nov.'												ELSE '' END
+									+ CASE Misapplied			WHEN 1 THEN ', Misapplication (Non Code Name)'							ELSE '' END
+									+ CASE IsNonCodeName		WHEN 1 THEN ', Non Code Name'											ELSE '' END
+
+	UPDATE #Name SET NomenclaturalStatusSummary			 = RIGHT(NomenclaturalStatusSummary, LEN(NomenclaturalStatusSummary) - 1)					WHERE NomenclaturalStatusSummary = ',%'
+	UPDATE #Name SET NomenclaturalStatusTechnicalSummary = RIGHT(NomenclaturalStatusTechnicalSummary, LEN(NomenclaturalStatusTechnicalSummary) - 1) WHERE NomenclaturalStatusTechnicalSummary = ',%'
+	UPDATE #Name SET NomenclaturalStatusSummary			 = LTRIM(NomenclaturalStatusSummary)
+				   , NomenclaturalStatusTechnicalSummary = LTRIM(NomenclaturalStatusTechnicalSummary)
+	UPDATE #Name SET NomenclaturalStatusSummary			 = NULL WHERE NomenclaturalStatusSummary = ''
+	UPDATE #Name SET NomenclaturalStatusTechnicalSummary = NULL WHERE NomenclaturalStatusTechnicalSummary = ''
+GO
 -- delete extraneous names here
 
 
@@ -761,6 +1001,7 @@ FROM #Name N
 WHERE Authors IS NOT NULL
 
 GO
+/*
 DECLARE @DB nvarchar(50)
 SELECT @DB = DB_Name()
 
@@ -782,120 +1023,138 @@ BEGIN
 					, NamePartFormatted = dbo.GetFullName(NameGuid, 1, 0, 0, 0, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
 					, NameScientific =	  dbo.GetFullName(NameGuid, 1, 1, 1, 1, 0, '05239F83-EE34-471C-B536-7EA097EDE250', 0)
 END
+*/
+
+UPDATE N
+	SET NameFormatted = LN.NameFormatted
+		, NameFormattedXML = LN.NameFormattedXML
+		, NamePartFormatted = LN.NamePartFormatted
+		, NameScientific = LN.NameScientific
+		, NameScientificXML = LN.NameScientificXML
+		, NameFormattedEscaped = LN.NameFormattedEscaped
+		, NamePartFormattedEscaped = LN.NamePartFormattedEscaped
+FROM #Name N
+	INNER JOIN #LinkedName LN ON N.NameGuid = LN.NameId
+
+
+
 
 GO
+--UPDATE #Name Set NameFormattedEscaped		= REPLACE(REPLACE(NameFormatted, '<i>', '-='), '</i>', '=-')
+--UPDATE #Name Set NamePartFormattedEscaped	= REPLACE(REPLACE(NamePartFormatted, '<i>', '-='), '</i>', '=-')
+--UPDATE #Name SET NameFormattedXML			= TRY_CAST(REPLACE(NameFormatted, '&', '&amp;') AS xml)
+--UPDATE #Name SET NameScientificXML			= TRY_CAST(REPLACE(NameScientific, '&', '&amp;') AS xml)
 
-UPDATE #Name SET NameScientific = NameFormatted WHERE NameScientific LIKE '%Value cannot be null.%'
 
 
-GO
-UPDATE #Name Set NameFormattedEscaped		= REPLACE(REPLACE(NameFormatted, '<i>', '-='), '</i>', '=-')
-UPDATE #Name Set NamePartFormattedEscaped	= REPLACE(REPLACE(NamePartFormatted, '<i>', '-='), '</i>', '=-')
-UPDATE #Name SET NameFormattedXML			= TRY_CAST(REPLACE(NameFormatted, '&', '&amp;') AS xml)
-UPDATE #Name SET NameScientificXML			= TRY_CAST(REPLACE(NameScientific, '&', '&amp;') AS xml)
 
 GO
-
 -- basionym
 UPDATE N
-	SET Basionym = NA.NameFull
-		, BasionymFormatted = NA.NameFormattedXML
+	SET  Basionym			= LN.NameFull
+		, BasionymFormatted = LN.NameFormattedXML
 FROM #Name N
-	INNER JOIN #Name NA ON N.BasionymFK = NA.NameGuid
-WHERE ISNULL(NA.Suppress, 0) = 0
+	INNER JOIN #LinkedName LN ON N.BasionymFK = LN.NameId
+WHERE LN.IsSuppress = 0
 
 UPDATE N
-	SET BasionymFk = NULL
+	SET  BasionymFk = NULL
+		, BasionymFormatted = NULL
 FROM #Name N
-	INNER JOIN tblName NA ON N.BasionymFK = NA.NameGuid
-WHERE ISNULL(NA.NameSuppress, 0) = 1
+	INNER JOIN #LinkedName LN ON N.BasionymFK = LN.NameId
+WHERE LN.IsSuppress = 1
 
 -- current name
 UPDATE N
-	SET CurrentName = NA.NameFull
-		, CurrentNameFormatted = NA.NameFormattedXML
-		, CurrentNameEscaped = NA.NameFormattedEscaped
+	SET CurrentName =				LN.NameFull
+		, CurrentNameFormatted =	LN.NameFormattedXML
+		, CurrentNameEscaped =		LN.NameFormattedEscaped
 FROM #Name N
-	INNER JOIN #Name NA ON N.CurrentFK = NA.NameGuid
-WHERE ISNULL(NA.Suppress, 0) = 0
+	INNER JOIN #LinkedName LN ON N.CurrentFK = LN.NameId
+WHERE LN.IsSuppress = 0
 
 UPDATE N
 	SET CurrentFK = NULL
+		, CurrentNameFormatted = NULL
+		, CurrentNameEscaped = NULL
 FROM #Name N
-	INNER JOIN tblName NA ON N.CurrentFK = NA.NameGuid
-WHERE ISNULL(NA.NameSuppress, 0) = 1
+	INNER JOIN #LinkedName LN ON N.CurrentFK = LN.NameId
+WHERE LN.IsSuppress = 1
 
 -- based on
 UPDATE N
-	SET BasedOn = NA.NameFull
-		, BasedOnFormatted = NA.NameFormattedXML
+	SET BasedOn				= LN.NameFull
+		, BasedOnFormatted	= LN.NameFormattedXML
 FROM #Name N
-	INNER JOIN #Name NA ON N.BasedOnFk = NA.NameGuid
-WHERE ISNULL(NA.Suppress, 0) = 0
+	INNER JOIN #LinkedName LN ON N.BasedOnFk = LN.NameId
+WHERE LN.IsSuppress  = 0
 
 UPDATE N
 	SET BasedOnFk = NULL
+		, BasedOnFormatted = NULL
 FROM #Name N
-	INNER JOIN tblName NA ON N.BasedOnFk = NA.NameGuid
-WHERE ISNULL(NA.NameSuppress, 0) = 1
+	INNER JOIN #LinkedName LN ON N.BasedOnFk = LN.NameId
+WHERE LN.IsSuppress = 1
 
 -- parent
 UPDATE N
-	SET Parent = NA.NameFull
-		, ParentFormatted = NA.NameFormattedXML
-		, ParentPartialFormatted = NA.NamePartFormatted
+	SET Parent						= LN.NameFull
+		, ParentFormatted			= LN.NameFormattedXML
+		, ParentPartialFormatted	= LN.NamePartFormatted
 FROM #Name N
-	INNER JOIN #Name NA ON N.ParentFK = NA.NameGuid
-WHERE ISNULL(NA.Suppress, 0) = 0
+	INNER JOIN #LinkedName LN ON N.ParentFK = LN.NameId
+WHERE LN.IsSuppress = 0
 
 UPDATE N
 	SET ParentFK = NULL
 		, ParentFormatted = NULL
 		, ParentPartialFormatted = NULL
 FROM #Name N
-	INNER JOIN tblName NA ON N.ParentFK = NA.NameGuid
-WHERE ISNULL(NA.NameSuppress, 0) = 1
+	INNER JOIN #LinkedName LN ON N.ParentFK = LN.NameId
+WHERE LN.IsSuppress = 1
 
 -- blocking
 UPDATE N
-	SET Blocking = NA.NameFull
-		, BlockingFormatted = NA.NameFormattedXML
+	SET Blocking			= LN.NameFull
+		, BlockingFormatted = LN.NameFormattedXML
 FROM #Name N
-	INNER JOIN #Name NA ON N.BlockingFk = NA.NameGuid
-WHERE ISNULL(NA.Suppress, 0) = 0
+	INNER JOIN #LinkedName LN ON N.BlockingFk = LN.NameId
+WHERE LN.IsSuppress = 0
 
 UPDATE N
 	SET BlockingFk = NULL
+		, BlockingFormatted = NULL
 FROM #Name N
-	INNER JOIN tblName NA ON N.BlockingFk = NA.NameGuid
-WHERE ISNULL(NA.NameSuppress, 0) = 1
+	INNER JOIN #LinkedName LN ON N.BlockingFk = LN.NameId
+WHERE LN.IsSuppress = 1
 
 -- AnamorphGenus
 UPDATE N
-	SET AnamorphGenus = NA.NameFull
-		, AnamorphGenusFormatted = NA.NameFormattedXML
+	SET AnamorphGenus				= LN.NameFull
+		, AnamorphGenusFormatted	= LN.NameFormattedXML
 FROM #Name N
-	INNER JOIN #Name NA ON N.AnamorphGenusFk = NA.NameGuid
-WHERE ISNULL(NA.Suppress, 0) = 0
+	INNER JOIN #LinkedName LN ON N.AnamorphGenusFk = LN.NameId
+WHERE LN.IsSuppress = 0
 
 UPDATE N
 	SET AnamorphGenusFk = NULL
 FROM #Name N
-	INNER JOIN tblName NA ON N.AnamorphGenusFk = NA.NameGuid
-WHERE ISNULL(NA.NameSuppress, 0) = 1
+	INNER JOIN #LinkedName LN ON N.AnamorphGenusFk = LN.NameId
+WHERE LN.IsSuppress = 1
+
 -- typetaxon
 UPDATE N
-	SET TypeTaxon = NA.NameFull
-		, TypeTaxonFormatted = NA.NameFormattedXML
+	SET TypeTaxon				= LN.NameFull
+		, TypeTaxonFormatted	= LN.NameFormattedXML
 FROM #Name N
-	INNER JOIN #Name NA ON N.TypeTaxonFK = NA.NameGuid
-WHERE ISNULL(NA.Suppress, 0) = 0
+	INNER JOIN #LinkedName LN ON N.TypeTaxonFK = LN.NameId
+WHERE LN.IsSuppress = 0
 
 UPDATE N
 	SET TypeTaxonFK = NULL
 FROM #Name N
-	INNER JOIN tblName NA ON N.TypeTaxonFK = NA.NameGuid
-WHERE ISNULL(NA.NameSuppress, 0) = 1
+	INNER JOIN #LinkedName LN ON N.TypeTaxonFK = LN.NameId
+WHERE LN.IsSuppress = 1
 
 GO
 --, ReferenceFK uniqueidentifier
@@ -1261,11 +1520,12 @@ UPDATE N
 						, (SELECT  ParentNameId 'HybridParentName/@nameId'
 								, PreText  AS 'HybridParentName/@prefixText'
 								, PostText AS 'HybridParentName/@suffixText'
-								, NameFull as 'HybridParentName/@nameFull'
-								, NameFull AS HybridParentName
+								, H.NameFull as 'HybridParentName/@nameFull'
+								, LN.NameFormattedXML AS HybridParentName
 								--TO DO --  ADD Formatted Name, using NameFull as placeholder
-							FROM Hybrids 
-							WHERE NameId = N.NameGuid
+							FROM Hybrids H
+								INNER JOIN #LinkedName LN ON H.ParentNameId = LN.NameId
+							WHERE H.NameId = N.NameGuid
 							order by HybridId, [sequence] 
 							FOR XML PATH(''), ROOT('HybridParentNames'), type)
 						FOR XML PATH('HybridData'), ROOT('Hybridisation'), TYPE)
@@ -1379,10 +1639,10 @@ GO
 		, CE.StartDate
 		, Ce.VerbatimCollector
 		, (SELECT GR.GeoRegion '@georegion', GRS.GeoRegionSchema '@georegionSchema'
-				FROM cis_chr.spec.CollectionEventRegion CER 
-					INNER JOIN cis_chr.spec.CollectionEventRegionValue CERV ON CER.CollectionEventRegionId = CERV.CollectionEventRegionId
-						INNER JOIN cis_chr.spec.GeoRegion GR ON CERV.GeoRegionId = GR.GeoRegionId
-							INNER JOIN cis_chr.spec.GeoRegionSchema GRS ON GR.GeoRegionSchemaId = GRS.GeoRegionSchemaId
+				FROM CIS_ICMP.spec.CollectionEventRegion CER 
+					INNER JOIN CIS_ICMP.spec.CollectionEventRegionValue CERV ON CER.CollectionEventRegionId = CERV.CollectionEventRegionId
+						INNER JOIN CIS_ICMP.spec.GeoRegion GR ON CERV.GeoRegionId = GR.GeoRegionId
+							INNER JOIN CIS_ICMP.spec.GeoRegionSchema GRS ON GR.GeoRegionSchemaId = GRS.GeoRegionSchemaId
 				WHERE CE.CollectionEventId = CER.CollectionEventId
 				FOR XML PATH('CollectionEventRegion'), TYPE) AS CollectionEventRegions
 		, CASE ISNULL(SC.Substrate, '') WHEN '' THEN NULL ELSE SC.Substrate END AS Substrate
@@ -1391,7 +1651,7 @@ GO
 		, PSCWN.SourceNameId AS AssociatedTaxonId
 		, PSCWN.SourceFullName AS AssociatedTaxon
 		, (SELECT IL.ImageURL as '@imageUrl'
-			FROM CIS_CHR.system.ImageLink IL
+			FROM CIS_ICMP.system.ImageLink IL
 			WHERE IL.SourceId = S.SpecimenId AND IL.SourceTable = 'tblSpecimen'
 			FOR XML PATH('Image'), TYPE) as CollectionObjectImages
 	FROM CIS_ICMP.spec.Specimen S
@@ -1430,10 +1690,10 @@ GO
 		, CE.StartDate
 		, Ce.VerbatimCollector
 		, (SELECT GR.GeoRegion '@georegion', GRS.GeoRegionSchema '@georegionSchema'
-				FROM cis_chr.spec.CollectionEventRegion CER 
-					INNER JOIN cis_chr.spec.CollectionEventRegionValue CERV ON CER.CollectionEventRegionId = CERV.CollectionEventRegionId
-						INNER JOIN cis_chr.spec.GeoRegion GR ON CERV.GeoRegionId = GR.GeoRegionId
-							INNER JOIN cis_chr.spec.GeoRegionSchema GRS ON GR.GeoRegionSchemaId = GRS.GeoRegionSchemaId
+				FROM CIS_NZAC.spec.CollectionEventRegion CER 
+					INNER JOIN CIS_NZAC.spec.CollectionEventRegionValue CERV ON CER.CollectionEventRegionId = CERV.CollectionEventRegionId
+						INNER JOIN CIS_NZAC.spec.GeoRegion GR ON CERV.GeoRegionId = GR.GeoRegionId
+							INNER JOIN CIS_NZAC.spec.GeoRegionSchema GRS ON GR.GeoRegionSchemaId = GRS.GeoRegionSchemaId
 				WHERE CE.CollectionEventId = CER.CollectionEventId
 				FOR XML PATH('CollectionEventRegion'), TYPE) AS CollectionEventRegions
 		, CASE ISNULL(SC.Substrate, '') WHEN '' THEN NULL ELSE SC.Substrate END AS Substrate
@@ -1442,7 +1702,7 @@ GO
 		, PSCWN.SourceNameId AS AssociatedTaxonId
 		, PSCWN.SourceFullName AS AssociatedTaxon
 		, (SELECT IL.ImageURL as '@imageUrl'
-			FROM CIS_CHR.system.ImageLink IL
+			FROM CIS_NZAC.system.ImageLink IL
 			WHERE IL.SourceId = S.SpecimenId AND IL.SourceTable = 'tblSpecimen'
 			FOR XML PATH('Image'), TYPE) as CollectionObjectImages
 	FROM CIS_NZAC.spec.Specimen S
@@ -1481,10 +1741,10 @@ GO
 		, CE.StartDate
 		, Ce.VerbatimCollector
 		, (SELECT GR.GeoRegion '@georegion', GRS.GeoRegionSchema '@georegionSchema'
-				FROM cis_chr.spec.CollectionEventRegion CER 
-					INNER JOIN cis_chr.spec.CollectionEventRegionValue CERV ON CER.CollectionEventRegionId = CERV.CollectionEventRegionId
-						INNER JOIN cis_chr.spec.GeoRegion GR ON CERV.GeoRegionId = GR.GeoRegionId
-							INNER JOIN cis_chr.spec.GeoRegionSchema GRS ON GR.GeoRegionSchemaId = GRS.GeoRegionSchemaId
+				FROM CIS_PDD.spec.CollectionEventRegion CER 
+					INNER JOIN CIS_PDD.spec.CollectionEventRegionValue CERV ON CER.CollectionEventRegionId = CERV.CollectionEventRegionId
+						INNER JOIN CIS_PDD.spec.GeoRegion GR ON CERV.GeoRegionId = GR.GeoRegionId
+							INNER JOIN CIS_PDD.spec.GeoRegionSchema GRS ON GR.GeoRegionSchemaId = GRS.GeoRegionSchemaId
 				WHERE CE.CollectionEventId = CER.CollectionEventId
 				FOR XML PATH('CollectionEventRegion'), TYPE) AS CollectionEventRegions
 		, CASE ISNULL(SC.Substrate, '') WHEN '' THEN NULL ELSE SC.Substrate END AS Substrate
@@ -1493,7 +1753,7 @@ GO
 		, PSCWN.SourceNameId AS AssociatedTaxonId
 		, PSCWN.SourceFullName AS AssociatedTaxon
 		, (SELECT IL.ImageURL as '@imageUrl'
-			FROM CIS_CHR.system.ImageLink IL
+			FROM CIS_PDD.system.ImageLink IL
 			WHERE IL.SourceId = S.SpecimenId AND IL.SourceTable = 'tblSpecimen'
 			FOR XML PATH('Image'), TYPE) as CollectionObjectImages
 	FROM CIS_PDD.spec.Specimen S
@@ -1511,6 +1771,7 @@ GO
 						AND PSCI.SecurityLevelId = 40
 					LEFT JOIN CIS_PDD.spec.IdentificationName PSCIN ON PSCI.IdentificationId = PSCIN.IdentificationId
 						LEFT JOIN CIS_PDD.wName.WorkingName PSCWN ON PSCIN.WorkingNameId = PSCWN.WorkingNameId
+							-- TO DO - add linkedname to get formatted name to repace assocated taxon
 		LEFT JOIN CIS_PDD.spec.TypeStatus TS ON S.TypeStatusId = TS.TypeStatusId
 			AND ISNULL(TS.IsNotType, 0) = 0
 		LEFT JOIN CIS_PDD.Spec.CollectionEventSpecimen CES ON S.SpecimenId = CES.SpecimenId
@@ -1616,7 +1877,9 @@ FROM tblNameNotes NN
 	LEFT JOIN tblReference R ON NN.NameNoteReferenceFk = R.ReferenceID
 		AND ISNULL(R.ReferenceIsDeleted, 0) = 0
 WHERE NN.NameNoteTypeFK IN (SELECT TypeId from #AllowedNoteTypes WHERE NamesInstance = @db)
-	AND ISNULL(NN.NameNoteIsDeleted, 0) = 0)
+	AND ISNULL(NN.NameNoteIsDeleted, 0) = 0
+	AND CAST(NN.NameNoteText AS NVARCHAR(max)) <> '<Not Set>'
+	)
 UPDATE NA
 	SET NotesXML = (SELECT
 						Id AS '@id' 
@@ -1660,7 +1923,8 @@ FROM tblNomenclaturalStatus NS
 			AND NamesInstance = @db
 	LEFT JOIN tblReference R ON Ns.NomenclaturalStatusReferenceFk = R.ReferenceID
 		AND ISNULL(R.ReferenceIsDeleted, 0) = 0
-WHERE ISNULL(NS.NomenclaturalStatusIsDeleted, 0) = 0)
+WHERE ISNULL(NS.NomenclaturalStatusIsDeleted, 0) = 0
+		AND CAST(NS.NomenclaturalStatusComment AS NVARCHAR(max)) <> '<Not Set>')
 UPDATE NA
 	SET NomenclaturalStatusXML = (SELECT
 						Id AS '@id' 
@@ -1983,6 +2247,8 @@ SELECT LOWER(NameGuid) as '@documentId'
 	, [Page]
 	, YearOfPublication
 	, YearOnPublication
+	, NomenclaturalStatusSummary
+	, NomenclaturalStatusTechnicalSummary
 	, ClassificationFK as 'Classification/@id'
 	, [Classification]
 	, TypeLocality
@@ -2298,21 +2564,23 @@ GO
 		INNER JOIN Concepts C ON CR.BibId = C.BibliographyGuid
 )
 UPDATE R
-	SET ConceptsXML = (SELECT lower(BibliographyGuid) as '@conceptId'
-							, LOWER(NameGuid) as '@nameId'
-							, NameFull as '@nameFull'
-							, (SELECT RelationshipType	as 'Association/@type'
-								, direction				as 'Association/@direction'
-								, RelatedConceptId		as 'Association/@relatedConceptId'
-								, RelatedNameId			as 'Association/@relatedNameId'
-								, RelatedName			as 'Association/@relatedName'
-								, RelatedNameXML AS Association
-							FROM ConceptRel
-							WHERE BibId = C.BibliographyGuid
-							FOR XML PATH(''), ROOT('Associations'), TYPE)
+	SET ConceptsXML = (SELECT lower(BibliographyGuid)	as 'DefinedConcept/@conceptId'
+							, LOWER(NameGuid)			as 'DefinedConcept/@nameId'
+							, NameFull					as 'DefinedConcept/@nameFull'
+							, C.NameFormattedXML		AS DefinedConcept
+							, (SELECT RelationshipType	as '@type'
+									, direction				as '@direction'
+									, RelatedConceptId		as '@relatedConceptId'
+									, RelatedNameId			as '@relatedNameId'
+									, RelatedName			as '@relatedName'
+									, RelatedNameXML	AS 'node()'
+								FROM ConceptRel
+								WHERE BibId = C.BibliographyGuid
+								FOR XML PATH('Association'),  ROOT('Associations'), TYPE) 
+							
 						FROM Concepts C
 						WHERE BibliographyReferenceFk = R.ReferenceId
-						FOR XML PATH('DefinedConcept') , ROOT('DefinedConcepts'), TYPE)
+						FOR XML PATH('') , ROOT('DefinedConcepts'), TYPE)
 			, ConceptsSOLRXML = (SELECT
 									(SELECT
 										(SELECT 'associationType'	as '@name'	, RelationshipType	as 'text()' for xml path('field'), TYPE)
