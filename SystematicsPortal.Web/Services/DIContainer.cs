@@ -12,7 +12,6 @@ namespace SystematicsPortal.Web.Services
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ISearchService, SearchService>();
             services.AddSingleton<IContentService, ContentService>();
-
         }
     }
 }

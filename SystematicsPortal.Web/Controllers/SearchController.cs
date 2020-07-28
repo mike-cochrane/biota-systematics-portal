@@ -1,20 +1,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services;
 using System.Threading.Tasks;
 using System;
-using SystematicsPortal.Models.Entities.DTOs;
-using System.Linq;
-using SystematicsPortal.Models.Entities.Documents.Name;
-using System.Xml.Serialization;
 using System.Xml;
-using SystematicsPortal.Web.ViewModels;
 using System.Collections.Generic;
-using SystematicsPortal.Models.Entities.Documents.SubDocuments;
-using SystematicsPortal.Web.Helpers;
-using SystematicsPortal.Web.Api.Client;
 using SystematicsPortal.Models.Entities.Access;
 
 namespace SystematicsPortal.Web.Controllers
@@ -243,9 +234,10 @@ namespace SystematicsPortal.Web.Controllers
             fields.Fields = list;*/
             //return View(fields); 
 
-            Document document = await _searchService.GetDocument(id);
+            /*Document document = await _searchService.GetDocument(id);
 
-            return View(document);
+            return View(document);*/
+            return View();
         }
 
 

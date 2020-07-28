@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SystematicsPortal.Web.Services;
 using SystematicsPortal.Web.ViewModels;
 
 namespace SystematicsPortal.Web.Controllers
@@ -8,14 +9,19 @@ namespace SystematicsPortal.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IContentService _contentService;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(IContentService contentService, ILogger<HomeController> logger)
         {
+            _contentService = contentService;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async System.Threading.Tasks.Task<IActionResult> Index()
         {
+            var contentConfigurations = await _contentService.GetContent("home");
+
             return View();
         }
         public IActionResult AboutUs()

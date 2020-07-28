@@ -1,6 +1,5 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Models.Interfaces;
@@ -26,8 +25,6 @@ namespace SystematicsPortal.Data.Harvester.Services
         public async Task StartAsync()
         {
             await _busControl.StartAsync();
-
-         
         }
 
         public void Stop()

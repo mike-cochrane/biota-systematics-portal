@@ -18,15 +18,14 @@ namespace SystematicsPortal.Data.Harvester.Classes
             _sourcePath = sourcePath;
             _logger = logger;
         }
+
         public async Task<List<Result>> StoreFilesInDocumentStoreAsync()
         {
             _logger.LogDebug("SystematicsPortal.Data.Uploader: Starting upload process for files");
 
             var results = new List<Result>();
-            
 
             return results;
         }
     }
-
 }

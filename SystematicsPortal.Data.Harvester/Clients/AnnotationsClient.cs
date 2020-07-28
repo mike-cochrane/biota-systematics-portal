@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,26 +9,23 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using SystematicsPortal.Data.Harvester.Helpers;
 using SystematicsPortal.Models.Entities.Annotations;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Extensions;
 
 namespace SystematicsPortal.Data.Harvester.Clients
 {
-    public class AnnotationsClient 
+    public class AnnotationsClient
     {
         private readonly string _apiContentUrl;
         private readonly IDocumentsRepository _repository;
         private readonly ILogger<AnnotationsClient> _logger;
-
 
         public AnnotationsClient(IDocumentsRepository repository, string contentServiceUrl, ILogger<AnnotationsClient> logger)
         {
             _repository = repository; //new DocumentsRepository(new NamesWebContext(connectionString),_logger);
             _apiContentUrl = contentServiceUrl;
             _logger = logger;
-
         }
 
         public async Task<List<string>> GetResourcesAsStringList()
@@ -37,11 +33,10 @@ namespace SystematicsPortal.Data.Harvester.Clients
             string urlToQuery = $"{_apiContentUrl}/resources";
             List<string> resourcesList = new List<string>();
 
-            // TODO: Use new .net core http client factory 
+            // TODO: Use new .net core http client factory
             var client = new HttpClient()
             {
                 BaseAddress = new Uri(urlToQuery),
-
             };
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
@@ -80,11 +75,10 @@ namespace SystematicsPortal.Data.Harvester.Clients
             string urlToQuery = $"{_apiContentUrl}/resources";
             Resources resourcesList;
 
-            // TODO: Use new .net core http client factory 
+            // TODO: Use new .net core http client factory
             var client = new HttpClient()
             {
                 BaseAddress = new Uri(urlToQuery),
-
             };
 
             var response = await client.GetAsync(urlToQuery);
@@ -101,17 +95,15 @@ namespace SystematicsPortal.Data.Harvester.Clients
             return resourcesList;
         }
 
-
         public async Task<ItemTypes> GetItemTypes(string resourceId)
         {
             string urlToQuery = $"{_apiContentUrl}/itemTypes?resourceId={resourceId}";
             ItemTypes itemTypes = new ItemTypes();
 
-            // TODO: Use new .net core http client factory 
+            // TODO: Use new .net core http client factory
             var client = new HttpClient()
             {
                 BaseAddress = new Uri(urlToQuery),
-
             };
 
             var response = await client.GetAsync(urlToQuery);
@@ -133,11 +125,10 @@ namespace SystematicsPortal.Data.Harvester.Clients
             string urlToQuery = $"{_apiContentUrl}/itemIds?itemTypeId={itemTypeId}";
             Items itemIds;
 
-            // TODO: Use new .net core http client factory 
+            // TODO: Use new .net core http client factory
             var client = new HttpClient()
             {
                 BaseAddress = new Uri(urlToQuery),
-
             };
 
             var response = await client.GetAsync(urlToQuery);
@@ -159,20 +150,17 @@ namespace SystematicsPortal.Data.Harvester.Clients
             string urlToQuery = $"{_apiContentUrl}/items";
             Items items; ;
 
-            // TODO: Use new .net core http client factory 
+            // TODO: Use new .net core http client factory
             var client = new HttpClient()
             {
                 BaseAddress = new Uri(urlToQuery),
-
             };
 
             var jsonInString = JsonConvert.SerializeObject(itemIds);
 
             client.DefaultRequestHeaders.Add("Accept", "application/xml");
 
-
             var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
-
 
             if (response.IsSuccessStatusCode)
             {
@@ -186,27 +174,23 @@ namespace SystematicsPortal.Data.Harvester.Clients
             return items;
         }
 
- 
         public async Task<IEnumerable<XElement>> GetItemsXmlByIds(List<string> itemIds)
         {
             string urlToQuery = $"{_apiContentUrl}/items";
             string items;
             List<XElement> itemsList = new List<XElement>();
 
-            // TODO: Use new .net core http client factory 
+            // TODO: Use new .net core http client factory
             var client = new HttpClient()
             {
                 BaseAddress = new Uri(urlToQuery),
-
             };
 
             var jsonInString = JsonConvert.SerializeObject(itemIds);
-            
+
             client.DefaultRequestHeaders.Add("Accept", "application/xml");
 
             var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
-
-
 
             if (response.IsSuccessStatusCode)
             {
@@ -228,16 +212,11 @@ namespace SystematicsPortal.Data.Harvester.Clients
                         return item;
                     }
                     ).ToList();
-
                 }
                 catch (Exception e)
                 {
-
                     throw;
                 }
-
-
-
             }
             else
             {
@@ -246,7 +225,5 @@ namespace SystematicsPortal.Data.Harvester.Clients
 
             return itemsList;
         }
-
-
     }
 }
