@@ -25,8 +25,6 @@ namespace SystematicsPortal.Data.Harvester.Services
         public async Task StartAsync()
         {
             await _busControl.StartAsync();
-
-         
         }
 
         public void Stop()

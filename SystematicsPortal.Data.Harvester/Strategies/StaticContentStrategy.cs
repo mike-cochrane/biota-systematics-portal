@@ -8,20 +8,31 @@ using SystematicsPortal.Models.Interfaces;
 
 namespace SystematicsPortal.Data.Harvester.Classes
 {
-    public class StaticContentStrategy :IHarvesterActionStrategy
+    public class StaticContentStrategy : IHarvesterActionStrategy
     {
-        public readonly AnnotationsClient _client;
+        private readonly IDocumentsRepository _repository;
+        private readonly AnnotationsClient _client;
         private readonly ILogger<StaticContentStrategy> _logger;
 
-        public StaticContentStrategy(AnnotationsClient client, ILogger<StaticContentStrategy> logger)
+        public StaticContentStrategy(IDocumentsRepository repository, AnnotationsClient client, ILogger<StaticContentStrategy> logger)
         {
+            _repository = repository;
             _client = client;
             _logger = logger;
         }
 
-        public async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
+        public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
         {
-            var itemIds = (await _client.GetItemIds(itemTypeId)).ItemsList.Select(item=> item.ItemId).ToList();
+            var documents = await GetDocumentsAsync(resourceId, itemTypeId, itemId);
+
+            var results = await _repository.WriteDocuments(documents);
+
+            return results;
+        }
+
+        private async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
+        {
+            var itemIds = (await _client.GetItemIds(itemTypeId)).ItemsList.Select(item => item.ItemId).ToList();
 
             var items = await _client.GetItemsXmlByIds(itemIds);
 

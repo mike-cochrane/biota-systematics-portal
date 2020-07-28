@@ -13,16 +13,28 @@ namespace SystematicsPortal.Data.Harvester.Classes
 {
     public class FieldConfigurationStrategy : IHarvesterActionStrategy
     {
+        private readonly IDocumentsRepository _repository;
+
         public readonly AnnotationsClient _client;
         private readonly ILogger<FieldConfigurationStrategy> _logger;
 
-        public FieldConfigurationStrategy(AnnotationsClient client, ILogger<FieldConfigurationStrategy> logger)
+        public FieldConfigurationStrategy(IDocumentsRepository repository, AnnotationsClient client, ILogger<FieldConfigurationStrategy> logger)
         {
+            _repository = repository;
             _client = client;
             _logger = logger;
         }
 
-        public async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
+        public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
+        {
+            var documents = await GetDocumentsAsync(resourceId, itemTypeId, itemId);
+
+            var results = await _repository.WriteDocuments(documents);
+
+            return results;
+        }
+
+        private async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
         {
             List<XElement> xFields = new List<XElement>();
 

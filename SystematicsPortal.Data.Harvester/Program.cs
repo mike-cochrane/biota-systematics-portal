@@ -19,9 +19,9 @@ using Topshelf;
 
 namespace SystematicsPortal.Web.Api.Demo
 {
-    class Program
+    internal class Program
     {
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -109,29 +109,15 @@ namespace SystematicsPortal.Web.Api.Demo
                 new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
 
-        private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client)
+        private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client, IDocumentsRepository repository)
         {
             var strategies = new Dictionary<string, IHarvesterActionStrategy>(StringComparer.OrdinalIgnoreCase);
 
             foreach (var pair in strategiesFromConfig)
             {
                 Type t = Type.GetType(pair.Value);
-                IHarvesterActionStrategy fieldReceiver;
 
-                switch (pair.Key)
-                {
-                    case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7|B3A06D22-A314-40A3-8BD7-346907561112":
-                        fieldReceiver = new FieldConfigurationStrategy(client, null);
-                        break;
-                    case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7|299B3954-6119-4265-AD5E-799CB7F53DE6":
-                        fieldReceiver = new StaticContentStrategy(client, null);
-                        break;
-                    default:
-                        fieldReceiver = null;
-                        break;
-                }
-
-                strategies[pair.Value] = fieldReceiver;
+                strategies[pair.Value] = (IHarvesterActionStrategy)Activator.CreateInstance(t, repository, client, null);
             }
 
             return strategies;
@@ -148,7 +134,7 @@ namespace SystematicsPortal.Web.Api.Demo
                     service.WhenStopped(s => s.Stop());
                 });
 
-                //Setup Account that window service use to run.  
+                //Setup Account that window service use to run.
                 configure.RunAsLocalSystem();
                 configure.SetServiceName("SystematicsPortal.Data.Harvester");
                 configure.SetDisplayName("SystematicsPortal.Data.Harvester");
