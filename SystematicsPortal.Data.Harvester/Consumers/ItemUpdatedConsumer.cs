@@ -9,15 +9,15 @@ namespace SystematicsPortal.Data.Harvester.Consumers
 {
     internal class ItemUpdatedConsumer : IConsumer<IItemUpdated>
     {
-        private readonly IDictionary<string, IHarvesterActionStrategy> _strategies;
+        private readonly IHarvesterStrategies _harvesterStrategies;
 
         public ItemUpdatedConsumer()
         {
         }
 
-        public ItemUpdatedConsumer(IDictionary<string, IHarvesterActionStrategy> strategies)
+        public ItemUpdatedConsumer(IHarvesterStrategies harvesterStrategies)
         {
-            _strategies = strategies;
+            _harvesterStrategies = harvesterStrategies;
         }
 
         public async Task Consume(ConsumeContext<IItemUpdated> context)
@@ -27,7 +27,7 @@ namespace SystematicsPortal.Data.Harvester.Consumers
             // TODO: Ask Mike if we can get the itemtypeid
             var selector = $"{context.Message.ResourceId}|{context.Message.ItemTypeId}";
 
-            var strategy = _strategies[selector];
+            var strategy = _harvesterStrategies.GetStrategies()[selector];
 
             var results = strategy.ApplyStrategyAsync(context.Message.ResourceId, context.Message.ItemTypeId, context.Message.ItemId);
         }

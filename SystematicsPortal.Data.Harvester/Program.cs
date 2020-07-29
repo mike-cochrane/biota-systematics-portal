@@ -13,6 +13,7 @@ using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Data.Harvester.Consumers;
 using SystematicsPortal.Data.Harvester.Helpers;
 using SystematicsPortal.Data.Harvester.Services;
+using SystematicsPortal.Data.Harvester.Strategies;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 using Topshelf;
@@ -107,6 +108,7 @@ namespace SystematicsPortal.Web.Api.Demo
                 new AnnotationsClient(x.GetRequiredService<IDocumentsRepository>(), appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
             services.AddTransient(x =>
                 new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
+            services.AddTransient<IHarvesterStrategies, HarvesterStrategies>();
         }
 
         private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client, IDocumentsRepository repository)
