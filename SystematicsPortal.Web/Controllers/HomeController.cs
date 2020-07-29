@@ -19,9 +19,8 @@ namespace SystematicsPortal.Web.Controllers
         }
 
         public async System.Threading.Tasks.Task<IActionResult> Index()
-        {
-            var contentConfigurations = await _contentService.GetContent("home");
-
+        { 
+            ViewBag.ContentConfigurations = await _contentService.GetContent("home");
             return View();
         }
         public IActionResult AboutUs()
