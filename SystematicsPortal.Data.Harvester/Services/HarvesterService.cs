@@ -8,22 +8,18 @@ namespace SystematicsPortal.Data.Harvester.Services
 {
     public class HarvesterService
     {
-        public readonly AnnotationsClient _client;
-        private readonly IDocumentsRepository _repository;
         private readonly IBusControl _busControl;
         private readonly ILogger<HarvesterService> _logger;
 
-        public HarvesterService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, ILogger<HarvesterService> logger)
+        public HarvesterService(IBusControl busControl, ILogger<HarvesterService> logger)
         {
-            _repository = repository;
-            _client = client;
             _busControl = busControl;
-
             _logger = logger;
         }
 
         public async Task StartAsync()
         {
+            _logger.LogDebug("Starting Systematics Portal Harvester Service: Listening for messages");
             await _busControl.StartAsync();
         }
 

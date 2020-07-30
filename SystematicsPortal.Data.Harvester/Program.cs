@@ -18,7 +18,7 @@ using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 using Topshelf;
 
-namespace SystematicsPortal.Web.Api.Demo
+namespace SystematicsPortal.Data.Harvester
 {
     internal class Program
     {
@@ -33,6 +33,7 @@ namespace SystematicsPortal.Web.Api.Demo
             var services = new ServiceCollection();
             var settingsConfigurationSection = configuration.GetSection("AppSettings");
             var appSettings = settingsConfigurationSection.Get<AppSettings>();
+            services.Configure<AppSettings>(settingsConfigurationSection);
             var namesWebConnectionString = configuration.GetConnectionString("NamesWeb");
             ConfigureServices(services, configuration, appSettings, namesWebConnectionString);
             var serviceProvider = services.BuildServiceProvider();
@@ -69,7 +70,7 @@ namespace SystematicsPortal.Web.Api.Demo
                 logger.LogInformation("{Action} - RabbitMq - VirtualHost: {RabbitMqVirtualHost}", "Configuration", appSettings.RabbitMq.VirtualHost);
                 logger.LogInformation("{Action} - RabbitMq - User Name: {RabbitMqUsername}", "Configuration", appSettings.RabbitMq.Username);
 
-                ConfigureService(repository, client, busControl, harvesterLogger);
+                ConfigureService(busControl, harvesterLogger);
 
                 logger.LogInformation("SystematicsPortal.Data.Harvester process results:");
 
@@ -125,13 +126,13 @@ namespace SystematicsPortal.Web.Api.Demo
             return strategies;
         }
 
-        private static void ConfigureService(IDocumentsRepository repository, AnnotationsClient client, IBusControl busControl, ILogger<HarvesterService> logger)
+        private static void ConfigureService(IBusControl busControl, ILogger<HarvesterService> logger)
         {
             HostFactory.Run(configure =>
             {
                 configure.Service<HarvesterService>(service =>
                 {
-                    service.ConstructUsing(s => new HarvesterService(repository, client, busControl, logger));
+                    service.ConstructUsing(s => new HarvesterService(busControl, logger));
                     service.WhenStarted(async s => await s.StartAsync());
                     service.WhenStopped(s => s.Stop());
                 });

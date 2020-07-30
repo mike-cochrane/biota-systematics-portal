@@ -29,15 +29,21 @@ namespace SystematicsPortal.Data.Harvester.Strategies
         private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client, IDocumentsRepository repository, ILogger<HarvesterStrategies> logger)
         {
             var strategies = new Dictionary<string, IHarvesterActionStrategy>(StringComparer.OrdinalIgnoreCase);
+            var myNamespace = GetCurrentNameSpace();
 
             foreach (var pair in strategiesFromConfig)
             {
-                Type t = Type.GetType(pair.Value);
+                Type t = Type.GetType($"{myNamespace}.{pair.Value}");
 
-                strategies[pair.Value] = (IHarvesterActionStrategy)Activator.CreateInstance(t, repository, client, logger);
+                strategies[pair.Key] = (IHarvesterActionStrategy)Activator.CreateInstance(t, repository, client/*, logger*/);
             }
 
             return strategies;
+        }
+
+        private string GetCurrentNameSpace()
+        {
+            return GetType().Namespace; 
         }
     }
 }
