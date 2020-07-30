@@ -60,7 +60,9 @@ namespace SystematicsPortal.Data.Harvester
 
                     config.ReceiveEndpoint("systematicsportal.web.queue", endpoint =>
                     {
-                        endpoint.Consumer(() => new ItemUpdatedConsumer(new Dictionary<string, IHarvesterActionStrategy>()));
+                        var harvesterStrategies = serviceProvider.GetRequiredService<IHarvesterStrategies>();
+
+                        endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies));
                     });
                 });
 
