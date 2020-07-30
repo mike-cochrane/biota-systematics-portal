@@ -32,7 +32,7 @@ namespace SystematicsPortal.Data.Harvester.Strategies
 
         private async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
         {
-            var itemIds = (await _client.GetItemIds(itemTypeId)).ItemsList.Select(item => item.ItemId).ToList();
+            var itemIds = new List<string>() { itemId };
 
             var items = await _client.GetItemsXmlByIds(itemIds);
 

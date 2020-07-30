@@ -196,7 +196,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
             {
                 try
                 {
-                    items = response.Content.ReadAsStringAsync().Result;
+                    items = await response.Content.ReadAsStringAsync();
 
                     TextReader tr = new StringReader(items);
                     XDocument itemsXDocument = XDocument.Load(tr);
