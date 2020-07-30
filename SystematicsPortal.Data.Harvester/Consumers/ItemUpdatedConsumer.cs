@@ -11,10 +11,6 @@ namespace SystematicsPortal.Data.Harvester.Consumers
     {
         private readonly IHarvesterStrategies _harvesterStrategies;
 
-        public ItemUpdatedConsumer()
-        {
-        }
-
         public ItemUpdatedConsumer(IHarvesterStrategies harvesterStrategies)
         {
             _harvesterStrategies = harvesterStrategies;
