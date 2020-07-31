@@ -57,6 +57,7 @@ namespace SystematicsPortal.Web.Controllers
 
                 // viewData.Result = await _searchService.Search(query, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
                 viewData.Result = await _searchService.Search(query, null,null,selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                //ViewComponent("SearchQuery", new { query = query }); // don't think this does anything.
 
                 if (query == null)
                 {
