@@ -20,14 +20,18 @@ namespace SystematicsPortal.Data.Harvester.Consumers
         {
             await Task.Run(() => Console.WriteLine("Item Updated: " + context.Message.ItemId + " - " + context.Message.ResourceId));
 
-            // TODO: 
-            // Get itemTypeId from Annotations Access API using itemId. Now hardcoding to continue development
-            var itemTypeId = "299b3954-6119-4265-ad5e-799cb7f53de6";
-            var selector = $"{context.Message.ResourceId}|{itemTypeId}";
+            if (context.Message.ProducerAction == "Publish Note" || context.Message.ProducerAction == "Publish Item")
+            {
+                // TODO: 
+                // Get itemTypeId from Annotations Access API using itemId. Now hardcoding to continue development
+                var itemTypeId = "299b3954-6119-4265-ad5e-799cb7f53de6";
 
-            var strategy = _harvesterStrategies.GetStrategies()[selector];
+                var selector = $"{context.Message.ResourceId}|{itemTypeId}";
 
-            var results = strategy.ApplyStrategyAsync(context.Message.ResourceId, itemTypeId, context.Message.ItemId);
+                var strategy = _harvesterStrategies.GetStrategies()[selector];
+
+                var results = strategy.ApplyStrategyAsync(context.Message.ResourceId, itemTypeId, context.Message.ItemId);
+            }
         }
     }
 }
@@ -37,6 +41,11 @@ namespace Annotations.Messaging.Contracts.Items
     public interface IItemUpdated
     {
         public string ItemId { get; set; }
+
         public string ResourceId { get; set; }
+
+        public string ProducerAction { get; set; }
+
+        public string ProducerType { get; set; }
     }
 }

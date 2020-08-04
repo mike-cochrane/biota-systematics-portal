@@ -48,7 +48,6 @@ namespace SystematicsPortal.Data.Harvester
                 var client = serviceProvider.GetService<AnnotationsClient>();
                 var repository = serviceProvider.GetRequiredService<IDocumentsRepository>();
                 var harvesterLogger = serviceProvider.GetService<ILogger<HarvesterService>>();
-                var harvesterStrategies = serviceProvider.GetRequiredService<IHarvesterStrategies>();
 
                 var busControl = Bus.Factory.CreateUsingRabbitMq(config =>
                 {
