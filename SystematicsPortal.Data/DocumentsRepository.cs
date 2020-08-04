@@ -94,7 +94,7 @@ namespace SystematicsPortal.Data
                     .Build();
 
                 // TODO: Investigate why it's always false
-                if (xmlComparer.HasDifferences())
+                //if (xmlComparer.HasDifferences())
                 {
                     storeDocument.Version += 1;
                     storeDocument.SerializedDocument = document.ToString();
