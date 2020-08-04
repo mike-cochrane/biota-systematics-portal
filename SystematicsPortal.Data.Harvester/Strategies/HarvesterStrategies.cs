@@ -15,7 +15,7 @@ namespace SystematicsPortal.Data.Harvester.Strategies
     {
         private readonly IDictionary<string, IHarvesterActionStrategy> _strategies;
 
-        public HarvesterStrategies(/*Dictionary<string, string> strategiesFromConfig*/IOptions<AppSettings> appSettingsAccessor, AnnotationsClient client, IDocumentsRepository repository, ILogger<HarvesterStrategies> logger)
+        public HarvesterStrategies(IOptions<AppSettings> appSettingsAccessor, AnnotationsClient client, IDocumentsRepository repository, ILogger<HarvesterStrategies> logger)
         {
             var strategiesFromConfig = appSettingsAccessor.Value.Strategies;
             _strategies = CreateStrategies(strategiesFromConfig, client, repository, logger);

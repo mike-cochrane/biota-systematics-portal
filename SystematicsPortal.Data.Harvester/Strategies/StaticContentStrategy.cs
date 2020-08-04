@@ -18,7 +18,7 @@ namespace SystematicsPortal.Data.Harvester.Strategies
         {
             _repository = repository;
             _client = client;
-           // _logger = logger;
+            //_logger = logger;
         }
 
         public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
