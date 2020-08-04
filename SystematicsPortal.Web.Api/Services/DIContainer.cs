@@ -13,19 +13,19 @@ namespace SystematicsPortal.Web.Api.Services
         {
             services.AddDbContext<NamesWebContext>(options =>
                 options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
-                ServiceLifetime.Singleton);
+                ServiceLifetime.Scoped);
 
-            services.AddSingleton<IDocumentsRepository, DocumentsRepository>();
-            services.AddSingleton<IWebConfigurationRepository, WebConfigurationRepository>();
+            services.AddScoped<IDocumentsRepository, DocumentsRepository>();
+            services.AddScoped<IWebConfigurationRepository, WebConfigurationRepository>();
 
-            services.AddSingleton<ISolrConnection>(x =>
+            services.AddScoped<ISolrConnection>(x =>
                 new Search.Infrastructure.SolrConnection(appSettings.Solr.Url, appSettings.Solr.UserName,
                             appSettings.Solr.Password));
 
-            services.AddSingleton<ISearch, Search.Search>();
-            services.AddSingleton<IContentService, ContentService>();
-            services.AddSingleton<IDocumentsService, DocumentsService>();
-            services.AddSingleton<ISearchService, SearchService>();
+            services.AddScoped<ISearch, Search.Search>();
+            services.AddScoped<IContentService, ContentService>();
+            services.AddScoped<IDocumentsService, DocumentsService>();
+            services.AddScoped<ISearchService, SearchService>();
         }
     }
 }
