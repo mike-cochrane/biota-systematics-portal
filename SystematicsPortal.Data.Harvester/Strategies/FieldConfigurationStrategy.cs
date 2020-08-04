@@ -9,20 +9,32 @@ using SystematicsPortal.Models.Configuration;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 
-namespace SystematicsPortal.Data.Harvester.Classes
+namespace SystematicsPortal.Data.Harvester.Strategies
 {
     public class FieldConfigurationStrategy : IHarvesterActionStrategy
     {
-        public readonly AnnotationsClient _client;
-        private readonly ILogger<FieldConfigurationStrategy> _logger;
+        private readonly IDocumentsRepository _repository;
 
-        public FieldConfigurationStrategy(AnnotationsClient client, ILogger<FieldConfigurationStrategy> logger)
+        public readonly AnnotationsClient _client;
+        private readonly ILogger _logger;
+
+        public FieldConfigurationStrategy(IDocumentsRepository repository, AnnotationsClient client, ILogger logger)
         {
+            _repository = repository;
             _client = client;
             _logger = logger;
         }
 
-        public async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
+        public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
+        {
+            var documents = await GetDocumentsAsync(resourceId, itemTypeId, itemId);
+
+            var results = await _repository.WriteDocuments(documents);
+
+            return results;
+        }
+
+        private async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
         {
             List<XElement> xFields = new List<XElement>();
 

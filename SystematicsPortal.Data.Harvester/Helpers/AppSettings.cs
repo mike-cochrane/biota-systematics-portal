@@ -8,7 +8,7 @@ namespace SystematicsPortal.Data.Harvester.Helpers
 
         public ContentServiceSettings ContentService { get; set; }
 
-        public Dictionary<string,string> Strategies { get; set; }
+        public Dictionary<string, string> Strategies { get; set; }
 
         public RabbitMqSettings RabbitMq { get; set; }
     }

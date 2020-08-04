@@ -7,60 +7,31 @@ using SystematicsPortal.Models.Interfaces;
 
 namespace SystematicsPortal.Data.Harvester.Consumers
 {
-    class ItemUpdatedConsumer : IConsumer<IItemUpdated>
+    internal class ItemUpdatedConsumer : IConsumer<IItemUpdated>
     {
-        private readonly IDictionary<string, IHarvesterActionStrategy> _strategies;
+        private readonly IHarvesterStrategies _harvesterStrategies;
 
-        public ItemUpdatedConsumer()
+        public ItemUpdatedConsumer(IHarvesterStrategies harvesterStrategies)
         {
-
-        }
-
-        public ItemUpdatedConsumer(IDictionary<string, IHarvesterActionStrategy> strategies)
-        {
-            _strategies = strategies;
+            _harvesterStrategies = harvesterStrategies;
         }
 
         public async Task Consume(ConsumeContext<IItemUpdated> context)
         {
             await Task.Run(() => Console.WriteLine("Item Updated: " + context.Message.ItemId + " - " + context.Message.ResourceId));
 
-            // Find the stratgey
-            // Do the strategy
+            if (context.Message.ProducerAction == "Publish Note" || context.Message.ProducerAction == "Publish Item")
+            {
+                // TODO: 
+                // Get itemTypeId from Annotations Access API using itemId. Now hardcoding to continue development
+                var itemTypeId = "299b3954-6119-4265-ad5e-799cb7f53de6";
 
-            // TODO: Listen for a message
+                var selector = $"{context.Message.ResourceId}|{itemTypeId}";
 
-            //var resourceId = "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7";
-            //var itemTypeId = "299B3954-6119-4265-AD5E-799CB7F53DE6";
-            //// var itemId = "8F766C02-BD56-4B9A-BB35-27ED8F2E1826";
-            //var itemId = "";
+                var strategy = _harvesterStrategies.GetStrategies()[selector];
 
-            //var selector = $"{resourceId}|{itemTypeId}";
-
-           // var documentsToSave = await _strategies[selector].GetDocumentsAsync(resourceId, itemTypeId, itemId);
-
-            //switch (resourceId)
-            //{
-            //    case "C7EA0FE3-40A4-453A-BBB8-9F1AAF6673D7":
-            //        if (itemId == "8F766C02-BD56-4B9A-BB35-27ED8F2E1826")
-            //        {
-            //            var fieldReceiver = new FieldConfigurationStrategy(_client, null);
-
-            //            documentsToSave = await fieldReceiver.GetDocumentsAsync(resourceId, itemTypeId, itemId);
-            //        }
-            //        if (itemTypeId == "299B3954-6119-4265-AD5E-799CB7F53DE6")
-            //        {
-            //            var contentReceiver = new StaticContentStrategy(_client, null);
-
-            //            documentsToSave = await contentReceiver.GetDocumentsAsync(resourceId, itemTypeId, itemId);
-            //        }
-            //        break;
-
-            //    default:
-            //        break;
-            //}
-
-            //await _repository.WriteDocuments(documentsToSave);
+                var results = strategy.ApplyStrategyAsync(context.Message.ResourceId, itemTypeId, context.Message.ItemId);
+            }
         }
     }
 }
@@ -72,5 +43,9 @@ namespace Annotations.Messaging.Contracts.Items
         public string ItemId { get; set; }
 
         public string ResourceId { get; set; }
+
+        public string ProducerAction { get; set; }
+
+        public string ProducerType { get; set; }
     }
 }

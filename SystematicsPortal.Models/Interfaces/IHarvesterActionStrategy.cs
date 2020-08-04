@@ -6,6 +6,6 @@ namespace SystematicsPortal.Models.Interfaces
 {
     public interface IHarvesterActionStrategy
     {
-        Task<IEnumerable<XElement>> GetDocumentsAsync (string resourceId, string itemTypeId, string itemId);
+        Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId);
     }
 }

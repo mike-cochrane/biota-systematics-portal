@@ -12,7 +12,7 @@ using SystematicsPortal.Data.Uploader.Helpers;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 
-namespace SystematicsPortal.Web.Api.Demo
+namespace SystematicsPortal.Data.Uploader
 {
     internal class Program
     {
@@ -83,7 +83,7 @@ namespace SystematicsPortal.Web.Api.Demo
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
-            services.AddTransient<Parser>(x =>
+            services.AddTransient(x =>
             new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
     }

@@ -64,22 +64,21 @@ namespace SystematicsPortal.Data
         /// </summary>
         public async Task<int> WriteDocuments(IEnumerable<XElement> documentsList)
         {
+            int result = 0;
             var allStoreNames = GetDocumentsDb().ToDictionary(o => o.DocumentId);
 
             foreach (var document in documentsList)
             {
-                await SaveDocument(allStoreNames, document);
+                result += await SaveDocument(allStoreNames, document);
             }
-
-            var result = await SaveChangesAsync();
 
             return result;
         }
 
-        private async Task SaveDocument(Dictionary<Guid, Models.Entities.Database.Document> allStoreNames, XElement document)
+        private async Task<int> SaveDocument(Dictionary<Guid, Models.Entities.Database.Document> allStoreNames, XElement document)
         {
             string documentId = (string)document.Attribute("documentId");
-
+            int result = 0;
             if (String.IsNullOrEmpty(documentId))
             {
                 throw new InvalidInputException("DocumentId has not been found");
@@ -94,12 +93,13 @@ namespace SystematicsPortal.Data
                     .WithNodeFilter(o => String.Equals(o.Name, "ModifiedDate", StringComparison.OrdinalIgnoreCase))
                     .Build();
 
-                if (xmlComparer.HasDifferences())
+                // TODO: Investigate why it's always false
+                //if (xmlComparer.HasDifferences())
                 {
                     storeDocument.Version += 1;
                     storeDocument.SerializedDocument = document.ToString();
 
-                    await SaveChangesAsync();
+                    result = await SaveChangesAsync();
 
                     _logger.LogDebug("{Action} {DocumentId} {Differences}", "Update Document", documentId, xmlComparer.ToString());
                 }
@@ -113,9 +113,10 @@ namespace SystematicsPortal.Data
                     SerializedDocument = document.ToString()
                 };
 
-                await InsertDocumentDbAsync(storeDocument);
+                result = await InsertDocumentDbAsync(storeDocument);
                 _logger.LogDebug("{Action} {DocumentId}", "Add Document", documentId);
             }
+            return result;
         }
 
         public IEnumerable<Document> GetDocuments()
@@ -128,18 +129,21 @@ namespace SystematicsPortal.Data
             return _context.Document;
         }
 
-        private async Task InsertDocumentDbAsync(Models.Entities.Database.Document document)
+        private async Task<int> InsertDocumentDbAsync(Models.Entities.Database.Document document)
         {
+            int result;
             try
             {
                 await _context.Document.AddAsync(document);
 
-                var result = await SaveChangesAsync();
+                result = await SaveChangesAsync();
             }
             catch (Exception e)
             {
                 throw;
             }
+
+            return result;
         }
 
         public async Task<int> SaveChangesAsync()
