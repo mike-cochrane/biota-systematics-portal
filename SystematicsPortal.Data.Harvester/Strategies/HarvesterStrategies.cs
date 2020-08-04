@@ -2,9 +2,6 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Data.Harvester.Helpers;
 using SystematicsPortal.Models.Interfaces;
@@ -33,9 +30,9 @@ namespace SystematicsPortal.Data.Harvester.Strategies
 
             foreach (var pair in strategiesFromConfig)
             {
-                Type t = Type.GetType($"{myNamespace}.{pair.Value}");
+                var type = Type.GetType($"{myNamespace}.{pair.Value}");
 
-                strategies[pair.Key] = (IHarvesterActionStrategy)Activator.CreateInstance(t, repository, client/*, logger*/);
+                strategies[pair.Key] = (IHarvesterActionStrategy)Activator.CreateInstance(type, repository, client, logger);
             }
 
             return strategies;
@@ -43,7 +40,7 @@ namespace SystematicsPortal.Data.Harvester.Strategies
 
         private string GetCurrentNameSpace()
         {
-            return GetType().Namespace; 
+            return GetType().Namespace;
         }
     }
 }

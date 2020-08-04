@@ -7,7 +7,6 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using SystematicsPortal.Data;
 using SystematicsPortal.Data.Harvester.Classes;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Data.Harvester.Consumers;
@@ -49,6 +48,7 @@ namespace SystematicsPortal.Data.Harvester
                 var client = serviceProvider.GetService<AnnotationsClient>();
                 var repository = serviceProvider.GetRequiredService<IDocumentsRepository>();
                 var harvesterLogger = serviceProvider.GetService<ILogger<HarvesterService>>();
+                var harvesterStrategies = serviceProvider.GetRequiredService<IHarvesterStrategies>();
 
                 var busControl = Bus.Factory.CreateUsingRabbitMq(config =>
                 {
