@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Harvester.Classes
+namespace SystematicsPortal.Data.Harvester.Strategies
 {
     public class StaticContentStrategy : IHarvesterActionStrategy
     {
@@ -14,11 +14,11 @@ namespace SystematicsPortal.Data.Harvester.Classes
         private readonly AnnotationsClient _client;
         private readonly ILogger<StaticContentStrategy> _logger;
 
-        public StaticContentStrategy(IDocumentsRepository repository, AnnotationsClient client, ILogger<StaticContentStrategy> logger)
+        public StaticContentStrategy(IDocumentsRepository repository, AnnotationsClient client/*, ILogger<StaticContentStrategy> logger*/)
         {
             _repository = repository;
             _client = client;
-            _logger = logger;
+            //_logger = logger;
         }
 
         public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
@@ -32,7 +32,7 @@ namespace SystematicsPortal.Data.Harvester.Classes
 
         private async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
         {
-            var itemIds = (await _client.GetItemIds(itemTypeId)).ItemsList.Select(item => item.ItemId).ToList();
+            var itemIds = new List<string>() { itemId };
 
             var items = await _client.GetItemsXmlByIds(itemIds);
 

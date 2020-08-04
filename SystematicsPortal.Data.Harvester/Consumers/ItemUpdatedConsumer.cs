@@ -9,23 +9,25 @@ namespace SystematicsPortal.Data.Harvester.Consumers
 {
     internal class ItemUpdatedConsumer : IConsumer<IItemUpdated>
     {
-        private readonly IDictionary<string, IHarvesterActionStrategy> _strategies;
+        private readonly IHarvesterStrategies _harvesterStrategies;
 
-        public ItemUpdatedConsumer(IDictionary<string, IHarvesterActionStrategy> strategies)
+        public ItemUpdatedConsumer(IHarvesterStrategies harvesterStrategies)
         {
-            _strategies = strategies;
+            _harvesterStrategies = harvesterStrategies;
         }
 
         public async Task Consume(ConsumeContext<IItemUpdated> context)
         {
             await Task.Run(() => Console.WriteLine("Item Updated: " + context.Message.ItemId + " - " + context.Message.ResourceId));
 
-            // TODO: Ask Mike if we can get the itemtypeid
-            var selector = $"{context.Message.ResourceId}|{context.Message.ItemTypeId}";
+            // TODO: 
+            // Get itemTypeId from Annotations Access API using itemId. Now hardcoding to continue development
+            var itemTypeId = "299b3954-6119-4265-ad5e-799cb7f53de6";
+            var selector = $"{context.Message.ResourceId}|{itemTypeId}";
 
-            var strategy = _strategies[selector];
+            var strategy = _harvesterStrategies.GetStrategies()[selector];
 
-            var results = strategy.ApplyStrategyAsync(context.Message.ResourceId, context.Message.ItemTypeId, context.Message.ItemId);
+            var results = strategy.ApplyStrategyAsync(context.Message.ResourceId, itemTypeId, context.Message.ItemId);
         }
     }
 }
@@ -36,6 +38,5 @@ namespace Annotations.Messaging.Contracts.Items
     {
         public string ItemId { get; set; }
         public string ResourceId { get; set; }
-        public string ItemTypeId { get; set; }
     }
 }

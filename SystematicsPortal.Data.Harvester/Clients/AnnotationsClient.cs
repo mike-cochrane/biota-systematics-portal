@@ -23,7 +23,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
 
         public AnnotationsClient(IDocumentsRepository repository, string contentServiceUrl, ILogger<AnnotationsClient> logger)
         {
-            _repository = repository; //new DocumentsRepository(new NamesWebContext(connectionString),_logger);
+            _repository = repository; 
             _apiContentUrl = contentServiceUrl;
             _logger = logger;
         }
@@ -196,7 +196,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
             {
                 try
                 {
-                    items = response.Content.ReadAsStringAsync().Result;
+                    items = await response.Content.ReadAsStringAsync();
 
                     TextReader tr = new StringReader(items);
                     XDocument itemsXDocument = XDocument.Load(tr);
