@@ -18,11 +18,11 @@ namespace SystematicsPortal.Web.Api.Services
             services.AddScoped<IDocumentsRepository, DocumentsRepository>();
             services.AddScoped<IWebConfigurationRepository, WebConfigurationRepository>();
 
-            services.AddScoped<ISolrConnection>(x =>
+            services.AddSingleton<ISolrConnection>(x =>
                 new Search.Infrastructure.SolrConnection(appSettings.Solr.Url, appSettings.Solr.UserName,
                             appSettings.Solr.Password));
 
-            services.AddScoped<ISearch, Search.Search>();
+            services.AddSingleton<ISearch, Search.Search>();
             services.AddScoped<IContentService, ContentService>();
             services.AddScoped<IDocumentsService, DocumentsService>();
             services.AddScoped<ISearchService, SearchService>();
