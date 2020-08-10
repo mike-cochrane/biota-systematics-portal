@@ -101,7 +101,14 @@ namespace SystematicsPortal.Data
 
                     result = await SaveChangesAsync();
 
-                    _logger.LogDebug("{Action} {DocumentId} {Differences}", "Update Document", documentId, xmlComparer.ToString());
+                    if (result > 0)
+                    {
+                        _logger.LogDebug("{Action} {DocumentId} {Result}", "Update Document", documentId, "Document has been saved");
+                    }
+                    else
+                    {
+                        _logger.LogDebug("{Action} {DocumentId} {Result}", "Update Document", documentId, "Document has NOT been saved");
+                    }
                 }
             }
             else
@@ -114,7 +121,15 @@ namespace SystematicsPortal.Data
                 };
 
                 result = await InsertDocumentDbAsync(storeDocument);
-                _logger.LogDebug("{Action} {DocumentId}", "Add Document", documentId);
+
+                if (result > 0)
+                {
+                    _logger.LogDebug("{Action} {DocumentId} {Result}", "Save Document", documentId, "Document has been saved");
+                }
+                else
+                {
+                    _logger.LogDebug("{Action} {DocumentId} {Result}", "Save Document", documentId, "Document has NOT been saved");
+                }
             }
             return result;
         }
