@@ -119,9 +119,9 @@ namespace SystematicsPortal.Data.Harvester
 
             foreach (var pair in strategiesFromConfig)
             {
-                Type t = Type.GetType(pair.Value);
+                Type strategyType = Type.GetType(pair.Value);
 
-                strategies[pair.Value] = (IHarvesterActionStrategy)Activator.CreateInstance(t, repository, client, null);
+                strategies[pair.Value] = (IHarvesterActionStrategy)Activator.CreateInstance(strategyType, repository, client, null);
             }
 
             return strategies;
@@ -142,7 +142,7 @@ namespace SystematicsPortal.Data.Harvester
                 configure.RunAsLocalSystem();
                 configure.SetServiceName("SystematicsPortal.Data.Harvester");
                 configure.SetDisplayName("SystematicsPortal.Data.Harvester");
-                configure.SetDescription("Harvester that receives messages and proceed to update documents in SOLR and Document Store");
+                configure.SetDescription("Harvester that receives messages and proceeds to update documents in SOLR and Document Store");
             });
         }
     }
