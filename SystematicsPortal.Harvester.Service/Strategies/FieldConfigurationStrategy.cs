@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsPortal.Harvester.Service.Clients;
 using SystematicsPortal.Models.Configuration;
+using SystematicsPortal.Models.Entities.Annotations;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 
@@ -25,46 +26,35 @@ namespace SystematicsPortal.Harvester.Service.Strategies
             _logger = logger;
         }
 
-        public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
+        public async Task<int> ApplyStrategyAsync(XElement document)
         {
-            var documents = await GetDocumentsAsync(resourceId, itemTypeId, itemId);
+            _logger.LogInformation("{Action} - document: {document}", "Applying stategy FieldConfigurationStrategy", document);
+
+            var documents = await GetDocumentsAsync(document);
 
             var results = await _repository.WriteDocuments(documents);
 
             return results;
         }
 
-        private async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
+        private async Task<IEnumerable<XElement>> GetDocumentsAsync(XElement itemXml)
         {
-            List<XElement> xFields = new List<XElement>();
+            var item = SerializationHelper.Deserialize<Item>(itemXml.ToString());
 
-            var items = await _client.GetItemsByIds(new List<string>() { itemId });
-
-            var foundItem = items.ItemsList[0];
-
-            if (foundItem == null)
+            var configuredField = new Field()
             {
-                throw new Exception($"Item {itemId} has not been found");
-            }
-
-            var relatedItemsIds = foundItem.relatedItems.Select(x => x.RelatedItemId).ToList();
-
-            var relatedItems = await _client.GetItemsByIds(relatedItemsIds);
-
-            var configuredFields = relatedItems.ItemsList.Select(i => new Field()
-            {
-                Description = i.Notes.FirstOrDefault(n => n.NoteTypeId == "dd7e0148-fb46-4b6f-856e-cf6bc3aa75b9").Content,
-                DocumentId = i.ItemId,
-                Labels = i.Notes.Where(n => n.NoteTypeId == "ddf07fb9-edde-41f8-97b3-893c0d1c903f").Select(note => new Label()
+                Description = item.Notes.FirstOrDefault(n => n.NoteTypeId == "dd7e0148-fb46-4b6f-856e-cf6bc3aa75b9").Content,
+                DocumentId = item.ItemId,
+                Labels = item.Notes.Where(n => n.NoteTypeId == "ddf07fb9-edde-41f8-97b3-893c0d1c903f").Select(note => new Label()
                 {
                     Title = note.Content,
                     Language = "TO BE DEFINED 2",
                 }).ToList()
-            }).ToList();
+            };
 
-            xFields = configuredFields.Select(field => XElement.Parse(SerializationHelper.Serialize(field))).ToList();
+            var xField = XElement.Parse(SerializationHelper.Serialize(configuredField));
 
-            return xFields;
+            return new List<XElement>() { xField};
         }
     }
 }

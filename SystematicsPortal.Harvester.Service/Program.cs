@@ -62,7 +62,7 @@ namespace SystematicsPortal.Harvester.Service
                     {
                         var harvesterStrategies = serviceProvider.GetRequiredService<IHarvesterStrategies>();
 
-                        endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies));
+                        endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies, client));
                     });
                 });
 

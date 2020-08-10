@@ -164,10 +164,17 @@ namespace SystematicsPortal.Harvester.Service.Clients
             return items;
         }
 
-        //public async Task<XElement> GetItemXmlById(string id)
-        //{
-        //    return await GetItemsXmlByIds(new List<string>() { id})
-        //}
+        public async Task<XElement> GetItemXmlById(string id)
+        {
+            var item = (await GetItemsXmlByIds(new List<string>() { id })).FirstOrDefault();
+
+            if (item == null)
+            {
+                throw new Exception($"Item {id} has not been found");
+            }
+
+            return item;
+        }
 
         public async Task<IEnumerable<XElement>> GetItemsXmlByIds(List<string> itemIds)
         {

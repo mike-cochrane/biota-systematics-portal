@@ -20,24 +20,15 @@ namespace SystematicsPortal.Harvester.Service.Strategies
             _logger = logger;
         }
 
-        public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
+        public async Task<int> ApplyStrategyAsync(XElement document)
         {
-            _logger.LogInformation("TEST");
+            _logger.LogInformation("{Action} - document: {document}" , "Applying stategy StaticContentRepository", document);
 
-            var documents = await GetDocumentsAsync(resourceId, itemTypeId, itemId);
+            var documents = new List<XElement>() { document };
 
             var results = await _repository.WriteDocuments(documents);
 
             return results;
-        }
-
-        private async Task<IEnumerable<XElement>> GetDocumentsAsync(string resourceId, string itemTypeId, string itemId)
-        {
-            var itemIds = new List<string>() { itemId };
-
-            var items = await _client.GetItemsXmlByIds(itemIds);
-
-            return items;
         }
     }
 }
