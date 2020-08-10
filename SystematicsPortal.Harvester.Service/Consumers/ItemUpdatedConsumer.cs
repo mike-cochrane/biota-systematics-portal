@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Harvester.Consumers
+namespace SystematicsPortal.Harvester.Service.Consumers
 {
     internal class ItemUpdatedConsumer : IConsumer<IItemUpdated>
     {

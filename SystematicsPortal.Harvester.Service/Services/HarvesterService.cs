@@ -1,10 +1,10 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using SystematicsPortal.Data.Harvester.Clients;
+using SystematicsPortal.Harvester.Service.Clients;
 using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Harvester.Services
+namespace SystematicsPortal.Harvester.Service.Services
 {
     public class HarvesterService
     {

@@ -1,6 +1,6 @@
 ﻿using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Harvester.Services
+namespace SystematicsPortal.Harvester.Service.Services
 {
     public class AnnotationsService : IProviderService
     {
