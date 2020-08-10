@@ -1,4 +1,9 @@
-﻿#header {
+﻿.page-content {
+    width: 100%;
+    max-width: 940px
+}
+
+#header {
     background-color: black;
 }
 
@@ -78,7 +83,7 @@
 #main-nav-buttons .btn, #detail-nav-buttons .btn {
     border-radius: 0;
     font-weight: 700;
-    width: 7em;
+    width: 5.5em;
 }
 
     #main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
@@ -251,11 +256,6 @@ footer a {
 
 .mw-35em {
     max-width: 35em;
-}
-
-#details-section {
-    width: 100%;
-    max-width: 940px;
 }
 
 .page-title {

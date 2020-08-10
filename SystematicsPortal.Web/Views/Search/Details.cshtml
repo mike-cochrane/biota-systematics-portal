@@ -7,48 +7,50 @@
 @await Html.PartialAsync("~/Views/Shared/_NavAndSearch.cshtml")
 
 <div class="row">
-    @await Html.PartialAsync("~/Views/Shared/_SideBar.cshtml")
+    @* @await Html.PartialAsync("~/Views/Shared/_SideBar.cshtml") *@
+    @await Html.PartialAsync("~/Views/Shared/_SideBarDetails.cshtml")
+    
     <div class="col-md-9 mw-100 pt-4 pl-5 pb-5 detail-page">
         <div id="action-icons" class="row">
             <div class="col-md-12 pb-2">
-                <div class="float-right">
+                <div class="float-right mr-2">
                     @* Save/Add *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" title="Add/Save">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="far fa-plus-square fa-stack-1x"></i>
                     </span>
                     @* Contact *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" title="Contact">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="far fa-envelope fa-stack-1x"></i>
                     </span>
                     @* Share *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" title="Share">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="fas fa-share-alt fa-stack-1x"></i>
                     </span>
                     @* Citation *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" title="Citation">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="fas fa-quote-right fa-stack-1x"></i>
                     </span>
                     @* History *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg"  title="History">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="fa fa-history fa-stack-1x"></i>
                     </span>
                     @* Download *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" title="Download">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="fas fa-download fa-stack-1x"></i>
                     </span>
                     @* Annotate *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" title="Annotate">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="fas fa-pencil-alt fa-stack-1x"></i>
                     </span>
                     @* Favourite *@
-                    <span class="fa-stack fa-lg">
+                    <span class="fa-stack fa-lg" title="Favourite">
                         <i class="far fa-circle fa-stack-2x"></i>
                         <i class="far fa-star fa-stack-1x"></i>
                     </span>
@@ -56,7 +58,7 @@
             </div>
         </div>
 
-        <div id="details-section">
+        <div class="page-content">
             <div class="row">
                 <div class="col-12">
                     <h1 class="pb-4">Bacteria</h1>
