@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsData.Harvester.Service.Clients;
+using SystematicsData.Harvester.Service.Strategies.Interfaces;
 using SystematicsData.Models.Configuration;
 using SystematicsData.Models.Entities.Annotations;
 using SystematicsData.Models.Interfaces;
