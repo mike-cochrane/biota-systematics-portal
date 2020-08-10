@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SystematicsPortal.Harvester.Service</id>
+    <version>$version$</version>
+    <title>Systematics Portal Data Harvester Service</title>
+    <authors>Landcare Research</authors>
+    <owners>Landcare Research</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Systematics portal data harvester for processing messages.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright</copyright>
+    <tags>systematics-portal message-queuing service</tags>
+  </metadata>
+  <files>
+    <file src="**" target=""/>
+  </files>
+</package>
