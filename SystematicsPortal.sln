@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Utility",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Data.Uploader", "SystematicsPortal.Data.Uploader\SystematicsPortal.Data.Uploader.csproj", "{01FF6345-6F64-44EC-88E8-3E62B2142601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystematicsPortal.Data.Harvester", "SystematicsPortal.Data.Harvester\SystematicsPortal.Data.Harvester.csproj", "{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Harvester.Service", "SystematicsPortal.Harvester.Service\SystematicsPortal.Harvester.Service.csproj", "{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

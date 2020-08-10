@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using SystematicsPortal.Models.Entities.Annotations;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Extensions;
 
-namespace SystematicsPortal.Data.Harvester.Clients
+namespace SystematicsPortal.Harvester.Service.Clients
 {
     public class AnnotationsClient
     {
@@ -23,7 +24,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
 
         public AnnotationsClient(IDocumentsRepository repository, string contentServiceUrl, ILogger<AnnotationsClient> logger)
         {
-            _repository = repository; 
+            _repository = repository;
             _apiContentUrl = contentServiceUrl;
             _logger = logger;
         }
@@ -147,20 +148,9 @@ namespace SystematicsPortal.Data.Harvester.Clients
 
         public async Task<Items> GetItemsByIds(List<string> itemIds)
         {
-            string urlToQuery = $"{_apiContentUrl}/items";
-            Items items; ;
+            Items items;
 
-            // TODO: Use new .net core http client factory
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(urlToQuery),
-            };
-
-            var jsonInString = JsonConvert.SerializeObject(itemIds);
-
-            client.DefaultRequestHeaders.Add("Accept", "application/xml");
-
-            var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
+            var response = await GetItemsResponseByIds(itemIds);
 
             if (response.IsSuccessStatusCode)
             {
@@ -174,11 +164,55 @@ namespace SystematicsPortal.Data.Harvester.Clients
             return items;
         }
 
+        //public async Task<XElement> GetItemXmlById(string id)
+        //{
+        //    return await GetItemsXmlByIds(new List<string>() { id})
+        //}
+
         public async Task<IEnumerable<XElement>> GetItemsXmlByIds(List<string> itemIds)
         {
-            string urlToQuery = $"{_apiContentUrl}/items";
-            string items;
             List<XElement> itemsList = new List<XElement>();
+            var response = await GetItemsResponseByIds(itemIds);
+
+            if (response.IsSuccessStatusCode)
+            {
+                itemsList = await GetItemsXElementList(response);
+            }
+            else
+            {
+                throw new HttpRequestException(response.ReasonPhrase);
+            }
+
+            return itemsList;
+        }
+
+        private async Task<List<XElement>> GetItemsXElementList(HttpResponseMessage response)
+        {
+            List<XElement> itemsList = new List<XElement>();
+
+            var items = await response.Content.ReadAsStringAsync();
+
+            TextReader tr = new StringReader(items);
+            XDocument itemsXDocument = XDocument.Load(tr);
+
+            //var itemsXDocument = XDocument.Parse(items);
+            var documentsElements = itemsXDocument.Element("items");
+            itemsList = documentsElements.Descendants("item").ToList();
+
+            itemsList = itemsList.Select(item =>
+            {
+                string itemId = (string)item.Attribute("itemId");
+                item.Add(new XAttribute("documentId", itemId));
+                return item;
+            }
+            ).ToList();
+
+            return itemsList;
+        }
+
+        private async Task<HttpResponseMessage> GetItemsResponseByIds(List<string> itemIds)
+        {
+            string urlToQuery = $"{_apiContentUrl}/items";
 
             // TODO: Use new .net core http client factory
             var client = new HttpClient()
@@ -192,38 +226,7 @@ namespace SystematicsPortal.Data.Harvester.Clients
 
             var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
 
-            if (response.IsSuccessStatusCode)
-            {
-                try
-                {
-                    items = await response.Content.ReadAsStringAsync();
-
-                    TextReader tr = new StringReader(items);
-                    XDocument itemsXDocument = XDocument.Load(tr);
-
-                    //var itemsXDocument = XDocument.Parse(items);
-                    var documentsElements = itemsXDocument.Element("items");
-                    itemsList = documentsElements.Descendants("item").ToList();
-
-                    itemsList = itemsList.Select(item =>
-                    {
-                        string itemId = (string)item.Attribute("itemId");
-                        item.Add(new XAttribute("documentId", itemId));
-                        return item;
-                    }
-                    ).ToList();
-                }
-                catch (Exception e)
-                {
-                    throw;
-                }
-            }
-            else
-            {
-                throw new HttpRequestException(response.ReasonPhrase);
-            }
-
-            return itemsList;
+            return response;
         }
     }
 }

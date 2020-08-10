@@ -1,11 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model SystematicsPortal.Models.Entities.Access.ContentConfigurations;
 
 <div class="row">
     <div class="col-md-12 home-nav-search">
         @await Html.PartialAsync("~/Views/Shared/_Navigation.cshtml")
-        @await Html.PartialAsync("~/Views/Shared/_SearchField.cshtml")
+        @await Component.InvokeAsync("SearchField")
     </div>
 </div>
 
@@ -18,9 +19,9 @@
             </div>
             <div class="col-md-6 pl-0">
                 <h3>
-                    @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[0].Content.SectionTitle)
+                    @Html.Raw(Model.ContentConfigurationList[0].Content.SectionTitle)
                 </h3>
-                @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[0].Content.Text.Substring(0, 300))
+                @Html.Raw(Model.ContentConfigurationList[0].Content.Text.Substring(0, 300))
             </div>
         </div>
     </div>
@@ -31,10 +32,10 @@
             </div>
             <div class="col-md-6 pl-0">
                 <h3>
-                    @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[1].Content.SectionTitle)
+                    @Html.Raw(Model.ContentConfigurationList[1].Content.SectionTitle)
                 </h3>
                 <p class="">
-                    @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[1].Content.Text.Substring(0, 300))
+                    @Html.Raw(Model.ContentConfigurationList[1].Content.Text.Substring(0, 300))
                 </p>
             </div>
         </div>
@@ -50,10 +51,10 @@
             </div>
             <div class="col-md-6 pl-0">
                 <h3>
-                    @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[2].Content.SectionTitle)
+                    @Html.Raw(Model.ContentConfigurationList[2].Content.SectionTitle)
                 </h3>
                 <p>
-                    @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[2].Content.Text.Substring(0, 300))
+                    @Html.Raw(Model.ContentConfigurationList[2].Content.Text.Substring(0, 300))
                 </p>
             </div>
         </div>
@@ -65,10 +66,10 @@
             </div>
             <div class="col-md-6 pl-0">
                 <h3>
-                    @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[3].Content.SectionTitle)
+                    @Html.Raw(Model.ContentConfigurationList[3].Content.SectionTitle)
                 </h3>
                 <p class="">
-                    @Html.Raw(ViewBag.ContentConfigurations.ContentConfigurationList[3].Content.Text.Substring(0, 300))
+                    @Html.Raw(Model.ContentConfigurationList[3].Content.Text.Substring(0, 300))
                 </p>
             </div>
         </div>

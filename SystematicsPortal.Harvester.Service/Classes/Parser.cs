@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SystematicsPortal.Data.Harvester.Helpers;
+using SystematicsPortal.Harvester.Service.Helpers;
 using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Harvester.Classes
+namespace SystematicsPortal.Harvester.Service.Classes
 {
     public class Parser
     {

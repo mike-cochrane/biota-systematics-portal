@@ -1,4 +1,4 @@
-﻿namespace SystematicsPortal.Data.Harvester.Helpers
+﻿namespace SystematicsPortal.Harvester.Service.Helpers
 {
     public class Result
     {

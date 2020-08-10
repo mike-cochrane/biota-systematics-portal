@@ -7,17 +7,18 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using SystematicsPortal.Data.Harvester.Classes;
-using SystematicsPortal.Data.Harvester.Clients;
-using SystematicsPortal.Data.Harvester.Consumers;
-using SystematicsPortal.Data.Harvester.Helpers;
-using SystematicsPortal.Data.Harvester.Services;
-using SystematicsPortal.Data.Harvester.Strategies;
+using SystematicsPortal.Data;
+using SystematicsPortal.Harvester.Service.Classes;
+using SystematicsPortal.Harvester.Service.Clients;
+using SystematicsPortal.Harvester.Service.Consumers;
+using SystematicsPortal.Harvester.Service.Helpers;
+using SystematicsPortal.Harvester.Service.Services;
+using SystematicsPortal.Harvester.Service.Strategies;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Helpers;
 using Topshelf;
 
-namespace SystematicsPortal.Data.Harvester
+namespace SystematicsPortal.Harvester.Service
 {
     internal class Program
     {
@@ -38,7 +39,7 @@ namespace SystematicsPortal.Data.Harvester
             var serviceProvider = services.BuildServiceProvider();
             var logger = serviceProvider.GetService<ILogger<Program>>();
 
-            logger.LogInformation("SystematicsPortal.Data.Harvester - Started");
+            logger.LogInformation("SystematicsPortal.Harvester.Service - Started");
             logger.LogInformation("Machine: {MachineName}", Environment.MachineName);
             logger.LogInformation("Version: {Version}", AssemblyInfoHelper.GetInformationalVersion());
             logger.LogInformation("User Name: {UserName}", Environment.UserName);
@@ -73,9 +74,9 @@ namespace SystematicsPortal.Data.Harvester
 
                 ConfigureService(busControl, harvesterLogger);
 
-                logger.LogInformation("SystematicsPortal.Data.Harvester process results:");
+                logger.LogInformation("SystematicsPortal.Harvester.Service process results:");
 
-                logger.LogInformation("SystematicsPortal.Data.Harvester - Finished");
+                logger.LogInformation("SystematicsPortal.Harvester.Service - Finished");
 
                 return 0;
             }
@@ -119,9 +120,9 @@ namespace SystematicsPortal.Data.Harvester
 
             foreach (var pair in strategiesFromConfig)
             {
-                Type t = Type.GetType(pair.Value);
+                Type strategyType = Type.GetType(pair.Value);
 
-                strategies[pair.Value] = (IHarvesterActionStrategy)Activator.CreateInstance(t, repository, client, null);
+                strategies[pair.Value] = (IHarvesterActionStrategy)Activator.CreateInstance(strategyType, repository, client, null);
             }
 
             return strategies;
@@ -140,9 +141,9 @@ namespace SystematicsPortal.Data.Harvester
 
                 //Setup Account that window service use to run.
                 configure.RunAsLocalSystem();
-                configure.SetServiceName("SystematicsPortal.Data.Harvester");
-                configure.SetDisplayName("SystematicsPortal.Data.Harvester");
-                configure.SetDescription("Harvester that receives messages and proceed to update documents in SOLR and Document Store");
+                configure.SetServiceName("SystematicsPortal.Harvester.Service");
+                configure.SetDisplayName("SystematicsPortal.Harvester.Service");
+                configure.SetDescription("Harvester that receives messages and proceeds to update documents in SOLR and Document Store");
             });
         }
     }
