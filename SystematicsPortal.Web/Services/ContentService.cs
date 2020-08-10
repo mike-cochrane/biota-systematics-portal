@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
-using SystematicsPortal.Models.Entities.Access;
+using SystematicsData.Models.Entities.Access;
+using SystematicsData.Web.Api.Client;
 
 namespace SystematicsPortal.Web.Services
 {
     public class ContentService : IContentService
     {
-        private readonly Api.Client.Client _apiClient;
+        private readonly Client _apiClient;
 
 
-        public ContentService(Api.Client.Client apiClient)
+        public ContentService(Client apiClient)
         {
             _apiClient = apiClient;
         }

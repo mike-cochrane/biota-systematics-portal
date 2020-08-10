@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SystematicsPortal.Models.Entities.Access;
-using SystematicsPortal.Search.Tools.Models.Search;
+using SystematicsData.Models.Entities.Access;
+using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Web.Api.Client;
 
 namespace SystematicsPortal.Web.Services
 {
     public class SearchService : ISearchService
     {
-        public Api.Client.Client _apiClient;
+        public Client _apiClient;
 
-        public SearchService(Api.Client.Client apiClient)
+        public SearchService(Client apiClient)
         {
             _apiClient = apiClient;
         }
@@ -21,7 +22,7 @@ namespace SystematicsPortal.Web.Services
             string sortBy = "",
             string sortOrder = "")
         {
-            var response  = await _apiClient.Search(searchTerm, pageNumber, resultsPerPage);
+            var response = await _apiClient.Search(searchTerm, pageNumber, resultsPerPage);
 
             return response;
         }
