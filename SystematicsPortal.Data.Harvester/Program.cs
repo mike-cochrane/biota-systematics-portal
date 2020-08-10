@@ -7,7 +7,6 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using SystematicsPortal.Data;
 using SystematicsPortal.Data.Harvester.Classes;
 using SystematicsPortal.Data.Harvester.Clients;
 using SystematicsPortal.Data.Harvester.Consumers;

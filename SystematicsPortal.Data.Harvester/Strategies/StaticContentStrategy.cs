@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsPortal.Data.Harvester.Clients;
@@ -12,17 +11,19 @@ namespace SystematicsPortal.Data.Harvester.Strategies
     {
         private readonly IDocumentsRepository _repository;
         private readonly AnnotationsClient _client;
-        private readonly ILogger<StaticContentStrategy> _logger;
+        private readonly ILogger _logger;
 
-        public StaticContentStrategy(IDocumentsRepository repository, AnnotationsClient client/*, ILogger<StaticContentStrategy> logger*/)
+        public StaticContentStrategy(IDocumentsRepository repository, AnnotationsClient client, ILogger logger)
         {
             _repository = repository;
             _client = client;
-            //_logger = logger;
+            _logger = logger;
         }
 
         public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
         {
+            _logger.LogInformation("TEST");
+
             var documents = await GetDocumentsAsync(resourceId, itemTypeId, itemId);
 
             var results = await _repository.WriteDocuments(documents);

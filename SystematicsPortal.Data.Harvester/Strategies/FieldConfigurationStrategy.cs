@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsPortal.Data.Harvester.Clients;
@@ -17,13 +16,13 @@ namespace SystematicsPortal.Data.Harvester.Strategies
         private readonly IDocumentsRepository _repository;
 
         public readonly AnnotationsClient _client;
-        private readonly ILogger<FieldConfigurationStrategy> _logger;
+        private readonly ILogger _logger;
 
-        public FieldConfigurationStrategy(IDocumentsRepository repository, AnnotationsClient client/*, ILogger<FieldConfigurationStrategy> logger*/)
+        public FieldConfigurationStrategy(IDocumentsRepository repository, AnnotationsClient client, ILogger logger)
         {
             _repository = repository;
             _client = client;
-            //_logger = logger;
+            _logger = logger;
         }
 
         public async Task<int> ApplyStrategyAsync(string resourceId, string itemTypeId, string itemId)
