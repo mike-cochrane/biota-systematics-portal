@@ -256,3 +256,8 @@ footer a {
 .mw-35em {
     max-width: 35em;
 }
+
+#details-section {
+    width: 100%;
+    max-width: 940px;
+}
