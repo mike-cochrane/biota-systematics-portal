@@ -11,15 +11,48 @@
     <div class="col-md-9 mw-100 pt-4 pl-5 pb-5 detail-page">
         <div id="action-icons" class="row">
             <div class="col-md-12 pb-2">
-                <img class="float-right mr-2" alt="Favourite" src="~/images/Favourites.png" />
-                <img class="float-right mr-2" alt="Annotate" src="~/images/Annotate.png" />
-                <img class="float-right mr-2" alt="Download" src="~/images/Download.png" />
-                <img class="float-right mr-2" alt="History" src="~/images/History.png" />
-                <img class="float-right mr-2" alt="Citation" src="~/images/Citation.png" />
-                <img class="float-right mr-2" alt="Share" src="~/images/Share.png" />
-                <img class="float-right mr-2" alt="Contact us" src="~/images/Contact.png" />
-                <img class="float-right mr-2" alt="Save" src="~/images/Save.png" />
-                <img class="float-right mr-2" alt="Add" src="~/images/add.png" />
+                <div class="float-right">
+                    @* Save/Add *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="far fa-plus-square fa-stack-1x"></i>
+                    </span>
+                    @* Contact *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="far fa-envelope fa-stack-1x"></i>
+                    </span>
+                    @* Share *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-share-alt fa-stack-1x"></i>
+                    </span>
+                    @* Citation *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-quote-right fa-stack-1x"></i>
+                    </span>
+                    @* History *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-history fa-stack-1x"></i>
+                    </span>
+                    @* Download *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-download fa-stack-1x"></i>
+                    </span>
+                    @* Annotate *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-pencil-alt fa-stack-1x"></i>
+                    </span>
+                    @* Favourite *@
+                    <span class="fa-stack fa-lg">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="far fa-star fa-stack-1x"></i>
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -81,663 +114,689 @@
             </div>
             <br />
 
-            <div class="heading-divider"></div>
-            <h3 class="pb-1">Biostatus values</h3>
-            <h4 class="pb-4">Biostatus</h4>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Origin</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+            <div id="section-biostatus-values">
+                <div class="heading-divider"></div>
+                <h3 class="pb-1">Biostatus values</h3>
+                <h4 class="pb-4">Biostatus</h4>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Origin</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque voluptatum eius itaque saepe fugiat et excepturi tenetur nostrum, veritatis error? Doloremque ratione aspernatur tempora consequatur!
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Occurrence</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Occurrence</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Georegion</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Georegion</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Bio Status Reference</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Bio Status Reference</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Note</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Note</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <h4 class="pb-4">Biostatus</h4>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Origin</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <h4 class="pb-4">Biostatus</h4>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Origin</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Occurrence</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Occurrence</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Georegion</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Georegion</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Bio Status Reference</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Bio Status Reference</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Note</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Note</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
             </div>
 
-            <div class="heading-divider"></div>
-            <h3 class="pb-4">Nomenclature</h3>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Basionym (ICN)</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+            <div id="section-nomenclature">
+                <div class="heading-divider"></div>
+                <h3 class="pb-4">Nomenclature</h3>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Basionym (ICN)</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Based on</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Based on</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Later homonym of</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Later homonym of</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Nomenclatural status</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Nomenclatural status</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (misapplied)
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (misapplied)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (dubium)
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (dubium)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (proParte)
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (proParte)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (novum)
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (novum)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (invalid)
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (invalid)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (illegitimate)
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (illegitimate)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Nomenclatural Code</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Nomenclatural Code</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Taxonomic Rank</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Taxonomic Rank</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Place of publication</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Place of publication</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Publication date (actual)</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Publication date (actual)</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Publication date (stated)</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Publication date (stated)</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Page</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Page</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3 col-lg-3">Orthography</label>
-                <div class="col-sm-8 col-lg-9 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3 col-lg-3">Orthography</label>
+                    <div class="col-sm-8 col-lg-9 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Type taxon</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Type taxon</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Sanctioning Author</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Sanctioning Author</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Sanctioning Page</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Sanctioning Page</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Anamorph Genus</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Anamorph Genus</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Anamorph Reference</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="heading-divider"></div>
-            <h3 class="pb-4">Classification</h3>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Kingdom</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Phylum</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Class</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Order</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Family</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Genus</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="heading-divider"></div>
-            <h3 class="pb-4">
-                Vernacular Names
-            </h3>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Vernacular Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Language of origin</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Language of use</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Region of use</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Notes</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="heading-divider"></div>
-            <h3 class="pb-1">Hybridisation</h3>
-            <h4 class="pb-4">HybridData</h4>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (NameFull)
-                </div>
-            </div>
-            <div class="heading-divider"></div>
-            <h3 class="pb-1">Concepts</h3>
-            <h4 class="pb-4">Concept</h4>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">According To</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Page</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Orthography</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Keywords</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet<br />
-                    Lorem ipsum dolor sit amet<br />
-                    Lorem ipsum dolor sit amet<br />
-                </div>
-            </div>
-            <h5 class="pb-4">Associations</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Cited Parent</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a>
-                </div>
-                <label class="col-sm-4 col-lg-3">Cited Current Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Cited Alternative Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Cited Association</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <h5 class="pb-4">Relationships</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Taxon</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Relationship</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <h5 class="pb-4">Descriptions</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Description</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Type</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Category</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (DescriptionUrl)
-                </div>
-            </div>
-            <h4 class="pb-4">Concept</h4>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">According To</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Page</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Orthography</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Keywords</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet<br />
-                    Lorem ipsum dolor sit amet<br />
-                    Lorem ipsum dolor sit amet<br />
-                </div>
-            </div>
-            <h5 class="pb-4">Associations</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Cited Parent</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a>
-                </div>
-                <label class="col-sm-4 col-lg-3">Cited Current Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Cited Alternative Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Cited Association</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <h5 class="pb-4">Relationships</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Taxon</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-                <label class="col-sm-4 col-lg-3">Relationship</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Anamorph Reference</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
             </div>
 
-            <h5 class="pb-4">Descriptions</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+            <div id="section-classification">
+                <div class="heading-divider"></div>
+                <h3 class="pb-4">Classification</h3>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Kingdom</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-                <label class="col-sm-4 col-lg-3">Description</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Phylum</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-                <label class="col-sm-4 col-lg-3">Type</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Class</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-                <label class="col-sm-4 col-lg-3">Category</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Order</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet (DescriptionUrl)
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Family</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
-            </div>
-
-            <div class="heading-divider"></div>
-            <h3 class="pb-4">Biostatus History</h3>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Origin</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Occurrence</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Georegion</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Reference</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Note</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Genus</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
             </div>
 
-            <div class="heading-divider"></div>
-            <h3 class="pb-4">Links</h3>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">&nbsp;</label>
-                <div class="col-sm-8 col-lg-9">
-                    <a href="">Lorem ipsum dolor sit amet</a><br />
-                    <a href="">Lorem ipsum dolor sit amet</a><br />
-                    <a href="">Lorem ipsum dolor sit amet</a><br />
-                    <a href="">Lorem ipsum dolor sit amet</a><br />
+            <div id="section-vernacular-names">
+                <div class="heading-divider"></div>
+                <h3 class="pb-4">
+                    Vernacular Names
+                </h3>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Vernacular Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Language of origin</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Language of use</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Region of use</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Notes</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
             </div>
 
-            <div class="heading-divider"></div>
-            <h3 class="pb-1">Collections</h3>
-            <h4 class="pb-4">Collection</h4>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Accession Number</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+            <div id="section-hybridisation">
+                <div class="heading-divider"></div>
+                <h3 class="pb-1">Hybridisation</h3>
+                <h4 class="pb-4">HybridData</h4>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (NameFull)
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Determined Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+
+            <div id="section-concepts">
+                <div class="heading-divider"></div>
+                <h3 class="pb-1">Concepts</h3>
+                <h4 class="pb-4">Concept</h4>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">According To</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Page</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Orthography</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Keywords</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet<br />
+                        Lorem ipsum dolor sit amet<br />
+                        Lorem ipsum dolor sit amet<br />
+                    </div>
+                </div>
+                <h5 class="pb-4">Associations</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Cited Parent</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a>
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Cited Current Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Cited Alternative Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Cited Association</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <h5 class="pb-4">Relationships</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Taxon</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Relationship</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <h5 class="pb-4">Descriptions</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Description</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Type</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Category</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (DescriptionUrl)
+                    </div>
+                </div>
+                <h4 class="pb-4">Concept</h4>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">According To</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Page</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Orthography</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Keywords</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet<br />
+                        Lorem ipsum dolor sit amet<br />
+                        Lorem ipsum dolor sit amet<br />
+                    </div>
+                </div>
+                <h5 class="pb-4">Associations</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Cited Parent</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a>
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Cited Current Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Cited Alternative Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Cited Association</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <h5 class="pb-4">Relationships</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Taxon</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Relationship</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+
+                <h5 class="pb-4">Descriptions</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Description</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Type</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">Category</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet (DescriptionUrl)
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Collector</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+
+            <div id="section-biostatus-history">
+                <div class="heading-divider"></div>
+                <h3 class="pb-4">Biostatus History</h3>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Origin</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Occurrence</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Georegion</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Reference</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Note</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Collection Date</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+
+            <div id="section-links">
+                <div class="heading-divider"></div>
+                <h3 class="pb-4">Links</h3>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">&nbsp;</label>
+                    <div class="col-sm-8 col-lg-9">
+                        <a href="">Lorem ipsum dolor sit amet</a><br />
+                        <a href="">Lorem ipsum dolor sit amet</a><br />
+                        <a href="">Lorem ipsum dolor sit amet</a><br />
+                        <a href="">Lorem ipsum dolor sit amet</a><br />
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Host</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+
+            <div id="section-collections">
+                <div class="heading-divider"></div>
+                <h3 class="pb-1">Collections</h3>
+                <h4 class="pb-4">Collection</h4>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Accession Number</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Determined Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Collector</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Collection Date</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Host</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Substrate</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Type status</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <h5 class="pb-4">Regions</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Country</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Region</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Country</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Region</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <h4 class="pb-4">Collection</h4>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Accession Number</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Determined Name</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Collector</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Collection Date</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Host</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Substrate</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Type status</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <h5 class="pb-4">Regions</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Country</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Region</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Country</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Region</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Substrate</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
+
+            <div id="section-metadata">
+                <div class="heading-divider"></div>
+                <h3 class="pb-1">Metadata</h3>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Name Identifier</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Date added</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Date updated</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Source database</label>
+                    <div class="col-sm-8 col-lg-9">
+                        Lorem ipsum dolor sit amet
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Type status</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <h5 class="pb-4">Regions</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Country</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Region</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Country</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Region</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <h4 class="pb-4">Collection</h4>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Accession Number</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Determined Name</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Collector</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Collection Date</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Host</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Substrate</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Type status</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <h5 class="pb-4">Regions</h5>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Country</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Region</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Country</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Region</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="heading-divider"></div>
-            <h3 class="pb-1">Metadata</h3>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Name Identifier</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Date added</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Date updated</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">Source database</label>
-                <div class="col-sm-8 col-lg-9">
-                    Lorem ipsum dolor sit amet
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

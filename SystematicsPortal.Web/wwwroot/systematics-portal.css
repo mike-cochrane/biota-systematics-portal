@@ -75,19 +75,15 @@
     border-color: black;
 }
 
-#main-nav-buttons {
-    margin-top: 3.75em;
+#main-nav-buttons .btn, #detail-nav-buttons .btn {
+    border-radius: 0;
+    font-weight: 700;
+    width: 7em;
 }
 
-    #main-nav-buttons .btn, #detail-nav-buttons .btn {
-        border-radius: 0;
-        font-weight: 700;
-        width: 7em;
+    #main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
+        margin-left: 1em;
     }
-
-        #main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
-            margin-left: 1em;
-        }
 
 .green-background {
     background-color: #6E9E40;
@@ -260,4 +256,20 @@ footer a {
 #details-section {
     width: 100%;
     max-width: 940px;
+}
+
+.page-title {
+    color: white;
+}
+
+.page-title:hover {
+    text-decoration: none;
+}
+
+.page-title:visited {
+    color: white;
+}
+
+h1 strong {
+    font-weight: 800;
 }
