@@ -20,8 +20,7 @@ namespace SystematicsPortal.Web.Controllers
 
         public async System.Threading.Tasks.Task<IActionResult> Index()
         { 
-            ViewBag.ContentConfigurations = await _contentService.GetContent("home");
-            return View();
+            return View(await _contentService.GetContent("home"));
         }
         public IActionResult AboutUs()
         {

@@ -1,11 +1,12 @@
-﻿<div class="row search-row">
+﻿@model SystematicsPortal.Web.Models.SearchViewModel
+<div class="row search-row">
     <div class="col-md-3"></div>
     <div class="form-group col-lg-6">
         <form method="post" id="form" enctype="multipart/form-data" asp-controller="Search" asp-action="Index">
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-9 search-field-wrapper d-none d-md-block d-lg-non">
-                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query" value="@(Model != null && Model.Query.Exists && !string.IsNullOrEmpty(Model.Query) ? Model.Query : "")">
+                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query" value="@Model.Query">
                 </div>
                 <div class="float-md-right col-md-1 search-icon-wrapper d-none d-md-block d-lg-non">
                     <button type="submit" form="form" class="fa fa-search fa-2x search-icon"></button>
@@ -15,7 +16,7 @@
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-6 search-field-wrapper d-none d-sm-block d-md-none">
-                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query" value="@(Model != null && Model.Query.Exists && !string.IsNullOrEmpty(Model.Query) ? Model.Query : "")">
+                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query" value="@Model.Query">
                 </div>
                 <div class="float-sm-right col-sm-1 search-icon-wrapper d-none d-sm-block d-md-none">
                     <button type="submit" form="form" class="fa fa-search fa-2x search-icon"></button>
@@ -25,7 +26,7 @@
             <div class="row justify-content-center">
                 <div class="col-xs-2"></div>
                 <div class="col-xs-7 search-field-wrapper d-block d-sm-none">
-                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query" value="@(Model != null && Model.Query.Exists && !string.IsNullOrEmpty(Model.Query) != null ? Model.Query : "")">
+                    <input class="form-control search-form" type="text" placeholder="Search Portal..." aria-label="Search" name="query" value="@Model.Query">
                 </div>
                 <div class="float-xl-right col-xs-1 search-icon-wrapper d-block d-sm-none">
                     <button type="submit" form="form" class="fa fa-search fa-2x search-icon"></button>
