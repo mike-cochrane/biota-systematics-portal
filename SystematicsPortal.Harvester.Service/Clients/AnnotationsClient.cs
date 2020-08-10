@@ -14,7 +14,7 @@ using SystematicsPortal.Models.Entities.Annotations;
 using SystematicsPortal.Models.Interfaces;
 using SystematicsPortal.Utility.Extensions;
 
-namespace SystematicsPortal.Data.Harvester.Clients
+namespace SystematicsPortal.Harvester.Service.Clients
 {
     public class AnnotationsClient
     {

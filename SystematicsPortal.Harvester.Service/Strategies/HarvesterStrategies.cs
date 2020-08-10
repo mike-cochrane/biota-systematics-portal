@@ -2,11 +2,11 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using SystematicsPortal.Data.Harvester.Clients;
-using SystematicsPortal.Data.Harvester.Helpers;
+using SystematicsPortal.Harvester.Service.Clients;
+using SystematicsPortal.Harvester.Service.Helpers;
 using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Harvester.Strategies
+namespace SystematicsPortal.Harvester.Service.Strategies
 {
     public class HarvesterStrategies : IHarvesterStrategies
     {

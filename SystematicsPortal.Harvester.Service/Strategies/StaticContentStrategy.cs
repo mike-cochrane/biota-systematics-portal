@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using SystematicsPortal.Data.Harvester.Clients;
+using SystematicsPortal.Harvester.Service.Clients;
 using SystematicsPortal.Models.Interfaces;
 
-namespace SystematicsPortal.Data.Harvester.Strategies
+namespace SystematicsPortal.Harvester.Service.Strategies
 {
     public class StaticContentStrategy : IHarvesterActionStrategy
     {
