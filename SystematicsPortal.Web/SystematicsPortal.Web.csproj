@@ -339,9 +339,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SystematicsPortal.Models\SystematicsPortal.Models.csproj" />
-		<ProjectReference Include="..\SystematicsPortal.Utility\SystematicsPortal.Utility.csproj" />
-		<ProjectReference Include="..\SystematicsPortal.Web.Api.Client\SystematicsPortal.Web.Api.Client.csproj" />
-		<ProjectReference Include="..\SystematicsPortal.Search.Tools\SystematicsPortal.Search.Tools.csproj" />
+		<ProjectReference Include="..\SystematicsData.Models\SystematicsData.Models.csproj" />
+		<ProjectReference Include="..\SystematicsData.Utility\SystematicsData.Utility.csproj" />
+		<ProjectReference Include="..\SystematicsData.Web.Api.Client\SystematicsData.Web.Api.Client.csproj" />
+		<ProjectReference Include="..\SystematicsData.Search.Tools\SystematicsData.Search.Tools.csproj" />
 	</ItemGroup>
 </Project>

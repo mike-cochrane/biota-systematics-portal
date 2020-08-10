@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using SystematicsPortal.Models.Entities.Access;
+using SystematicsData.Models.Entities.Access;
 
 namespace SystematicsPortal.Web.Services
 {
