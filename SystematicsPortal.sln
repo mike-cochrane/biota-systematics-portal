@@ -5,23 +5,23 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web", "SystematicsPortal.Web\SystematicsPortal.Web.csproj", "{1D855A40-D01E-4A61-B3C7-9FEE82277C1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Search", "SystematicsPortal.Search\SystematicsPortal.Search.csproj", "{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Search", "SystematicsData.Search\SystematicsData.Search.csproj", "{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Search.Tools", "SystematicsPortal.Search.Tools\SystematicsPortal.Search.Tools.csproj", "{F963483A-A1A8-4634-BEB9-A17779CB5062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Search.Tools", "SystematicsData.Search.Tools\SystematicsData.Search.Tools.csproj", "{F963483A-A1A8-4634-BEB9-A17779CB5062}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Api", "SystematicsPortal.Web.Api\SystematicsPortal.Web.Api.csproj", "{3A70D786-422D-4F98-AF98-87A60CB887EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Web.Api", "SystematicsData.Web.Api\SystematicsData.Web.Api.csproj", "{3A70D786-422D-4F98-AF98-87A60CB887EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web.Api.Client", "SystematicsPortal.Web.Api.Client\SystematicsPortal.Web.Api.Client.csproj", "{95D506C3-B3FD-4712-98AB-8F75C412BB00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Web.Api.Client", "SystematicsData.Web.Api.Client\SystematicsData.Web.Api.Client.csproj", "{95D506C3-B3FD-4712-98AB-8F75C412BB00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Models", "SystematicsPortal.Models\SystematicsPortal.Models.csproj", "{7572487C-648D-4495-9DB6-DE4985B1ED7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Models", "SystematicsData.Models\SystematicsData.Models.csproj", "{7572487C-648D-4495-9DB6-DE4985B1ED7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Data", "SystematicsPortal.Data\SystematicsPortal.Data.csproj", "{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Data", "SystematicsData.Data\SystematicsData.Data.csproj", "{2A1ECCDE-1618-44BA-87A3-5D81E977D72F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Utility", "SystematicsPortal.Utility\SystematicsPortal.Utility.csproj", "{FD789B64-0572-492F-9472-800B0C171390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Utility", "SystematicsData.Utility\SystematicsData.Utility.csproj", "{FD789B64-0572-492F-9472-800B0C171390}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Data.Uploader", "SystematicsPortal.Data.Uploader\SystematicsPortal.Data.Uploader.csproj", "{01FF6345-6F64-44EC-88E8-3E62B2142601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Uploader", "SystematicsData.Uploader\SystematicsData.Uploader.csproj", "{01FF6345-6F64-44EC-88E8-3E62B2142601}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Harvester.Service", "SystematicsPortal.Harvester.Service\SystematicsPortal.Harvester.Service.csproj", "{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Harvester.Service", "SystematicsData.Harvester.Service\SystematicsData.Harvester.Service.csproj", "{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
