@@ -63,7 +63,7 @@ namespace SystematicsData.Harvester.Service
                         host.Password(appSettings.RabbitMq.Password);
                     });
 
-                    config.ReceiveEndpoint("SystematicsData.web.queue", endpoint =>
+                    config.ReceiveEndpoint("systematicsportal.web.queue", endpoint =>
                     {
                         var harvesterStrategies = serviceProvider.GetRequiredService<IHarvesterStrategies>();
 
