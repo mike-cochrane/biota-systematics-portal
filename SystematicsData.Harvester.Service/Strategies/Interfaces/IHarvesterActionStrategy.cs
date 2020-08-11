@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace SystematicsData.Models.Interfaces
+namespace SystematicsData.Harvester.Service.Strategies.Interfaces
 {
     public interface IHarvesterActionStrategy
     {
