@@ -1,10 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsData.Harvester.Service.Clients;
 using SystematicsData.Harvester.Service.Strategies.Interfaces;
+using SystematicsData.Models.Entities.Annotations;
 using SystematicsData.Models.Interfaces;
+using SystematicsData.Utility.Helpers;
 
 namespace SystematicsData.Harvester.Service.Strategies
 {
@@ -27,9 +30,22 @@ namespace SystematicsData.Harvester.Service.Strategies
 
             var documents = new List<XElement>() { document };
 
+            //documents.AddRange(await GetRelatedDocumentsAsync(document));
+
             var results = await _repository.WriteDocuments(documents);
 
             return results;
+        }
+
+        private async Task<IEnumerable<XElement>> GetRelatedDocumentsAsync(XElement document)
+        {
+            var item = SerializationHelper.Deserialize<Item>(document.ToString());
+
+            var relatedItemsIds = item.relatedItems.Select(x => x.RelatedItemId).ToList();
+
+            var relatedItems = await _client.GetItemsXmlByIds(relatedItemsIds);
+
+            return relatedItems;
         }
     }
 }

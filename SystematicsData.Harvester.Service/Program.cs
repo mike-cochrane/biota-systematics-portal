@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using SystematicsData.Data;
-using SystematicsData.Harvester.Service.Classes;
 using SystematicsData.Harvester.Service.Clients;
 using SystematicsData.Harvester.Service.Consumers;
 using SystematicsData.Harvester.Service.Helpers;
@@ -54,6 +53,7 @@ namespace SystematicsData.Harvester.Service
                 var client = serviceProvider.GetService<AnnotationsClient>();
                 var repository = serviceProvider.GetRequiredService<IDocumentsRepository>();
                 var harvesterLogger = serviceProvider.GetService<ILogger<HarvesterService>>();
+                var consumeLogger = serviceProvider.GetService<ILogger<ItemUpdatedConsumer>>();
 
                 var busControl = Bus.Factory.CreateUsingRabbitMq(config =>
                 {
@@ -67,7 +67,7 @@ namespace SystematicsData.Harvester.Service
                     {
                         var harvesterStrategies = serviceProvider.GetRequiredService<IHarvesterStrategies>();
 
-                        endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies, client));
+                        endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies, client, consumeLogger));
                     });
                 });
 
@@ -108,14 +108,12 @@ namespace SystematicsData.Harvester.Service
             services.AddLogging(configure => configure.AddSerilog(logger, dispose: true));
 
             services.AddDbContext<NamesWebContext>(options =>
-                options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
+                options.UseSqlServer(connectionString),
                 ServiceLifetime.Transient);
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
             services.AddTransient(x =>
                 new AnnotationsClient(x.GetRequiredService<IDocumentsRepository>(), appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
-            services.AddTransient(x =>
-                new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
             services.AddTransient<IHarvesterStrategies, HarvesterStrategies>();
         }
 

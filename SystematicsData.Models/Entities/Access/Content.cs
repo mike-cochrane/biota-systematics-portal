@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SystematicsData.Models.Entities.Access
 {
@@ -12,5 +13,6 @@ namespace SystematicsData.Models.Entities.Access
         public string SectionTitle { get; set; }
         [DisplayName("Text")]
         public string Text { get; set; }
+        public IEnumerable<Concept> RelatedConcepts { get; set; }
     }
 }

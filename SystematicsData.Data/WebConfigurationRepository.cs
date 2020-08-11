@@ -30,39 +30,39 @@ namespace SystematicsData.Data
         /// <returns>Content configurations with specific content</returns>
         public async Task<ContentConfigurations> GetContentConfigurationsAsync(string page)
         {
-            try
+            var contentConfigurationsList = new List<ContentConfiguration>();
+
+            ContentConfigurations contentConfigurations = new ContentConfigurations();
+
+            var contentConfigurationsListDb = await _context.ContentConfiguration.Where(ccfg => ccfg.Page.ToLower() == page.ToLower()).ToListAsync();
+
+            foreach (var contentConfigurationDb in contentConfigurationsListDb)
             {
-                ContentConfigurations contentConfigurations = new ContentConfigurations();
+                var contentConfiguration = contentConfigurationDb.ToDto();
 
-                var contentConfigurationsListDb = await _context.ContentConfiguration.Where(ccfg => ccfg.Page.ToLower() == page.ToLower()).ToListAsync();
-
-                var contentConfigurationsList  = new List<ContentConfiguration>();
-
-
-                foreach (var contentConfigurationDb in contentConfigurationsListDb)
+                if (contentConfigurationDb.ExternalId != null)
                 {
-                    var contentConfiguration = contentConfigurationDb.ToDto();
-
-                    if (contentConfigurationDb.ExternalId != null)
-                    {
-                        contentConfiguration.Content = await GetContentFromDocumentStoreAsync(contentConfigurationDb.ExternalId.Value);
-                    }
-
-                    contentConfigurationsList.Add(contentConfiguration);
+                    contentConfiguration.Content = await GetContentFromDocumentStoreAsync(contentConfigurationDb.ExternalId.Value);
                 }
 
-                contentConfigurations.ContentConfigurationList = contentConfigurationsList;
-
-                return contentConfigurations;
+                contentConfigurationsList.Add(contentConfiguration);
             }
-            catch (Exception e)
-            {
 
-                throw;
-            }
+            contentConfigurations.ContentConfigurationList = contentConfigurationsList;
+
+            return contentConfigurations;
         }
 
         private async Task<Content> GetContentFromDocumentStoreAsync(Guid externalId)
+        {
+            var documentDb = await GetDocumentDb(externalId);
+
+            var content = FillInContent(documentDb.SerializedDocument);
+
+            return content;
+        }
+
+        private async Task<Models.Entities.Database.Document> GetDocumentDb(Guid externalId)
         {
             var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == externalId);
 
@@ -71,9 +71,7 @@ namespace SystematicsData.Data
                 throw new NotFoundException($"Document with Id: {externalId} has not been found", null);
             }
 
-            var content = FillInContent(documentDb.SerializedDocument);
-
-            return content;
+            return documentDb;
         }
 
         private Content FillInContent(string serializedDocument)
@@ -94,7 +92,29 @@ namespace SystematicsData.Data
             var text = PropertyHelpers.GetPropertyDisplayName<Content>(nameof(Content.Text));
             content.Text = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == text).Content.ToString();
 
+            content.RelatedConcepts = GetRelatedConcepts(item);
+
             return content;
+        }
+
+        private IEnumerable<Concept> GetRelatedConcepts(Item item)
+        {
+            var concepts = new List<Concept>();
+            var relatedItemsIds = item.relatedItems.Select(x => x.RelatedItemId).ToList();
+
+            foreach (var relatedItemId in relatedItemsIds)
+            {
+                if(Guid.TryParse(relatedItemId, out var relatedItemdIdGuid))
+                {
+                    var conceptDb = GetDocumentDb(relatedItemdIdGuid);
+
+
+
+                }
+                
+            }
+
+            return concepts;
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using SystematicsData.Search.Tools.Models.Search;
-using SystematicsData.Web.Api.Services;
+using SystematicsData.Web.Api.Services.Interfaces;
 
 namespace SystematicsData.Web.Api.Controllers
 {

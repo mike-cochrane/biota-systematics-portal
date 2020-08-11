@@ -5,6 +5,7 @@ using System.Linq;
 using SystematicsData.Search.Tools.Models;
 using SystematicsData.Search.Tools.Models.Interfaces;
 using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Web.Api.Services.Interfaces;
 
 namespace SystematicsData.Web.Api.Services
 {

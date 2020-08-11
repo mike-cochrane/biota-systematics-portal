@@ -4,6 +4,7 @@ using SystematicsData.Data;
 using SystematicsData.Models.Interfaces;
 using SystematicsData.Search.Tools.Models.Interfaces;
 using SystematicsData.Web.Api.Infrastructure;
+using SystematicsData.Web.Api.Services.Interfaces;
 
 namespace SystematicsData.Web.Api.Services
 {

@@ -101,14 +101,7 @@ namespace SystematicsData.Data
 
                     result = await SaveChangesAsync();
 
-                    if (result > 0)
-                    {
-                        _logger.LogDebug("{Action} {DocumentId} {Result}", "Update Document", documentId, "Document has been saved");
-                    }
-                    else
-                    {
-                        _logger.LogDebug("{Action} {DocumentId} {Result}", "Update Document", documentId, "Document has NOT been saved");
-                    }
+                    _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
                 }
             }
             else
@@ -122,14 +115,7 @@ namespace SystematicsData.Data
 
                 result = await InsertDocumentDbAsync(storeDocument);
 
-                if (result > 0)
-                {
-                    _logger.LogDebug("{Action} {DocumentId} {Result}", "Save Document", documentId, "Document has been saved");
-                }
-                else
-                {
-                    _logger.LogDebug("{Action} {DocumentId} {Result}", "Save Document", documentId, "Document has NOT been saved");
-                }
+                _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
             }
             return result;
         }
@@ -147,31 +133,17 @@ namespace SystematicsData.Data
         private async Task<int> InsertDocumentDbAsync(Models.Entities.Database.Document document)
         {
             int result;
-            try
-            {
-                await _context.Document.AddAsync(document);
 
-                result = await SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            await _context.Document.AddAsync(document);
+
+            result = await SaveChangesAsync();
 
             return result;
         }
 
         public async Task<int> SaveChangesAsync()
         {
-            int result = 0;
-            try
-            {
-                result = await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            var result = await _context.SaveChangesAsync();
 
             return result;
         }
