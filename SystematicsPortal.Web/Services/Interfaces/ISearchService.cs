@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Search.Tools.Models.Search;
 
-namespace SystematicsPortal.Web.Services
+namespace SystematicsPortal.Web.Services.Interfaces
 {
     public interface ISearchService
     {

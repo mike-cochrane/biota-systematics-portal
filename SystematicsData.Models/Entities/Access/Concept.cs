@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace SystematicsData.Models.Entities.Access
 {
     public class Concept
     {
+        [DisplayName("Title")]
         public string Title { get; set; }
+        [DisplayName("Definition")]
         public string Definition { get; set; }
     }
 }
