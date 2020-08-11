@@ -20,5 +20,4 @@
     <ProjectReference Include="..\SystematicsData.Search\SystematicsData.Search.csproj" />
   </ItemGroup>
 
-
 </Project>
