@@ -7,6 +7,7 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using SystematicsData.Data;
 using SystematicsData.Harvester.Service.Classes;
 using SystematicsData.Harvester.Service.Clients;
@@ -28,7 +29,7 @@ namespace SystematicsData.Harvester.Service
             var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
                 .AddUserSecrets<Program>(optional: true)
