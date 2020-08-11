@@ -25,10 +25,13 @@ namespace SystematicsData.Harvester.Service
     {
         private static int Main(string[] args)
         {
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddUserSecrets(typeof(Program).Assembly, optional: true)
+                .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
+                .AddUserSecrets<Program>(optional: true)
                 .Build();
 
             var services = new ServiceCollection();
