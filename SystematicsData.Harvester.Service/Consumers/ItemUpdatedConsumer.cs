@@ -1,10 +1,9 @@
 ﻿using Annotations.Messaging.Contracts.Items;
 using MassTransit;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystematicsData.Harvester.Service.Clients;
-using SystematicsData.Models.Interfaces;
+using SystematicsData.Harvester.Service.Strategies.Interfaces;
 
 namespace SystematicsData.Harvester.Service.Consumers
 {

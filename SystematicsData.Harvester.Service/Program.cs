@@ -14,6 +14,7 @@ using SystematicsData.Harvester.Service.Consumers;
 using SystematicsData.Harvester.Service.Helpers;
 using SystematicsData.Harvester.Service.Services;
 using SystematicsData.Harvester.Service.Strategies;
+using SystematicsData.Harvester.Service.Strategies.Interfaces;
 using SystematicsData.Models.Interfaces;
 using SystematicsData.Utility.Helpers;
 using Topshelf;

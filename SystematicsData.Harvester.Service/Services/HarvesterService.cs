@@ -1,8 +1,6 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using SystematicsData.Harvester.Service.Clients;
-using SystematicsData.Models.Interfaces;
 
 namespace SystematicsData.Harvester.Service.Services
 {
