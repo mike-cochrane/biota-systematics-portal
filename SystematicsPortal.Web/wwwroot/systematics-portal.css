@@ -47,7 +47,10 @@
 
 .home-nav-search {
     height: 28.125em;
-    background-image: url(images/home-banner.jpg)
+    background-image: url(images/home-banner.jpg);
+    -ms-background-position-x: right;
+    -ms-background-position-y: bottom;
+    background-position: right bottom;
 }
 
 .home-nav-search .search-row {
