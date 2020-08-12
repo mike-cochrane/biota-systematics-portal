@@ -30,7 +30,7 @@ namespace SystematicsData.Harvester.Service.Strategies
 
             var documents = new List<XElement>() { document };
 
-            //documents.AddRange(await GetRelatedDocumentsAsync(document));
+            documents.AddRange(await GetRelatedDocumentsAsync(document));
 
             var results = await _repository.WriteDocuments(documents);
 
@@ -39,11 +39,15 @@ namespace SystematicsData.Harvester.Service.Strategies
 
         private async Task<IEnumerable<XElement>> GetRelatedDocumentsAsync(XElement document)
         {
+            IEnumerable<XElement> relatedItems = new List<XElement>();
             var item = SerializationHelper.Deserialize<Item>(document.ToString());
 
             var relatedItemsIds = item.relatedItems.Select(x => x.RelatedItemId).ToList();
 
-            var relatedItems = await _client.GetItemsXmlByIds(relatedItemsIds);
+            if (relatedItemsIds.Count > 0)
+            { 
+                relatedItems = await _client.GetItemsXmlByIds(relatedItemsIds); 
+            }
 
             return relatedItems;
         }

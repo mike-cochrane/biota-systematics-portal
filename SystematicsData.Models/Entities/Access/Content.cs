@@ -13,6 +13,6 @@ namespace SystematicsData.Models.Entities.Access
         public string SectionTitle { get; set; }
         [DisplayName("Text")]
         public string Text { get; set; }
-        public IEnumerable<Concept> RelatedConcepts { get; set; }
+        public List<Concept> RelatedConcepts { get; set; }
     }
 }

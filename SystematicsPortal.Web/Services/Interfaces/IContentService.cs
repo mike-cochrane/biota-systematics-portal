@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
 
-namespace SystematicsPortal.Web.Services
+namespace SystematicsPortal.Web.Services.Interfaces
 {
     public interface IContentService
     {

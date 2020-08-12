@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using SystematicsData.Data.Extensions;
@@ -57,7 +58,7 @@ namespace SystematicsData.Data
         {
             var documentDb = await GetDocumentDb(externalId);
 
-            var content = FillInContent(documentDb.SerializedDocument);
+            var content = await FillInContentAsync(documentDb.SerializedDocument);
 
             return content;
         }
@@ -74,7 +75,7 @@ namespace SystematicsData.Data
             return documentDb;
         }
 
-        private Content FillInContent(string serializedDocument)
+        private async Task<Content> FillInContentAsync(string serializedDocument)
         {
             var item = SerializationHelper.Deserialize<Item>(serializedDocument);
 
@@ -92,29 +93,48 @@ namespace SystematicsData.Data
             var text = PropertyHelpers.GetPropertyDisplayName<Content>(nameof(Content.Text));
             content.Text = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == text).Content.ToString();
 
-            content.RelatedConcepts = GetRelatedConcepts(item);
+            content.RelatedConcepts = (await GetRelatedConceptsAsync(item)).ToList();
 
             return content;
         }
 
-        private IEnumerable<Concept> GetRelatedConcepts(Item item)
+        private async Task<IEnumerable<Concept>> GetRelatedConceptsAsync(Item item)
         {
             var concepts = new List<Concept>();
             var relatedItemsIds = item.relatedItems.Select(x => x.RelatedItemId).ToList();
 
             foreach (var relatedItemId in relatedItemsIds)
             {
-                if(Guid.TryParse(relatedItemId, out var relatedItemdIdGuid))
-                {
-                    var conceptDb = GetDocumentDb(relatedItemdIdGuid);
+                var concept = await GetConceptAsync(relatedItemId);
 
-
-
-                }
-                
+                concepts.Add(concept);
             }
 
             return concepts;
+        }
+
+        private async Task<Concept> GetConceptAsync(string conceptId)
+        {
+            var concept = new Concept();
+
+            if (Guid.TryParse(conceptId, out var conceptIdGuid))
+            {
+                var conceptDb = await GetDocumentDb(conceptIdGuid);
+
+                var item = SerializationHelper.Deserialize<Item>(conceptDb.SerializedDocument);
+
+                var title = PropertyHelpers.GetPropertyDisplayName<Concept>(nameof(Concept.Title));
+                concept.Title = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == title).Content.ToString();
+
+                var definition = PropertyHelpers.GetPropertyDisplayName<Concept>(nameof(Concept.Definition));
+                concept.Definition = item.Notes.FirstOrDefault(n => n.NoteTypeTitle == definition).Content.ToString();
+            }
+            else
+            {
+                throw new Exception($"GetConcept - {conceptId} is not a valid documentId");
+            }
+
+            return concept;
         }
     }
 }

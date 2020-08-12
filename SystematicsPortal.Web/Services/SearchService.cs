@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Search.Tools.Models.Search;
 using SystematicsData.Web.Api.Client;
+using SystematicsPortal.Web.Services.Interfaces;
 
 namespace SystematicsPortal.Web.Services
 {

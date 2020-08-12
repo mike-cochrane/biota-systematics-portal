@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SystematicsData.Web.Api.Client;
 using SystematicsPortal.Web.Infrastructure;
+using SystematicsPortal.Web.Services.Interfaces;
 
 namespace SystematicsPortal.Web.Services
 {
