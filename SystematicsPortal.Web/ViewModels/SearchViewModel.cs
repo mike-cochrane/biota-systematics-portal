@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using SystematicsPortal.Web.Helpers;
-using SystematicsPortal.Search.Tools.Models.Search;
 using System;
+using System.Collections.Generic;
+using SystematicsData.Search.Tools.Models.Search;
+using SystematicsPortal.Web.Helpers;
 
 namespace SystematicsPortal.Web.Models
 {
@@ -11,11 +11,14 @@ namespace SystematicsPortal.Web.Models
 
         private string _query;
 
-        public string Query {
+        public string Query
+        {
             get { return _query; }
-            set {
+            set
+            {
                 _query = value;
-                if (SearchData != null) {
+                if (SearchData != null)
+                {
                     SearchData.Query = value;
                 }
             }
@@ -32,11 +35,12 @@ namespace SystematicsPortal.Web.Models
         public int ResultsPerPage { get; set; }
         public int CurrentPage { get; set; }
         public List<SetViewModel> Sets { get; set; }
-       // public DownloadLogViewModel DownloadLog { get; set; }
+        // public DownloadLogViewModel DownloadLog { get; set; }
         public bool AllSelected { get; set; }
         public bool OneOrMoreSelected { get; set; }
 
-        public SearchViewModel(ComboList collectionList, string selectedCollection, string sortBy = "relevance") : base() {
+        public SearchViewModel(ComboList collectionList, string selectedCollection, string sortBy = "relevance") : base()
+        {
             //SelectedCollection = selectedCollection;
             //Collections = new SelectList(collectionList.Items, "Key", "DisplayText", SelectedCollection);
             Query = String.Empty;
@@ -54,31 +58,37 @@ namespace SystematicsPortal.Web.Models
             OneOrMoreSelected = false;
         }
 
-        public void SetSortField(string sortBy){
+        public void SetSortField(string sortBy)
+        {
             SelectedSortOption = sortBy;
             SortOptions = GetSortOptions();
         }
 
-        public int GetTotalPages() {
+        public int GetTotalPages()
+        {
             int quotient = 0;
             int remainder = 0;
             //quotient = Math.DivRem(Result.TotalSpecimens, ResultsPerPage, out remainder);
             int totalPages = quotient;
-            if (remainder > 0) {
+            if (remainder > 0)
+            {
                 totalPages += 1;
             }
             return totalPages;
         }
 
-        public int GetCurrentLowEndOfRange() {
+        public int GetCurrentLowEndOfRange()
+        {
             return GetCurrentHighEndOfRange() - ResultsPerPage + 1;
         }
 
-        public int GetCurrentHighEndOfRange() {
+        public int GetCurrentHighEndOfRange()
+        {
             return (CurrentPage + 1) * ResultsPerPage;
         }
 
-        private SelectList GetSortOptions() {
+        private SelectList GetSortOptions()
+        {
             ComboList sortOptions = new ComboList();
             sortOptions.AddItem("accessionNumber", "Accession number");
             sortOptions.AddItem("country", "Country");

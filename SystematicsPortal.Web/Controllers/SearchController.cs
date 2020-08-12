@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SystematicsPortal.Web.Models;
-using SystematicsPortal.Web.Services;
-using System.Threading.Tasks;
 using System;
-using System.Xml;
 using System.Collections.Generic;
-using SystematicsPortal.Models.Entities.Access;
+using System.Threading.Tasks;
+using System.Xml;
+using SystematicsPortal.Web.Models;
+using SystematicsPortal.Web.Services.Interfaces;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -56,7 +55,7 @@ namespace SystematicsPortal.Web.Controllers
                 sortField = "Title";
 
                 // viewData.Result = await _searchService.Search(query, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
-                viewData.Result = await _searchService.Search(query, null,null,selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                viewData.Result = await _searchService.Search(query, null, null, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
                 //ViewComponent("SearchQuery", new { query = query }); // don't think this does anything.
 
                 if (query == null)
@@ -80,7 +79,7 @@ namespace SystematicsPortal.Web.Controllers
             catch (Exception e)
             {
                 throw e;
-            } 
+            }
             finally
             {
                 // do something

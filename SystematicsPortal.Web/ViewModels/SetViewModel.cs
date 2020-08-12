@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using SystematicsData.Search.Tools.Models.Search;
 using SystematicsPortal.Web.Helpers;
-using SystematicsPortal.Search.Tools.Models.Search;
 
 namespace SystematicsPortal.Web.Models
 {
@@ -14,11 +14,11 @@ namespace SystematicsPortal.Web.Models
 
         [Required]
         [DisplayName("Name")]
-       // [ExcludeRestrictedWords]
+        // [ExcludeRestrictedWords]
         public string DisplayName { get; set; }
 
         [DataType(DataType.MultilineText)]
-       // [ExcludeRestrictedWords]
+        // [ExcludeRestrictedWords]
         public string Description { get; set; }
 
         public DateTime CreatedDate { get; set; }
