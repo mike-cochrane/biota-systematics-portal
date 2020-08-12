@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsData.Harvester.Service.Clients;
 using SystematicsData.Harvester.Service.Strategies.Interfaces;
-using SystematicsData.Models.Entities.Annotations;
 
 namespace SystematicsData.Harvester.Service.Consumers
 {
@@ -30,7 +29,7 @@ namespace SystematicsData.Harvester.Service.Consumers
             {
                 await Task.Run(() => Console.WriteLine("Item Updated: " + context.Message.ItemId + " - " + context.Message.ResourceId));
 
-                _logger.LogDebug($"SystematicsData.Harvester.Service - Meesage received: Item updated: {context.Message.ItemId} resource: {context.Message.ResourceId}");
+                _logger.LogDebug($"SystematicsData.Harvester.Service - Message received: Item updated: {context.Message.ItemId} resource: {context.Message.ResourceId}");
 
                 if (context.Message.ProducerAction == "Publish Note" || context.Message.ProducerAction == "Publish Item")
                 {
