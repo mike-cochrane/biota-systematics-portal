@@ -175,7 +175,7 @@ namespace SystematicsData.Search.Tools.Models
         [SolrField("vernacularLanguageOfOrigin")]
         public List<string> VernacularLanguageOfOrigin { get; set; }
 
-        [SolrField("VernacularLanguageOfUse")]
+        [SolrField("vernacularLanguageOfUse")]
         public List<string> VernacularLanguageOfUse { get; set; }
 
         [SolrField("vernacularName")]
@@ -187,7 +187,5 @@ namespace SystematicsData.Search.Tools.Models
         [SolrField("vernacularRegionOfUse")]
         public string VernacularRegionOfUse { get; set; }
 
-        [SolrField("verncularId")]
-        public string VerncularId { get; set; }
     }
 }
