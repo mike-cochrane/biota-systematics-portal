@@ -236,7 +236,7 @@ footer a {
     border-color: black;
 }
 
-::-webkit-input-placeholder {
+/* ::-webkit-input-placeholder {
     font-style: italic;
 }
 
@@ -250,7 +250,7 @@ footer a {
 
 :-ms-input-placeholder {
     font-style: italic;
-}
+} */
 
 #detail-nav-buttons img:hover {
     opacity: 0.5;
