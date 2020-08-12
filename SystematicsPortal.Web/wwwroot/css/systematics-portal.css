@@ -127,7 +127,7 @@
 footer {
     max-height: 100%;
     background-color: black;
-    background-image: url(images/footer.jpg);
+    background-image: url(../images/footer.jpg);
     color: white;
     background-repeat: no-repeat;
     background-position-y: 100%;
@@ -283,4 +283,8 @@ h1 strong {
     border: 3px solid black; 
     display: inline-block; 
     padding: 0.5em;
+}
+
+.clickable {
+    cursor: pointer;
 }
