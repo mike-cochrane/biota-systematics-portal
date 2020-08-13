@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
-using SystematicsData.Web.Api.Client;
+using SystematicsData.Web.Api.Client.Interfaces;
 using SystematicsPortal.Web.Services.Interfaces;
 
 namespace SystematicsPortal.Web.Services
 {
     public class DocumentService : IDocumentService
     {
-        public readonly Client _apiClient;
+        public readonly ISystematicsDataClient _apiClient;
 
-        public DocumentService(Client apiClient)
+        public DocumentService(ISystematicsDataClient apiClient)
         {
             _apiClient = apiClient;
         }

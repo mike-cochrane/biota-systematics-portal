@@ -8,25 +8,25 @@ using SystematicsData.Models.Entities.Access;
 using SystematicsData.Search.Tools.Models.Search;
 using SystematicsData.Utility.Extensions;
 using SystematicsData.Utility.Helpers;
+using SystematicsData.Web.Api.Client.Interfaces;
 
 namespace SystematicsData.Web.Api.Client
 {
-    public class Client
+    public class SystematicsDataClient : ISystematicsDataClient
     {
         private readonly string _url;
 
-        public Client(string url)
+        public SystematicsDataClient(string url)
         {
             _url = url;
         }
 
-        public async Task<SearchResult> Search(string query, List<SelectedFacetValue> appliedFacets, List<SelectedRange> appliedRanges, int pageNumber = 0, int resultsPerPage = 100, string facets = "", string sortOrder = null)
+        public async Task<SearchResult> Search(string query, List<SelectedFacetValue> appliedFacets, List<SelectedRange> appliedRanges, 
+            int pageNumber = 0, int resultsPerPage = 100,  string sortBy = null, string sortOrder = null)
         {
             try
             {
-
-
-                string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}&facets={facets}";
+                string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}";
                 var baseAddress = urlToQuery;
                 SearchResult queryResponse;
 
@@ -36,10 +36,11 @@ namespace SystematicsData.Web.Api.Client
                     BaseAddress = new Uri(baseAddress)
                 };
 
-                var facetLists = new FacetLists();
-
-                facetLists.AppliedFacets = appliedFacets;
-                facetLists.AppliedRanges = appliedRanges;
+                var facetLists = new FacetLists
+                {
+                    AppliedFacets = appliedFacets,
+                    AppliedRanges = appliedRanges
+                };
 
                 var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(facetLists), Encoding.UTF8, "application/json"));
 
@@ -57,7 +58,6 @@ namespace SystematicsData.Web.Api.Client
             }
             catch (Exception e)
             {
-
                 throw;
             }
         }

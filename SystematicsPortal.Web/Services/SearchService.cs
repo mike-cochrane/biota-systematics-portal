@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SystematicsData.Models.Entities.Access;
 using SystematicsData.Search.Tools.Models.Search;
-using SystematicsData.Web.Api.Client;
+using SystematicsData.Web.Api.Client.Interfaces;
 using SystematicsPortal.Web.Services.Interfaces;
 
 namespace SystematicsPortal.Web.Services
 {
     public class SearchService : ISearchService
     {
-        public Client _apiClient;
+        public ISystematicsDataClient _apiClient;
 
-        public SearchService(Client apiClient)
+        public SearchService(ISystematicsDataClient apiClient)
         {
             _apiClient = apiClient;
         }

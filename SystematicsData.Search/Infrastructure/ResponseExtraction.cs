@@ -258,10 +258,7 @@ namespace SystematicsData.Search.Infrastructure
             }
 
             //add in the applied ranges
-            if (facetsLists.AppliedRanges != null)
-            {
-                searchResult.AppliedRanges = facetsLists.AppliedRanges;
-            }
+            searchResult.AppliedRanges = facetsLists.AppliedRanges;
         }
     }
 }
