@@ -5,7 +5,6 @@ namespace SystematicsData.Web.Api.Services.Interfaces
 {
     public interface ISearchService
     {
-        List<KeyValuePair<string, string>> ParseFilterQueries(string filter);
-        SearchResult Search(string query, int pageNumber, int resultsPerPage, string facets);
+        SearchResult Search(string query, int pageNumber, int resultsPerPage, FacetLists facetLists);
     }
 }

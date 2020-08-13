@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SystematicsData.Search.Tools.Models.Search;
 
 namespace SystematicsData.Search.Tools.Models
 {
@@ -6,11 +7,9 @@ namespace SystematicsData.Search.Tools.Models
     {
         // Query that holds parameters sent to the search library
         public string TextQuery { get; set; }
-
         public int Start { get; set; }
         public int Rows { get; set; }
-
-        public List<KeyValuePair<string, string>> FacetFilters { get; set; }
+        public FacetLists FacetLists { get; set; }
 
         // Default constructor with default number of rows
         public Query() : this(0, 100)
@@ -21,7 +20,7 @@ namespace SystematicsData.Search.Tools.Models
         {
             Rows = rowsNumber;
             Start = startPos;
-            FacetFilters = new List<KeyValuePair<string, string>>();
+            FacetLists = new FacetLists();
         }
     }
 }

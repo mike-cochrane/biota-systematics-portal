@@ -2,9 +2,9 @@
 
 namespace SystematicsData.Search.Infrastructure
 {
-    internal class ExtraParameters
+    public static class ExtraParameters
     {
-        internal List<KeyValuePair<string, string>> BuildExtraParameters()
+        public static List<KeyValuePair<string, string>> BuildExtraParameters()
         {
             List<KeyValuePair<string, string>> extraParameters = new List<KeyValuePair<string, string>>();
 

@@ -11,9 +11,10 @@ namespace SystematicsPortal.Web.Services
         public static void RegisterDependencies(this IServiceCollection services, AppSettings appSettings)
         {
             services.AddSingleton(new Client(appSettings.AccessService.Url));
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<ISearchService, SearchService>();
-            services.AddSingleton<IContentService, ContentService>();
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ISearchService, SearchService>();
+            services.AddScoped<IDocumentService, DocumentService>();
+            services.AddScoped<IContentService, ContentService>();
         }
     }
 }

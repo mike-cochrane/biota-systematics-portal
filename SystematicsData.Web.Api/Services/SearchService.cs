@@ -18,10 +18,6 @@ namespace SystematicsData.Web.Api.Services
 
         public SearchService(ISearch search,  ILogger<SearchService> logger)
         {
-            //var solrUrl = appSettings.Value.Solr.Url;
-            //var userName = appSettings.Value.Solr.UserName;
-            //var password = appSettings.Value.Solr.Password;
-            //_search = new Search.Search(solrUrl, userName, password, logger);
             _search = search;
             _logger = logger;
         }
@@ -34,23 +30,22 @@ namespace SystematicsData.Web.Api.Services
         /// <param name="resultsPerPage"></param>
         /// <param name="facets"></param>
         /// <returns>Search result with solr documents and properties to enable paging and facting</returns>
-        public SearchResult Search(string query, int pageNumber, int resultsPerPage, string facets)
+        public SearchResult Search(string query, int pageNumber, int resultsPerPage, FacetLists facetLists)
         {
             // This is the object that will be used to parse the query and the parameter. Start Position equals to pageNumber * resultsPerPage. Rows number will be the results per page.
             var queryToUse = new Query(pageNumber * resultsPerPage, resultsPerPage) { TextQuery = query };
 
-            var appliedFacets = ParseFilterQueries(facets);
+            //var appliedFacets = ParseFilterQueries(facets);
 
-            if (appliedFacets != null && appliedFacets.Count > 0)
+            if (facetLists != null && (facetLists.AppliedFacets.Count > 0|| facetLists.AppliedRanges.Count > 0))
             {
-                queryToUse.FacetFilters = appliedFacets;
+                queryToUse.FacetLists = facetLists;
             }
 
             _logger.LogDebug(
-                "ImagesController - Get - queryToUse: {@queryToUse}",
+                "SearchService - queryToUse: {queryToUse}",
                 queryToUse);
 
-            // Actually using search library
             return _search.DoSearch(queryToUse);
         }
 
@@ -60,7 +55,7 @@ namespace SystematicsData.Web.Api.Services
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public List<KeyValuePair<string, string>> ParseFilterQueries(string filter)
+        private List<KeyValuePair<string, string>> ParseFilterQueries(string filter)
         {
             var filterQueries = new List<KeyValuePair<string, string>>();
 

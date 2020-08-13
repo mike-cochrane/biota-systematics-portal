@@ -22,7 +22,7 @@ namespace SystematicsData.Web.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
+        public IActionResult Get([FromBody] FacetLists facetLists, string query, int pageNumber = 0, int resultsPerPage = 100)
         {
             SearchResult response;
 
@@ -32,7 +32,7 @@ namespace SystematicsData.Web.Api.Controllers
 
             try
             {
-                response = _searchService.Search(query, pageNumber, resultsPerPage, facets);
+                response = _searchService.Search(query, pageNumber, resultsPerPage, facetLists);
             }
             catch (Exception exception)
             {

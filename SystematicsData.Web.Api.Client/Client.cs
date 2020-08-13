@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Search.Tools.Models.Search;
@@ -17,7 +20,7 @@ namespace SystematicsData.Web.Api.Client
             _url = url;
         }
 
-        public async Task<SearchResult> Search(string query, int pageNumber = 0, int resultsPerPage = 100, string facets = "")
+        public async Task<SearchResult> Search(string query, List<SelectedFacetValue> appliedFacets, List<SelectedRange> appliedRanges, int pageNumber = 0, int resultsPerPage = 100, string facets = "", string sortOrder = null)
         {
             string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}&facets={facets}";
             var baseAddress = urlToQuery;
@@ -29,8 +32,12 @@ namespace SystematicsData.Web.Api.Client
                 BaseAddress = new Uri(baseAddress)
             };
 
+            var facetLists = new FacetLists();
 
-            var response = await client.GetAsync(urlToQuery);
+            facetLists.AppliedFacets = appliedFacets;
+            facetLists.AppliedRanges = appliedRanges;
+
+            var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(facetLists), Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {

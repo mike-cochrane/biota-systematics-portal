@@ -15,6 +15,7 @@ namespace SystematicsPortal.Web.Services
         {
             _apiClient = apiClient;
         }
+
         public async Task<SearchResult> Search(string searchTerm,
             List<SelectedFacetValue> appliedFacets = null,
             List<SelectedRange> appliedRanges = null,
@@ -23,16 +24,9 @@ namespace SystematicsPortal.Web.Services
             string sortBy = "",
             string sortOrder = "")
         {
-            var response = await _apiClient.Search(searchTerm, pageNumber, resultsPerPage);
+            var response = await _apiClient.Search(searchTerm, appliedFacets, appliedRanges, pageNumber, resultsPerPage, sortBy, sortOrder);
 
             return response;
-        }
-
-        public async Task<Document> GetDocument(string id)
-        {
-            var documentXml = await _apiClient.GetDocument(id);
-
-            return documentXml;
         }
     }
 }

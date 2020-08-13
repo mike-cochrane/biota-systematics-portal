@@ -14,7 +14,5 @@ namespace SystematicsPortal.Web.Services.Interfaces
             int resultsPerPage=100,
             string sortBy ="",
             string sortOrder="");
-
-        Task<Document> GetDocument (string id);
     }
 }
