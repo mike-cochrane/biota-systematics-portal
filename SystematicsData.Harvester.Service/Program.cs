@@ -74,7 +74,7 @@ namespace SystematicsData.Harvester.Service
                 logger.LogInformation("{Action} - Names Web Connection String: {ConnectionString}", "Configuration", ConnectionStringHelper.ReplacePassword(namesWebConnectionString, "*REMOVED*"));
                 logger.LogInformation("{Action} - Source Folder Name: {SourceFolder}", "Configuration", appSettings.SourcePath);
                 logger.LogInformation("{Action} - RabbitMq - Host: {RabbitMqHost}", "Configuration", appSettings.RabbitMq.Host);
-                logger.LogInformation("{Action} - RabbitMq - VirtualHost: {RabbitMqVirtualHost}", "Configuration", appSettings.RabbitMq.VirtualHost);
+                logger.LogInformation("{Action} - RabbitMq - Virtual Host: {RabbitMqVirtualHost}", "Configuration", appSettings.RabbitMq.VirtualHost);
                 logger.LogInformation("{Action} - RabbitMq - User Name: {RabbitMqUsername}", "Configuration", appSettings.RabbitMq.Username);
 
                 ConfigureService(busControl, harvesterLogger);

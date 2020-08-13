@@ -1,4 +1,9 @@
-﻿#header {
+﻿.page-content {
+    width: 100%;
+    max-width: 940px
+}
+
+#header {
     background-color: black;
 }
 
@@ -42,7 +47,10 @@
 
 .home-nav-search {
     height: 28.125em;
-    background-image: url(images/home-banner.jpg)
+    background-image: url(../images/home-banner.jpg);
+    -ms-background-position-x: right;
+    -ms-background-position-y: bottom;
+    background-position: right bottom;
 }
 
 .home-nav-search .search-row {
@@ -67,6 +75,7 @@
     color: black;
     background-color: white;
     border-color: white;
+    font-size: 1.1rem;
 }
 
 #detail-nav-buttons .button-selected {
@@ -75,19 +84,16 @@
     border-color: black;
 }
 
-#main-nav-buttons {
-    margin-top: 3.75em;
+#main-nav-buttons .btn, #detail-nav-buttons .btn {
+    border-radius: 0;
+    font-weight: 700;
+    width: 5em;
+    padding: 0.25em 0;
 }
 
-    #main-nav-buttons .btn, #detail-nav-buttons .btn {
-        border-radius: 0;
-        font-weight: 700;
-        width: 7em;
+    #main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
+        margin-left: 1em;
     }
-
-        #main-nav-buttons .btn:last-child, #detail-nav-buttons .btn:last-child {
-            margin-left: 1em;
-        }
 
 .green-background {
     background-color: #6E9E40;
@@ -121,7 +127,7 @@
 footer {
     max-height: 100%;
     background-color: black;
-    background-image: url(images/footer.jpg);
+    background-image: url(../images/footer.jpg);
     color: white;
     background-repeat: no-repeat;
     background-position-y: 100%;
@@ -233,7 +239,7 @@ footer a {
     border-color: black;
 }
 
-::-webkit-input-placeholder {
+/* ::-webkit-input-placeholder {
     font-style: italic;
 }
 
@@ -247,7 +253,7 @@ footer a {
 
 :-ms-input-placeholder {
     font-style: italic;
-}
+} */
 
 #detail-nav-buttons img:hover {
     opacity: 0.5;
@@ -255,4 +261,30 @@ footer a {
 
 .mw-35em {
     max-width: 35em;
+}
+
+.page-title {
+    color: white;
+}
+
+.page-title:hover {
+    text-decoration: none;
+}
+
+.page-title:visited {
+    color: white;
+}
+
+h1 strong {
+    font-weight: 800;
+}
+
+.information-icons {
+    border: 3px solid black; 
+    display: inline-block; 
+    padding: 0.5em;
+}
+
+.clickable {
+    cursor: pointer;
 }
