@@ -22,35 +22,44 @@ namespace SystematicsData.Web.Api.Client
 
         public async Task<SearchResult> Search(string query, List<SelectedFacetValue> appliedFacets, List<SelectedRange> appliedRanges, int pageNumber = 0, int resultsPerPage = 100, string facets = "", string sortOrder = null)
         {
-            string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}&facets={facets}";
-            var baseAddress = urlToQuery;
-            SearchResult queryResponse;
-
-            // TODO: Use new .net core http client factory 
-            var client = new HttpClient()
+            try
             {
-                BaseAddress = new Uri(baseAddress)
-            };
 
-            var facetLists = new FacetLists();
 
-            facetLists.AppliedFacets = appliedFacets;
-            facetLists.AppliedRanges = appliedRanges;
+                string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}&facets={facets}";
+                var baseAddress = urlToQuery;
+                SearchResult queryResponse;
 
-            var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(facetLists), Encoding.UTF8, "application/json"));
+                // TODO: Use new .net core http client factory 
+                var client = new HttpClient()
+                {
+                    BaseAddress = new Uri(baseAddress)
+                };
 
-            if (response.IsSuccessStatusCode)
-            {
-                queryResponse = await response.Content.ReadAsAsync<SearchResult>();
+                var facetLists = new FacetLists();
+
+                facetLists.AppliedFacets = appliedFacets;
+                facetLists.AppliedRanges = appliedRanges;
+
+                var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(facetLists), Encoding.UTF8, "application/json"));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    queryResponse = await response.Content.ReadAsAsync<SearchResult>();
+                }
+                else
+                {
+                    throw new HttpRequestException(response.ReasonPhrase);
+                }
+
+                return queryResponse;
+                // Do event logging
             }
-            else
+            catch (Exception e)
             {
-                throw new HttpRequestException(response.ReasonPhrase);
+
+                throw;
             }
-
-            // Do event logging
-
-            return queryResponse;
         }
 
         public async Task<Document> GetDocument(string documentId)
@@ -91,7 +100,7 @@ namespace SystematicsData.Web.Api.Client
         public async Task<ContentConfigurations> GeContent(string page)
         {
             ContentConfigurations contentConfigurations;
-            
+
             string urlToQuery = $"{_url}content?page={page}";
 
             // TODO: Use new .net core http client factory 

@@ -37,7 +37,7 @@ namespace SystematicsData.Web.Api.Services
 
             //var appliedFacets = ParseFilterQueries(facets);
 
-            if (facetLists != null && (facetLists.AppliedFacets.Count > 0|| facetLists.AppliedRanges.Count > 0))
+            if (facetLists != null && (facetLists.AppliedFacets?.Count > 0|| facetLists.AppliedRanges?.Count > 0))
             {
                 queryToUse.FacetLists = facetLists;
             }

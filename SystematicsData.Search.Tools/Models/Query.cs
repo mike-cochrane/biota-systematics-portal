@@ -20,7 +20,11 @@ namespace SystematicsData.Search.Tools.Models
         {
             Rows = rowsNumber;
             Start = startPos;
-            FacetLists = new FacetLists();
+            FacetLists = new FacetLists()
+            {
+                AppliedFacets = new List<SelectedFacetValue>(),
+                AppliedRanges = new List<SelectedRange>()
+            };
         }
     }
 }

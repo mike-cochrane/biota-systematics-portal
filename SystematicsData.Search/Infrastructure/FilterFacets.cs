@@ -27,7 +27,7 @@ namespace SystematicsData.Search.Infrastructure
         {
             var facets = new List<ISolrQuery>();
 
-            foreach (var appliedFacet in query.FacetLists.AppliedFacets)
+            foreach (var appliedFacet in query.FacetLists?.AppliedFacets)
             {
                 facets.Add(new SolrQueryByField(appliedFacet.FacetName, appliedFacet.ValueName));
             }
