@@ -241,25 +241,19 @@ namespace SystematicsData.Search.Infrastructure
             }
 
             // process applied facets
-            if (facetsLists.AppliedFacets != null)
+            searchResult.AppliedFacets = facetsLists.AppliedFacets;
+
+            foreach (var facet in searchResult.AppliedFacets)
             {
-                searchResult.AppliedFacets = facetsLists.AppliedFacets;
+                facet.FacetLabel = Utils.GetFacetConfigList().Where(c => c.SolrFieldName == facet.FacetName).First().Facet;
 
-                if (searchResult.AppliedFacets.Count > 0)
+                Filter filter = searchResult.Filters.Where(f => f.Name == facet.FacetName).FirstOrDefault();
+
+                if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Tools.Models.Search.Facet)))
                 {
-                    foreach (var facet in searchResult.AppliedFacets)
-                    {
-                        facet.FacetLabel = Utils.GetFacetConfigList().Where(c => c.SolrFieldName == facet.FacetName).First().Facet;
-
-                        Filter filter = searchResult.Filters.Where(f => f.Name == facet.FacetName).FirstOrDefault();
-
-                        if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Tools.Models.Search.Facet)))
-                        {
-                            Facet f = (Facet)filter;
-                            FacetValue value = f.Values.Where(v => v.Name == facet.ValueName).First();
-                            value.Selected = true;
-                        }
-                    }
+                    Facet f = (Facet)filter;
+                    FacetValue value = f.Values.Where(v => v.Name == facet.ValueName).First();
+                    value.Selected = true;
                 }
             }
 
@@ -268,7 +262,6 @@ namespace SystematicsData.Search.Infrastructure
             {
                 searchResult.AppliedRanges = facetsLists.AppliedRanges;
             }
-
         }
     }
 }

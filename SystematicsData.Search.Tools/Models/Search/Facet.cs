@@ -7,10 +7,8 @@ namespace SystematicsData.Search.Tools.Models.Search
     {
         public List<FacetValue> Values { get; set; }
 
-        public Facet()
+        public Facet(): base()
         {
-            Name = String.Empty;
-            DisplayText = String.Empty;
             Values = new List<FacetValue>();
         }
 

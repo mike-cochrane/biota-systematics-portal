@@ -21,8 +21,8 @@ namespace SystematicsData.Web.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult Get([FromBody] FacetLists facetLists, string query, int pageNumber = 0, int resultsPerPage = 100)
+        [HttpPost]
+        public IActionResult Get(string query, int pageNumber = 0, int resultsPerPage = 100, [FromBody] FacetLists facetLists = null)
         {
             SearchResult response;
 
