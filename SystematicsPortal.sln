@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Uploader", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Harvester.Service", "SystematicsData.Harvester.Service\SystematicsData.Harvester.Service.csproj", "{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystematicsPortal.Web.Tests", "SystematicsPortal.Web.Tests\SystematicsPortal.Web.Tests.csproj", "{8934C69C-833C-49CC-B5B6-529AD6DDE40F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,14 @@ Global
 		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Test|Any CPU.ActiveCfg = Debug|Any CPU
 		{0ECF167E-C2C3-4827-9E2B-27CE57F2AEFD}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.DevTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.DevTest|Any CPU.Build.0 = Debug|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{8934C69C-833C-49CC-B5B6-529AD6DDE40F}.Test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
