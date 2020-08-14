@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
+using SystematicsData.Search.Tools.Models;
 using SystematicsData.Search.Tools.Models.Search;
 using SystematicsData.Utility.Extensions;
 using SystematicsData.Utility.Helpers;
@@ -21,12 +22,11 @@ namespace SystematicsData.Web.Api.Client
             _url = url;
         }
 
-        public async Task<SearchResult> Search(string query, List<SelectedFacetValue> appliedFacets, List<SelectedRange> appliedRanges, 
-            int pageNumber = 0, int resultsPerPage = 100,  string sortBy = null, string sortOrder = null)
+        public async Task<SearchResult> Search(Query query)
         {
             try
             {
-                string urlToQuery = $"{_url}search?query={query}&resultsPerPage={resultsPerPage}&pageNumber={pageNumber}";
+                string urlToQuery = $"{_url}search";
                 var baseAddress = urlToQuery;
                 SearchResult queryResponse;
 
@@ -36,13 +36,7 @@ namespace SystematicsData.Web.Api.Client
                     BaseAddress = new Uri(baseAddress)
                 };
 
-                var facetLists = new FacetLists
-                {
-                    AppliedFacets = appliedFacets,
-                    AppliedRanges = appliedRanges
-                };
-
-                var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(facetLists), Encoding.UTF8, "application/json"));
+                var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(query), Encoding.UTF8, "application/json"));
 
                 if (response.IsSuccessStatusCode)
                 {

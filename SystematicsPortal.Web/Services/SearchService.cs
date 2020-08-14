@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SystematicsData.Search.Tools.Models;
 using SystematicsData.Search.Tools.Models.Search;
 using SystematicsData.Web.Api.Client.Interfaces;
 using SystematicsPortal.Web.Services.Interfaces;
@@ -23,7 +24,18 @@ namespace SystematicsPortal.Web.Services
             string sortBy = "",
             string sortOrder = "")
         {
-            var response = await _apiClient.Search(searchTerm, appliedFacets, appliedRanges, pageNumber, resultsPerPage, sortBy, sortOrder);
+            // This is the object that will be used to parse the query and the parameter. Start Position equals to pageNumber * resultsPerPage. Rows number will be the results per page.
+            var queryToUse = new Query(pageNumber * resultsPerPage, resultsPerPage)
+            {
+                TextQuery = searchTerm,
+                FacetLists = new FacetLists()
+                {
+                    AppliedFacets = appliedFacets ?? new List<SelectedFacetValue>(),
+                    AppliedRanges = appliedRanges ?? new List<SelectedRange>()
+                }
+            };
+
+            var response = await _apiClient.Search(queryToUse);
 
             return response;
         }

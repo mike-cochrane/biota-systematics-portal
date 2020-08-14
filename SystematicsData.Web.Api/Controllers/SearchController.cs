@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using SystematicsData.Search.Tools.Models;
 using SystematicsData.Search.Tools.Models.Search;
 using SystematicsData.Web.Api.Services.Interfaces;
 
@@ -22,17 +23,15 @@ namespace SystematicsData.Web.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Get(string query, int pageNumber = 0, int resultsPerPage = 100, [FromBody] FacetLists facetLists = null)
+        public IActionResult Get([FromBody] Query query = null)
         {
             SearchResult response;
 
-            _logger.LogDebug(
-                "SearchController - Get - query: {query} - pageNumber {pageNumber} - resultsPerPage {resultsPerPage}",
-                             query, pageNumber, resultsPerPage);
+            _logger.LogDebug("SearchController - Get - query: {query}", query);
 
             try
             {
-                response = _searchService.Search(query, pageNumber, resultsPerPage, facetLists);
+                response = _searchService.Search(query);
             }
             catch (Exception exception)
             {
