@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,23 +31,24 @@ namespace SystematicsData.Web.Api.Services
         /// <param name="resultsPerPage"></param>
         /// <param name="facets"></param>
         /// <returns>Search result with solr documents and properties to enable paging and facting</returns>
-        public SearchResult Search(string query, int pageNumber, int resultsPerPage, FacetLists facetLists)
+        public SearchResult Search(Query query)
         {
-            // This is the object that will be used to parse the query and the parameter. Start Position equals to pageNumber * resultsPerPage. Rows number will be the results per page.
-            var queryToUse = new Query(pageNumber * resultsPerPage, resultsPerPage) { TextQuery = query };
+            Verifyquery(ref query);
 
-            //var appliedFacets = ParseFilterQueries(facets);
+            _logger.LogDebug("SearchService - queryToUse: {query}", query);
 
-            if (facetLists != null && (facetLists.AppliedFacets?.Count > 0|| facetLists.AppliedRanges?.Count > 0))
-            {
-                queryToUse.FacetLists = facetLists;
-            }
+            return _search.DoSearch(query);
+        }
 
-            _logger.LogDebug(
-                "SearchService - queryToUse: {queryToUse}",
-                queryToUse);
+        private void Verifyquery(ref Query query)
+        {
+            query ??= new Query(); 
 
-            return _search.DoSearch(queryToUse);
+            query.TextQuery ??= String.Empty;
+
+            query.FacetLists ??= new FacetLists();
+
+            query.Rows = query.Rows == 0 ? 100 : query.Rows;
         }
 
         /// <summary>
