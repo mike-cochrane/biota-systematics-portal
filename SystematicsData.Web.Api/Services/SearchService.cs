@@ -50,38 +50,5 @@ namespace SystematicsData.Web.Api.Services
 
             query.Rows = query.Rows == 0 ? 100 : query.Rows;
         }
-
-        /// <summary>
-        /// Parse the filter into separate filter queries. Use the display name from the facet fields if possible for the display name
-        /// of the query filter.
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
-        private List<KeyValuePair<string, string>> ParseFilterQueries(string filter)
-        {
-            var filterQueries = new List<KeyValuePair<string, string>>();
-
-            if (!String.IsNullOrWhiteSpace(filter))
-            {
-                List<string> filters = filter.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-                filters.ForEach(o =>
-                {
-                    string[] filterParts = o.Split(new char[] { ':' });
-
-                    if (filterParts.Length == 2)
-                    {
-                        string fieldName = filterParts[0];
-                        string text = filterParts[1];
-
-                        KeyValuePair<string, string> facet = new KeyValuePair<string, string>(fieldName, text);
-
-                        filterQueries.Add(facet);
-                    }
-                });
-            }
-
-            return filterQueries;
-        }
     }
 }

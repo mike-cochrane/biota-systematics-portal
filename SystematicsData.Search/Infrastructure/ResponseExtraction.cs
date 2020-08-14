@@ -212,10 +212,11 @@ namespace SystematicsData.Search.Infrastructure
 
                         case "text":
                         default:
-                            Facet facet = new Facet();
-                            facet.Name = f.Key;
-
-                            facet.DisplayText = config.Facet;
+                            Facet facet = new Facet
+                            {
+                                Name = f.Key,
+                                DisplayText = config.Facet
+                            };
 
                             foreach (var v in f.Value)
                             {
@@ -229,7 +230,6 @@ namespace SystematicsData.Search.Infrastructure
                                     facet.Values.Add(value);
                                 }
                             }
-
 
                             if (facet.Values.Any())
                             {

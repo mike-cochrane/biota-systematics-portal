@@ -18,12 +18,10 @@ namespace SystematicsData.Harvester.Service.Clients
     public class AnnotationsClient
     {
         private readonly string _apiContentUrl;
-        private readonly IDocumentsRepository _repository;
         private readonly ILogger<AnnotationsClient> _logger;
 
-        public AnnotationsClient(IDocumentsRepository repository, string contentServiceUrl, ILogger<AnnotationsClient> logger)
+        public AnnotationsClient(string contentServiceUrl, ILogger<AnnotationsClient> logger)
         {
-            _repository = repository;
             _apiContentUrl = contentServiceUrl;
             _logger = logger;
         }
@@ -98,7 +96,6 @@ namespace SystematicsData.Harvester.Service.Clients
         public async Task<ItemTypes> GetItemTypes(string resourceId)
         {
             string urlToQuery = $"{_apiContentUrl}/itemTypes?resourceId={resourceId}";
-            ItemTypes itemTypes = new ItemTypes();
 
             // TODO: Use new .net core http client factory
             var client = new HttpClient()
@@ -110,14 +107,14 @@ namespace SystematicsData.Harvester.Service.Clients
 
             if (response.IsSuccessStatusCode)
             {
-                itemTypes = await response.Content.ReadAsAsync<ItemTypes>();
+                var itemTypes = await response.Content.ReadAsAsync<ItemTypes>();
+
+                return itemTypes;
             }
             else
             {
                 throw new HttpRequestException(response.ReasonPhrase);
             }
-
-            return itemTypes;
         }
 
         public async Task<Items> GetItemIds(string itemTypeId)
@@ -189,19 +186,18 @@ namespace SystematicsData.Harvester.Service.Clients
 
         public async Task<IEnumerable<XElement>> GetItemsXmlByIds(List<string> itemIds)
         {
-            List<XElement> itemsList = new List<XElement>();
             var response = await GetItemsResponseByIds(itemIds);
 
             if (response.IsSuccessStatusCode)
             {
-                itemsList = await GetItemsXElementList(response);
+                var itemsList = await GetItemsXElementList(response);
+
+                return itemsList;
             }
             else
             {
                 throw new HttpRequestException(response.ReasonPhrase);
             }
-
-            return itemsList;
         }
 
         private async Task<List<XElement>> GetItemsXElementList(HttpResponseMessage response)
