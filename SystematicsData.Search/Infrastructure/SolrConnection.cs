@@ -5,11 +5,11 @@ using SolrNet;
 using System;
 using System.Net;
 using System.Text;
-using SystematicsData.Search.Tools.Models;
+using SystematicsData.Search.Models;
 
 namespace SystematicsData.Search.Infrastructure
 {
-    public class SolrConnection : Tools.Models.Interfaces.ISolrConnection
+    public class SolrConnection : Models.Interfaces.ISolrConnection
     {
         public readonly ISolrOperations<SolrDocument> _solrCore;
 

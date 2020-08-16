@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Search;
 
 namespace SystematicsData.Web.Api.Client.Interfaces
 {

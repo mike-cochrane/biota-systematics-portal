@@ -342,6 +342,6 @@
 		<ProjectReference Include="..\SystematicsData.Models\SystematicsData.Models.csproj" />
 		<ProjectReference Include="..\SystematicsData.Utility\SystematicsData.Utility.csproj" />
 		<ProjectReference Include="..\SystematicsData.Web.Api.Client\SystematicsData.Web.Api.Client.csproj" />
-		<ProjectReference Include="..\SystematicsData.Search.Tools\SystematicsData.Search.Tools.csproj" />
+		<ProjectReference Include="..\SystematicsData.Search.Models\SystematicsData.Search.Models.csproj" />
 	</ItemGroup>
 </Project>

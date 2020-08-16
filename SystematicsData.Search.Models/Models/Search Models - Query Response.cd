@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="SystematicsData.Search.Tools.Models.QueryResponse">
+  <Class Name="SystematicsData.Search.Models.QueryResponse">
     <Position X="0.75" Y="1.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AABAAAAEAAAAAAAAiAAAAAAgCAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -11,14 +11,14 @@
       <Property Name="Facets" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="SystematicsData.Search.Tools.Models.SolrDocument" Collapsed="true">
+  <Class Name="SystematicsData.Search.Models.SolrDocument" Collapsed="true">
     <Position X="4.75" Y="3" Width="2.25" />
     <TypeIdentifier>
       <HashCode>gGECgAA4ChAAMGCBAkKCyESkuIAAAAoFwiAgAJMIRJk=</HashCode>
       <FileName>Models\SolrDocument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SystematicsData.Search.Tools.Models.Search.Facet">
+  <Class Name="SystematicsData.Search.Models.Search.Facet">
     <Position X="4.75" Y="1.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
@@ -28,7 +28,7 @@
       <Property Name="Values" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="SystematicsData.Search.Tools.Models.Search.FacetValue">
+  <Class Name="SystematicsData.Search.Models.Search.FacetValue">
     <Position X="9" Y="1.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAI=</HashCode>

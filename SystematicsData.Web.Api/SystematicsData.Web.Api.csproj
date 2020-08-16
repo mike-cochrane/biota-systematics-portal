@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SystematicsData.Data\SystematicsData.Data.csproj" />
-    <ProjectReference Include="..\SystematicsData.Search.Tools\SystematicsData.Search.Tools.csproj" />
+    <ProjectReference Include="..\SystematicsData.Search.Models\SystematicsData.Search.Models.csproj" />
     <ProjectReference Include="..\SystematicsData.Search\SystematicsData.Search.csproj" />
   </ItemGroup>
 

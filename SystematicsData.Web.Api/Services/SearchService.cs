@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Interfaces;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Interfaces;
+using SystematicsData.Search.Models.Search;
 using SystematicsData.Web.Api.Services.Interfaces;
 
 namespace SystematicsData.Web.Api.Services

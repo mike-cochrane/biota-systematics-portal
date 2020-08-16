@@ -1,6 +1,6 @@
 ﻿using SolrNet;
 
-namespace SystematicsData.Search.Tools.Models.Interfaces
+namespace SystematicsData.Search.Models.Interfaces
 {
     public interface ISolrConnection
     {

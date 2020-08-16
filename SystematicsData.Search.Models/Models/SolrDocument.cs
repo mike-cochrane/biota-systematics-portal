@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SystematicsData.Search.Tools.Models
+namespace SystematicsData.Search.Models
 {
     public class SolrDocument
     {

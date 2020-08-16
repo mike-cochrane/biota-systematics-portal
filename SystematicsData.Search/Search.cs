@@ -3,10 +3,10 @@ using SolrNet;
 using SolrNet.Commands.Parameters;
 using System;
 using SystematicsData.Search.Infrastructure;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Interfaces;
-using SystematicsData.Search.Tools.Models.Search;
-using ISolrConnection = SystematicsData.Search.Tools.Models.Interfaces.ISolrConnection;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Interfaces;
+using SystematicsData.Search.Models.Search;
+using ISolrConnection = SystematicsData.Search.Models.Interfaces.ISolrConnection;
 
 namespace SystematicsData.Search
 {
@@ -24,7 +24,7 @@ namespace SystematicsData.Search
         }
 
         /// <summary>
-        ///  This funtion is the one that actually does the search
+        ///  This function is the one that actually does the search
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

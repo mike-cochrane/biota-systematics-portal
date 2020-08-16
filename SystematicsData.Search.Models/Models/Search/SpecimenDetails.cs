@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace SystematicsData.Search.Tools.Models.Search
+namespace SystematicsData.Search.Models.Search
 {
     [Serializable()]
     [XmlRoot("Record")]

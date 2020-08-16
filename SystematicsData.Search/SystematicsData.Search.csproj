@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SystematicsData.Search.Tools\SystematicsData.Search.Tools.csproj" />
+    <ProjectReference Include="..\SystematicsData.Search.Models\SystematicsData.Search.Models.csproj" />
   </ItemGroup>
 
 </Project>
