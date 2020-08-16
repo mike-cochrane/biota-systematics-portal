@@ -5,7 +5,7 @@
 
 <div class="row">
     @await Html.PartialAsync("~/Views/Shared/_SideBar.cshtml")
-    <div class="col-md-8 mw-100 pt-3 pl-5 pb-5">
+    <div class="col-lg-9 mw-100 pt-3 pl-5 pb-5 order-1 order-lg-2">
         <div class="heading-divider mt-4"></div>
         <h2>Results for '@Html.Raw(Model.Query)'</h2>
 
@@ -424,7 +424,6 @@
         </div>
 
     </div> <!-- end2 -->
-    <div class="col-md-1"></div>
 </div> <!-- end1 -->
 <!--</div>-->
 @*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@

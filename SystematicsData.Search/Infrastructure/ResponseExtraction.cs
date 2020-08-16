@@ -8,22 +8,22 @@ using SystematicsData.Search.Tools.Models.Search;
 
 namespace SystematicsData.Search.Infrastructure
 {
-    public class ResponseExtraction
+    public static class ResponseExtraction
     {
         // Extract part of the SolrNet response and set them in QueryResponse class
-        internal void SetHeader(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
+        public static void SetHeader(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
         {
             queryResponse.QueryTime = solrResults.Header.QTime;
             queryResponse.Status = solrResults.Header.Status;
             queryResponse.TotalSpecimens = solrResults.NumFound;
         }
 
-        internal void SetBody(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
+        public static void SetBody(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
         {
             queryResponse.FoundDocuments = solrResults.ToDictionary(id => id.Id, document => document);
         }
 
-        internal void SetSpellCheck(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
+        public static void SetSpellCheck(SearchResult queryResponse, SolrQueryResults<SolrDocument> solrResults)
         {
             var spellSuggestions = new List<string>();
 
@@ -38,7 +38,7 @@ namespace SystematicsData.Search.Infrastructure
             queryResponse.DidYouMean = spellSuggestions;
         }
 
-        internal void SetFacets(SearchResult searchResult, SolrQueryResults<SolrDocument> results)
+        public static void SetFacets(SearchResult searchResult, SolrQueryResults<SolrDocument> results, FacetLists facetsLists)
         {
             var facetConfigList = Utils.GetFacetConfigList();
 
@@ -240,34 +240,25 @@ namespace SystematicsData.Search.Infrastructure
                 }
             }
 
-            ////process applied facets
-            //if (appliedFacets != null)
-            //{
-            //    result.AppliedFacets = appliedFacets;
+            // process applied facets
+            searchResult.AppliedFacets = facetsLists.AppliedFacets;
 
-            //    if (result.AppliedFacets.Count > 0)
-            //    {
-            //        foreach (SelectedFacetValue facet in result.AppliedFacets)
-            //        {
-            //            facet.FacetLabel = FacetConfig.Where(c => c.SolrFieldName == facet.FacetName).First().Facet;
+            foreach (var facet in searchResult.AppliedFacets)
+            {
+                facet.FacetLabel = Utils.GetFacetConfigList().Where(c => c.SolrFieldName == facet.FacetName).First().Facet;
 
-            //            Filter filter = result.Filters.Where(f => f.Name == facet.FacetName).First();
-            //            if (object.ReferenceEquals(filter.GetType(), typeof(CIS.Web.Model.Facet)))
-            //            {
-            //                Facet f = (Facet)filter;
-            //                FacetValue value = f.Values.Where(v => v.Name == facet.ValueName).First();
-            //                value.Selected = true;
-            //            }
-            //        }
-            //    }
-            //}
+                Filter filter = searchResult.Filters.Where(f => f.Name == facet.FacetName).FirstOrDefault();
 
-            ////add in the applied ranges
-            //if (appliedRanges != null)
-            //{
-            //    result.AppliedRanges = appliedRanges;
-            //}
+                if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Tools.Models.Search.Facet)))
+                {
+                    Facet f = (Facet)filter;
+                    FacetValue value = f.Values.Where(v => v.Name == facet.ValueName).First();
+                    value.Selected = true;
+                }
+            }
 
+            //add in the applied ranges
+            searchResult.AppliedRanges = facetsLists.AppliedRanges;
         }
     }
 }

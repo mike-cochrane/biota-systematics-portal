@@ -12,10 +12,9 @@ namespace SystematicsData.Search.Tools.Models.Search
         public bool IncludeNulls { get; set; }
         public string SparklineData { get; set; }
 
-        public Range()
+        public Range() : base()
         {
-            Name = String.Empty;
-            DisplayText = String.Empty;
+ 
             MinimumValue = 0;
             MaximumValue = 0;
             Type = "numeric";

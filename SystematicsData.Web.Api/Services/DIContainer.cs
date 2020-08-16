@@ -13,7 +13,7 @@ namespace SystematicsData.Web.Api.Services
         public static void RegisterDependencies(this IServiceCollection services, AppSettings appSettings, string connectionString)
         {
             services.AddDbContext<NamesWebContext>(options =>
-                options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
+                options.UseSqlServer(connectionString),
                 ServiceLifetime.Scoped);
 
             services.AddScoped<IDocumentsRepository, DocumentsRepository>();

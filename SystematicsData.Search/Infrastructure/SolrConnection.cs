@@ -39,9 +39,13 @@ namespace SystematicsData.Search.Infrastructure
 
         public ISolrOperations<SolrDocument> GetSolrCore()
         {
+            if (_solrCore == null)
+            {
+                throw new Exception("Problem to get solr instance");
+            }
+
             return _solrCore;
         }
-
 
         private class SecureHttpWebRequestFactory : IHttpWebRequestFactory
         {

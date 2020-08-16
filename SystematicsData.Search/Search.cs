@@ -28,51 +28,39 @@ namespace SystematicsData.Search
         /// <returns></returns>
         public SearchResult DoSearch(Query query)
         {
-            SearchResult queryResponse;
+            // Create an object to hold results
+            SearchResult queryResponse = new SearchResult();
+
             try
             {
-                var filterFacets = new FilterFacets();
-
-                // Create an object to hold results
-                queryResponse = new SearchResult();
-
                 // Get a connection 
                 var solr = _connection.GetSolrCore();
-
-                if (solr == null)
-                {
-                    _logger.LogError("Problem to get solr instance");
-                    throw new Exception("Problem to get solr instance");
-                }
 
                 var queryOptions = new QueryOptions
                 {
                     Rows = query.Rows,
                     StartOrCursor = new StartOrCursor.Start(query.Start),
-                    FilterQueries = filterFacets.BuildFilterQueries(query),
-                    Facet = filterFacets.BuildFacets()
+                    FilterQueries = FilterFacets.BuildFilterQueries(query),
+                    Facet = FilterFacets.BuildFacets()
                 };
-                // Set response
-                var extractResponse = new ResponseExtraction();
 
                 // TODO: Check if we should we get sort order by parameter
                 queryOptions.AddOrder(new SortOrder("title", Order.ASC));
 
-                ExtraParameters extraParameters = new ExtraParameters();
-
-                queryOptions.ExtraParams = extraParameters.BuildExtraParameters();
+                queryOptions.ExtraParams = ExtraParameters.BuildExtraParameters();
+                
                 // Execute the query
                 ISolrQuery solrQuery = new SolrQuery(query.TextQuery);
 
                 var solrResults = solr.Query(solrQuery, queryOptions);
 
-                extractResponse.SetHeader(queryResponse, solrResults);
-                extractResponse.SetBody(queryResponse, solrResults);
-                extractResponse.SetSpellCheck(queryResponse, solrResults);
-                extractResponse.SetFacets(queryResponse, solrResults);
+                ResponseExtraction.SetHeader(queryResponse, solrResults);
+                ResponseExtraction.SetBody(queryResponse, solrResults);
+                ResponseExtraction.SetSpellCheck(queryResponse, solrResults);
+                ResponseExtraction.SetFacets(queryResponse, solrResults, query.FacetLists);
 
                 //log result
-                _logger.LogDebug($"Search results:  {queryResponse.FoundDocuments}");
+                _logger.LogDebug("Search results:  {queryResponse.FoundDocuments}", queryResponse.FoundDocuments);
             }
             catch (Exception e)
             {
