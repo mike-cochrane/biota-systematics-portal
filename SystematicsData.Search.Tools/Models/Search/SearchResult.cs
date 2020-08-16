@@ -6,18 +6,21 @@ namespace SystematicsData.Search.Tools.Models.Search
 {
     public class SearchResult
     {
-
         public int QueryTime { get; set; }
+
         public int Status { get; set; }
+
         public Dictionary<string, SolrDocument> FoundDocuments { get; set; }
+
         public int TotalSpecimens { get; set; }
 
         public List<Filter> Filters { get; set; }
 
         public List<SelectedFacetValue> AppliedFacets { get; set; }
-        public List<SelectedRange> AppliedRanges { get; set; }
-        public List<string> DidYouMean { get; set; }
 
+        public List<SelectedRange> AppliedRanges { get; set; }
+
+        public List<string> DidYouMean { get; set; }
 
         //public int SecondsToRetrieveData { get; set; }
         //public int SecondsToProcessData { get; set; }
@@ -25,7 +28,6 @@ namespace SystematicsData.Search.Tools.Models.Search
 
         public SearchResult() : this("relevance")
         {
-
         }
 
         public SearchResult(string sortBy = "relevance")

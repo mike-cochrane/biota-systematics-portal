@@ -9,12 +9,14 @@ namespace SystematicsData.Web.Api.Controllers
     [Route("v1/[controller]")]
     public class DocumentsController : ControllerBase
     {
-        private readonly ILogger<SearchController> _logger;
         private readonly IDocumentsService _documentsService;
+        
+        private readonly ILogger<SearchController> _logger;
 
         public DocumentsController(IDocumentsService namesService, ILogger<SearchController> logger)
         {
             _documentsService = namesService;
+        
             _logger = logger;
         }
 

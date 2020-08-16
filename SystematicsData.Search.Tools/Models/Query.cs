@@ -7,8 +7,11 @@ namespace SystematicsData.Search.Tools.Models
     {
         // Query that holds parameters sent to the search library
         public string TextQuery { get; set; }
+
         public int Start { get; set; }
+
         public int Rows { get; set; }
+
         public FacetLists FacetLists { get; set; }
 
         // Default constructor with default number of rows
