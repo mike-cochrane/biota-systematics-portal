@@ -47,11 +47,16 @@ namespace SystematicsData.Utility.Helpers
             }
         }
 
+        public static string GetTitle(string defaultValue = "-")
+        {
+            var assembly = Assembly.GetCallingAssembly();
+
+            return GetTitle(assembly, defaultValue);
+        }
+
         public static string GetTitle(Assembly assembly, string defaultValue = "-")
         {
-            object[] attributes;
-
-            attributes = assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+            var attributes = assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
 
             if (attributes.Any())
             {
