@@ -113,22 +113,8 @@ namespace SystematicsData.Harvester.Service
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
             services.AddTransient(x =>
-                new AnnotationsClient(x.GetRequiredService<IDocumentsRepository>(), appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
+                new AnnotationsClient(appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
             services.AddTransient<IHarvesterStrategies, HarvesterStrategies>();
-        }
-
-        private IDictionary<string, IHarvesterActionStrategy> CreateStrategies(Dictionary<string, string> strategiesFromConfig, AnnotationsClient client, IDocumentsRepository repository)
-        {
-            var strategies = new Dictionary<string, IHarvesterActionStrategy>(StringComparer.OrdinalIgnoreCase);
-
-            foreach (var pair in strategiesFromConfig)
-            {
-                Type strategyType = Type.GetType(pair.Value);
-
-                strategies[pair.Value] = (IHarvesterActionStrategy)Activator.CreateInstance(strategyType, repository, client, null);
-            }
-
-            return strategies;
         }
 
         private static void ConfigureService(IBusControl busControl, ILogger<HarvesterService> logger)
