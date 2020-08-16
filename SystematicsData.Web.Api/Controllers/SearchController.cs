@@ -13,12 +13,13 @@ namespace SystematicsData.Web.Api.Controllers
     public class SearchController : ControllerBase
     {
         private readonly ISearchService _searchService;
+
         private readonly ILogger<SearchController> _logger;
 
-
-        public SearchController(ISearchService searchService, ILogger<SearchController> logger )
+        public SearchController(ISearchService searchService, ILogger<SearchController> logger)
         {
             _searchService = searchService;
+
             _logger = logger;
         }
 

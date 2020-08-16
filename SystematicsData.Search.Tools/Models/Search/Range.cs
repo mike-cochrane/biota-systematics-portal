@@ -14,7 +14,6 @@ namespace SystematicsData.Search.Tools.Models.Search
 
         public Range() : base()
         {
- 
             MinimumValue = 0;
             MaximumValue = 0;
             Type = "numeric";

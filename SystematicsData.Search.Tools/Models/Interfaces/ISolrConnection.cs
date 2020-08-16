@@ -4,6 +4,6 @@ namespace SystematicsData.Search.Tools.Models.Interfaces
 {
     public interface ISolrConnection
     {
-        ISolrOperations<SolrDocument> GetSolrCore();
+        ISolrOperations<SolrDocument> DocumentsSolrCore();
     }
 }

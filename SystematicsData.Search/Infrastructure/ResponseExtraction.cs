@@ -45,22 +45,24 @@ namespace SystematicsData.Search.Infrastructure
             foreach (AdminFacet config in facetConfigList)
             {
                 var current = results.FacetFields.Where(c => c.Key == config.SolrFieldName);
+
                 if (current.Any())
                 {
-                    var f = current.First();
+                    var facetField = current.First();
+
                     switch (config.Type)
                     {
                         case "numeric":
                         case "date":
-                            if (f.Value.Any() && f.Value.Where(v => v.Value > 0).Any())
+                            if (facetField.Value.Any() && facetField.Value.Where(v => v.Value > 0).Any())
                             {
                                 Range range = new Range()
                                 {
-                                    Name = f.Key,
+                                    Name = facetField.Key,
                                     DisplayText = config.Facet,
                                     Type = config.Type,
-                                    MinimumValue = Convert.ToInt32(f.Value.First().Key),
-                                    MaximumValue = Convert.ToInt32(f.Value.Last().Key)
+                                    MinimumValue = Convert.ToInt32(facetField.Value.First().Key),
+                                    MaximumValue = Convert.ToInt32(facetField.Value.Last().Key)
                                 };
 
                                 //Calculate data for sparkline
@@ -78,9 +80,9 @@ namespace SystematicsData.Search.Infrastructure
                                             sparklineCounts.Add(currentKey, 0);
                                         }
 
-                                        if (f.Value.Any())
+                                        if (facetField.Value.Any())
                                         {
-                                            foreach (var item in f.Value)
+                                            foreach (var item in facetField.Value)
                                             {
                                                 int number = Convert.ToInt32(item.Key);
                                                 float currentIncrement = float.NaN;
@@ -134,7 +136,7 @@ namespace SystematicsData.Search.Infrastructure
                                 }
                                 else if (range.Type.Equals("date"))
                                 {
-                                    if (f.Value.Any())
+                                    if (facetField.Value.Any())
                                     {
                                         //Calculate sparkline variables
                                         DateTime minDate = Utils.ConvertIntToDate(range.MinimumValue);
@@ -152,7 +154,7 @@ namespace SystematicsData.Search.Infrastructure
                                             }
 
                                             //Calculate the counts for each interval
-                                            foreach (var item in f.Value)
+                                            foreach (var item in facetField.Value)
                                             {
                                                 DateTime currentIncrement = DateTime.MaxValue;
                                                 DateTime nextIncrement = DateTime.MaxValue;
@@ -208,16 +210,18 @@ namespace SystematicsData.Search.Infrastructure
 
                                 searchResult.Filters.Add(range);
                             }
+
                             break;
 
                         case "text":
                         default:
-                            Facet facet = new Facet();
-                            facet.Name = f.Key;
+                            Facet facet = new Facet
+                            {
+                                Name = facetField.Key,
+                                DisplayText = config.Facet
+                            };
 
-                            facet.DisplayText = config.Facet;
-
-                            foreach (var v in f.Value)
+                            foreach (var v in facetField.Value)
                             {
                                 if (v.Value > 0)
                                 {
@@ -230,11 +234,11 @@ namespace SystematicsData.Search.Infrastructure
                                 }
                             }
 
-
                             if (facet.Values.Any())
                             {
                                 searchResult.Filters.Add(facet);
                             }
+
                             break;
                     }
                 }

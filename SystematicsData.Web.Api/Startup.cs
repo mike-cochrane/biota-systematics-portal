@@ -36,14 +36,13 @@ namespace SystematicsData.Web.Api
             services.RegisterDependencies(appSettings, connectionString);
 
             services.AddControllers(opts =>
-                                    {
-                                        opts.OutputFormatters.Add(new XmlSerializerOutputFormatter());
-                                        opts.Filters.Add<SerilogLoggingActionFilter>();
-                                    }).AddNewtonsoftJson(options =>
-                                    {
-                                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                                    }
-                                    );
+            {
+                opts.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+                opts.Filters.Add<SerilogLoggingActionFilter>();
+            }).AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

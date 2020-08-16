@@ -3,7 +3,10 @@ using SystematicsData.Search.Tools.Models.Search;
 
 namespace SystematicsData.Search.Tools.Models
 {
-    public class QueryResponse
+    /// <summary>
+    /// Internal class for managing the solr query response.
+    /// </summary>
+    internal class QueryResponse
     {
         public QueryResponse()
         {
@@ -12,8 +15,11 @@ namespace SystematicsData.Search.Tools.Models
 
         // Expose properties that will be returned from the search library
         public List<SolrDocument> Results { get; set; }
+
         public int TotalHits { get; set; }
+
         public int QueryTime { get; set; }
+
         public int Status { get; set; }
         //public Query OriginalQuery { get; set; }
 
@@ -22,4 +28,3 @@ namespace SystematicsData.Search.Tools.Models
         public List<Facet> Facets { get; set; }
     }
 }
-
