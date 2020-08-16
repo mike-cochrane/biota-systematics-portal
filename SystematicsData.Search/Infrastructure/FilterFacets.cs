@@ -1,8 +1,8 @@
 ﻿using SolrNet;
 using SolrNet.Commands.Parameters;
 using System.Collections.Generic;
-using SystematicsData.Search.Tools.Helpers;
-using SystematicsData.Search.Tools.Models;
+using SystematicsData.Search.Models.Helpers;
+using SystematicsData.Search.Models;
 
 namespace SystematicsData.Search.Infrastructure
 {

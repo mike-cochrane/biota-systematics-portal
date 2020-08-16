@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SystematicsData.Search.Tools.Models.Search
+namespace SystematicsData.Search.Models.Search
 {
     public class Set
     {

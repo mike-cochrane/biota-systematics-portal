@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SystematicsData.Search.Tools.Models.Search
+namespace SystematicsData.Search.Models.Search
 {
     public class FacetValue
     {

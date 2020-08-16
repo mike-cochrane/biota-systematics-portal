@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Search;
 
 namespace SystematicsData.Web.Api.Services.Interfaces
 {

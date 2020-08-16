@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SystematicsData.Search.Tools.Helpers;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models.Helpers;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Search;
 
 namespace SystematicsData.Search.Infrastructure
 {
@@ -253,7 +253,7 @@ namespace SystematicsData.Search.Infrastructure
 
                 Filter filter = searchResult.Filters.Where(f => f.Name == facet.FacetName).FirstOrDefault();
 
-                if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Tools.Models.Search.Facet)))
+                if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Models.Search.Facet)))
                 {
                     Facet f = (Facet)filter;
                     FacetValue value = f.Values.Where(v => v.Name == facet.ValueName).First();

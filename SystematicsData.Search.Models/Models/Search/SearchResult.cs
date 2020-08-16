@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SystematicsData.Search.Tools.Models.Search
+namespace SystematicsData.Search.Models.Search
 {
     public class SearchResult
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models.Search;
 using SystematicsPortal.Web.Helpers;
 
 namespace SystematicsPortal.Web.Models

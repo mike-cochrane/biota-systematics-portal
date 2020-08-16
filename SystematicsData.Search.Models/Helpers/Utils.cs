@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models.Search;
 
-namespace SystematicsData.Search.Tools.Helpers
+namespace SystematicsData.Search.Models.Helpers
 {
     public class Utils
     {

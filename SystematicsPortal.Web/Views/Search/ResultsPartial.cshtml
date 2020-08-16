@@ -11,12 +11,12 @@
 
         <div id="results" class="row-fluid">
             <div id="applied-facets">
-                @foreach (SystematicsData.Search.Tools.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets)
+                @foreach (SystematicsData.Search.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets)
                 {
                     string label = s.Label + " [x]";
                     <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
                 }
-                @foreach (SystematicsData.Search.Tools.Models.Search.SelectedRange s in Model.Result.AppliedRanges)
+                @foreach (SystematicsData.Search.Models.Search.SelectedRange s in Model.Result.AppliedRanges)
                 {
                     string label = s.Label + " [x]";
                     <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '', 'range')">@Html.Raw(label)</a>
@@ -287,7 +287,7 @@
                                                 @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />&nbsp;Select all
                                             }
                                         </div>
-                                        @foreach (SystematicsData.Search.Tools.Models.SolrDocument summary in specimens)
+                                        @foreach (SystematicsData.Search.Models.SolrDocument summary in specimens)
                                         {
                                             <div class="specimen-list-item">
                                                 <div class="pull-left">
@@ -345,7 +345,7 @@
                                                     Specimen Type
                                                 </th>
                                             </tr>
-                                            @foreach (SystematicsData.Search.Tools.Models.SolrDocument summary in specimens)
+                                            @foreach (SystematicsData.Search.Models.SolrDocument summary in specimens)
                                             {
                                                 //string id = summary.SpecimenId.ToString();
                                                 @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@

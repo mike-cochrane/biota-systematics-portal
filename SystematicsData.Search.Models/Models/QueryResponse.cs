@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models.Search;
 
-namespace SystematicsData.Search.Tools.Models
+namespace SystematicsData.Search.Models
 {
     /// <summary>
     /// Internal class for managing the solr query response.

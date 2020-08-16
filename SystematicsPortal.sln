@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsPortal.Web", "Sy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Search", "SystematicsData.Search\SystematicsData.Search.csproj", "{EDC96F5A-FFED-4B81-9672-610CF2FD96F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Search.Tools", "SystematicsData.Search.Tools\SystematicsData.Search.Tools.csproj", "{F963483A-A1A8-4634-BEB9-A17779CB5062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Search.Models", "SystematicsData.Search.Models\SystematicsData.Search.Models.csproj", "{F963483A-A1A8-4634-BEB9-A17779CB5062}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystematicsData.Web.Api", "SystematicsData.Web.Api\SystematicsData.Web.Api.csproj", "{3A70D786-422D-4F98-AF98-87A60CB887EB}"
 EndProject
