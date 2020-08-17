@@ -11,6 +11,6 @@ namespace SystematicsData.Web.Api.Client.Interfaces
 
         Task<Document> GetDocument(string documentId);
 
-        Task<ContentConfigurations> GeContent(string page);
+        Task<ContentConfigurations> GetContent(string page);
     }
 }
