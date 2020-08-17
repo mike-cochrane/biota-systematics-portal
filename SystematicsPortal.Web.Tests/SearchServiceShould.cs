@@ -32,12 +32,8 @@ namespace SystematicsPortal.Web.Tests
             return searchResult;
         }
 
-        private Query GetQuery()
+        private Query GetQuery(string searchTerm = "Bacteria", int selectedPage = 1, int numberResults = 100)
         {
-            var searchTerm = "Bacteria";
-            var selectedPage = 1;
-            var numberResults = 100;
-
             var queryToUse = new Query(selectedPage * numberResults, numberResults)
             {
                 TextQuery = searchTerm,
@@ -51,38 +47,44 @@ namespace SystematicsPortal.Web.Tests
             return queryToUse;
         }
 
-        [Fact]
-        public async Task DoSearchWithFacetsAsync()
-        {
-            // Arrange
-            var query = GetQuery();
-            var selectedPage = 1;
-            var sortField = string.Empty;
-            var sortOrder = "ascending";
-
-
-
-            // Act
-            var result = await _sut.Search(query.TextQuery, null, null, selectedPage, query.Rows, sortField, sortOrder);
-
-            // Assert
-
-            // TODO: Check why mocked client is returning null
-            //Assert.IsType<SearchResult>(result);
-            //Assert.NotNull(result);
-
-            Assert.True(true);
-        }
 
         [Fact]
         public async Task DoBasicSearchAsync()
         {
             // Arrange
-            var query = GetQuery();
+            var searchTerm = "Bacteria";
             var selectedPage = 1;
+            var numberResults = 100;
+
+
             var sortField = string.Empty;
             var sortOrder = "ascending";
+            var query = GetQuery(searchTerm, selectedPage, numberResults);
 
+            // Act
+            var result = await _sut.Search(query.TextQuery, null, null, selectedPage, query.Rows, sortField, sortOrder);
+
+            // Assert
+
+            // TODO: Check why mocked client is returning null
+            //Assert.IsType<SearchResult>(result);
+            //Assert.NotNull(result);
+
+            Assert.True(true);
+        }
+
+        [Fact]
+        public async Task DoSearchWithFacetsAsync()
+        {
+            // Arrange
+            var searchTerm = "Bacteria";
+            var selectedPage = 1;
+            var numberResults = 100;
+
+
+            var sortField = string.Empty;
+            var sortOrder = "ascending";
+            var query = GetQuery(searchTerm, selectedPage, numberResults);
 
 
             // Act
@@ -96,5 +98,6 @@ namespace SystematicsPortal.Web.Tests
 
             Assert.True(true);
         }
+
     }
 }

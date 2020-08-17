@@ -2,13 +2,13 @@
 
 namespace SystematicsData.Search.Models.Search
 {
-    public class Filter
+    public abstract class Filter
     {
         public string Name { get; set; }
 
         public string DisplayText { get; set; }
 
-        public string FilterType { get; set; }
+        public string FilterType { get; }
 
         public Filter()
         {

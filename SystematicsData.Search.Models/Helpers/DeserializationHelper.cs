@@ -31,31 +31,33 @@ namespace SystematicsData.Utility.Extensions
 
     public class FilterConverter : JsonConverter
     {
+        public override bool CanRead => base.CanRead;
+
+        public override bool CanWrite => base.CanWrite;
+
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(Filter));
+            return typeof(Filter).IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jo = JObject.Load(reader);
 
-            if (jo["FilterType"].Value<string>() == "Facet")
+            if (objectType == typeof(Filter))
             {
-                return jo.ToObject<Facet>(serializer); 
+                if (jo["filterType"] != null && jo["filterType"].Value<string>() == "Facet")
+                {
+                    return jo.ToObject<Facet>(serializer);
+                }
+
+                if (jo["filterType"] != null && jo["filterType"].Value<string>() == "Range")
+                {
+                    return jo.ToObject<Range>(serializer);
+                }
             }
 
-            if (jo["FilterType"].Value<string>() == "Range")
-            {
-                return jo.ToObject<Range>(serializer); 
-            }
-
-            return null;
-        }
-
-        public override bool CanWrite
-        {
-            get { return false; }
+            return jo.ToObject(objectType);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
