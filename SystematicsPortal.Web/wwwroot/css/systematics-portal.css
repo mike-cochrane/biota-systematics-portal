@@ -288,3 +288,11 @@ h1 strong {
 .clickable {
     cursor: pointer;
 }
+
+.sub-heading {
+    padding-bottom: 1em;
+}
+
+.table-row-separation {
+    border-bottom: 1px #eee solid;
+}

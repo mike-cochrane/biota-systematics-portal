@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models.Search;
 
-namespace SystematicsData.Search.Tools.Models
+namespace SystematicsData.Search.Models
 {
     public class Query
     {
         // Query that holds parameters sent to the search library
         public string TextQuery { get; set; }
+
         public int Start { get; set; }
+
         public int Rows { get; set; }
+
         public FacetLists FacetLists { get; set; }
 
         // Default constructor with default number of rows

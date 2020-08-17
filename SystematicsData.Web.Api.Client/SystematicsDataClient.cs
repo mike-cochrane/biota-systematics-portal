@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Search;
 using SystematicsData.Utility.Extensions;
 using SystematicsData.Utility.Helpers;
 using SystematicsData.Web.Api.Client.Interfaces;

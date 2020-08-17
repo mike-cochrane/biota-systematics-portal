@@ -16,6 +16,7 @@ namespace SystematicsData.Web.Api.Services
         public DocumentsService(IDocumentsRepository documentsRepository, ILogger<DocumentsService> logger)
         {
             _documentsRepository = documentsRepository;
+
             _logger = logger;
         }
 
@@ -29,7 +30,7 @@ namespace SystematicsData.Web.Api.Services
             }
             else
             {
-                throw new Exception("Not valid Id");
+                throw new Exception($"Not valid Id - {id}");
             }
 
             return document;

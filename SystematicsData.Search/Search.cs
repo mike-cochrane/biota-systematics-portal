@@ -3,38 +3,40 @@ using SolrNet;
 using SolrNet.Commands.Parameters;
 using System;
 using SystematicsData.Search.Infrastructure;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Interfaces;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Interfaces;
+using SystematicsData.Search.Models.Search;
+using ISolrConnection = SystematicsData.Search.Models.Interfaces.ISolrConnection;
 
 namespace SystematicsData.Search
 {
     public class Search : ISearch, IDisposable
     {
-        private readonly Tools.Models.Interfaces.ISolrConnection _connection;
+        private readonly ISolrConnection _connection;
 
         private readonly ILogger _logger;
 
-        public Search(Tools.Models.Interfaces.ISolrConnection solrConnection, ILogger<Search> logger)
+        public Search(ISolrConnection solrConnection, ILogger<Search> logger)
         {
             _connection = solrConnection;
+
             _logger = logger;
         }
 
         /// <summary>
-        ///  This funtion is the one that actually does the search
+        ///  This function is the one that actually does the search
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         public SearchResult DoSearch(Query query)
         {
             // Create an object to hold results
-            SearchResult queryResponse = new SearchResult();
+            var queryResponse = new SearchResult();
 
             try
             {
                 // Get a connection 
-                var solr = _connection.GetSolrCore();
+                var solrDocumentsCore = _connection.DocumentsSolrCore();
 
                 var queryOptions = new QueryOptions
                 {
@@ -48,11 +50,11 @@ namespace SystematicsData.Search
                 queryOptions.AddOrder(new SortOrder("title", Order.ASC));
 
                 queryOptions.ExtraParams = ExtraParameters.BuildExtraParameters();
-                
+
                 // Execute the query
                 ISolrQuery solrQuery = new SolrQuery(query.TextQuery);
 
-                var solrResults = solr.Query(solrQuery, queryOptions);
+                var solrResults = solrDocumentsCore.Query(solrQuery, queryOptions);
 
                 ResponseExtraction.SetHeader(queryResponse, solrResults);
                 ResponseExtraction.SetBody(queryResponse, solrResults);
@@ -65,10 +67,10 @@ namespace SystematicsData.Search
             catch (Exception e)
             {
                 _logger.LogError(e, e.Message);
+
                 throw;
             }
 
-            // Return response
             return queryResponse;
         }
 

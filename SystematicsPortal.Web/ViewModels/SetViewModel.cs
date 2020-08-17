@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models.Search;
 using SystematicsPortal.Web.Helpers;
 
 namespace SystematicsPortal.Web.Models

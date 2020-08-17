@@ -1,10 +1,8 @@
 ﻿using SolrNet;
 using SolrNet.Commands.Parameters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using SystematicsData.Search.Tools.Helpers;
-using SystematicsData.Search.Tools.Models;
+using SystematicsData.Search.Models.Helpers;
+using SystematicsData.Search.Models;
 
 namespace SystematicsData.Search.Infrastructure
 {
@@ -13,17 +11,15 @@ namespace SystematicsData.Search.Infrastructure
         // Building the filters: Filter queries do not affect score of the search and improve performance, as they are catched
         public static ICollection<ISolrQuery> BuildFilterQueries(Query query)
         {
-            List<ISolrQuery> filters = new List<ISolrQuery>();
+            var filters = new List<ISolrQuery>();
 
             filters.AddRange(GetAppliedFacets(query));
-
             filters.AddRange(GetAppliedRanges(query));
-
 
             return filters;
         }
 
-        private static List<ISolrQuery>GetAppliedFacets(Query query)
+        private static List<ISolrQuery> GetAppliedFacets(Query query)
         {
             var facets = new List<ISolrQuery>();
 

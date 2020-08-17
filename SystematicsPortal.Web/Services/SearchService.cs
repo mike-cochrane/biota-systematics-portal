@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Search;
 using SystematicsData.Web.Api.Client.Interfaces;
 using SystematicsPortal.Web.Services.Interfaces;
 

@@ -9,16 +9,18 @@ namespace SystematicsData.Web.Api.Controllers
     [Route("v1/[controller]")]
     public class ContentController : ControllerBase
     {
-        private readonly ILogger<ContentController> _logger;
         private readonly IContentService _contentservice;
+
+        private readonly ILogger<ContentController> _logger;
 
         public ContentController(IContentService contentservice, ILogger<ContentController> logger)
         {
             _contentservice = contentservice;
+
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> Get(string page)
         {
             _logger.LogDebug("ContentController - GetContent");

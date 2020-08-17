@@ -5,11 +5,11 @@ using SolrNet;
 using System;
 using System.Net;
 using System.Text;
-using SystematicsData.Search.Tools.Models;
+using SystematicsData.Search.Models;
 
 namespace SystematicsData.Search.Infrastructure
 {
-    public class SolrConnection : Tools.Models.Interfaces.ISolrConnection
+    public class SolrConnection : Models.Interfaces.ISolrConnection
     {
         public readonly ISolrOperations<SolrDocument> _solrCore;
 
@@ -17,6 +17,7 @@ namespace SystematicsData.Search.Infrastructure
         public SolrConnection(string coreUrl, string userName, string password)
         {
             SolrNet.Impl.SolrConnection solrConnection;
+
             if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
             {
                 solrConnection = new SolrNet.Impl.SolrConnection(coreUrl);
@@ -37,11 +38,11 @@ namespace SystematicsData.Search.Infrastructure
             _solrCore = ServiceLocator.Current.GetInstance<ISolrOperations<SolrDocument>>();
         }
 
-        public ISolrOperations<SolrDocument> GetSolrCore()
+        public ISolrOperations<SolrDocument> DocumentsSolrCore()
         {
             if (_solrCore == null)
             {
-                throw new Exception("Problem to get solr instance");
+                throw new Exception("Problem Initialising Solr Core Instance");
             }
 
             return _solrCore;
@@ -77,6 +78,5 @@ namespace SystematicsData.Search.Infrastructure
                 return new HttpWebRequestAdapter(req);
             }
         }
-
     }
 }

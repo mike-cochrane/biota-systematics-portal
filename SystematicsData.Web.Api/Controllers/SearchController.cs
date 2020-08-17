@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using SystematicsData.Search.Tools.Models;
-using SystematicsData.Search.Tools.Models.Search;
+using SystematicsData.Search.Models;
+using SystematicsData.Search.Models.Search;
 using SystematicsData.Web.Api.Services.Interfaces;
 
 namespace SystematicsData.Web.Api.Controllers
@@ -13,12 +13,13 @@ namespace SystematicsData.Web.Api.Controllers
     public class SearchController : ControllerBase
     {
         private readonly ISearchService _searchService;
+
         private readonly ILogger<SearchController> _logger;
 
-
-        public SearchController(ISearchService searchService, ILogger<SearchController> logger )
+        public SearchController(ISearchService searchService, ILogger<SearchController> logger)
         {
             _searchService = searchService;
+
             _logger = logger;
         }
 
