@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SystematicsData.Search.Models.Search
 {
@@ -7,7 +7,7 @@ namespace SystematicsData.Search.Models.Search
     {
         public List<FacetValue> Values { get; set; }
 
-        public Facet(): base()
+        public Facet(): base("Facet")
         {
             Values = new List<FacetValue>();
         }

@@ -33,11 +33,13 @@ namespace SystematicsData.Web.Api.Client
                 BaseAddress = new Uri(baseAddress)
             };
 
-            var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(query), Encoding.UTF8, "application/json"));
+            var jsonContent = JsonConvert.SerializeObject(query);
+
+            var response = await client.PostAsync(urlToQuery, new StringContent(jsonContent, Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
-                queryResponse = await response.Content.ReadAsAsync<SearchResult>();
+                queryResponse = await response.Content.ReadAsAsyncUsingCustomConverter<SearchResult>();
             }
             else
             {

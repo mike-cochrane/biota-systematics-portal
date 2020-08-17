@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SystematicsData.Search.Models\SystematicsData.Search.Models.csproj" />
     <ProjectReference Include="..\SystematicsPortal.Web\SystematicsPortal.Web.csproj" />
   </ItemGroup>
 
