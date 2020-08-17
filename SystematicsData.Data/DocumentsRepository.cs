@@ -15,11 +15,13 @@ namespace SystematicsData.Data
     public class DocumentsRepository : IDocumentsRepository
     {
         private readonly NamesWebContext _context;
+
         private readonly ILogger _logger;
 
         public DocumentsRepository(NamesWebContext context, ILogger<DocumentsRepository> logger)
         {
             _context = context;
+
             _logger = logger;
         }
 
@@ -90,11 +92,9 @@ namespace SystematicsData.Data
             {
                 var xmlComparer = DiffBuilder.Compare(Input.FromString(storeDocument.SerializedDocument))
                     .WithTest(Input.FromString(document.ToString()))
-                    .WithNodeFilter(o => String.Equals(o.Name, "ModifiedDate", StringComparison.OrdinalIgnoreCase))
                     .Build();
 
-                // TODO: Investigate why it's always false
-                //if (xmlComparer.HasDifferences())
+                if (xmlComparer.HasDifferences())
                 {
                     storeDocument.Version += 1;
                     storeDocument.SerializedDocument = document.ToString();
