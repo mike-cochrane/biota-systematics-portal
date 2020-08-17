@@ -10,49 +10,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsData.Models.Entities.Annotations;
-using SystematicsData.Models.Interfaces;
 using SystematicsData.Utility.Extensions;
 
 namespace SystematicsData.Harvester.Service.Clients
 {
+    /// <summary>
+    /// Client for making API calls to the Annotations API.
+    /// </summary>
     public class AnnotationsClient
     {
-        private readonly string _apiContentUrl;
+        private readonly HttpClient _httpClient;
+
         private readonly ILogger<AnnotationsClient> _logger;
 
-        public AnnotationsClient(string contentServiceUrl, ILogger<AnnotationsClient> logger)
+        public AnnotationsClient(HttpClient httpClient, ILogger<AnnotationsClient> logger)
         {
-            _apiContentUrl = contentServiceUrl;
+            _httpClient = httpClient;
+
             _logger = logger;
         }
 
         public async Task<List<string>> GetResourcesAsStringList()
         {
-            string urlToQuery = $"{_apiContentUrl}/resources";
-            List<string> resourcesList = new List<string>();
+            var resourcesList = new List<string>();
 
-            // TODO: Use new .net core http client factory
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(urlToQuery),
-            };
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
 
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+            using var response = await _httpClient.GetAsync("resources");
 
-            var response = await client.GetAsync(urlToQuery);
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
                 var results = await response.Content.ReadAsStringAsync();
-
                 var returnXml = XDocument.Parse(results);
-
                 var resourcesElements = returnXml.Element("Resources").Descendants("Resource");
 
                 foreach (var resource in resourcesElements)
                 {
                     // _logger.Verbose("{Action} {NameFullName} (Record {Index} of {NameCount})", "Process Consensus Name Document", name.FullName, index, consensusNameCount);
-                    string resourceId = (string)resource.Attribute("resourceId");
+                    var resourceId = (string)resource.Attribute("resourceId");
 
                     if (!String.IsNullOrEmpty(resourceId))
                     {
@@ -70,40 +67,29 @@ namespace SystematicsData.Harvester.Service.Clients
 
         public async Task<Resources> GetResources()
         {
-            string urlToQuery = $"{_apiContentUrl}/resources";
-            Resources resourcesList;
+            Resources resources;
 
-            // TODO: Use new .net core http client factory
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(urlToQuery),
-            };
+            using var response = await _httpClient.GetAsync("resources");
 
-            var response = await client.GetAsync(urlToQuery);
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
-                resourcesList = await response.Content.ReadAsAsync<Resources>();
+                resources = await response.Content.ReadAsAsync<Resources>();
             }
             else
             {
                 throw new HttpRequestException(response.ReasonPhrase);
             }
 
-            return resourcesList;
+            return resources;
         }
 
         public async Task<ItemTypes> GetItemTypes(string resourceId)
         {
-            string urlToQuery = $"{_apiContentUrl}/itemTypes?resourceId={resourceId}";
+            using var response = await _httpClient.GetAsync($"itemtypes?resourceid={resourceId}");
 
-            // TODO: Use new .net core http client factory
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(urlToQuery),
-            };
-
-            var response = await client.GetAsync(urlToQuery);
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
@@ -119,16 +105,11 @@ namespace SystematicsData.Harvester.Service.Clients
 
         public async Task<Items> GetItemIds(string itemTypeId)
         {
-            string urlToQuery = $"{_apiContentUrl}/itemIds?itemTypeId={itemTypeId}";
             Items itemIds;
 
-            // TODO: Use new .net core http client factory
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(urlToQuery),
-            };
+            using var response = await _httpClient.GetAsync($"itemids?itemtypeid={itemTypeId}");
 
-            var response = await client.GetAsync(urlToQuery);
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
@@ -158,7 +139,7 @@ namespace SystematicsData.Harvester.Service.Clients
         {
             Items items;
 
-            var response = await GetItemsResponseByIds(itemIds);
+            using var response = await GetItemsResponseByIds(itemIds);
 
             if (response.IsSuccessStatusCode)
             {
@@ -186,7 +167,7 @@ namespace SystematicsData.Harvester.Service.Clients
 
         public async Task<IEnumerable<XElement>> GetItemsXmlByIds(List<string> itemIds)
         {
-            var response = await GetItemsResponseByIds(itemIds);
+            using var response = await GetItemsResponseByIds(itemIds);
 
             if (response.IsSuccessStatusCode)
             {
@@ -202,43 +183,33 @@ namespace SystematicsData.Harvester.Service.Clients
 
         private async Task<List<XElement>> GetItemsXElementList(HttpResponseMessage response)
         {
-            List<XElement> itemsList = new List<XElement>();
+            var items = new List<XElement>();
+            var itemsAsString = await response.Content.ReadAsStringAsync();
+            using var itemsStringReader = new StringReader(itemsAsString);
+            var itemsDocument = XDocument.Load(itemsStringReader);
+            var itemsElement = itemsDocument.Element("items");
 
-            var items = await response.Content.ReadAsStringAsync();
-
-            TextReader tr = new StringReader(items);
-            XDocument itemsXDocument = XDocument.Load(tr);
-
-            //var itemsXDocument = XDocument.Parse(items);
-            var documentsElements = itemsXDocument.Element("items");
-            itemsList = documentsElements.Descendants("item").ToList();
-
-            itemsList = itemsList.Select(item =>
+            items = itemsElement.Descendants("item").ToList();
+            items = items.Select(item =>
             {
                 string itemId = (string)item.Attribute("itemId");
                 item.Add(new XAttribute("documentId", itemId));
+
                 return item;
             }
             ).ToList();
 
-            return itemsList;
+            return items;
         }
 
         private async Task<HttpResponseMessage> GetItemsResponseByIds(List<string> itemIds)
         {
-            string urlToQuery = $"{_apiContentUrl}/items";
-
-            // TODO: Use new .net core http client factory
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(urlToQuery),
-            };
+            _httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
 
             var jsonInString = JsonConvert.SerializeObject(itemIds);
+            var response = await _httpClient.PostAsync("items", new StringContent(jsonInString, Encoding.UTF8, "application/json"));
 
-            client.DefaultRequestHeaders.Add("Accept", "application/xml");
-
-            var response = await client.PostAsync(urlToQuery, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
 
             return response;
         }
