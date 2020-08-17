@@ -6,7 +6,6 @@ using Serilog;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using SystematicsData.Data;
 using SystematicsData.Data.Uploader.Classes;
 using SystematicsData.Data.Uploader.Helpers;
 using SystematicsData.Models.Interfaces;
@@ -16,16 +15,15 @@ namespace SystematicsData.Data.Uploader
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            MainAsync(args).Wait();
-        }
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-        private static async Task MainAsync(string[] args)
-        {
             var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
+                .AddUserSecrets<Program>(optional: true);
 
             IConfigurationRoot configuration = builder.Build();
 
@@ -62,9 +60,9 @@ namespace SystematicsData.Data.Uploader
 
                 logger.LogInformation("SystematicsData.Data.Uploader - Finished");
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                logger.LogError("SystematicsData.Data.Uploader failed {exception}", exception.Message);
+                logger.LogError("SystematicsData.Data.Uploader failed {exception}", ex.Message);
             }
         }
 
@@ -78,13 +76,11 @@ namespace SystematicsData.Data.Uploader
             services.AddLogging(conf => conf.AddSerilog(logger));
 
             services.AddDbContext<NamesWebContext>(options =>
-                options.UseSqlServer(connectionString, opt => opt.UseRowNumberForPaging()),
-                ServiceLifetime.Transient);
+                options.UseSqlServer(connectionString), ServiceLifetime.Transient);
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
 
-            services.AddTransient(x =>
-            new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
+            services.AddTransient(x => new Parser(x.GetRequiredService<IDocumentsRepository>(), appSettings.SourcePath, x.GetRequiredService<ILogger<Parser>>()));
         }
     }
 }
