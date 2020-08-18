@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using SystematicsData.Search.Models;
 using SystematicsData.Search.Models.Search;
@@ -33,11 +34,95 @@ namespace SystematicsPortal.Web.Services
                     AppliedFacets = appliedFacets ?? new List<SelectedFacetValue>(),
                     AppliedRanges = appliedRanges ?? new List<SelectedRange>()
                 }
-            };
+        };
 
             var response = await _apiClient.Search(queryToUse);
 
             return response;
         }
+
+        public List<SelectedFacetValue> SetAppliedFacets(string appliedFacets, string selectedFacet, string selectedValue, string selectedFacetType, bool toggleOn)
+        {
+            var searchResult = new SearchResult();
+
+            searchResult.SetAppliedFacets(appliedFacets);
+
+            var appliedFacetsList = ApplySelectedFacet(selectedFacet, selectedValue, selectedFacetType, toggleOn, searchResult);
+
+            return appliedFacetsList;
+        }
+
+        private static List<SelectedFacetValue> ApplySelectedFacet(string selectedFacet, string selectedValue, string selectedFacetType, bool toggleOn, SearchResult searchResult)
+        {
+            if (selectedFacetType.ToLower().Equals("text"))
+            {
+                var appliedFacet = new SelectedFacetValue()
+                {
+                    FacetName = selectedFacet,
+                    ValueName = selectedValue
+                };
+                if (toggleOn)
+                {
+                    if (!searchResult.AppliedFacets.Contains(appliedFacet))
+                    {
+                        searchResult.AppliedFacets.Add(appliedFacet);
+                    }
+                }
+                else
+                {
+                    if (searchResult.ContainsAppliedFacet(appliedFacet))
+                    {
+                        searchResult.RemoveAppliedFacet(appliedFacet);
+                    }
+                }
+            }
+
+            return searchResult.AppliedFacets;
+        }
+
+        public List<SelectedRange> SetAppliedRanges(string appliedRanges, string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue, bool toggleOn)
+        {
+            var searchResult = new SearchResult();
+
+            searchResult.SetAppliedRanges(appliedRanges);
+
+            var appliedRangesList = ApplySelectedRange(selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, toggleOn, searchResult);
+
+            return appliedRangesList;
+        }
+
+        private static List<SelectedRange> ApplySelectedRange(string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue,  bool toggleOn, SearchResult searchResult)
+        {
+            if (selectedFacetType.ToLower().Equals("range"))
+            {
+                if (toggleOn)
+                {
+                    if (selectedValue.Contains('.'))
+                    {
+                        selectedValue = selectedValue.Split('.')[0];
+                    }
+                    if (selectedUpperValue.Contains('.'))
+                    {
+                        selectedUpperValue = selectedUpperValue.Split('.')[0];
+                    }
+
+                    var appliedRange = new SelectedRange()
+                    {
+                        FacetName = selectedFacet,
+                        MinimumValue = Convert.ToInt32(selectedValue),
+                        MaximumValue = Convert.ToInt32(selectedUpperValue)
+                    };
+
+                    searchResult.AddOrUpdateAppliedRange(appliedRange);
+                }
+                else
+                {
+                    searchResult.RemoveAppliedRange(selectedFacet);
+                }
+            }
+
+            return searchResult.AppliedRanges;
+        }
+
     }
 }

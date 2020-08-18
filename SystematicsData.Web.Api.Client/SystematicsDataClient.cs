@@ -33,7 +33,7 @@ namespace SystematicsData.Web.Api.Client
 
             if (response.IsSuccessStatusCode)
             {
-                queryResponse = await response.Content.ReadAsAsync<SearchResult>();
+                queryResponse = await response.Content.ReadAsAsyncUsingCustomConverter<SearchResult>();
             }
             else
             {

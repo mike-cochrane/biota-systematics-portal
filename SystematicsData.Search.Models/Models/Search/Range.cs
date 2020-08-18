@@ -10,15 +10,15 @@ namespace SystematicsData.Search.Models.Search
         public int MaximumValue { get; set; }
         public string Type { get; set; }
         public bool IncludeNulls { get; set; }
-        public string SparklineData { get; set; }
+        public string SparkLineData { get; set; }
 
-        public Range() : base()
+        public Range() : base("Range")
         {
             MinimumValue = 0;
             MaximumValue = 0;
             Type = "numeric";
             IncludeNulls = false;
-            SparklineData = String.Empty;
+            SparkLineData = String.Empty;
         }
     }
 }
