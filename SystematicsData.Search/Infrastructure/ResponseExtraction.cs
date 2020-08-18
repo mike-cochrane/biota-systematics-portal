@@ -124,12 +124,12 @@ namespace SystematicsData.Search.Infrastructure
 
                                             if (first)
                                             {
-                                                range.SparklineData = value;
+                                                range.SparkLineData = value;
                                                 first = false;
                                             }
                                             else
                                             {
-                                                range.SparklineData += "," + value;
+                                                range.SparkLineData += "," + value;
                                             }
                                         }
                                     }
@@ -196,12 +196,12 @@ namespace SystematicsData.Search.Infrastructure
 
                                                 if (first)
                                                 {
-                                                    range.SparklineData = value;
+                                                    range.SparkLineData = value;
                                                     first = false;
                                                 }
                                                 else
                                                 {
-                                                    range.SparklineData += "," + value;
+                                                    range.SparkLineData += "," + value;
                                                 }
                                             }
                                         }
