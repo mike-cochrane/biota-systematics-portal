@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsData.Models.Entities.Access;
 
 namespace SystematicsData.Models.Interfaces
 {
     public interface IDocumentsRepository
     {
-        Task<Entities.Access.Document> GetDocumentAsync(Guid documentId);
-        IEnumerable<Entities.Access.Document> GetDocuments();
-        IEnumerable<Entities.Access.Document> GetDocuments(IEnumerable<Guid> documentIds);
+        Task<Document> GetDocumentAsync(Guid documentId);
+
+        IEnumerable<Document> GetDocuments();
+
+        IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds);
+
         Task InsertDocument(Entities.Database.Document document);
-        void UpdateDocument(Entities.Access.Document document);
+
+        void UpdateDocument(Document document);
+
         Task<int> WriteDocuments(IEnumerable<XElement> documentsList);
     }
 }
