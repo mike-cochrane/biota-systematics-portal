@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Xml;
+using SystematicsPortal.Web.Helpers;
 using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services.Interfaces;
 
@@ -342,6 +343,58 @@ namespace SystematicsPortal.Web.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult> ResultsPartialAsync(string selectedFacet, string selectedFacetType, string selectedValue, string selectedUpperValue,
+                                    string query, string appliedFacets, string appliedRanges, bool toggleOn,
+                                    string currentDisplayTab, string sortField, int pageNumber, string selectAll)
+        {
+
+            query = Utility.ReplaceEscapedCharacters(query);
+
+            appliedFacets = Utility.ReplaceEscapedCharacters(appliedFacets);
+            appliedRanges = Utility.ReplaceEscapedCharacters(appliedRanges);
+
+            try
+            {
+                var viewData = new SearchViewModel( null, null)
+                {
+                    HaveSearched = true,
+                    SelectedView = currentDisplayTab,
+                    ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
+                    CurrentPage = pageNumber
+                };
+
+                viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(appliedFacets, selectedFacet, selectedValue, selectedFacetType, toggleOn);
+                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(appliedRanges, selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, toggleOn);
+
+                viewData.Result = await _searchService.Search(query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, pageNumber, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                
+                // TODO: Implement following method if it's necessary
+                //viewData.OneOrMoreSelected = SetSelectedSpecimens(viewData.Result.FoundSpecimens);
+                viewData.SetSortField(sortField);
+                viewData.Query = query;
+
+                if (selectAll.ToLower() == "true")
+                {
+                    viewData.AllSelected = true;
+                }
+
+                ModelState.Clear();
+                return PartialView(viewData);
+            }
+            catch (Exception)
+            {
+                /*TODO - really need to return an error message to the user here, otherwise it just looks like their click did nothing*/
+                throw;
+            }
+            finally
+            {
+                // TODO: Do logging
+                //SubmitQueryLog(q, success, specimenCount);
+            }
+        }
+
     }
 
     /*[HttpPost]

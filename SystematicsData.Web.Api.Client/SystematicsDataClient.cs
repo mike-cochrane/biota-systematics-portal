@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,32 +11,29 @@ using SystematicsData.Web.Api.Client.Interfaces;
 
 namespace SystematicsData.Web.Api.Client
 {
+    /// <summary>
+    /// Client for making API calls to the systematics data API.
+    /// </summary>
     public class SystematicsDataClient : ISystematicsDataClient
     {
-        private readonly string _url;
+        private readonly HttpClient _httpClient;
 
-        public SystematicsDataClient(string url)
+        public SystematicsDataClient(HttpClient httpClient)
         {
-            _url = url;
+            _httpClient = httpClient;
         }
 
         public async Task<SearchResult> Search(Query query)
         {
-            string urlToQuery = $"{_url}search";
-            var baseAddress = urlToQuery;
             SearchResult queryResponse;
 
-            // TODO: Use new .net core http client factory 
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(baseAddress)
-            };
+            using var response = await _httpClient.PostAsync("search", new StringContent(JsonConvert.SerializeObject(query), Encoding.UTF8, "application/json"));
 
-            var response = await client.PostAsync(urlToQuery, new StringContent(JsonConvert.SerializeObject(query), Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
-                queryResponse = await response.Content.ReadAsAsync<SearchResult>();
+                queryResponse = await response.Content.ReadAsAsyncUsingCustomConverter<SearchResult>();
             }
             else
             {
@@ -45,30 +41,23 @@ namespace SystematicsData.Web.Api.Client
             }
 
             return queryResponse;
-            // Do event logging
         }
 
         public async Task<Document> GetDocument(string documentId)
         {
             Document document;
-            string urlToQuery = $"{_url}documents/{documentId}";
-            var baseAddress = urlToQuery;
 
-            // TODO: Use new .net core http client factory 
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(baseAddress)
-            };
+            using var response = await _httpClient.GetAsync($"documents/{documentId}");
 
-            var response = await client.GetAsync(urlToQuery);
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
-                string incomingText = await response.Content.ReadAsStringAsync();
+                var responseString = await response.Content.ReadAsStringAsync();
 
                 document = new Document();
 
-                document.XmlDocument.LoadXml(incomingText);
+                document.XmlDocument.LoadXml(responseString);
             }
             else
             {
@@ -78,25 +67,19 @@ namespace SystematicsData.Web.Api.Client
             return document;
         }
 
-        public async Task<ContentConfigurations> GeContent(string page)
+        public async Task<ContentConfigurations> GetContent(string page)
         {
             ContentConfigurations contentConfigurations;
 
-            string urlToQuery = $"{_url}content?page={page}";
+            using var response = await _httpClient.GetAsync($"content?page={page}");
 
-            // TODO: Use new .net core http client factory 
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri(urlToQuery)
-            };
-
-            var response = await client.GetAsync(urlToQuery);
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
-                var contentConfigurationsString = await response.Content.ReadAsStringAsync();
+                var responseString = await response.Content.ReadAsStringAsync();
 
-                contentConfigurations = SerializationHelper.Deserialize<ContentConfigurations>(contentConfigurationsString);
+                contentConfigurations = SerializationHelper.Deserialize<ContentConfigurations>(responseString);
             }
             else
             {

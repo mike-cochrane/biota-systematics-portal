@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using SystematicsData.Data;
@@ -107,13 +106,14 @@ namespace SystematicsData.Harvester.Service
 
             services.AddLogging(configure => configure.AddSerilog(logger, dispose: true));
 
+            services.AddHttpClient<AnnotationsClient>(configureClient =>
+                configureClient.BaseAddress = new Uri(appSettings.ContentService.Url));
+
             services.AddDbContext<NamesWebContext>(options =>
                 options.UseSqlServer(connectionString),
                 ServiceLifetime.Transient);
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
-            services.AddTransient(x =>
-                new AnnotationsClient(appSettings.ContentService.Url, x.GetRequiredService<ILogger<AnnotationsClient>>()));
             services.AddTransient<IHarvesterStrategies, HarvesterStrategies>();
         }
 
