@@ -10,24 +10,24 @@ using SystematicsData.Harvester.Service.Strategies.Interfaces;
 namespace SystematicsData.Harvester.Service.Consumers
 {
     /// <summary>
-    /// Processes the Item Updated events from the message broker.
+    /// Processes the Item Published events from the message broker.
     /// </summary>
-    internal class ItemUpdatedConsumer : IConsumer<IItemUpdated>
+    internal class ItemPublishedConsumer : IConsumer<IItemPublished>
     {
         private readonly IHarvesterStrategies _harvesterStrategies;
         private readonly AnnotationsClient _client;
 
-        private readonly ILogger<ItemUpdatedConsumer> _logger;
+        private readonly ILogger<ItemPublishedConsumer> _logger;
 
-        public ItemUpdatedConsumer(IHarvesterStrategies harvesterStrategies, AnnotationsClient client, ILogger<ItemUpdatedConsumer> logger)
+        public ItemPublishedConsumer(IHarvesterStrategies harvesterStrategies, AnnotationsClient client, ILogger<ItemPublishedConsumer> logger)
         {
             _harvesterStrategies = harvesterStrategies;
             _client = client;
-        
+
             _logger = logger;
         }
 
-        public async Task Consume(ConsumeContext<IItemUpdated> context)
+        public async Task Consume(ConsumeContext<IItemPublished> context)
         {
             try
             {
@@ -35,23 +35,19 @@ namespace SystematicsData.Harvester.Service.Consumers
 
                 _logger.LogDebug($"SystematicsData.Harvester.Service - Message received: Item updated: {context.Message.ItemId} resource: {context.Message.ResourceId}");
 
-                if (context.Message.ProducerAction == "Publish Note" || context.Message.ProducerAction == "Publish Item")
-                {
-                    var item = await _client.GetItemXmlById(context.Message.ItemId);
+                var item = await _client.GetItemXmlById(context.Message.ItemId);
 
-                    var itemTypeId = GetItemType(item);
+                var itemTypeId = GetItemType(item);
 
-                    var selector = $"{context.Message.ResourceId}|{itemTypeId}";
+                var selector = $"{context.Message.ResourceId}|{itemTypeId}";
 
-                    var strategy = _harvesterStrategies.GetStrategies()[selector];
+                var strategy = _harvesterStrategies.GetStrategies()[selector];
 
-                    var results = await strategy.ApplyStrategyAsync(item);
-                }
-
+                var results = await strategy.ApplyStrategyAsync(item);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e.Message, e);
+                _logger.LogError(ex.Message, ex);
             }
         }
 
@@ -69,19 +65,5 @@ namespace SystematicsData.Harvester.Service.Consumers
 
             return itemTypeId;
         }
-    }
-}
-
-namespace Annotations.Messaging.Contracts.Items
-{
-    public interface IItemUpdated
-    {
-        public string ItemId { get; set; }
-
-        public string ResourceId { get; set; }
-
-        public string ProducerAction { get; set; }
-
-        public string ProducerType { get; set; }
     }
 }
