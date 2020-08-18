@@ -23,16 +23,16 @@
                 }
             </div>
             <div id="search-result" class="row-fluid">
-                @* @if (Model.HaveSearched) { *@
-                @*<div id="facets">
+                @if (Model.HaveSearched) {
+                <div id="facets">
                     <h2>
                         Facets
                     </h2>
                     @foreach (object filter in Model.Result.Filters)
                     {
-                        if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsPortal.Web.Models.Facet)))
+                        if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Models.Search.Facet)))
                         {
-                            SystematicsPortal.Web.Models.Facet f = (SystematicsPortal.Web.Models.Facet)filter;
+                            SystematicsData.Search.Models.Search.Facet f = (SystematicsData.Search.Models.Search.Facet)filter;
 
                             string facetIconId = f.Name + "-icon";
                             string facetTargetId = f.Name + "-content";
@@ -47,7 +47,7 @@
                                     </h5>
                                 </div>
                                 <div id="@facetTargetId" class="collapse in">
-                                    @foreach (SystematicsPortal.Web.Models.FacetValue v in topFive)
+                                    @foreach (SystematicsData.Search.Models.Search.FacetValue v in topFive)
                                     {
                                         if (!v.Selected)
                                         {
@@ -74,7 +74,7 @@
                                             <h3>@f.Name</h3>
                                         </div>
                                         <div class="modal-body">
-                                            @foreach (SystematicsPortal.Web.Models.FacetValue v in f.Values)
+                                            @foreach (SystematicsData.Search.Models.Search.FacetValue v in f.Values)
                                             {
                                                 if (!v.Selected)
                                                 {
@@ -97,9 +97,9 @@
                                 </script>
                             }
                         }
-                        else if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsPortal.Web.Models.Search.Range)))
+                        else if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Models.Search.Range)))
                         {
-                            SystematicsPortal.Web.Models.Search.Range r = (SystematicsPortal.Web.Models.Search.Range)filter;
+                            SystematicsData.Search.Models.Search.Range r = (SystematicsData.Search.Models.Search.Range)filter;
 
                             string slider = r.Name.ToLower() + "-slider";
                             string sliderId = "#" + slider;
@@ -169,7 +169,7 @@
                             }
                         }
                     }
-                </div>*@
+                </div>
                 <div id="specimens">
                     <div class="row">
                         <div class="pull-left">
@@ -386,7 +386,7 @@
                         </div>
                     </div>
                     </div>
-                    @* } *@
+                    }
                 </div>
         </div>
         <div id="new-set" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="new-set-heading" aria-hidden="true">
@@ -429,7 +429,6 @@
 @*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@
 
 <!--
-
     <script type="text/javascript">
     var currentTab = '@Model.SelectedView';
     var sortBy = '@Model.SelectedSortOption';
@@ -810,5 +809,4 @@
     }
 
 </script>
-
 -->
