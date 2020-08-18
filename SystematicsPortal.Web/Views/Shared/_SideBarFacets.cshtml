@@ -1,0 +1,155 @@
+﻿@* <div class="col-md-1 mw-100 sidebar">&nbsp;</div> *@
+<div class="col-12 col-lg-3 mw-100 sidebar pl-sm-5 pt-3 pb-5 order-2 order-lg-1">
+    <div class="sticky-top">
+        <div id="side-bar-useful-links">
+            <div class="heading-divider mt-4">&nbsp;</div>
+            <div id="facets">
+                <h2>
+                    Facets
+                </h2>
+                @foreach (object filter in Model.Result.Filters)
+                {
+                    if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Models.Search.Facet)))
+                    {
+                        SystematicsData.Search.Models.Search.Facet f = (SystematicsData.Search.Models.Search.Facet)filter;
+
+                        string facetIconId = f.Name + "-icon";
+                        string facetTargetId = f.Name + "-content";
+                        string facetCompleteId = f.Name + "-complete";
+                        var topFive = Model.Result.TopFive(f);
+                        int total = f.Values.Where(v => v.Selected == false).Count();
+                        if (total > 0)
+                        {
+                            <div class="clickable" , data-toggle="collapse" data-target="#@facetTargetId">
+                                <h5>
+                                    <i id="@facetIconId" class="icon-minus-sign"></i> @f.DisplayText
+                                </h5>
+                            </div>
+                            <div id="@facetTargetId" class="collapse in">
+                                @foreach (SystematicsData.Search.Models.Search.FacetValue v in topFive)
+                                {
+                                    if (!v.Selected)
+                                    {
+                                        string label = v.Name + " (" + v.Count + ")";
+                                        <p>
+                                            <a href="#" onclick="submitFacet('@f.Name', '@v.Name')">@label</a>
+                                        </p>
+                                    }
+                                }
+                                @if (total > 5)
+                                {
+                                    <a href="#@facetCompleteId" role="button" class="btn btn-mini btn-home" data-toggle="modal">More...</a>
+                                }
+                            </div>
+                            <!--[if IE]><div class="ie-separator"></div><![endif]-->
+                            <!--[if !(IE)]><!--><div class="separator"></div><!--<![endif]-->
+                            if (total > 5)
+                            {
+                                <div id="@facetCompleteId" class="modal hide fade">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h3>@f.Name</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        @foreach (SystematicsData.Search.Models.Search.FacetValue v in f.Values)
+                                        {
+                                            if (!v.Selected)
+                                            {
+                                                string label = v.Name + " (" + v.Count + ")";
+                                                <p>
+                                                    <a href="#" onclick="applyFacet('@facetCompleteId', '@f.Name', '@v.Name')">@label</a>
+                                                </p>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+                                    </div>
+                                </div>
+                            }
+                            <script type="text/javascript">
+                            $('#@facetTargetId').on('show hide', function () {
+                                $('#@facetIconId').toggleClass('icon-minus-sign icon-plus-sign', 200);
+                            });
+                            </script>
+                        }
+                    }
+                    else if (object.ReferenceEquals(filter.GetType(), typeof(SystematicsData.Search.Models.Search.Range)))
+                    {
+                        SystematicsData.Search.Models.Search.Range r = (SystematicsData.Search.Models.Search.Range)filter;
+
+                        string slider = r.Name.ToLower() + "-slider";
+                        string sliderId = "#" + slider;
+                        string applyButtonName = slider + "-apply";
+                        string checkboxName = slider + "-include-nulls";
+                        string valueText = slider + "-values";
+                        int minValue = r.MinimumValue;
+                        int maxValue = r.MaximumValue;
+
+                        if (maxValue != minValue)
+                        {
+                            <h5>@r.DisplayText</h5>
+                            <div class="range-facet">
+                                <span class="sparkline">@*@r.SparklineData*@</span>
+                                <div id="@slider" class="slider">
+                                </div>
+                                <div class="apply">
+                                    @if (r.Type.ToLower().Equals("date"))
+                                    {
+                                        <button id="@applyButtonName" class="btn btn-mini btn-home pull-right" type="button" onclick="submitRangeFacet('date', '@sliderId', '@r.Name')">
+                                            Apply
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button id="@applyButtonName" class="btn btn-mini btn-home pull-right" type="button" onclick="submitRangeFacet('value', '@sliderId', '@r.Name')">
+                                            Apply
+                                        </button>
+                                    }
+                                </div>
+                                <div class="clear"></div>
+                                <!--[if IE]><div class="ie-separator"></div><![endif]-->
+                                <!--[if !(IE)]><!--><div class="separator"></div><!--<![endif]-->
+                            </div>
+                            if (r.Type.ToLower().Equals("date"))
+                            {
+                                int minYear = minValue / 10000;
+                                int minMonth = (minValue - (minYear * 10000)) / 100;
+                                int minDay = minValue - (minYear * 10000) - (minMonth * 100);
+                                int maxYear = maxValue / 10000;
+                                int maxMonth = (maxValue - (maxYear * 10000)) / 100;
+                                int maxDay = maxValue - (maxYear * 10000) - (maxMonth * 100);
+                                <script type="text/javascript">
+                                    $('#@slider').dateRangeSlider({
+                                        arrows:false,
+                                        bounds:{
+                                        min:new Date(@minYear, @minMonth - 1, @minDay),
+                                        max:new Date(@maxYear, @maxMonth - 1, @maxDay)
+                                        },
+                                        defaultValues:{
+                                            min:new Date(@minYear, @minMonth - 1, @minDay),
+                                            max:new Date(@maxYear, @maxMonth - 1, @maxDay)
+                                        }
+                                    });
+                                </script>
+                            }
+                            else
+                            {
+                                <script type="text/javascript">
+                                    $('#@slider').editRangeSlider({
+                                        arrows:false,
+                                        bounds:{min:@minValue, max:@maxValue},
+                                        defaultValues:{min:@minValue, max:@maxValue}
+                                    });
+                                </script>
+                            }
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

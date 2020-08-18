@@ -8,6 +8,7 @@ using System.Xml;
 using SystematicsPortal.Web.Helpers;
 using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services.Interfaces;
+using SystematicsPortal.Web.ViewModels;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -345,37 +346,35 @@ namespace SystematicsPortal.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ResultsPartialAsync(string selectedFacet, string selectedFacetType, string selectedValue, string selectedUpperValue,
-                                    string query, string appliedFacets, string appliedRanges, bool toggleOn,
-                                    string currentDisplayTab, string sortField, int pageNumber, string selectAll)
+        public async Task<ActionResult> ResultsPartialAsync([FromBody] FacetViewModel model)
         {
 
-            query = Utility.ReplaceEscapedCharacters(query);
+            model.query = Utility.ReplaceEscapedCharacters(model.query);
 
-            appliedFacets = Utility.ReplaceEscapedCharacters(appliedFacets);
-            appliedRanges = Utility.ReplaceEscapedCharacters(appliedRanges);
+            model.appliedFacets = Utility.ReplaceEscapedCharacters(model.appliedFacets);
+            model.appliedRanges = Utility.ReplaceEscapedCharacters(model.appliedRanges);
 
             try
             {
                 var viewData = new SearchViewModel( null, null)
                 {
                     HaveSearched = true,
-                    SelectedView = currentDisplayTab,
+                    SelectedView = model.currentDisplayTab,
                     ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
-                    CurrentPage = pageNumber
+                    CurrentPage = model.pageNumber
                 };
 
-                viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(appliedFacets, selectedFacet, selectedValue, selectedFacetType, toggleOn);
-                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(appliedRanges, selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, toggleOn);
+                viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(model.appliedFacets, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.toggleOn);
+                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(model.appliedRanges, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.selectedUpperValue, model.toggleOn);
 
-                viewData.Result = await _searchService.Search(query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, pageNumber, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
                 
                 // TODO: Implement following method if it's necessary
                 //viewData.OneOrMoreSelected = SetSelectedSpecimens(viewData.Result.FoundSpecimens);
-                viewData.SetSortField(sortField);
-                viewData.Query = query;
+                viewData.SetSortField(model.sortField);
+                viewData.Query = model.query;
 
-                if (selectAll.ToLower() == "true")
+                if (model.selectAll.ToLower() == "true")
                 {
                     viewData.AllSelected = true;
                 }

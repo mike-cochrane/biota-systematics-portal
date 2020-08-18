@@ -35,5 +35,36 @@
     </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
     @await Html.PartialAsync("~/Views/Shared/_Footer.cshtml")
+<script type="text/javascript">
+    var returnUrl = null;
+    var downloadRecordCount = 0;
+
+    function showImportantNotice(message) {
+        if (!message == "") {
+            $('#important-notice').html(message);
+            $('#important-notice').removeClass('hidden');
+        }
+    }
+
+    function updateMessages(result) {
+        var message = "";
+        if (!result.Information == "") {
+            var message = "<p><span class='label label-success'><i class='icon-ok icon-white'></i></span> " + result.Information + "</p>";
+        }
+        $('#message').html(message);
+
+        var errorMessage = "";
+        if (!result.Error == "") {
+            var errorMessage = "<p><span class='label label-important'><i class='icon-ban-circle icon-white'></i></span> " + result.Error + "</p>";
+        }
+        $('#error').html(errorMessage);
+    }
+
+    function goToReturnUrl() {
+        if (returnUrl != null) {
+            window.location = returnUrl;
+        }
+    }
+</script>
 </body>
 </html>
