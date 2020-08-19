@@ -11,10 +11,10 @@ namespace SystematicsPortal.Web.Services.Interfaces
             int pageNumber=0, int resultsPerPage=100, string sortBy ="", string sortOrder="");
 
         List<SelectedFacetValue> SetAppliedFacets(string appliedFacets, string selectedFacet, string selectedValue, string selectedFacetType,
-            bool toggleOn);
+            bool addRemoveFilterToggle);
 
         List<SelectedRange> SetAppliedRanges(string appliedRanges, string selectedFacet, string selectedValue, string selectedFacetType,
-            string selectedUpperValue, bool toggleOn);
+            string selectedUpperValue, bool addRemoveFilterToggle);
     }
 
 }
