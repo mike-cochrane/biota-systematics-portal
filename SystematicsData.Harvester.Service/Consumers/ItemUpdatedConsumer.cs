@@ -9,17 +9,21 @@ using SystematicsData.Harvester.Service.Strategies.Interfaces;
 
 namespace SystematicsData.Harvester.Service.Consumers
 {
+    /// <summary>
+    /// Processes the Item Updated events from the message broker.
+    /// </summary>
     internal class ItemUpdatedConsumer : IConsumer<IItemUpdated>
     {
         private readonly IHarvesterStrategies _harvesterStrategies;
         private readonly AnnotationsClient _client;
-        private readonly ILogger<ItemUpdatedConsumer> _logger;
 
+        private readonly ILogger<ItemUpdatedConsumer> _logger;
 
         public ItemUpdatedConsumer(IHarvesterStrategies harvesterStrategies, AnnotationsClient client, ILogger<ItemUpdatedConsumer> logger)
         {
             _harvesterStrategies = harvesterStrategies;
             _client = client;
+        
             _logger = logger;
         }
 

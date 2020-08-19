@@ -7,11 +7,13 @@ namespace SystematicsData.Harvester.Service.Services
     public class HarvesterService
     {
         private readonly IBusControl _busControl;
+
         private readonly ILogger<HarvesterService> _logger;
 
         public HarvesterService(IBusControl busControl, ILogger<HarvesterService> logger)
         {
             _busControl = busControl;
+
             _logger = logger;
         }
 

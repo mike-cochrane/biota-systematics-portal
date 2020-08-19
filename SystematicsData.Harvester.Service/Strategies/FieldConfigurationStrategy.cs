@@ -15,14 +15,15 @@ namespace SystematicsData.Harvester.Service.Strategies
     public class FieldConfigurationStrategy : IHarvesterActionStrategy
     {
         private readonly IDocumentsRepository _repository;
-
         public readonly AnnotationsClient _client;
+
         private readonly ILogger _logger;
 
         public FieldConfigurationStrategy(IDocumentsRepository repository, AnnotationsClient client, ILogger logger)
         {
             _repository = repository;
             _client = client;
+
             _logger = logger;
         }
 
@@ -54,7 +55,7 @@ namespace SystematicsData.Harvester.Service.Strategies
 
             var xField = XElement.Parse(SerializationHelper.Serialize(configuredField));
 
-            return new List<XElement>() { xField};
+            return new List<XElement>() { xField };
         }
     }
 }
