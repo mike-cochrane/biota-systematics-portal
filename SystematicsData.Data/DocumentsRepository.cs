@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Org.XmlUnit.Builder;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsData.Models.Entities.Access;
@@ -29,7 +28,7 @@ namespace SystematicsData.Data
         /// Get specific document based on document id.
         /// </summary>
         /// <param name="documentId"></param>
-        /// <returns>Document access model with docuemnt as XmlDocument property</returns>
+        /// <returns>Document access model with document as XmlDocument property</returns>
         public async Task<Document> GetDocumentAsync(Guid documentId)
         {
             Document documentAccess = new Document();
@@ -64,31 +63,54 @@ namespace SystematicsData.Data
         /// <summary>
         /// Writes documents to the store and returns a number of documents that were updated.
         /// </summary>
-        public async Task<int> WriteDocuments(IEnumerable<XElement> documentsList)
+        /// <param name="documents">The document contents as Xml.</param>
+        public async Task<int> WriteDocuments(IEnumerable<XElement> documents)
         {
-            int result = 0;
-            var allStoreNames = GetDocumentsDb().ToDictionary(o => o.DocumentId);
+            int savedCount;
 
-            foreach (var document in documentsList)
+            using var transaction = await _context.Database.BeginTransactionAsync();
             {
-                result += await SaveDocument(allStoreNames, document);
+                try
+                {
+                    foreach (var document in documents)
+                    {
+                        await SaveDocument(document);
+                    }
+
+                    savedCount = await _context.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+
+                    throw;
+                }
             }
 
-            return result;
+            return savedCount;
         }
 
-        private async Task<int> SaveDocument(Dictionary<Guid, Models.Entities.Database.Document> allStoreNames, XElement document)
+        /// <summary>
+        /// Saves a document to the data store if there is a change after comparing the contents.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        private async Task SaveDocument(XElement document)
         {
             string documentId = (string)document.Attribute("documentId");
-            int result = 0;
+
             if (String.IsNullOrEmpty(documentId))
             {
                 throw new InvalidInputException("DocumentId has not been found");
             }
 
-            _logger.LogDebug("{Action} - DocumentId: {documentId} - Document: {document}", "WriteDocuments", documentId, document);
+            _logger.LogDebug("{Action} - DocumentId: {documentId} - Document: {document}", "Save Document", documentId, document);
 
-            if (allStoreNames.TryGetValue(Guid.Parse(documentId), out var storeDocument))
+            var storeDocument = await _context.Document.FindAsync(new Guid(documentId));
+
+            if (storeDocument != null)
             {
                 var xmlComparer = DiffBuilder.Compare(Input.FromString(storeDocument.SerializedDocument))
                     .WithTest(Input.FromString(document.ToString()))
@@ -99,9 +121,7 @@ namespace SystematicsData.Data
                     storeDocument.Version += 1;
                     storeDocument.SerializedDocument = document.ToString();
 
-                    result = await SaveChangesAsync();
-
-                    _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
+                    //    _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
                 }
             }
             else
@@ -113,39 +133,15 @@ namespace SystematicsData.Data
                     SerializedDocument = document.ToString()
                 };
 
-                result = await InsertDocumentDbAsync(storeDocument);
+                await _context.Document.AddAsync(storeDocument);
 
-                _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
+                //     _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
             }
-            return result;
         }
 
         public IEnumerable<Document> GetDocuments()
         {
             throw new NotImplementedException();
-        }
-
-        private IEnumerable<Models.Entities.Database.Document> GetDocumentsDb()
-        {
-            return _context.Document;
-        }
-
-        private async Task<int> InsertDocumentDbAsync(Models.Entities.Database.Document document)
-        {
-            int result;
-
-            await _context.Document.AddAsync(document);
-
-            result = await SaveChangesAsync();
-
-            return result;
-        }
-
-        public async Task<int> SaveChangesAsync()
-        {
-            var result = await _context.SaveChangesAsync();
-
-            return result;
         }
     }
 }

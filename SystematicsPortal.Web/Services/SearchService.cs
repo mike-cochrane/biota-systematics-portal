@@ -41,18 +41,18 @@ namespace SystematicsPortal.Web.Services
             return response;
         }
 
-        public List<SelectedFacetValue> SetAppliedFacets(string appliedFacets, string selectedFacet, string selectedValue, string selectedFacetType, bool toggleOn)
+        public List<SelectedFacetValue> SetAppliedFacets(string appliedFacets, string selectedFacet, string selectedValue, string selectedFacetType, bool addRemoveFilterToggle)
         {
             var searchResult = new SearchResult();
 
             searchResult.SetAppliedFacets(appliedFacets);
 
-            var appliedFacetsList = ApplySelectedFacet(selectedFacet, selectedValue, selectedFacetType, toggleOn, searchResult);
+            var appliedFacetsList = ApplySelectedFacet(selectedFacet, selectedValue, selectedFacetType, addRemoveFilterToggle, searchResult);
 
             return appliedFacetsList;
         }
 
-        private static List<SelectedFacetValue> ApplySelectedFacet(string selectedFacet, string selectedValue, string selectedFacetType, bool toggleOn, SearchResult searchResult)
+        private static List<SelectedFacetValue> ApplySelectedFacet(string selectedFacet, string selectedValue, string selectedFacetType, bool addRemoveFilterToggle, SearchResult searchResult)
         {
             if (selectedFacetType.ToLower().Equals("text"))
             {
@@ -61,7 +61,7 @@ namespace SystematicsPortal.Web.Services
                     FacetName = selectedFacet,
                     ValueName = selectedValue
                 };
-                if (toggleOn)
+                if (addRemoveFilterToggle)
                 {
                     if (!searchResult.AppliedFacets.Contains(appliedFacet))
                     {
@@ -80,22 +80,22 @@ namespace SystematicsPortal.Web.Services
             return searchResult.AppliedFacets;
         }
 
-        public List<SelectedRange> SetAppliedRanges(string appliedRanges, string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue, bool toggleOn)
+        public List<SelectedRange> SetAppliedRanges(string appliedRanges, string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue, bool addRemoveFilterToggle)
         {
             var searchResult = new SearchResult();
 
             searchResult.SetAppliedRanges(appliedRanges);
 
-            var appliedRangesList = ApplySelectedRange(selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, toggleOn, searchResult);
+            var appliedRangesList = ApplySelectedRange(selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, addRemoveFilterToggle, searchResult);
 
             return appliedRangesList;
         }
 
-        private static List<SelectedRange> ApplySelectedRange(string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue,  bool toggleOn, SearchResult searchResult)
+        private static List<SelectedRange> ApplySelectedRange(string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue,  bool addRemoveFilterToggle, SearchResult searchResult)
         {
             if (selectedFacetType.ToLower().Equals("range"))
             {
-                if (toggleOn)
+                if (addRemoveFilterToggle)
                 {
                     if (selectedValue.Contains('.'))
                     {

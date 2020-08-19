@@ -11,15 +11,16 @@ namespace SystematicsData.Data.Configuration
         {
             builder.ToTable("Document", "documents");
 
-            builder.Property(e => e.DocumentId).ValueGeneratedNever();
+            builder.HasKey(key => key.DocumentId);
+            builder.Property(prop => prop.DocumentId).ValueGeneratedNever();
 
-            builder.Property(e => e.SerializedDocument)
+            builder.Property(prop => prop.SerializedDocument)
                 .IsRequired()
                 .HasColumnType("xml");
 
-            builder.Property(e => e.ValidFrom).HasColumnType("datetime2(2)");
+            builder.Property(prop => prop.ValidFrom).HasColumnType("datetime2(2)");
 
-            builder.Property(e => e.ValidTo).HasColumnType("datetime2(2)");
+            builder.Property(prop => prop.ValidTo).HasColumnType("datetime2(2)");
         }
     }
 }

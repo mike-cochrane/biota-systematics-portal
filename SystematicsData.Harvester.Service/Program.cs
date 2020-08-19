@@ -52,7 +52,6 @@ namespace SystematicsData.Harvester.Service
                 var client = serviceProvider.GetService<AnnotationsClient>();
                 var repository = serviceProvider.GetRequiredService<IDocumentsRepository>();
                 var harvesterLogger = serviceProvider.GetService<ILogger<HarvesterService>>();
-                var consumeLogger = serviceProvider.GetService<ILogger<ItemUpdatedConsumer>>();
 
                 var busControl = Bus.Factory.CreateUsingRabbitMq(config =>
                 {
@@ -65,8 +64,15 @@ namespace SystematicsData.Harvester.Service
                     config.ReceiveEndpoint("systematicsportal.web.queue", endpoint =>
                     {
                         var harvesterStrategies = serviceProvider.GetRequiredService<IHarvesterStrategies>();
+                        var itemUpdatedConsumerLogger = serviceProvider.GetService<ILogger<ItemUpdatedConsumer>>();
+                        var itemPublishedConsumerLogger = serviceProvider.GetService<ILogger<ItemPublishedConsumer>>();
+                        var itemSavedConsumerLogger = serviceProvider.GetService<ILogger<ItemSavedConsumer>>();
+                        var nameSavedConsumerLogger = serviceProvider.GetService<ILogger<NameSavedConsumer>>();
 
-                        endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies, client, consumeLogger));
+                        endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies, client, itemUpdatedConsumerLogger));
+                        endpoint.Consumer(() => new ItemPublishedConsumer(harvesterStrategies, client, itemPublishedConsumerLogger));
+                        endpoint.Consumer(() => new ItemSavedConsumer(harvesterStrategies, client, itemSavedConsumerLogger));
+                        endpoint.Consumer(() => new NameSavedConsumer(harvesterStrategies, client, nameSavedConsumerLogger));
                     });
                 });
 
@@ -111,7 +117,7 @@ namespace SystematicsData.Harvester.Service
 
             services.AddDbContext<NamesWebContext>(options =>
                 options.UseSqlServer(connectionString),
-                ServiceLifetime.Transient);
+                ServiceLifetime.Scoped);
 
             services.AddTransient<IDocumentsRepository, DocumentsRepository>();
             services.AddTransient<IHarvesterStrategies, HarvesterStrategies>();

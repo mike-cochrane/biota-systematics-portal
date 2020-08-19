@@ -330,7 +330,7 @@ namespace SystematicsPortal.Web.Controllers
 
         [HttpPost]
         public async Task<ActionResult> ResultsPartialAsync(string selectedFacet, string selectedFacetType, string selectedValue, string selectedUpperValue,
-                                    string query, string appliedFacets, string appliedRanges, bool toggleOn,
+                                    string query, string appliedFacets, string appliedRanges, bool addRemoveFilterToggle,
                                     string currentDisplayTab, string sortField, int pageNumber, string selectAll)
         {
 
@@ -349,8 +349,8 @@ namespace SystematicsPortal.Web.Controllers
                     CurrentPage = pageNumber
                 };
 
-                viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(appliedFacets, selectedFacet, selectedValue, selectedFacetType, toggleOn);
-                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(appliedRanges, selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, toggleOn);
+                viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(appliedFacets, selectedFacet, selectedValue, selectedFacetType, addRemoveFilterToggle);
+                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(appliedRanges, selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, addRemoveFilterToggle);
 
                 viewData.Result = await _searchService.Search(query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, pageNumber, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
                 
