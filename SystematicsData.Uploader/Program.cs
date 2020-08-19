@@ -6,9 +6,9 @@ using Serilog;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Data.Uploader.Classes;
 using SystematicsData.Data.Uploader.Helpers;
-using SystematicsData.Models.Interfaces;
 using SystematicsData.Utility.Helpers;
 
 namespace SystematicsData.Data.Uploader

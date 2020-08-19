@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Models.Infrastructure.Exceptions;
-using SystematicsData.Models.Interfaces;
 
 namespace SystematicsData.Data
 {

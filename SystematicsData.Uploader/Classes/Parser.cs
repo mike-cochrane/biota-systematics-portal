@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Data.Uploader.Models;
-using SystematicsData.Models.Interfaces;
 
 namespace SystematicsData.Data.Uploader.Classes
 {
@@ -17,7 +17,7 @@ namespace SystematicsData.Data.Uploader.Classes
 
         public Parser(IDocumentsRepository repository, string sourcePath, ILogger<Parser> logger)
         {
-            _repository = repository; 
+            _repository = repository;
             _sourcePath = sourcePath;
             _logger = logger;
         }

@@ -2,14 +2,13 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using SystematicsData.Data.Extensions;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Models.Entities.Annotations;
 using SystematicsData.Models.Infrastructure.Exceptions;
-using SystematicsData.Models.Interfaces;
 using SystematicsData.Utility.Helpers;
 
 namespace SystematicsData.Data

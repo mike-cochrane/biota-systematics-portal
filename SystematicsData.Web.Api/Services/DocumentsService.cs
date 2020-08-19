@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Models.Entities.Access;
-using SystematicsData.Models.Interfaces;
 using SystematicsData.Web.Api.Services.Interfaces;
 
 namespace SystematicsData.Web.Api.Services

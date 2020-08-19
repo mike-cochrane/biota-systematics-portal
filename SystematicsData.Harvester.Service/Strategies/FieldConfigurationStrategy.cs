@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Harvester.Service.Clients;
 using SystematicsData.Harvester.Service.Strategies.Interfaces;
 using SystematicsData.Models.Configuration;
 using SystematicsData.Models.Entities.Annotations;
-using SystematicsData.Models.Interfaces;
 using SystematicsData.Utility.Helpers;
 
 namespace SystematicsData.Harvester.Service.Strategies
