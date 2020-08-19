@@ -1,14 +1,12 @@
-﻿using System.Linq;
-using SystematicsData.Models.Entities.Database;
-using SystematicsData.Utility.Helpers;
+﻿using SystematicsData.Data.Models;
 
 namespace SystematicsData.Data.Extensions
 {
     public static class DtoExtensions
     {
-        public static Models.Entities.Access.ContentConfiguration ToDto(this ContentConfiguration contentConfigurationDb)
+        public static SystematicsData.Models.Entities.Access.ContentConfiguration ToDto(this ContentConfiguration contentConfigurationDb)
         {
-            var contentConfigurationDto = new Models.Entities.Access.ContentConfiguration()
+            var contentConfigurationDto = new SystematicsData.Models.Entities.Access.ContentConfiguration()
             {
                 ContentConfigurationId = contentConfigurationDb.ContentConfigurationId,
                 DisplayOrder = contentConfigurationDb.DisplayOrder,

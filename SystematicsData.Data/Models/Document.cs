@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SystematicsData.Models.Entities.Database
+namespace SystematicsData.Data.Models
 {
     public class Document
     {

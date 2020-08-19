@@ -14,7 +14,7 @@ namespace SystematicsData.Data.Interfaces
 
         IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds);
 
-        Task InsertDocument(Models.Entities.Database.Document document);
+        Task InsertDocument(Models.Document document);
 
         void UpdateDocument(Document document);
 

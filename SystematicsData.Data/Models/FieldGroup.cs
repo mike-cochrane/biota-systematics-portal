@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SystematicsData.Models.Entities.Database
+namespace SystematicsData.Data.Models
 {
     public class FieldGroup
     {
-        public FieldGroup()
-        {
-            FieldConfiguration = new HashSet<FieldConfiguration>();
-        }
-
         public Guid FieldGroupId { get; set; }
         public string DocumentClass { get; set; }
         public string DisplayTitle { get; set; }
@@ -18,5 +13,10 @@ namespace SystematicsData.Models.Entities.Database
         public string DisplayFormat { get; set; }
 
         public virtual ICollection<FieldConfiguration> FieldConfiguration { get; set; }
+
+        public FieldGroup()
+        {
+            FieldConfiguration = new HashSet<FieldConfiguration>();
+        }
     }
 }

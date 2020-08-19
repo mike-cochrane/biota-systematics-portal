@@ -34,7 +34,7 @@ namespace SystematicsData.Data
 
             ContentConfigurations contentConfigurations = new ContentConfigurations();
 
-            var contentConfigurationsListDb = await _context.ContentConfiguration.Where(ccfg => ccfg.Page.ToLower() == page.ToLower()).ToListAsync();
+            var contentConfigurationsListDb = await _context.ContentConfigurations.Where(ccfg => ccfg.Page.ToLower() == page.ToLower()).ToListAsync();
 
             foreach (var contentConfigurationDb in contentConfigurationsListDb)
             {
@@ -62,9 +62,9 @@ namespace SystematicsData.Data
             return content;
         }
 
-        private async Task<Models.Entities.Database.Document> GetDocumentDb(Guid externalId)
+        private async Task<Models.Document> GetDocumentDb(Guid externalId)
         {
-            var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == externalId);
+            var documentDb = await _context.Documents.FirstOrDefaultAsync(doc => doc.DocumentId == externalId);
 
             if (documentDb is null)
             {
