@@ -67,10 +67,12 @@ namespace SystematicsData.Harvester.Service
                         var itemUpdatedConsumerLogger = serviceProvider.GetService<ILogger<ItemUpdatedConsumer>>();
                         var itemPublishedConsumerLogger = serviceProvider.GetService<ILogger<ItemPublishedConsumer>>();
                         var itemSavedConsumerLogger = serviceProvider.GetService<ILogger<ItemSavedConsumer>>();
+                        var nameSavedConsumerLogger = serviceProvider.GetService<ILogger<NameSavedConsumer>>();
 
                         endpoint.Consumer(() => new ItemUpdatedConsumer(harvesterStrategies, client, itemUpdatedConsumerLogger));
                         endpoint.Consumer(() => new ItemPublishedConsumer(harvesterStrategies, client, itemPublishedConsumerLogger));
                         endpoint.Consumer(() => new ItemSavedConsumer(harvesterStrategies, client, itemSavedConsumerLogger));
+                        endpoint.Consumer(() => new NameSavedConsumer(harvesterStrategies, client, nameSavedConsumerLogger));
                     });
                 });
 

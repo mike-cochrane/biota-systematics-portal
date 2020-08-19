@@ -31,16 +31,11 @@ namespace SystematicsData.Harvester.Service.Consumers
         {
             try
             {
-                await Task.Run(() => Console.WriteLine("Item Updated: " + context.Message.ItemId + " - " + context.Message.ResourceId));
-
-                _logger.LogDebug($"SystematicsData.Harvester.Service - Message received: Item updated: {context.Message.ItemId} resource: {context.Message.ResourceId}");
+                _logger.LogDebug("{Action} - ItemId: {ItemId} (ResourceId: {ResourceId})", "IItemPublished Received", context.Message.ItemId, context.Message.ResourceId);
 
                 var item = await _client.GetItemXmlById(context.Message.ItemId);
-
                 var itemTypeId = GetItemType(item);
-
                 var selector = $"{context.Message.ResourceId}|{itemTypeId}";
-
                 var strategy = _harvesterStrategies.GetStrategies()[selector];
 
                 var results = await strategy.ApplyStrategyAsync(item);
@@ -54,9 +49,7 @@ namespace SystematicsData.Harvester.Service.Consumers
         private string GetItemType(XElement item)
         {
             var itemType = item.Element("itemType");
-
             var itemTypeId = itemType.Attribute("itemTypeId")?.Value?.ToString();
-
 
             if (itemTypeId == null)
             {

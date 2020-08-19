@@ -1,6 +1,6 @@
-﻿using Annotations.Messaging.Contracts.Items;
-using MassTransit;
+﻿using MassTransit;
 using Microsoft.Extensions.Logging;
+using Names.Messaging.Contracts.Names;
 using System;
 using System.Threading.Tasks;
 using SystematicsData.Harvester.Service.Clients;
@@ -9,16 +9,16 @@ using SystematicsData.Harvester.Service.Strategies.Interfaces;
 namespace SystematicsData.Harvester.Service.Consumers
 {
     /// <summary>
-    /// Processes the Item Saved events from the message broker.
+    /// Processes the Name Saved events from the message broker.
     /// </summary>
-    internal class ItemSavedConsumer : IConsumer<IItemSaved>
+    internal class NameSavedConsumer : IConsumer<INameSaved>
     {
         private readonly IHarvesterStrategies _harvesterStrategies;
         private readonly AnnotationsClient _client;
 
-        private readonly ILogger<ItemSavedConsumer> _logger;
+        private readonly ILogger<NameSavedConsumer> _logger;
 
-        public ItemSavedConsumer(IHarvesterStrategies harvesterStrategies, AnnotationsClient client, ILogger<ItemSavedConsumer> logger)
+        public NameSavedConsumer(IHarvesterStrategies harvesterStrategies, AnnotationsClient client, ILogger<NameSavedConsumer> logger)
         {
             _harvesterStrategies = harvesterStrategies;
             _client = client;
@@ -26,15 +26,14 @@ namespace SystematicsData.Harvester.Service.Consumers
             _logger = logger;
         }
 
-        public async Task Consume(ConsumeContext<IItemSaved> context)
+        public async Task Consume(ConsumeContext<INameSaved> context)
         {
             try
             {
                 await Task.Run(() =>
                 {
-                    _logger.LogDebug("{Action} - ItemId: {ItemId} (ResourceId: {ResourceId})", "IItemSaved Received", context.Message.ItemId, context.Message.ResourceId);
+                    _logger.LogDebug("{Action} - NameId: {NameId}", "INameSaved Received", context.Message.NameId);
                 });
-
             }
             catch (Exception ex)
             {
