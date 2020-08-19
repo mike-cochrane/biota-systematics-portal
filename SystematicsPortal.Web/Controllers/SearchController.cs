@@ -365,7 +365,7 @@ namespace SystematicsPortal.Web.Controllers
                 };
 
                 viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(model.appliedFacets, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.toggleOn);
-                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(model.appliedRanges, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.selectedUpperValue, model.toggleOn);
+                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(model.appliedRanges, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.selectedUpperValue.ToString(), model.toggleOn);
 
                 viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
                 
@@ -374,7 +374,7 @@ namespace SystematicsPortal.Web.Controllers
                 viewData.SetSortField(model.sortField);
                 viewData.Query = model.query;
 
-                if (model.selectAll.ToLower() == "true")
+                if (model.selectAll)
                 {
                     viewData.AllSelected = true;
                 }

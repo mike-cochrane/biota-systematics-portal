@@ -11,7 +11,7 @@ namespace SystematicsPortal.Web.ViewModels
 
         public string selectedValue { get; set; }
 
-        public string selectedUpperValue { get; set; }
+        public int selectedUpperValue { get; set; }
 
         public string query { get; set; }
 
@@ -27,14 +27,14 @@ namespace SystematicsPortal.Web.ViewModels
 
         public int pageNumber { get; set; }
 
-        public string selectAll { get; set; }
+        public bool selectAll { get; set; }
 
         public FacetViewModel()
         {
             selectedFacet = String.Empty;
             selectedFacetType = String.Empty;
             selectedValue = String.Empty;
-            selectedUpperValue = String.Empty;
+            selectedUpperValue = 0;
             query = String.Empty;
             appliedFacets = String.Empty;
             appliedRanges = String.Empty;
@@ -42,7 +42,7 @@ namespace SystematicsPortal.Web.ViewModels
             currentDisplayTab = String.Empty;
             sortField = String.Empty;
             pageNumber = 0;
-            selectAll = String.Empty;
+            selectAll = false;
         }
     }
 }
