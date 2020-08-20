@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SystematicsData.Models.Entities.Database;
+using SystematicsData.Data.Models;
 
 namespace SystematicsData.Data.Configuration
 {

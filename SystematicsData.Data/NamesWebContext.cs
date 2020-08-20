@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using SystematicsData.Models.Entities.Database;
+using SystematicsData.Data.Models;
 
 namespace SystematicsData.Data
 {
@@ -24,15 +24,15 @@ namespace SystematicsData.Data
             return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
         }
 
-        public virtual DbSet<ContentConfiguration> ContentConfiguration { get; set; }
+        public virtual DbSet<ContentConfiguration> ContentConfigurations { get; set; }
 
-        public virtual DbSet<Document> Document { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
 
-        public virtual DbSet<Facet> Facet { get; set; }
+        public virtual DbSet<Facet> Facets { get; set; }
 
-        public virtual DbSet<FieldConfiguration> FieldConfiguration { get; set; }
+        public virtual DbSet<FieldConfiguration> FieldConfigurations { get; set; }
 
-        public virtual DbSet<FieldGroup> FieldGroup { get; set; }
+        public virtual DbSet<FieldGroup> FieldGroups { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
