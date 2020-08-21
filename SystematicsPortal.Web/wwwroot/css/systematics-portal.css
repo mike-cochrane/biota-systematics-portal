@@ -303,7 +303,13 @@ h1 strong {
     right: 15px; 
     transition: opacity .25s ease; 
     text-align: center; 
-    padding: 0.5em 1em; 
-    background-color: grey; 
-    z-index: 99; color: white;
+    padding: 0.5em 1.25em; 
+    background-color: #6e7174; 
+    z-index: 99; 
+    color: #fff;
+}
+
+.back-to-top:hover {
+    background-color: #a3dae8; 
+    color: #000;
 }
