@@ -9,7 +9,7 @@
 <div class="row">
     @* @await Html.PartialAsync("~/Views/Shared/_SideBar.cshtml") *@
     @await Html.PartialAsync("~/Views/Shared/_SideBarDetails.cshtml")
-    
+    @await Html.PartialAsync("~/Views/Shared/_BackToTop.cshtml")
     <div class="col-12 col-lg-9 mw-100 pt-4 pl-5 pb-5 detail-page order-1 order-lg-2">
         <div id="action-icons" class="row">
             @* <div class="col-md-12 pb-2">
@@ -72,22 +72,6 @@
                 </div>
                 <div id="information-icons" class="row">
                     <div class="col-md-12 pb-3" style="vertical-align: top;">
-                        @* <span class="fa-stack fa-2x">
-                            <i class="far fa-square fa-stack-2x"></i>
-                            <i class="far fa-plus-square fa-stack-1x" style="color: green;"></i>
-                        </span>
-                        <span class="fa-stack fa-2x">
-                            <i class="far fa-square fa-stack-2x"></i>
-                            <i class="fas fa-flag fa-stack-1x" style="color: red;"></i>
-                        </span>
-                        <span class="fa-stack fa-2x">
-                            <i class="far fa-square fa-stack-2x"></i>
-                            <i class="fas fa-exclamation-triangle fa-stack-1x" style="color: orange;"></i>
-                        </span>
-                        <span class="fa-stack fa-2x">
-                            <i class="far fa-square fa-stack-2x"></i>
-                            <i class="fas fa-kiwi-bird fa-stack-1x"></i>
-                        </span> *@
                         <div class="information-icons">
                             <i class="far fa-plus-square fa-2x alert-success" ></i>
                         </div>

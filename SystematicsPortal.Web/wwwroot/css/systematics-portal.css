@@ -296,3 +296,14 @@ h1 strong {
 .table-row-separation {
     border-bottom: 1px #eee solid;
 }
+
+.back-to-top {
+    position: fixed; 
+    bottom: 15px; 
+    right: 15px; 
+    transition: opacity .25s ease; 
+    text-align: center; 
+    padding: 0.5em 1em; 
+    background-color: grey; 
+    z-index: 99; color: white;
+}
