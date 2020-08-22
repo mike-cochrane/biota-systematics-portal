@@ -206,12 +206,6 @@ footer a {
     color: #6E9E40;
 }
 
-.detail-page h4 {
-    border-top: 1px solid #DCDCDC;
-    padding-top: 1em;
-    margin-top: 1em;
-}
-
 .breadcrumb {
     background-color: white;
     padding-left: 0px;
@@ -295,4 +289,8 @@ h1 strong {
 
 .table-row-separation {
     border-bottom: 1px #eee solid;
+}
+
+.inner-content-padding {
+    padding-bottom: 1em;
 }
