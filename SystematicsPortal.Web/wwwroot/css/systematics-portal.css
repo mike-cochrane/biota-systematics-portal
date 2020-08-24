@@ -310,6 +310,10 @@ h1 strong {
 }
 
 .back-to-top:hover {
-    background-color: #a3dae8; 
-    color: #000;
+    background-color: rgb(82, 82, 82); 
+}
+
+.top-image {
+    width: 30px;
+    height: auto;
 }
