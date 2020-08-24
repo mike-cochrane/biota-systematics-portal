@@ -291,6 +291,23 @@ h1 strong {
     border-bottom: 1px #eee solid;
 }
 
-.inner-content-padding {
-    padding-bottom: 1em;
+.back-to-top {
+    position: fixed; 
+    bottom: 15px; 
+    right: 15px; 
+    transition: opacity .25s ease; 
+    text-align: center; 
+    padding: 0.5em 1.25em; 
+    background-color: #6e7174; 
+    z-index: 99; 
+    color: #fff;
+}
+
+.back-to-top:hover {
+    background-color: rgb(82, 82, 82); 
+}
+
+.top-image {
+    width: 30px;
+    height: auto;
 }
