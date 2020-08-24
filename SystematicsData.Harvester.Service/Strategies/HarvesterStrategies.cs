@@ -2,10 +2,10 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Harvester.Service.Clients;
 using SystematicsData.Harvester.Service.Helpers;
 using SystematicsData.Harvester.Service.Strategies.Interfaces;
-using SystematicsData.Models.Interfaces;
 
 namespace SystematicsData.Harvester.Service.Strategies
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SystematicsData.Data;
-using SystematicsData.Models.Interfaces;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Search.Models.Interfaces;
 using SystematicsData.Web.Api.Infrastructure;
 using SystematicsData.Web.Api.Services.Interfaces;

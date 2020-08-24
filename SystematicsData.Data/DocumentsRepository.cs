@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Models.Infrastructure.Exceptions;
-using SystematicsData.Models.Interfaces;
 
 namespace SystematicsData.Data
 {
@@ -33,7 +33,7 @@ namespace SystematicsData.Data
         {
             Document documentAccess = new Document();
 
-            var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
+            var documentDb = await _context.Documents.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
 
             if (documentDb is null)
             {
@@ -45,7 +45,7 @@ namespace SystematicsData.Data
             return documentAccess;
         }
 
-        public Task InsertDocument(Models.Entities.Database.Document document)
+        public Task InsertDocument(Models.Document document)
         {
             throw new NotImplementedException();
         }
@@ -108,7 +108,7 @@ namespace SystematicsData.Data
 
             _logger.LogDebug("{Action} - DocumentId: {documentId} - Document: {document}", "Save Document", documentId, document);
 
-            var storeDocument = await _context.Document.FindAsync(new Guid(documentId));
+            var storeDocument = await _context.Documents.FindAsync(new Guid(documentId));
 
             if (storeDocument != null)
             {
@@ -126,14 +126,14 @@ namespace SystematicsData.Data
             }
             else
             {
-                storeDocument = new Models.Entities.Database.Document
+                storeDocument = new Models.Document
                 {
                     DocumentId = Guid.Parse(documentId),
                     Version = 1,
                     SerializedDocument = document.ToString()
                 };
 
-                await _context.Document.AddAsync(storeDocument);
+                await _context.Documents.AddAsync(storeDocument);
 
                 //     _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
             }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using SystematicsData.Models.Entities.Access;
 
-namespace SystematicsData.Models.Interfaces
+namespace SystematicsData.Data.Interfaces
 {
     public interface IDocumentsRepository
     {
@@ -14,7 +14,7 @@ namespace SystematicsData.Models.Interfaces
 
         IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds);
 
-        Task InsertDocument(Entities.Database.Document document);
+        Task InsertDocument(Models.Document document);
 
         void UpdateDocument(Document document);
 
