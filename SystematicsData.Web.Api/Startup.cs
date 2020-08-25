@@ -50,7 +50,7 @@ namespace SystematicsData.Web.Api
                 {
                     var env = ctx.RequestServices.GetRequiredService<IHostEnvironment>();
 
-                    return false;
+                    return env.IsDevelopment();
                 };
             });
         }
@@ -66,6 +66,7 @@ namespace SystematicsData.Web.Api
             {
                 app.UseHsts();
             }
+
             app.UseProblemDetails();
             app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = LogHelper.EnrichFromRequest);
             app.UseRouting();
