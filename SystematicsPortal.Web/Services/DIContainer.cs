@@ -12,7 +12,10 @@ namespace SystematicsPortal.Web.Services
         public static void RegisterDependencies(this IServiceCollection services, AppSettings appSettings)
         {
             services.AddHttpClient<ISystematicsDataClient, SystematicsDataClient>(config =>
-                config.BaseAddress = new Uri(appSettings.AccessService.Url));
+            {
+                config.BaseAddress = new Uri(appSettings.AccessService.Url);
+                config.DefaultRequestHeaders.Add("Accept", "application/xml");
+            });
             services.AddHttpContextAccessor();
 
             services.AddScoped<ISearchService, SearchService>();
