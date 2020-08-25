@@ -45,15 +45,6 @@ namespace SystematicsData.Web.Api
 
             services.AddProblemDetails(config =>
             {
-                //config.Map<NotFoundException>(exception =>
-                //{
-                //    return new ProblemDetails
-                //    {
-                //        Detail = exception.Message,
-                //        Status = (int)HttpStatusCode.NotFound
-                //    };
-                //});
-
                 config.MapToStatusCode<NotFoundException>((int)HttpStatusCode.NotFound);
                 config.IncludeExceptionDetails = (ctx, ex) =>
                 {
