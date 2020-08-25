@@ -19,9 +19,9 @@
 
 <div class="full">
     <partial name="SearchPartial" model="Model.SearchData" />
-    @await Html.PartialAsync("~/Views/Shared/_NavAndSearch.cshtml")
+    <partial name="~/Views/Shared/_NavAndSearch.cshtml" />
     <div class="row">
-        @await Html.PartialAsync("~/Views/Shared/_SideBarFacets.cshtml", Model)
+        <partial name="~/Views/Shared/_SideBarFacets.cshtml" model="Model" />
         <div id="results" class="col-lg-9 mw-100 pt-3 pl-5 pb-5 order-1 order-lg-2">
             <partial name="ResultsPartial" model="Model" />
         </div> <!-- end2 -->

@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    $("#back-to-top").hide(); //hide your div initially
+    $("#back-to-top").hide();
     var topOfOthDiv = $("#section-head").offset().top;
     $(window).scroll(function() {
-        if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?
-            $("#back-to-top").fadeIn(250); //reached the desired point -- show div
+        if($(window).scrollTop() > topOfOthDiv) { 
+            $("#back-to-top").fadeIn(250);
         } else {
             $("#back-to-top").fadeOut(250);
         }
