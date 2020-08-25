@@ -8,15 +8,15 @@ namespace SystematicsData.Data.Interfaces
 {
     public interface IDocumentsRepository
     {
-        Task<Document> GetDocumentAsync(Guid documentId);
+        Task<DocumentDto> GetDocumentAsync(Guid documentId);
 
-        IEnumerable<Document> GetDocuments();
+        IEnumerable<DocumentDto> GetDocuments();
 
-        IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds);
+        IEnumerable<DocumentDto> GetDocuments(IEnumerable<Guid> documentIds);
 
         Task InsertDocument(Models.Document document);
 
-        void UpdateDocument(Document document);
+        void UpdateDocument(DocumentDto document);
 
         Task<int> WriteDocuments(IEnumerable<XElement> documentsList);
     }

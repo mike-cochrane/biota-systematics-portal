@@ -9,7 +9,7 @@ namespace SystematicsData.Web.Api.Client.Interfaces
     {
         Task<SearchResult> Search(Query query);
 
-        Task<Document> GetDocument(string documentId);
+        Task<DocumentDto> GetDocument(string documentId);
 
         Task<ContentConfigurations> GetContent(string page);
     }

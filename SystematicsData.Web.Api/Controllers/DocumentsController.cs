@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
 using System.Threading.Tasks;
 using SystematicsData.Web.Api.Services.Interfaces;
 
@@ -10,21 +11,16 @@ namespace SystematicsData.Web.Api.Controllers
     public class DocumentsController : ControllerBase
     {
         private readonly IDocumentsService _documentsService;
-        
-        private readonly ILogger<SearchController> _logger;
 
-        public DocumentsController(IDocumentsService namesService, ILogger<SearchController> logger)
+        public DocumentsController(IDocumentsService namesService)
         {
             _documentsService = namesService;
-        
-            _logger = logger;
         }
 
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         [HttpGet("{id}", Name = "GetName")]
-        public async Task<IActionResult> Get(string id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            _logger.LogDebug("DocumentsController - Get - id: {id}", id);
-
             var response = await _documentsService.GetDocument(id);
 
             return Ok(response.XmlDocument);
