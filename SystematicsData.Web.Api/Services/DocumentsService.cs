@@ -7,6 +7,9 @@ using SystematicsData.Web.Api.Services.Interfaces;
 
 namespace SystematicsData.Web.Api.Services
 {
+    /// <summary>
+    /// Manages access to documents from the database.
+    /// </summary>
     public class DocumentsService : IDocumentsService
     {
         private readonly IDocumentsRepository _documentsRepository;
@@ -20,18 +23,14 @@ namespace SystematicsData.Web.Api.Services
             _logger = logger;
         }
 
-        public async Task<Document> GetDocument(string id)
+        /// <summary>
+        /// Returns the document for the specified id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<DocumentDto> GetDocument(Guid id)
         {
-            Document document;
-
-            if (Guid.TryParse(id, out var idGuid))
-            {
-                document = await _documentsRepository.GetDocumentAsync(idGuid);
-            }
-            else
-            {
-                throw new Exception($"Not valid Id - {id}");
-            }
+            var document = await _documentsRepository.GetDocumentAsync(id);
 
             return document;
         }

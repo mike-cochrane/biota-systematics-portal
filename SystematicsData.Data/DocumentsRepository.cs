@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Org.XmlUnit.Builder;
 using System;
 using System.Collections.Generic;
@@ -25,24 +24,23 @@ namespace SystematicsData.Data
         }
 
         /// <summary>
-        /// Get specific document based on document id.
+        /// Get a specific document based on document id.
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns>Document access model with document as XmlDocument property</returns>
-        public async Task<Document> GetDocumentAsync(Guid documentId)
+        public async Task<DocumentDto> GetDocumentAsync(Guid documentId)
         {
-            Document documentAccess = new Document();
-
-            var documentDb = await _context.Documents.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
+            var documentDto = new DocumentDto();
+            var documentDb = await _context.Documents.FindAsync(documentId);
 
             if (documentDb is null)
             {
                 throw new NotFoundException($"Document with Id: {documentId} has not been found", null);
             }
 
-            documentAccess.XmlDocument.LoadXml(documentDb.SerializedDocument);
+            documentDto.XmlDocument = XElement.Parse(documentDb.SerializedDocument);
 
-            return documentAccess;
+            return documentDto;
         }
 
         public Task InsertDocument(Models.Document document)
@@ -50,12 +48,12 @@ namespace SystematicsData.Data
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds)
+        public IEnumerable<DocumentDto> GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(Document document)
+        public void UpdateDocument(DocumentDto document)
         {
             throw new NotImplementedException();
         }
@@ -139,7 +137,7 @@ namespace SystematicsData.Data
             }
         }
 
-        public IEnumerable<Document> GetDocuments()
+        public IEnumerable<DocumentDto> GetDocuments()
         {
             throw new NotImplementedException();
         }

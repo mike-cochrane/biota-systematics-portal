@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Search.Models;
 using SystematicsData.Search.Models.Search;
@@ -43,9 +44,9 @@ namespace SystematicsData.Web.Api.Client
             return queryResponse;
         }
 
-        public async Task<Document> GetDocument(string documentId)
+        public async Task<DocumentDto> GetDocument(string documentId)
         {
-            Document document;
+            DocumentDto document;
 
             using var response = await _httpClient.GetAsync($"documents/{documentId}");
 
@@ -55,9 +56,9 @@ namespace SystematicsData.Web.Api.Client
             {
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                document = new Document();
+                document = new DocumentDto();
 
-                document.XmlDocument.LoadXml(responseString);
+                document.XmlDocument = XElement.Parse(responseString);
             }
             else
             {

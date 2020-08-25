@@ -9,6 +9,6 @@ namespace SystematicsPortal.Web.Services.Interfaces
 {
     public interface IDocumentService
     {
-        Task<Document> GetDocument(string id);
+        Task<DocumentDto> GetDocument(string id);
     }
 }

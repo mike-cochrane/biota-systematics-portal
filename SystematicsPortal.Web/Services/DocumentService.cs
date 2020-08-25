@@ -13,7 +13,7 @@ namespace SystematicsPortal.Web.Services
         {
             _apiClient = apiClient;
         }
-        public async Task<Document> GetDocument(string id)
+        public async Task<DocumentDto> GetDocument(string id)
         {
             var documentXml = await _apiClient.GetDocument(id);
 
