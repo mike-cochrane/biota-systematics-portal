@@ -37,7 +37,7 @@ namespace SystematicsPortal.Web.Controllers
             try
             {
                 //await CallContentServiceAsync();
-                var viewData = new SearchViewModel(null, null);
+                var viewData = new SearchViewModel(sortField);
 
                 string uncorrectedQuery = String.Empty;
                 if (query != null)
@@ -346,7 +346,7 @@ namespace SystematicsPortal.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ResultsPartialAsync([FromBody] FacetViewModel model)
+        public async Task<ActionResult> ResultsPartialAsync([FromBody] SearchQueryViewModel model)
         {
 
             model.query = Utility.ReplaceEscapedCharacters(model.query);
@@ -356,7 +356,7 @@ namespace SystematicsPortal.Web.Controllers
 
             try
             {
-                var viewData = new SearchViewModel( null, null)
+                var viewData = new SearchViewModel(model.sortField)
                 {
                     HaveSearched = true,
                     SelectedView = model.currentDisplayTab,
@@ -394,47 +394,61 @@ namespace SystematicsPortal.Web.Controllers
             }
         }
 
-    }
-
-    /*[HttpPost]
-    public ActionResult Sort(string collection, string query, string appliedFacets, string appliedRanges,
-                             string sortView, string sortField, int pageNumber, string selectAll)
-    {
-
-        query = Utility.ReplaceEscapedCharacters(query);
-
-        var collections = GetCollectionsDropdownList();
-        var viewData = new SearchViewModel(collections, collection)
+        [HttpPost]
+        public async Task<ActionResult> Sort([FromBody] SearchQueryViewModel model)
         {
-            HaveSearched = true,
-            SelectedView = sortView,
-            ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
-            CurrentPage = pageNumber,
-            SelectedSortOption = sortView
-        };
-        viewData.Result.SetAppliedFacets(appliedFacets);
-        viewData.Result.SetAppliedRanges(appliedRanges);
-        viewData.Sets = GetSets();
+            model.query = Utility.ReplaceEscapedCharacters(model.query);
 
-        Dictionary<string, int> accessRights = GetUserAccessLevels();
+            var viewData = new SearchViewModel(model.sortField)
+            {
+                HaveSearched = true,
+                SelectedView = model.currentDisplayTab,
+                ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
+                CurrentPage = model.pageNumber,
+                SelectedSortOption = model.sortField
+            };
+            viewData.Result.SetAppliedFacets(model.appliedFacets);
+            viewData.Result.SetAppliedRanges(model.appliedRanges);
+            //viewData.Sets = GetSets();
 
-        viewData.Result = SearchRepository.Search(viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, query, collection, accessRights, pageNumber, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
-        viewData.OneOrMoreSelected = SetSelectedSpecimens(viewData.Result.FoundSpecimens);
-        viewData.SetSortField(sortField);
+            viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
+            //viewData.OneOrMoreSelected = SetSelected(viewData.Result.FoundDocuments);
+            viewData.SetSortField(model.sortField);
 
-        if (selectAll.ToLower() == "true")
-        {
-            viewData.AllSelected = true;
+            if (model.selectAll)
+            {
+                viewData.AllSelected = true;
+            }
+
+            viewData.Query = model.query;
+
+            ModelState.Clear();
+            return PartialView("ResultsPartial", viewData);
+            //TODO - whenever returning ResultsPartial, need to make sure select-all bool is added to parameters being passed backwards and forwards.
         }
 
-        viewData.Query = query;
+        /*private bool SetSelectedDocument(Dictionary<Guid, DocumentSummary> summaries)
+        {
+            bool specimensSelected = false;
+            if (Session["SelectedDocument"] != null)
+            {
+                var selectedSpecimen = (List<string>)Session["SelectedSpecimens"];
 
-        ModelState.Clear();
-        return PartialView("ResultsPartial", viewData);
-        //TODO - whenever returning ResultsPartial, need to make sure select-all bool is added to parameters being passed backwards and forwards.
+                foreach (var key in summaries.Keys)
+                {
+                    var summary = summaries[key];
+                    if (selectedSpecimen.Contains(summary.SpecimenId.ToString().ToLower()))
+                    {
+                        summary.Selected = true;
+                        specimensSelected = true;
+                    }
+                }
+            }
+            return specimensSelected;
+        }*/
     }
 
-    [HttpPost]
+   /*[HttpPost]
     public ActionResult ToggleAll(string selected, string query, string collection, string appliedFacets, string appliedRanges)
     {
         query = Utility.ReplaceEscapedCharacters(query);
