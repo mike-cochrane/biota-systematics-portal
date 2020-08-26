@@ -17,6 +17,17 @@ namespace SystematicsPortal.Web.Services
             _apiClient = apiClient;
         }
 
+        /// <summary>
+        /// Method to provide search capabilities to the website using the API client 
+        /// </summary>
+        /// <param name="searchTerm">Text query to search for</param>
+        /// <param name="appliedFacets">List of applied factes</param>
+        /// <param name="appliedRanges">List of applied ranges</param>
+        /// <param name="pageNumber">Page number</param>
+        /// <param name="resultsPerPage">Number of results per page</param>
+        /// <param name="sortBy">Field to be used for sorting</param>
+        /// <param name="sortOrder">Sorting order</param>
+        /// <returns></returns>
         public async Task<SearchResult> Search(string searchTerm,
             List<SelectedFacetValue> appliedFacets = null,
             List<SelectedRange> appliedRanges = null,
@@ -28,19 +39,30 @@ namespace SystematicsPortal.Web.Services
             // This is the object that will be used to parse the query and the parameter. Start Position equals to pageNumber * resultsPerPage. Rows number will be the results per page.
             var queryToUse = new Query(pageNumber * resultsPerPage, resultsPerPage)
             {
-                TextQuery = searchTerm,
                 FacetLists = new FacetLists()
                 {
                     AppliedFacets = appliedFacets ?? new List<SelectedFacetValue>(),
                     AppliedRanges = appliedRanges ?? new List<SelectedRange>()
-                }
-        };
+                },
+                TextQuery = searchTerm,
+                SortBy = sortBy,
+                SortOrder = sortOrder
+            };
 
             var response = await _apiClient.Search(queryToUse);
 
             return response;
         }
 
+        /// <summary>
+        /// Prepares the list of applied facets with current facets and selected facet.
+        /// </summary>
+        /// <param name="appliedFacets">String that containt the facets that are already selected</param>
+        /// <param name="selectedFacet">Facet that has been selected</param>
+        /// <param name="selectedValue">Value for the facet that has been selected</param>
+        /// <param name="selectedFacetType">Indicates if it is a text or range field</param>
+        /// <param name="addRemoveFilterToggle">Toggle used by the UI to add or remove the facet</param>
+        /// <returns></returns>
         public List<SelectedFacetValue> SetAppliedFacets(string appliedFacets, string selectedFacet, string selectedValue, string selectedFacetType, bool addRemoveFilterToggle)
         {
             var searchResult = new SearchResult();
@@ -52,6 +74,15 @@ namespace SystematicsPortal.Web.Services
             return appliedFacetsList;
         }
 
+        /// <summary>
+        /// Applies the specific slected facet to the list (adds or remove according to toggle)
+        /// </summary>
+        /// <param name="selectedFacet"></param>
+        /// <param name="selectedValue"></param>
+        /// <param name="selectedFacetType"></param>
+        /// <param name="addRemoveFilterToggle"></param>
+        /// <param name="searchResult"></param>
+        /// <returns></returns>
         private static List<SelectedFacetValue> ApplySelectedFacet(string selectedFacet, string selectedValue, string selectedFacetType, bool addRemoveFilterToggle, SearchResult searchResult)
         {
             if (selectedFacetType.ToLower().Equals("text"))
@@ -80,6 +111,16 @@ namespace SystematicsPortal.Web.Services
             return searchResult.AppliedFacets;
         }
 
+        /// <summary>
+        ///  Prepares the list of applied ranges with current ranges and selected range.
+        /// </summary>
+        /// <param name="appliedRanges">String that containt the ranges that are already selected</param>
+        /// <param name="selectedFacet">Range that has been selected</param>
+        /// <param name="selectedValue">Value for the range that has been selected</param>
+        /// <param name="selectedFacetType">Indicates if it is a text or range field</param>
+        /// <param name="selectedUpperValue">Indicate the upper value limit for the range</param>
+        /// <param name="addRemoveFilterToggle">Toggle used by the UI to add or remove the range</param>
+        /// <returns></returns>
         public List<SelectedRange> SetAppliedRanges(string appliedRanges, string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue, bool addRemoveFilterToggle)
         {
             var searchResult = new SearchResult();
@@ -91,7 +132,17 @@ namespace SystematicsPortal.Web.Services
             return appliedRangesList;
         }
 
-        private static List<SelectedRange> ApplySelectedRange(string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue,  bool addRemoveFilterToggle, SearchResult searchResult)
+        /// <summary>
+        ///  Applies the specific slected range to the list (adds or remove according to toggle)
+        /// </summary>
+        /// <param name="selectedFacet"></param>
+        /// <param name="selectedValue"></param>
+        /// <param name="selectedFacetType"></param>
+        /// <param name="selectedUpperValue"></param>
+        /// <param name="addRemoveFilterToggle"></param>
+        /// <param name="searchResult"></param>
+        /// <returns></returns>
+        private static List<SelectedRange> ApplySelectedRange(string selectedFacet, string selectedValue, string selectedFacetType, string selectedUpperValue, bool addRemoveFilterToggle, SearchResult searchResult)
         {
             if (selectedFacetType.ToLower().Equals("range"))
             {
@@ -123,6 +174,5 @@ namespace SystematicsPortal.Web.Services
 
             return searchResult.AppliedRanges;
         }
-
     }
 }

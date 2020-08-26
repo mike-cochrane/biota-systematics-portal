@@ -2,6 +2,7 @@
 using SolrNet;
 using SolrNet.Commands.Parameters;
 using System;
+using System.Collections.Generic;
 using SystematicsData.Search.Infrastructure;
 using SystematicsData.Search.Models;
 using SystematicsData.Search.Models.Interfaces;
@@ -40,14 +41,12 @@ namespace SystematicsData.Search
 
                 var queryOptions = new QueryOptions
                 {
-                    Rows = query.Rows,
-                    StartOrCursor = new StartOrCursor.Start(query.Start),
+                    Facet = FilterFacets.BuildFacets(),
                     FilterQueries = FilterFacets.BuildFilterQueries(query),
-                    Facet = FilterFacets.BuildFacets()
+                    OrderBy = GetSortArray(query),
+                    Rows = query.Rows,
+                    StartOrCursor = new StartOrCursor.Start(query.Start)
                 };
-
-                // TODO: Check if we should we get sort order by parameter
-                queryOptions.AddOrder(new SortOrder("title", Order.ASC));
 
                 queryOptions.ExtraParams = ExtraParameters.BuildExtraParameters();
 
@@ -72,6 +71,25 @@ namespace SystematicsData.Search
             }
 
             return queryResponse;
+        }
+
+        /// <summary>
+        /// Gets the sort array according to the sort order and sort field specified
+        /// </summary>
+        /// <param name="query">General query received from the client</param>
+        /// <returns>List of sort criteria with order</returns>
+        private ICollection<SortOrder> GetSortArray(Query query)
+        {
+            var order = String.Equals(query.SortOrder, "ascending", StringComparison.InvariantCultureIgnoreCase) ? Order.ASC : Order.DESC;
+
+            var orderBy = new List<SortOrder>();
+
+            if (!string.IsNullOrEmpty(query.SortBy))
+            {
+                orderBy.Add(new SortOrder(query.SortBy, order));
+            }
+
+            return orderBy;
         }
 
         public void Dispose()
