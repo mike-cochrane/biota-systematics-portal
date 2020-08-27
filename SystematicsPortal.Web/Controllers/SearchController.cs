@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Xml;
+using SystematicsData.Search.Models.Search;
 using SystematicsPortal.Web.Helpers;
 using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services.Interfaces;
@@ -352,7 +353,34 @@ namespace SystematicsPortal.Web.Controllers
             model.query = Utility.ReplaceEscapedCharacters(model.query);
 
             model.appliedFacets = Utility.ReplaceEscapedCharacters(model.appliedFacets);
+            string allFacets = model.appliedFacets;
             model.appliedRanges = Utility.ReplaceEscapedCharacters(model.appliedRanges);
+            string allRanges = model.appliedRanges;
+
+            /*if (model.selectedFacetType.ToLower().Equals("text"))
+            {
+                string current = "|" + model.selectedFacet + "|" + model.selectedValue;
+                if (model.toggleOn)
+                {
+                    allFacets += current;
+                }
+                else
+                {
+                    allFacets.Replace(current, "");
+                }
+            }
+            else if (model.selectedFacetType.ToLower().Equals("range"))
+            {
+                string current = "|" + model.selectedFacet + "|" + model.selectedValue + "|" + model.selectedUpperValue;
+                if (model.toggleOn)
+                {
+                    allRanges += current;
+                }
+                else
+                {
+                    allRanges.Replace(current, "");
+                }
+            }*/
 
             try
             {
@@ -366,6 +394,57 @@ namespace SystematicsPortal.Web.Controllers
 
                 viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(model.appliedFacets, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.toggleOn);
                 viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(model.appliedRanges, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.selectedUpperValue.ToString(), model.toggleOn);
+
+                if (model.selectedFacetType.ToLower().Equals("text"))
+                {
+                    var appliedFacet = new SelectedFacetValue()
+                    {
+                        FacetName = model.selectedFacet,
+                        ValueName = model.selectedValue
+                    };
+                    if (model.toggleOn)
+                    {
+                        bool testBool = viewData.Result.ContainsAppliedFacet(appliedFacet);
+                        if (!viewData.Result.ContainsAppliedFacet(appliedFacet))
+                        {
+                            viewData.Result.AppliedFacets.Add(appliedFacet);
+                        }
+                    }
+                    else
+                    {
+                        if (viewData.Result.ContainsAppliedFacet(appliedFacet))
+                        {
+                            viewData.Result.RemoveAppliedFacet(appliedFacet);
+                        }
+                    }
+                }
+                else if (model.selectedFacetType.ToLower().Equals("range"))
+                {
+                    if (model.toggleOn)
+                    {
+                        if (model.selectedValue.Contains('.'))
+                        {
+                            model.selectedValue = model.selectedValue.Split('.')[0];
+                        }
+                        if (model.selectedUpperValue.ToString().Contains('.'))
+                        {
+                            model.selectedUpperValue = Convert.ToInt32(model.selectedUpperValue.ToString().Split('.')[0]);
+                        }
+
+                        var appliedRange = new SelectedRange()
+                        {
+                            FacetName = model.selectedFacet,
+                            MinimumValue = Convert.ToInt32(model.selectedValue),
+                            MaximumValue = Convert.ToInt32(model.selectedUpperValue)
+                        };
+
+                        viewData.Result.AddOrUpdateAppliedRange(appliedRange);
+                    }
+                    else
+                    {
+                        viewData.Result.RemoveAppliedRange(model.selectedFacet);
+                    }
+                }
 
                 viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
                 
@@ -382,8 +461,9 @@ namespace SystematicsPortal.Web.Controllers
                 ModelState.Clear();
                 return PartialView(viewData);
             }
-            catch (Exception)
+            catch (Exception error)
             {
+                string test = error.Message;
                 /*TODO - really need to return an error message to the user here, otherwise it just looks like their click did nothing*/
                 throw;
             }
