@@ -11,7 +11,7 @@ using ISolrConnection = SystematicsData.Search.Models.Interfaces.ISolrConnection
 
 namespace SystematicsData.Search
 {
-    public class Search : ISearch, IDisposable
+    public class Search : ISearch
     {
         private readonly ISolrConnection _connection;
 
@@ -90,10 +90,6 @@ namespace SystematicsData.Search
             }
 
             return orderBy;
-        }
-
-        public void Dispose()
-        {
         }
     }
 }
