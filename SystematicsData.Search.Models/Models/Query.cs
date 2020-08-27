@@ -12,6 +12,10 @@ namespace SystematicsData.Search.Models
 
         public int Rows { get; set; }
 
+        public string SortBy { get; set; }
+
+        public string SortOrder { get; set; }
+
         public FacetLists FacetLists { get; set; }
 
         // Default constructor with default number of rows
