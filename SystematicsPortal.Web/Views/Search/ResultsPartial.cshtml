@@ -148,11 +148,11 @@
                                             </div>
                                             <div class="pull-right">
                                                 @*@if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
-                                                    {*@
+                                {*@
                                                 @*<i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
-                                                    }
-                                                    @if (summary.HasImages)
-                                                    {
+                                }
+                                @if (summary.HasImages)
+                                {
                                                 *@
                                                 <i class="icon-camera" title="Images are available for this record"></i>
                                                 @*}*@
@@ -202,28 +202,28 @@
                                             //string id = summary.SpecimenId.ToString();
                                             @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@
                                             @*<tr valign="top">
-                                                    <td>
-                                                        <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
-                                                    </td>
-                                                    <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
-                                                    </td>
-                                                    <td>@summary.TaxonName
-                                                    </td>
-                                                    <td>@summary.TypeStatus
-                                                    </td>
-                                                    <td>@summary.Country
-                                                    </td>
-                                                    <td>@summary.EcologicalDistrict
-                                                    </td>
-                                                    <td>@summary.LandDistrict
-                                                    </td>
-                                                    <td>@summary.NZAreaCode
-                                                    </td>
-                                                    <td>@summary.Collection
-                                                    </td>
-                                                    <td>@summary.SpecimenType
-                                                    </td>
-                                                </tr>*@
+                                <td>
+                                    <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
+                                </td>
+                                <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                </td>
+                                <td>@summary.TaxonName
+                                </td>
+                                <td>@summary.TypeStatus
+                                </td>
+                                <td>@summary.Country
+                                </td>
+                                <td>@summary.EcologicalDistrict
+                                </td>
+                                <td>@summary.LandDistrict
+                                </td>
+                                <td>@summary.NZAreaCode
+                                </td>
+                                <td>@summary.Collection
+                                </td>
+                                <td>@summary.SpecimenType
+                                </td>
+                            </tr>*@
                                         }
                                     </table>
                                 </div>

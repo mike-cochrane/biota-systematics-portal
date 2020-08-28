@@ -50,7 +50,7 @@ namespace SystematicsPortal.Web.Models
             SelectedSortOption = sortBy;
             SortOptions = GetSortOptions();
             HaveSearched = false;
-            ResultsPerPage = 500;
+            ResultsPerPage = 100;
             CurrentPage = 0;
             Sets = null;
             //DownloadLog = new DownloadLogViewModel();
@@ -68,7 +68,7 @@ namespace SystematicsPortal.Web.Models
         {
             int quotient = 0;
             int remainder = 0;
-            //quotient = Math.DivRem(Result.TotalSpecimens, ResultsPerPage, out remainder);
+            quotient = Math.DivRem(Result.TotalSpecimens, ResultsPerPage, out remainder);
             int totalPages = quotient;
             if (remainder > 0)
             {

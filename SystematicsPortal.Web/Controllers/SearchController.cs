@@ -38,7 +38,10 @@ namespace SystematicsPortal.Web.Controllers
             try
             {
                 //await CallContentServiceAsync();
-                var viewData = new SearchViewModel(sortField);
+                var viewData = new SearchViewModel(sortField)
+                {
+                    ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE
+                };
 
                 string uncorrectedQuery = String.Empty;
                 if (query != null)
