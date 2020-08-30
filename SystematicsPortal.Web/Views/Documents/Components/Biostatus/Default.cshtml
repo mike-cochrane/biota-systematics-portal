@@ -1,0 +1,24 @@
+﻿@model SystematicsPortal.Web.Views.Documents.Components.Biostatus.BiostatusViewModel
+
+@if (Model.Biostatuses.Any())
+{
+    <div>
+        <dl class="dl-horizontal">
+            @foreach (var biostatus in Model.Biostatuses)
+            {
+                <dt>
+                    Occurence
+                </dt>
+                <dd>
+                    @biostatus.Occurence
+                </dd>
+                <dt>
+                    Georegion
+                </dt>
+                <dd>
+                    @biostatus.Georegion
+                </dd>
+            }
+        </dl>
+    </div>
+}

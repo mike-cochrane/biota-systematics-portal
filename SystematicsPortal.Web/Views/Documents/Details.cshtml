@@ -1,0 +1,13 @@
+@model SystematicsPortal.Web.ViewModels.Documents.DetailsViewModel
+
+<div>
+    @foreach (var field in Model.Fields.Where(o => o.Data != null))
+    {
+        <h4>
+            @field.Label
+        </h4>
+        <div style="margin-left:20px;">
+            @await Component.InvokeAsync(field.ViewComponent, field.Data)
+        </div>
+    }
+</div>

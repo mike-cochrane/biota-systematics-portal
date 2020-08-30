@@ -39,6 +39,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="Views\Documents\Components\Biostatus\Default.cshtml" />
+	  <None Include="Views\Documents\Components\Concepts\Default.cshtml" />
+	  <None Include="Views\Documents\Components\Label\Default.cshtml" />
+	  <None Include="Views\Documents\Components\NameHyperlink\Default.cshtml" />
+	  <None Include="Views\Documents\Components\ReferenceHyperlink\Default.cshtml" />
+	  <None Include="Views\Documents\Components\Siblings\Default.cshtml" />
 	  <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
 	  <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
 	  <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
