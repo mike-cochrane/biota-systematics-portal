@@ -62,7 +62,7 @@ namespace SystematicsPortal.Web.Controllers
                     selectedPage = Convert.ToInt32(pageNumber);
                 }
                 viewData.CurrentPage = selectedPage;
-                sortField = "Title";
+                sortField = "title";
 
                 viewData.HaveSearched = true;
                 viewData.Result.SetAppliedFacets(appliedFacets);
