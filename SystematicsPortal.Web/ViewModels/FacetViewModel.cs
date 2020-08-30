@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SystematicsPortal.Web.ViewModels
 {
-    public class FacetViewModel
+    public class SearchQueryViewModel
     {
         public string selectedFacet { get; set; }
 
@@ -29,7 +29,7 @@ namespace SystematicsPortal.Web.ViewModels
 
         public bool selectAll { get; set; }
 
-        public FacetViewModel()
+        public SearchQueryViewModel()
         {
             selectedFacet = String.Empty;
             selectedFacetType = String.Empty;

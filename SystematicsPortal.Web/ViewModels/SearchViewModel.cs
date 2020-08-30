@@ -39,18 +39,18 @@ namespace SystematicsPortal.Web.Models
         public bool AllSelected { get; set; }
         public bool OneOrMoreSelected { get; set; }
 
-        public SearchViewModel(ComboList collectionList, string selectedCollection, string sortBy = "relevance") : base()
+        public SearchViewModel(string sortBy = "relevance") : base() // ComboList collectionList, string selectedCollection, 
         {
             //SelectedCollection = selectedCollection;
             //Collections = new SelectList(collectionList.Items, "Key", "DisplayText", SelectedCollection);
             Query = String.Empty;
-            SearchData = new SearchPartialViewModel(collectionList, selectedCollection);
+            SearchData = new SearchPartialViewModel(); // collectionList, selectedCollection
             Result = new SearchResult(sortBy);
             SelectedView = "list";
             SelectedSortOption = sortBy;
             SortOptions = GetSortOptions();
             HaveSearched = false;
-            ResultsPerPage = 500;
+            ResultsPerPage = 100;
             CurrentPage = 0;
             Sets = null;
             //DownloadLog = new DownloadLogViewModel();
@@ -68,7 +68,7 @@ namespace SystematicsPortal.Web.Models
         {
             int quotient = 0;
             int remainder = 0;
-            //quotient = Math.DivRem(Result.TotalSpecimens, ResultsPerPage, out remainder);
+            quotient = Math.DivRem(Result.TotalSpecimens, ResultsPerPage, out remainder);
             int totalPages = quotient;
             if (remainder > 0)
             {
