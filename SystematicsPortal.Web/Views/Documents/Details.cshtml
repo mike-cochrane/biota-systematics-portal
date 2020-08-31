@@ -1,13 +1,49 @@
+@{
+    ViewData["Title"] = "Detail";
+}
+
 @model SystematicsPortal.Web.ViewModels.Documents.DetailsViewModel
 
-<div>
-    @foreach (var field in Model.Fields.Where(o => o.Data != null))
-    {
-        <h4>
-            @field.Label
-        </h4>
-        <div style="margin-left:20px;">
-            @await Component.InvokeAsync(field.ViewComponent, field.Data)
+@* <partial name="~/Views/Shared/_NavAndSearch.cshtml" /> *@
+
+<div class="row">
+    <partial name="~/Views/Shared/_SideBarDocumentDynamic.cshtml" />
+    <partial name="~/Views/Shared/_BackToTop.cshtml" />
+
+    <div class="col-12 col-lg-9 mw-100 pt-4 pl-5 pb-5 detail-page order-1 order-lg-2">
+        <div id="action-icons" class="row">
+            <div class="col-12 pb-2">
+                <div class="float-right">
+                    <img class="mr-2" alt="Favourite" title="Favourite" src="~/images/Favourites.png" />
+                    <img class="mr-2" alt="Add to list" title="Add to list" src="~/images/Save.png" />
+                    <img class="mr-2" alt="Download" title="Download" src="~/images/Download.png" />
+                    <img class="mr-2" alt="Share" title="Share" src="~/images/Share.png" />
+                    <img class="mr-2" alt="Citation" title="Cite" src="~/images/Citation.png" />
+                    <img class="mr-2" alt="Annotate" title="Annotate" src="~/images/Annotate.png" />
+                    <img class="mr-2" alt="History" title="History" src="~/images/History.png" />
+                </div>
+            </div>
         </div>
-    }
+        <div id="page-content" class="page-content">
+            @foreach (var field in Model.Fields.Where(o => o.Data != null))
+            {
+                string sectionId = "section-" + field.Label.ToLower().Replace(" ", "");
+                
+                <div id="@sectionId">
+                    <div class="heading-divider"></div>
+                    <div id="@(sectionId+"-expanded")" class="clickable" onclick="ToggleVisibility(this, '@('#'+sectionId)', 'collapsed')">
+                        <h3 class="sub-heading"><i class="fas fa-angle-up"></i> @field.Label</h3>
+                    </div>
+                    <div id="@(sectionId+"-collapsed")" style="display: none;" class="clickable" onclick="ToggleVisibility(this, '@('#'+sectionId)', 'expanded')">
+                        <h3 class="sub-heading"><i class="fas fa-angle-down"></i> @field.Label</h3>
+                    </div>
+                    <div id="@(sectionId+"-content")">
+                        <div class="inner-content-padding">
+                            @await Component.InvokeAsync(field.ViewComponent, field.Data)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>

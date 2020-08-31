@@ -23,6 +23,7 @@ namespace SystematicsPortal.Web.Services
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Biostatus", XPath = "Document/BiostatusValues", Order = 60, Template = "Biostatus" });
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Concepts", XPath = "Document/Concepts", Order = 70, Template = "Concepts" });
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Siblings", XPath = "Document/Siblings", Order = 80, Template = "Siblings" });
+            viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Collections", XPath = "Document/CollectionObjects", Order = 90, Template = "Collections" });
 
             return viewDefinition;
         }
