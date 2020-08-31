@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using SystematicsData.Models.Entities.Access;
 using SystematicsPortal.Web.Services.Interfaces;
 using SystematicsPortal.Web.ViewModels;
 
@@ -10,19 +11,18 @@ namespace SystematicsPortal.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IContentService _contentService;
-
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(IContentService contentService, ILogger<HomeController> logger)
         {
             _contentService = contentService;
-
             _logger = logger;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _contentService.GetContent("home"));
+            ContentConfigurations contentConfigurations = await _contentService.GetContent("home");
+            return View(contentConfigurations);
         }
 
         public IActionResult AboutUs()
