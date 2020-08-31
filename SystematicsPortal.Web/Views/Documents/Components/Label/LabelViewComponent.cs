@@ -14,6 +14,7 @@ namespace SystematicsPortal.Web.ViewComponents
             if (data != null)
             {
                 viewModel.Text = data.Value;
+                viewModel.Label = "LABEL";
             }
 
             return View(viewModel);
