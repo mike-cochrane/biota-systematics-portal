@@ -14,30 +14,36 @@
     <div class="col-md-1">&nbsp;</div>
     <div class="col-md-5">
         <div class="row justify-content-center pb-4">
-            <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
-                <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
-            </div>
-            <div class="col-md-6 pl-0">
-                <h3>
-                    @Html.Raw(Model.ContentConfigurationList[0].Content.SectionTitle)
-                </h3>
-                @Html.Raw(Model.ContentConfigurationList[0].Content.Text)
-            </div>
+            @if (Model.ContentConfigurationList.ElementAt(0) != null)
+            {
+                <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
+                    <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
+                </div>
+                <div class="col-md-6 pl-0">
+                    <h3>
+                        @Html.Raw(Model.ContentConfigurationList[0].Content.SectionTitle)
+                    </h3>
+                    @Html.Raw(Model.ContentConfigurationList[0].Content.Text)
+                </div>
+            }
         </div>
     </div>
     <div class="col-md-5">
         <div class="row justify-content-center pb-4">
-            <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
-                <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
-            </div>
-            <div class="col-md-6 pl-0">
-                <h3>
-                    @Html.Raw(Model.ContentConfigurationList[1].Content.SectionTitle)
-                </h3>
-                <p class="">
-                    @Html.Raw(Model.ContentConfigurationList[1].Content.Text)
-                </p>
-            </div>
+            @if (Model.ContentConfigurationList.ElementAt(1) != null)
+            {
+                <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
+                    <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
+                </div>
+                <div class="col-md-6 pl-0">
+                    <h3>
+                        @Html.Raw(Model.ContentConfigurationList[1].Content.SectionTitle)
+                    </h3>
+                    <p class="">
+                        @Html.Raw(Model.ContentConfigurationList[1].Content.Text)
+                    </p>
+                </div>
+            }
         </div>
     </div>
     <div class="col-md-1">&nbsp;</div>
@@ -46,32 +52,39 @@
     <div class="col-md-1">&nbsp;</div>
     <div class="col-md-5">
         <div class="row justify-content-center pb-4">
-            <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
-                <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
-            </div>
-            <div class="col-md-6 pl-0">
-                <h3>
-                    @Html.Raw(Model.ContentConfigurationList[2].Content.SectionTitle)
-                </h3>
-                <p>
-                    @Html.Raw(Model.ContentConfigurationList[2].Content.Text)
-                </p>
-            </div>
+            @if (Model.ContentConfigurationList.ElementAt(2) != null)
+            {
+                <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
+                    <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
+                </div>
+                <div class="col-md-6 pl-0">
+                    <h3>
+                        @Html.Raw(Model.ContentConfigurationList[2].Content.SectionTitle)
+                    </h3>
+                    <p>
+                        @Html.Raw(Model.ContentConfigurationList[2].Content.Text)
+                    </p>
+                </div>
+            }
         </div>
     </div>
+
     <div class="col-md-5">
         <div class="row justify-content-center pb-4">
-            <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
-                <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
-            </div>
-            <div class="col-md-6 pl-0">
-                <h3>
-                    @Html.Raw(Model.ContentConfigurationList[3].Content.SectionTitle)
-                </h3>
-                <p class="">
-                    @Html.Raw(Model.ContentConfigurationList[3].Content.Text)
-                </p>
-            </div>
+            @if (Model.ContentConfigurationList.ElementAt(3) != null)
+            {
+                <div class="col-md-6 mw-100 p-0 pr-1 pb-2">
+                    <img alt="Bootstrap Image Preview" src="~/images/placeholder.jpg" />
+                </div>
+                <div class="col-md-6 pl-0">
+                    <h3>
+                        @Html.Raw(Model.ContentConfigurationList[3].Content.SectionTitle)
+                    </h3>
+                    <p class="">
+                        @Html.Raw(Model.ContentConfigurationList[3].Content.Text)
+                    </p>
+                </div>
+            }
         </div>
     </div>
     <div class="col-md-1">&nbsp;</div>
