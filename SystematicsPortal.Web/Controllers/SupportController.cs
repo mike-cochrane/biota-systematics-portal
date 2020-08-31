@@ -1,9 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using SystematicsData.Models.Entities.Access;
+using SystematicsPortal.Web.Services.Interfaces;
 
 namespace SystematicsPortal.Web.Controllers
 {
     public class SupportController : Controller
     {
+        private readonly IContentService _contentService;
+        private readonly ILogger<SupportController> _logger;
+
+        public SupportController(IContentService contentService, ILogger<SupportController> logger)
+        {
+            _contentService = contentService;
+            _logger = logger;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -17,9 +30,10 @@ namespace SystematicsPortal.Web.Controllers
             return View();
         }
 
-        public IActionResult DetailedHelp()
+        public async Task<IActionResult> DetailedHelp()
         {
-            return View();
+            ContentConfigurations contentConfigurations = await _contentService.GetContent("Search Syntax");
+            return View(contentConfigurations);
         }
         public IActionResult AboutUs()
         {
