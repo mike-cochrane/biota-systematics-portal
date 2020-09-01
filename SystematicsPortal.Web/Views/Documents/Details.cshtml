@@ -38,9 +38,7 @@
                         <h3 class="sub-heading"><i class="fas fa-angle-down"></i> @field.Label</h3>
                     </div>
                     <div id="@(sectionId+"-content")">
-                        <div class="inner-content-padding">
-                            @await Component.InvokeAsync(field.ViewComponent, field.Data)
-                        </div>
+                        @await Component.InvokeAsync(field.ViewComponent, field.Data)
                     </div>
                 </div>
             }
