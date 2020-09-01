@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Xml;
+using SystematicsData.Search.Models.Search;
 using SystematicsPortal.Web.Helpers;
 using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services.Interfaces;
@@ -37,7 +38,10 @@ namespace SystematicsPortal.Web.Controllers
             try
             {
                 //await CallContentServiceAsync();
-                var viewData = new SearchViewModel(null, null);
+                var viewData = new SearchViewModel(sortField)
+                {
+                    ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE
+                };
 
                 string uncorrectedQuery = String.Empty;
                 if (query != null)
@@ -58,7 +62,7 @@ namespace SystematicsPortal.Web.Controllers
                     selectedPage = Convert.ToInt32(pageNumber);
                 }
                 viewData.CurrentPage = selectedPage;
-                sortField = "Title";
+                sortField = "title";
 
                 viewData.HaveSearched = true;
                 viewData.Result.SetAppliedFacets(appliedFacets);
@@ -346,17 +350,44 @@ namespace SystematicsPortal.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ResultsPartialAsync([FromBody] FacetViewModel model)
+        public async Task<ActionResult> ResultsPartialAsync([FromBody] SearchQueryViewModel model)
         {
 
             model.query = Utility.ReplaceEscapedCharacters(model.query);
 
             model.appliedFacets = Utility.ReplaceEscapedCharacters(model.appliedFacets);
+            string allFacets = model.appliedFacets;
             model.appliedRanges = Utility.ReplaceEscapedCharacters(model.appliedRanges);
+            string allRanges = model.appliedRanges;
+
+            /*if (model.selectedFacetType.ToLower().Equals("text"))
+            {
+                string current = "|" + model.selectedFacet + "|" + model.selectedValue;
+                if (model.toggleOn)
+                {
+                    allFacets += current;
+                }
+                else
+                {
+                    allFacets.Replace(current, "");
+                }
+            }
+            else if (model.selectedFacetType.ToLower().Equals("range"))
+            {
+                string current = "|" + model.selectedFacet + "|" + model.selectedValue + "|" + model.selectedUpperValue;
+                if (model.toggleOn)
+                {
+                    allRanges += current;
+                }
+                else
+                {
+                    allRanges.Replace(current, "");
+                }
+            }*/
 
             try
             {
-                var viewData = new SearchViewModel( null, null)
+                var viewData = new SearchViewModel(model.sortField)
                 {
                     HaveSearched = true,
                     SelectedView = model.currentDisplayTab,
@@ -366,6 +397,57 @@ namespace SystematicsPortal.Web.Controllers
 
                 viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(model.appliedFacets, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.toggleOn);
                 viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(model.appliedRanges, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.selectedUpperValue.ToString(), model.toggleOn);
+
+                if (model.selectedFacetType.ToLower().Equals("text"))
+                {
+                    var appliedFacet = new SelectedFacetValue()
+                    {
+                        FacetName = model.selectedFacet,
+                        ValueName = model.selectedValue
+                    };
+                    if (model.toggleOn)
+                    {
+                        bool testBool = viewData.Result.ContainsAppliedFacet(appliedFacet);
+                        if (!viewData.Result.ContainsAppliedFacet(appliedFacet))
+                        {
+                            viewData.Result.AppliedFacets.Add(appliedFacet);
+                        }
+                    }
+                    else
+                    {
+                        if (viewData.Result.ContainsAppliedFacet(appliedFacet))
+                        {
+                            viewData.Result.RemoveAppliedFacet(appliedFacet);
+                        }
+                    }
+                }
+                else if (model.selectedFacetType.ToLower().Equals("range"))
+                {
+                    if (model.toggleOn)
+                    {
+                        if (model.selectedValue.Contains('.'))
+                        {
+                            model.selectedValue = model.selectedValue.Split('.')[0];
+                        }
+                        if (model.selectedUpperValue.ToString().Contains('.'))
+                        {
+                            model.selectedUpperValue = Convert.ToInt32(model.selectedUpperValue.ToString().Split('.')[0]);
+                        }
+
+                        var appliedRange = new SelectedRange()
+                        {
+                            FacetName = model.selectedFacet,
+                            MinimumValue = Convert.ToInt32(model.selectedValue),
+                            MaximumValue = Convert.ToInt32(model.selectedUpperValue)
+                        };
+
+                        viewData.Result.AddOrUpdateAppliedRange(appliedRange);
+                    }
+                    else
+                    {
+                        viewData.Result.RemoveAppliedRange(model.selectedFacet);
+                    }
+                }
 
                 viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
                 
@@ -382,8 +464,9 @@ namespace SystematicsPortal.Web.Controllers
                 ModelState.Clear();
                 return PartialView(viewData);
             }
-            catch (Exception)
+            catch (Exception error)
             {
+                string test = error.Message;
                 /*TODO - really need to return an error message to the user here, otherwise it just looks like their click did nothing*/
                 throw;
             }
@@ -394,47 +477,61 @@ namespace SystematicsPortal.Web.Controllers
             }
         }
 
-    }
-
-    /*[HttpPost]
-    public ActionResult Sort(string collection, string query, string appliedFacets, string appliedRanges,
-                             string sortView, string sortField, int pageNumber, string selectAll)
-    {
-
-        query = Utility.ReplaceEscapedCharacters(query);
-
-        var collections = GetCollectionsDropdownList();
-        var viewData = new SearchViewModel(collections, collection)
+        [HttpPost]
+        public async Task<ActionResult> Sort([FromBody] SearchQueryViewModel model)
         {
-            HaveSearched = true,
-            SelectedView = sortView,
-            ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
-            CurrentPage = pageNumber,
-            SelectedSortOption = sortView
-        };
-        viewData.Result.SetAppliedFacets(appliedFacets);
-        viewData.Result.SetAppliedRanges(appliedRanges);
-        viewData.Sets = GetSets();
+            model.query = Utility.ReplaceEscapedCharacters(model.query);
 
-        Dictionary<string, int> accessRights = GetUserAccessLevels();
+            var viewData = new SearchViewModel(model.sortField)
+            {
+                HaveSearched = true,
+                SelectedView = model.currentDisplayTab,
+                ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
+                CurrentPage = model.pageNumber,
+                SelectedSortOption = model.sortField
+            };
+            viewData.Result.SetAppliedFacets(model.appliedFacets);
+            viewData.Result.SetAppliedRanges(model.appliedRanges);
+            //viewData.Sets = GetSets();
 
-        viewData.Result = SearchRepository.Search(viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, query, collection, accessRights, pageNumber, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
-        viewData.OneOrMoreSelected = SetSelectedSpecimens(viewData.Result.FoundSpecimens);
-        viewData.SetSortField(sortField);
+            viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
+            //viewData.OneOrMoreSelected = SetSelected(viewData.Result.FoundDocuments);
+            viewData.SetSortField(model.sortField);
 
-        if (selectAll.ToLower() == "true")
-        {
-            viewData.AllSelected = true;
+            if (model.selectAll)
+            {
+                viewData.AllSelected = true;
+            }
+
+            viewData.Query = model.query;
+
+            ModelState.Clear();
+            return PartialView("ResultsPartial", viewData);
+            //TODO - whenever returning ResultsPartial, need to make sure select-all bool is added to parameters being passed backwards and forwards.
         }
 
-        viewData.Query = query;
+        /*private bool SetSelectedDocument(Dictionary<Guid, DocumentSummary> summaries)
+        {
+            bool specimensSelected = false;
+            if (Session["SelectedDocument"] != null)
+            {
+                var selectedSpecimen = (List<string>)Session["SelectedSpecimens"];
 
-        ModelState.Clear();
-        return PartialView("ResultsPartial", viewData);
-        //TODO - whenever returning ResultsPartial, need to make sure select-all bool is added to parameters being passed backwards and forwards.
+                foreach (var key in summaries.Keys)
+                {
+                    var summary = summaries[key];
+                    if (selectedSpecimen.Contains(summary.SpecimenId.ToString().ToLower()))
+                    {
+                        summary.Selected = true;
+                        specimensSelected = true;
+                    }
+                }
+            }
+            return specimensSelected;
+        }*/
     }
 
-    [HttpPost]
+   /*[HttpPost]
     public ActionResult ToggleAll(string selected, string query, string collection, string appliedFacets, string appliedRanges)
     {
         query = Utility.ReplaceEscapedCharacters(query);
