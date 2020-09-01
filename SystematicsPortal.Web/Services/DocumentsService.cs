@@ -5,11 +5,11 @@ using SystematicsPortal.Web.Services.Interfaces;
 
 namespace SystematicsPortal.Web.Services
 {
-    public class DocumentService : IDocumentService
+    public class DocumentsService : IDocumentsService
     {
         public readonly ISystematicsDataClient _apiClient;
 
-        public DocumentService(ISystematicsDataClient apiClient)
+        public DocumentsService(ISystematicsDataClient apiClient)
         {
             _apiClient = apiClient;
         }
