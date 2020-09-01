@@ -7,6 +7,8 @@ namespace SystematicsPortal.Web.Views.Documents.Components.Concepts
     {
         public List<Concept> Concepts { get; set; }
 
+        public Dictionary<string, string> Labels { get; set; }
+
         public ConceptsViewModel()
         {
             Concepts = new List<Concept>();

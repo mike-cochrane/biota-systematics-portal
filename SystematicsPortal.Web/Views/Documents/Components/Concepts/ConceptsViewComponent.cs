@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace SystematicsPortal.Web.ViewComponents
 {
@@ -13,6 +14,14 @@ namespace SystematicsPortal.Web.ViewComponents
 
             if (data != null)
             {
+                viewModel.Labels = new Dictionary<string, string>() {
+                    {"Name", "Name"}, 
+                    {"AccordingTo", "Reference"}
+                };
+
+                // TODO: Obtain labels from a language service
+                // viewModel.Labels = _service.getLabels("Concepts");
+
                 foreach (var conceptXml in data.Elements("Concept"))
                 {
                     viewModel.Concepts.Add(new Concept()
