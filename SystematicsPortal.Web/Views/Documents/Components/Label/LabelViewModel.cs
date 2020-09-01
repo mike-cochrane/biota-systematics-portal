@@ -3,6 +3,7 @@
     public class LabelViewModel
     {
         public string Text { get; set; }
+        
         public LabelViewModel()
         {
         }
