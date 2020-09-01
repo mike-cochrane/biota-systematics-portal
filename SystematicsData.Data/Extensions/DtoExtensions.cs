@@ -1,4 +1,5 @@
-﻿using SystematicsData.Data.Models;
+﻿using System.Linq;
+using SystematicsData.Data.Models;
 
 namespace SystematicsData.Data.Extensions
 {
@@ -17,6 +18,39 @@ namespace SystematicsData.Data.Extensions
             };
 
             return contentConfigurationDto;
+        }
+
+        public static SystematicsData.Models.Entities.Access.FieldGroup ToDto(this FieldGroup fieldGroupDb)
+        {
+            var fieldGroupDto = new SystematicsData.Models.Entities.Access.FieldGroup()
+            {
+                FieldGroupId = fieldGroupDb.FieldGroupId,
+                DisplayFormat = fieldGroupDb.DisplayFormat,
+                DisplayOrder = fieldGroupDb.DisplayOrder,
+                DisplayTitle = fieldGroupDb.DisplayTitle,
+                DocumentClass = fieldGroupDb.DocumentClass,
+                Name = fieldGroupDb.Name,
+                FieldConfigurations = fieldGroupDb.FieldConfiguration.Select(fc => fc.ToDto()),
+            };
+
+            return fieldGroupDto;
+        }
+
+        public static SystematicsData.Models.Entities.Access.FieldConfiguration ToDto(this FieldConfiguration fieldConfigurationDb)
+        {
+            var fieldConfigurationDto = new SystematicsData.Models.Entities.Access.FieldConfiguration()
+            {
+                FieldConfigurationId = fieldConfigurationDb.FieldConfigurationId,
+                DisplayFormat = fieldConfigurationDb.DisplayFormat,
+                DisplayOrder = fieldConfigurationDb.DisplayOrder,
+                DataDocumentXpath = fieldConfigurationDb.DataDocumentXpath,
+                DisplayAsIcon = fieldConfigurationDb.DisplayAsIcon,
+                // Should the harvester process fill in the labels?
+                //Labels = fieldConfigurationDb.Labels,
+                ShowAlways = fieldConfigurationDb.ShowAlways
+            };
+
+            return fieldConfigurationDto;
         }
     }
 }

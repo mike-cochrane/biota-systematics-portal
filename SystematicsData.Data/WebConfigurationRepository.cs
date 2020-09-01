@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SystematicsData.Data.Extensions;
 using SystematicsData.Data.Interfaces;
+using SystematicsData.Models.Configuration;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Models.Entities.Annotations;
 using SystematicsData.Models.Infrastructure.Exceptions;
@@ -53,6 +54,39 @@ namespace SystematicsData.Data
             return contentConfigurations;
         }
 
+        /// <summary>
+        /// Get field configuration to be able to proper display the document in the web site.
+        /// </summary>
+        /// <returns>Field grpups with field configurations with each specific field</returns>
+        public async Task<FieldGroups> GetFieldGroupConfigurations(string documentClass)
+        {
+            var fieldGroups = new FieldGroups();
+
+            var fieldGroupListtDb = await _context.FieldGroups.Include(fg=>fg.FieldConfiguration).Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
+
+            foreach (var fieldGroupDb in fieldGroupListtDb)
+            {
+                var fieldGroup = fieldGroupDb.ToDto();
+
+                GetFieldsFromDocumentStore(ref fieldGroup);
+
+                fieldGroups.FieldGroupsList.Add(fieldGroup);
+            }
+
+            return fieldGroups;
+        }
+
+        private void GetFieldsFromDocumentStore(ref FieldGroup fieldGroup)
+        {
+
+            foreach (var fieldConfiguration in fieldGroup.FieldConfigurations)
+            {
+                var documentDb = GetDocumentDb(Guid.Parse(fieldConfiguration.ExternalId));
+
+                fieldConfiguration.Field = SerializationHelper.Deserialize<Field>(documentDb.ToString());
+            }
+        }
+
         private async Task<Content> GetContentFromDocumentStoreAsync(Guid externalId)
         {
             var documentDb = await GetDocumentDb(externalId);
@@ -64,7 +98,7 @@ namespace SystematicsData.Data
 
         private async Task<Models.Document> GetDocumentDb(Guid externalId)
         {
-            var documentDb = await _context.Documents.FirstOrDefaultAsync(doc => doc.DocumentId == externalId);
+            var documentDb = await _context.Documents.FindAsync(externalId);
 
             if (documentDb is null)
             {
