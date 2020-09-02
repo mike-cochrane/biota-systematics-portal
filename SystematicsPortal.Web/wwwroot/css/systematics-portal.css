@@ -311,3 +311,31 @@ h1 strong {
     width: 30px;
     height: auto;
 }
+
+/* Paging start */
+.paging {
+    display: inline-block;
+    margin-left: -3rem;
+}
+
+.paging li {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.paging ul {
+    list-style-type: none;
+}
+
+.current-page {
+    font-weight: 700;
+}
+/* Paging end */
+
+.search-help a {
+    color: white;
+}
