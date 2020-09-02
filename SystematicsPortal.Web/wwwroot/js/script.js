@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#back-to-top").hide();
-    var topOfOthDiv = $("#section-head").offset().top;
+    var topOfOthDiv = $("#page-content").offset().top;
     $(window).scroll(function() {
         if($(window).scrollTop() > topOfOthDiv) { 
             $("#back-to-top").fadeIn(250);
