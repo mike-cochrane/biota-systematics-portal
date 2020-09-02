@@ -81,20 +81,20 @@
                         if (Model.SelectedView.Equals("list"))
                         {
                             listActiveClass = "active";
-                            <ul class="nav nav-tabs" id="search-results">
+                            @*<ul class="nav nav-tabs" id="search-results">
                                 <li class="active"><a id="list" href="#list-result" data-toggle="tab" class="btn">List View</a></li>
                                 <li><a id="grid" href="#grid-result" data-toggle="tab" class="btn">Grid View</a></li>
-                            </ul>
+                            </ul>*@
                         }
                         else if (Model.SelectedView.Equals("grid"))
                         {
                             gridActiveClass = "active";
-                            <ul class="nav nav-tabs" id="search-results">
+                            @*<ul class="nav nav-tabs" id="search-results">
                                 <li><a id="list" href="#list-result" data-toggle="tab" class="btn">List View</a></li>
                                 <li class="active"><a id="grid" href="#grid-result" data-toggle="tab" class="btn">Grid View</a></li>
-                            </ul>
+                            </ul>*@
                         }
-                        <br />
+                        <!--<br />-->
                         <div class="tab-content">
                             <div class="tab-pane @listActiveClass" id="list-result">
                                 <div class="specimen-list-item">
@@ -113,8 +113,8 @@
                                         <div class="pull-left">
                                             <input type="checkbox" name="selected" id="@summary.Id.ToString()" class="@summary.Id.ToString()" onclick="toggleSpecimen(this)" @*checked="@summary.Selected"*@ />
                                             @Html.ActionLink(@summary.GetHashCode() + " : " + summary.Title, "Details", "Search", new { id = @summary.Id.ToString(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
-                                        </div>
-                                        <div class="pull-right">
+                                            </ div >
+                                            < div class="pull-right">
                                             @*@if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
                                 {*@
                                             @*<i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
