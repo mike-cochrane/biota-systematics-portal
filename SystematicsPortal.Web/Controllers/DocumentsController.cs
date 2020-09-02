@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Microsoft.AspNetCore.Mvc;
 using SystematicsPortal.Web.Services;
 using SystematicsPortal.Web.Services.Interfaces;
 using SystematicsPortal.Web.ViewModels.Documents;

@@ -6,7 +6,6 @@ namespace SystematicsData.Data.Configuration
 {
     public class DocumentConfiguration : IEntityTypeConfiguration<Document>
     {
-
         public void Configure(EntityTypeBuilder<Document> builder)
         {
             builder.ToTable("Document", "documents");

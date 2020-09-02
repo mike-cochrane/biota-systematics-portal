@@ -6,7 +6,6 @@ namespace SystematicsData.Data.Configuration
 {
     public class ContentConfigurationConfiguration : IEntityTypeConfiguration<ContentConfiguration>
     {
-
         public void Configure(EntityTypeBuilder<ContentConfiguration> builder)
         {
             builder.ToTable("ContentConfiguration", "web");

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace SystematicsPortal.Web.Models
@@ -9,6 +9,18 @@ namespace SystematicsPortal.Web.Models
 
         public string ViewComponent { get; set; }
 
+        public FieldData FieldData { get; set; }
+    }
+
+    public class FieldData
+    {
         public XElement Data { get; set; }
+
+        public Dictionary<string, string> DataLabels { get; set; }
+
+        public FieldData()
+        {
+            DataLabels = new Dictionary<string, string>();
+        }
     }
 }

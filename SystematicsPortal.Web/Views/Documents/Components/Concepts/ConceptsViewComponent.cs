@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using SystematicsPortal.Web.Models;
 
 namespace SystematicsPortal.Web.ViewComponents
 {
     public class ConceptsViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(XElement data)
+        public async Task<IViewComponentResult> InvokeAsync(FieldData data)
         {
             var viewModel = new ConceptsViewModel();
 
@@ -22,7 +23,7 @@ namespace SystematicsPortal.Web.ViewComponents
                 // TODO: Obtain labels from a language service
                 // viewModel.Labels = _service.getLabels("Concepts");
 
-                foreach (var conceptXml in data.Elements("Concept"))
+                foreach (var conceptXml in data.Data.Elements("Concept"))
                 {
                     viewModel.Concepts.Add(new Concept()
                     {

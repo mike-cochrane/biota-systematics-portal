@@ -6,9 +6,13 @@ namespace SystematicsPortal.Web.Views.Documents.Components.Biostatus
     {
         public List<Biostatus> Biostatuses { get; set; }
 
+        public Dictionary<string, string> Labels { get; set; }
+
         public BiostatusViewModel()
         {
             Biostatuses = new List<Biostatus>();
+
+            Labels = new Dictionary<string, string>();
         }
     }
 

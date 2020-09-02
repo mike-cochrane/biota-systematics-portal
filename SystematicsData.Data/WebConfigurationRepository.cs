@@ -17,11 +17,13 @@ namespace SystematicsData.Data
     public class WebConfigurationRepository : IWebConfigurationRepository
     {
         private readonly NamesWebContext _context;
+
         private readonly ILogger _logger;
 
         public WebConfigurationRepository(NamesWebContext context, ILogger<WebConfigurationRepository> logger)
         {
             _context = context;
+
             _logger = logger;
         }
 

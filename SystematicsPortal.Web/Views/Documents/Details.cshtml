@@ -3,7 +3,6 @@
 }
 
 @model SystematicsPortal.Web.ViewModels.Documents.DetailsViewModel
-
 @* <partial name="~/Views/Shared/_NavAndSearch.cshtml" /> *@
 
 <div class="row">
@@ -25,10 +24,10 @@
             </div>
         </div>
         <div id="page-content" class="page-content">
-            @foreach (var field in Model.Fields.Where(o => o.Data != null))
+            @foreach (var field in Model.Fields.Where(o => o?.FieldData?.Data != null))
             {
                 string sectionId = "section-" + field.Label.ToLower().Replace(" ", "");
-                
+
                 <div id="@sectionId">
                     <div class="heading-divider"></div>
                     <div id="@(sectionId+"-expanded")" class="clickable" onclick="ToggleVisibility(this, '@('#'+sectionId)', 'collapsed')">
@@ -38,7 +37,7 @@
                         <h3 class="sub-heading"><i class="fas fa-angle-down"></i> @field.Label</h3>
                     </div>
                     <div id="@(sectionId+"-content")">
-                        @await Component.InvokeAsync(field.ViewComponent, field.Data)
+                        @await Component.InvokeAsync(field.ViewComponent, field.FieldData)
                     </div>
                 </div>
             }

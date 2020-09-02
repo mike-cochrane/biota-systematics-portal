@@ -6,7 +6,6 @@ namespace SystematicsData.Data.Configuration
 {
     public class FieldConfigurationConfiguration : IEntityTypeConfiguration<FieldConfiguration>
     {
-
         public void Configure(EntityTypeBuilder<FieldConfiguration> builder)
         {
             builder.ToTable("FieldConfiguration", "web");

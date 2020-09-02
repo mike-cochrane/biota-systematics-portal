@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsPortal.Web.Models;
 
 namespace SystematicsPortal.Web.ViewComponents
 {
@@ -15,14 +16,14 @@ namespace SystematicsPortal.Web.ViewComponents
             _settings = settings;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(XElement data)
+        public async Task<IViewComponentResult> InvokeAsync(FieldData data)
         {
             var viewModel = new NameHyperlinkViewModel();
 
             if (data != null)
             {
-                viewModel.Text = data.Value;
-                viewModel.Href = new Uri(_settings.NameHyperlinkBase, data.Attribute("nameId")?.Value);
+                viewModel.Text = data.Data.Value;
+                viewModel.Href = new Uri(_settings.NameHyperlinkBase, data.Data.Attribute("nameId")?.Value);
                 viewModel.Title = "";
             }
 

@@ -2,18 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsPortal.Web.Models;
 
 namespace SystematicsPortal.Web.ViewComponents
 {
     public class CollectionsViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(XElement data)
+        public async Task<IViewComponentResult> InvokeAsync(FieldData data)
         {
             var viewModel = new CollectionsViewModel();
 
             if (data != null)
             {
-                foreach (var conceptXml in data.Elements("CollectionObject"))
+                foreach (var conceptXml in data.Data.Elements("CollectionObject"))
                 {
                     string landDistrict = "";
                     string country = "";

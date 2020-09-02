@@ -1,8 +1,8 @@
-﻿using SystematicsPortal.Web.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using SystematicsPortal.Web.Models;
 
 namespace SystematicsPortal.Web.Services
 {
@@ -23,7 +23,11 @@ namespace SystematicsPortal.Web.Services
 
                 if (rootNode != null)
                 {
-                    field.Data = XElement.Parse(rootNode.OuterXml);
+                    field.FieldData = new FieldData()
+                    {
+                        Data = XElement.Parse(rootNode.OuterXml),
+                        DataLabels = fieldDefinition.DataLabels
+                    };
                 }
 
                 field.ViewComponent = fieldDefinition.Template;
