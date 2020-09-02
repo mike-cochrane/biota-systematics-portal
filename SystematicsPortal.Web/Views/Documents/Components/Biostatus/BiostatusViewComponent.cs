@@ -17,8 +17,9 @@ namespace SystematicsPortal.Web.ViewComponents
                 {
                     viewModel.Biostatuses.Add(new Biostatus()
                     {
-                        Occurence = biostatusXml.Element("Occurrence").Value,
-                        Georegion = biostatusXml.Element("Georegion").Value
+                        Origin = biostatusXml.Element("Origin")?.Value,
+                        Occurence = biostatusXml.Element("Occurrence")?.Value,
+                        Georegion = biostatusXml.Element("Georegion")?.Value
                     });
                 }
             }
