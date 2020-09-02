@@ -11,11 +11,10 @@ namespace SystematicsData.Data.Configuration
         {
             builder.ToTable("FieldGroup", "web");
 
+            builder.HasKey(key => key.FieldGroupId);
             builder.Property(e => e.FieldGroupId).ValueGeneratedNever();
 
-            builder.Property(e => e.DisplayFormat).HasMaxLength(250);
-
-            builder.Property(e => e.DisplayTitle).HasMaxLength(200);
+            builder.Property(e => e.Labels).HasColumnType("xml");
 
             builder.Property(e => e.DocumentClass)
                 .IsRequired()

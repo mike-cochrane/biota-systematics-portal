@@ -60,9 +60,9 @@ namespace SystematicsData.Data
         /// Get field configuration to be able to proper display the document in the web site.
         /// </summary>
         /// <returns>Field grpups with field configurations with each specific field</returns>
-        public async Task<FieldGroups> GetFieldGroupConfigurations(string documentClass)
+        public async Task<FieldGroupsDto> GetFieldGroupConfigurations(string documentClass)
         {
-            var fieldGroups = new FieldGroups();
+            var fieldGroups = new FieldGroupsDto();
 
             var fieldGroupListtDb = await _context.FieldGroups.Include(fg=>fg.FieldConfiguration).Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
 
@@ -72,13 +72,13 @@ namespace SystematicsData.Data
 
                 GetFieldsFromDocumentStore(ref fieldGroup);
 
-                fieldGroups.FieldGroupsList.Add(fieldGroup);
+                fieldGroups.FieldGroups.Add(fieldGroup);
             }
 
             return fieldGroups;
         }
 
-        private void GetFieldsFromDocumentStore(ref FieldGroup fieldGroup)
+        private void GetFieldsFromDocumentStore(ref FieldGroupDto fieldGroup)
         {
 
             foreach (var fieldConfiguration in fieldGroup.FieldConfigurations)

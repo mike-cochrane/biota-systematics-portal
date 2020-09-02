@@ -11,11 +11,13 @@ namespace SystematicsPortal.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IContentService _contentService;
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(IContentService contentService, ILogger<HomeController> logger)
         {
             _contentService = contentService;
+        
             _logger = logger;
         }
 

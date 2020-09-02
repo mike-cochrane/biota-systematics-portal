@@ -10,17 +10,8 @@ namespace SystematicsData.Data.Configuration
         {
             builder.ToTable("FieldConfiguration", "web");
 
+            builder.HasKey(key => key.FieldConfigurationId);
             builder.Property(e => e.FieldConfigurationId).ValueGeneratedNever();
-
-            builder.Property(e => e.DataDocumentXpath)
-                .HasColumnName("DataDocumentXPath")
-                .HasMaxLength(500);
-
-            builder.Property(e => e.DisplayAsIcon).HasMaxLength(150);
-
-            builder.Property(e => e.DisplayFormat).HasMaxLength(150);
-
-            builder.Property(e => e.DocumentClass).HasMaxLength(200);
 
             builder.Property(e => e.Labels).HasColumnType("xml");
 

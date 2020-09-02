@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using SystematicsData.Data.Models;
+using SystematicsData.Models.Entities.Access;
 
 namespace SystematicsData.Data.Extensions
 {
     public static class DtoExtensions
     {
-        public static SystematicsData.Models.Entities.Access.ContentConfiguration ToDto(this ContentConfiguration contentConfigurationDb)
+        public static SystematicsData.Models.Entities.Access.ContentConfiguration ToDto(this Models.ContentConfiguration contentConfigurationDb)
         {
             var contentConfigurationDto = new SystematicsData.Models.Entities.Access.ContentConfiguration()
             {
@@ -20,12 +21,11 @@ namespace SystematicsData.Data.Extensions
             return contentConfigurationDto;
         }
 
-        public static SystematicsData.Models.Entities.Access.FieldGroup ToDto(this FieldGroup fieldGroupDb)
+        public static SystematicsData.Models.Entities.Access.FieldGroupDto ToDto(this FieldGroup fieldGroupDb)
         {
-            var fieldGroupDto = new SystematicsData.Models.Entities.Access.FieldGroup()
+            var fieldGroupDto = new FieldGroupDto()
             {
                 FieldGroupId = fieldGroupDb.FieldGroupId,
-                DisplayFormat = fieldGroupDb.DisplayFormat,
                 DisplayOrder = fieldGroupDb.DisplayOrder,
                 DisplayTitle = fieldGroupDb.DisplayTitle,
                 DocumentClass = fieldGroupDb.DocumentClass,
@@ -36,12 +36,11 @@ namespace SystematicsData.Data.Extensions
             return fieldGroupDto;
         }
 
-        public static SystematicsData.Models.Entities.Access.FieldConfiguration ToDto(this FieldConfiguration fieldConfigurationDb)
+        public static SystematicsData.Models.Entities.Access.FieldConfigurationDto ToDto(this FieldConfiguration fieldConfigurationDb)
         {
-            var fieldConfigurationDto = new SystematicsData.Models.Entities.Access.FieldConfiguration()
+            var fieldConfigurationDto = new FieldConfigurationDto()
             {
                 FieldConfigurationId = fieldConfigurationDb.FieldConfigurationId,
-                DisplayFormat = fieldConfigurationDb.DisplayFormat,
                 DisplayOrder = fieldConfigurationDb.DisplayOrder,
                 DataDocumentXpath = fieldConfigurationDb.DataDocumentXpath,
                 DisplayAsIcon = fieldConfigurationDb.DisplayAsIcon,
