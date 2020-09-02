@@ -5,14 +5,32 @@
     @foreach (var biostatus in Model.Biostatuses)
     {
         <div>
-            <h4 class="pb-4">@Model.Labels["//Document/BiostatusValue[@isActive='true']"]</h4>
+            <h4 class="pb-4">Biostatus</h4>
+            @if(biostatus.Origin != null) {
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Origin</label>
+                    <div class="col-sm-8 col-lg-9">@biostatus.Origin</div>
+                </div>
+            }
+            @if(biostatus.Occurence != null) {
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Occurence</label>
+                    <div class="col-sm-8 col-lg-9">@biostatus.Occurence</div>
+                </div>
+            }
+            @if(biostatus.Georegion != null) {
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-3">Georegion</label>
+                    <div class="col-sm-8 col-lg-9">@biostatus.Georegion</div>
+                </div>
+            }
             <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">@Model.Labels["//Document/BiostatusValue[@isActive='true']/Occurrence"]</label>
-                <div class="col-sm-8 col-lg-9">@biostatus.Occurence</div>
+                <label class="col-sm-4 col-lg-3">Biostatus Reference</label>
+                <div class="col-sm-8 col-lg-9">TODO: REFERENCE</div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-lg-3">@Model.Labels["//Document/BiostatusValue[@isActive='true']/Georegion"]</label>
-                <div class="col-sm-8 col-lg-9">@biostatus.Georegion</div>
+                <label class="col-sm-4 col-lg-3">Note</label>
+                <div class="col-sm-8 col-lg-9">TODO: NOTE</div>
             </div>
         </div>
         

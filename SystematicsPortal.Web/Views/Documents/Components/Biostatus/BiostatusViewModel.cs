@@ -18,6 +18,8 @@ namespace SystematicsPortal.Web.Views.Documents.Components.Biostatus
 
     public class Biostatus
     {
+        public string Origin { get; set; }
+
         public string Occurence { get; set; }
 
         public string Georegion { get; set; }
