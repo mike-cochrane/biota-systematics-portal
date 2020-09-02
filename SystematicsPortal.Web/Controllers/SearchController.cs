@@ -2,11 +2,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Xml;
+using SystematicsData.Search.Models.Search;
 using SystematicsPortal.Web.Helpers;
 using SystematicsPortal.Web.Models;
 using SystematicsPortal.Web.Services.Interfaces;
+using SystematicsPortal.Web.ViewModels;
 
 namespace SystematicsPortal.Web.Controllers
 {
@@ -27,12 +30,18 @@ namespace SystematicsPortal.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(string query, string appliedFacets, string appliedRanges, string currentDisplayTab, string pageNumber, string sortField, string back, string errorMessage)
         {
+            //create query log
+            //Query q = CreateQueryLog(query, collectionId, string.Empty, string.Empty);
+            bool success = false;
+            int specimenCount = -1;
+
             try
             {
                 //await CallContentServiceAsync();
-
-                bool success = false;
-                var viewData = new SearchViewModel(null, null);
+                var viewData = new SearchViewModel(sortField)
+                {
+                    ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE
+                };
 
                 string uncorrectedQuery = String.Empty;
                 if (query != null)
@@ -53,10 +62,14 @@ namespace SystematicsPortal.Web.Controllers
                     selectedPage = Convert.ToInt32(pageNumber);
                 }
                 viewData.CurrentPage = selectedPage;
-                sortField = "Title";
+                sortField = "title";
+
+                viewData.HaveSearched = true;
+                viewData.Result.SetAppliedFacets(appliedFacets);
+                viewData.Result.SetAppliedRanges(appliedRanges);
 
                 // viewData.Result = await _searchService.Search(query, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
-                viewData.Result = await _searchService.Search(query, null, null, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                viewData.Result = await _searchService.Search(query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, selectedPage, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
                 //ViewComponent("SearchQuery", new { query = query }); // don't think this does anything.
 
                 if (query == null)
@@ -72,18 +85,26 @@ namespace SystematicsPortal.Web.Controllers
                 if (viewData.Result != null)
                 {
                     success = true;
-                    //specimenCount = viewData.Result.TotalSpecimens;
+                    specimenCount = viewData.Result.TotalSpecimens;
                 }
 
+                ModelState.Clear();
                 return View(viewData);
             }
+            /*catch (SystematicsPortalWebException ex)
+            {
+                return RedirectToAction("Index", new { query = query, errorMessage = ex.Message });
+            }*/
             catch (Exception e)
             {
                 throw e;
             }
             finally
             {
-                // do something
+                if (back != null)
+                {
+                    //SubmitQueryLog(q, success, specimenCount);
+                }
             }
 
         }
@@ -329,37 +350,113 @@ namespace SystematicsPortal.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ResultsPartialAsync(string selectedFacet, string selectedFacetType, string selectedValue, string selectedUpperValue,
-                                    string query, string appliedFacets, string appliedRanges, bool addRemoveFilterToggle,
-                                    string currentDisplayTab, string sortField, int pageNumber, string selectAll)
+        public async Task<ActionResult> ResultsPartialAsync([FromBody] SearchQueryViewModel model)
         {
 
-            query = Utility.ReplaceEscapedCharacters(query);
+            model.query = Utility.ReplaceEscapedCharacters(model.query);
 
-            appliedFacets = Utility.ReplaceEscapedCharacters(appliedFacets);
-            appliedRanges = Utility.ReplaceEscapedCharacters(appliedRanges);
+            model.appliedFacets = Utility.ReplaceEscapedCharacters(model.appliedFacets);
+            string allFacets = model.appliedFacets;
+            model.appliedRanges = Utility.ReplaceEscapedCharacters(model.appliedRanges);
+            string allRanges = model.appliedRanges;
+
+            /*if (model.selectedFacetType.ToLower().Equals("text"))
+            {
+                string current = "|" + model.selectedFacet + "|" + model.selectedValue;
+                if (model.toggleOn)
+                {
+                    allFacets += current;
+                }
+                else
+                {
+                    allFacets.Replace(current, "");
+                }
+            }
+            else if (model.selectedFacetType.ToLower().Equals("range"))
+            {
+                string current = "|" + model.selectedFacet + "|" + model.selectedValue + "|" + model.selectedUpperValue;
+                if (model.toggleOn)
+                {
+                    allRanges += current;
+                }
+                else
+                {
+                    allRanges.Replace(current, "");
+                }
+            }*/
 
             try
             {
-                var viewData = new SearchViewModel( null, null)
+                var viewData = new SearchViewModel(model.sortField)
                 {
                     HaveSearched = true,
-                    SelectedView = currentDisplayTab,
+                    SelectedView = model.currentDisplayTab,
                     ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
-                    CurrentPage = pageNumber
+                    CurrentPage = model.pageNumber
                 };
 
-                viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(appliedFacets, selectedFacet, selectedValue, selectedFacetType, addRemoveFilterToggle);
-                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(appliedRanges, selectedFacet, selectedValue, selectedFacetType, selectedUpperValue, addRemoveFilterToggle);
+                viewData.Result.AppliedFacets = _searchService.SetAppliedFacets(model.appliedFacets, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.toggleOn);
+                viewData.Result.AppliedRanges = _searchService.SetAppliedRanges(model.appliedRanges, model.selectedFacet, model.selectedValue, model.selectedFacetType, model.selectedUpperValue.ToString(), model.toggleOn);
 
-                viewData.Result = await _searchService.Search(query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, pageNumber, NUMBER_OF_RESULTS_PER_PAGE, sortField, "ascending");
+                if (model.selectedFacetType.ToLower().Equals("text"))
+                {
+                    var appliedFacet = new SelectedFacetValue()
+                    {
+                        FacetName = model.selectedFacet,
+                        ValueName = model.selectedValue
+                    };
+                    if (model.toggleOn)
+                    {
+                        bool testBool = viewData.Result.ContainsAppliedFacet(appliedFacet);
+                        if (!viewData.Result.ContainsAppliedFacet(appliedFacet))
+                        {
+                            viewData.Result.AppliedFacets.Add(appliedFacet);
+                        }
+                    }
+                    else
+                    {
+                        if (viewData.Result.ContainsAppliedFacet(appliedFacet))
+                        {
+                            viewData.Result.RemoveAppliedFacet(appliedFacet);
+                        }
+                    }
+                }
+                else if (model.selectedFacetType.ToLower().Equals("range"))
+                {
+                    if (model.toggleOn)
+                    {
+                        if (model.selectedValue.Contains('.'))
+                        {
+                            model.selectedValue = model.selectedValue.Split('.')[0];
+                        }
+                        if (model.selectedUpperValue.ToString().Contains('.'))
+                        {
+                            model.selectedUpperValue = Convert.ToInt32(model.selectedUpperValue.ToString().Split('.')[0]);
+                        }
+
+                        var appliedRange = new SelectedRange()
+                        {
+                            FacetName = model.selectedFacet,
+                            MinimumValue = Convert.ToInt32(model.selectedValue),
+                            MaximumValue = Convert.ToInt32(model.selectedUpperValue)
+                        };
+
+                        viewData.Result.AddOrUpdateAppliedRange(appliedRange);
+                    }
+                    else
+                    {
+                        viewData.Result.RemoveAppliedRange(model.selectedFacet);
+                    }
+                }
+
+                viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
                 
                 // TODO: Implement following method if it's necessary
                 //viewData.OneOrMoreSelected = SetSelectedSpecimens(viewData.Result.FoundSpecimens);
-                viewData.SetSortField(sortField);
-                viewData.Query = query;
+                viewData.SetSortField(model.sortField);
+                viewData.Query = model.query;
 
-                if (selectAll.ToLower() == "true")
+                if (model.selectAll)
                 {
                     viewData.AllSelected = true;
                 }
@@ -367,8 +464,9 @@ namespace SystematicsPortal.Web.Controllers
                 ModelState.Clear();
                 return PartialView(viewData);
             }
-            catch (Exception)
+            catch (Exception error)
             {
+                string test = error.Message;
                 /*TODO - really need to return an error message to the user here, otherwise it just looks like their click did nothing*/
                 throw;
             }
@@ -379,5 +477,164 @@ namespace SystematicsPortal.Web.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Sort([FromBody] SearchQueryViewModel model)
+        {
+            model.query = Utility.ReplaceEscapedCharacters(model.query);
+
+            var viewData = new SearchViewModel(model.sortField)
+            {
+                HaveSearched = true,
+                SelectedView = model.currentDisplayTab,
+                ResultsPerPage = NUMBER_OF_RESULTS_PER_PAGE,
+                CurrentPage = model.pageNumber,
+                SelectedSortOption = model.sortField
+            };
+            viewData.Result.SetAppliedFacets(model.appliedFacets);
+            viewData.Result.SetAppliedRanges(model.appliedRanges);
+            //viewData.Sets = GetSets();
+
+            viewData.Result = await _searchService.Search(model.query, viewData.Result.AppliedFacets, viewData.Result.AppliedRanges, model.pageNumber, NUMBER_OF_RESULTS_PER_PAGE, model.sortField, "ascending");
+            //viewData.OneOrMoreSelected = SetSelected(viewData.Result.FoundDocuments);
+            viewData.SetSortField(model.sortField);
+
+            if (model.selectAll)
+            {
+                viewData.AllSelected = true;
+            }
+
+            viewData.Query = model.query;
+
+            ModelState.Clear();
+            return PartialView("ResultsPartial", viewData);
+            //TODO - whenever returning ResultsPartial, need to make sure select-all bool is added to parameters being passed backwards and forwards.
+        }
+
+        /*private bool SetSelectedDocument(Dictionary<Guid, DocumentSummary> summaries)
+        {
+            bool specimensSelected = false;
+            if (Session["SelectedDocument"] != null)
+            {
+                var selectedSpecimen = (List<string>)Session["SelectedSpecimens"];
+
+                foreach (var key in summaries.Keys)
+                {
+                    var summary = summaries[key];
+                    if (selectedSpecimen.Contains(summary.SpecimenId.ToString().ToLower()))
+                    {
+                        summary.Selected = true;
+                        specimensSelected = true;
+                    }
+                }
+            }
+            return specimensSelected;
+        }*/
     }
+
+   /*[HttpPost]
+    public ActionResult ToggleAll(string selected, string query, string collection, string appliedFacets, string appliedRanges)
+    {
+        query = Utility.ReplaceEscapedCharacters(query);
+        bool oneOrMoreSelected = false;
+
+        string error = string.Empty;
+
+        try
+        {
+            if (selected.ToLower().Equals("true"))
+            {
+                var result = new SearchResult();
+                result.SetAppliedFacets(appliedFacets);
+                result.SetAppliedRanges(appliedRanges);
+
+                Dictionary<string, int> accessRights = GetUserAccessLevels();
+
+                Session["SelectedSpecimens"] = SearchRepository.GetSpecimenIds(result.AppliedFacets, result.AppliedRanges, query, collection, accessRights);
+                oneOrMoreSelected = true;
+            }
+            else
+            {
+                Session["SelectedSpecimens"] = null;
+            }
+        }
+        catch (Exception)
+        {
+            error = "Unable to complete this request.";
+        }
+
+        JSONToggleSpecimenSelectionModel viewData = new JSONToggleSpecimenSelectionModel()
+        {
+            Error = error,
+            OneOrMoreSelected = oneOrMoreSelected
+        };
+        return Json(viewData, JsonRequestBehavior.AllowGet);
+    }
+
+    [HttpPost]
+    public ActionResult ToggleSelection(string id, string selected)
+    {
+        string error = string.Empty;
+
+        List<string> specimenSelection = null;
+        if (Session["SelectedSpecimens"] != null)
+        {
+            specimenSelection = (List<string>)Session["SelectedSpecimens"];
+        }
+
+        if (selected.ToLower().Equals("true"))
+        {
+            if (specimenSelection == null)
+            {
+                specimenSelection = new List<string>();
+            }
+            if (!specimenSelection.Contains(id.ToLower()))
+            {
+                specimenSelection.Add(id.ToLower());
+            }
+        }
+        else
+        {
+            if (specimenSelection != null)
+            {
+                if (specimenSelection.Contains(id.ToLower()))
+                {
+                    specimenSelection.Remove(id.ToLower());
+                }
+            }
+        }
+
+        Session["SelectedSpecimens"] = specimenSelection;
+
+        bool oneOrMoreSelected = false;
+        if (specimenSelection.Any())
+        {
+            oneOrMoreSelected = true;
+        }
+
+        JSONToggleSpecimenSelectionModel viewData = new JSONToggleSpecimenSelectionModel()
+        {
+            Error = error,
+            OneOrMoreSelected = oneOrMoreSelected
+        };
+        return Json(viewData, JsonRequestBehavior.AllowGet);
+    }*/
+
+
+    /*private void SubmitQueryLog(Query q, bool success, int specimenCount)
+    {
+        q.ReturnedTime = DateTime.Now;
+        q.Success = success;
+        if (success)
+        {
+            q.SpecimenCount = specimenCount;
+        }
+
+        System.ComponentModel.BackgroundWorker bw = new BackgroundWorker();
+        bw.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate (object o, DoWorkEventArgs args)
+        {
+            BackgroundWorker b = o as BackgroundWorker;
+            QueriesRepository.Add(q);
+        });
+        bw.RunWorkerAsync();
+    }*/
 }

@@ -96,10 +96,12 @@ namespace SystematicsPortal.Web.Helpers
 
         public static string ReplaceEscapedCharacters(string text)
         {
-            text = text.Replace("&quot;", "\"");
-            text = text.Replace("%5c-", "-");
-            text = text.Replace("&#215;", "×");
-
+            if(text != null)
+            {
+                text = text.Replace("&quot;", "\"");
+                text = text.Replace("%5c-", "-");
+                text = text.Replace("&#215;", "×");
+            }
             return text;
         }
 

@@ -1,5 +1,13 @@
 $(document).ready(function() {
-    
+    $("#back-to-top").hide();
+    var topOfOthDiv = $("#section-head").offset().top;
+    $(window).scroll(function() {
+        if($(window).scrollTop() > topOfOthDiv) { 
+            $("#back-to-top").fadeIn(250);
+        } else {
+            $("#back-to-top").fadeOut(250);
+        }
+    });
 });
 
 function ToggleVisibility(el, collapsibleItem, showItem) {

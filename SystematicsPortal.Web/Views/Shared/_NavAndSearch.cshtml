@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <div class="col-md-12 other-nav-search">
-        @await Html.PartialAsync("~/Views/Shared/_Navigation.cshtml")
-        @await Component.InvokeAsync("SearchField", (Model != null && !string.IsNullOrEmpty(Model.Query) ? Model.Query : ""))
+        <partial name="~/Views/Shared/_Navigation.cshtml" />
+        @await Component.InvokeAsync("SearchField", (Model != null && Model.GetType().GetProperty("Query") != null && !string.IsNullOrEmpty(Model.Query) ? Model.Query : ""))
     </div>
 </div>

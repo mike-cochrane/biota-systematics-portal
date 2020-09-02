@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Org.XmlUnit.Builder;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Models.Infrastructure.Exceptions;
-using SystematicsData.Models.Interfaces;
 
 namespace SystematicsData.Data
 {
@@ -25,37 +24,36 @@ namespace SystematicsData.Data
         }
 
         /// <summary>
-        /// Get specific document based on document id.
+        /// Get a specific document based on document id.
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns>Document access model with document as XmlDocument property</returns>
-        public async Task<Document> GetDocumentAsync(Guid documentId)
+        public async Task<DocumentDto> GetDocumentAsync(Guid documentId)
         {
-            Document documentAccess = new Document();
-
-            var documentDb = await _context.Document.FirstOrDefaultAsync(doc => doc.DocumentId == documentId);
+            var documentDto = new DocumentDto();
+            var documentDb = await _context.Documents.FindAsync(documentId);
 
             if (documentDb is null)
             {
                 throw new NotFoundException($"Document with Id: {documentId} has not been found", null);
             }
 
-            documentAccess.XmlDocument.LoadXml(documentDb.SerializedDocument);
+            documentDto.XmlDocument = XElement.Parse(documentDb.SerializedDocument);
 
-            return documentAccess;
+            return documentDto;
         }
 
-        public Task InsertDocument(Models.Entities.Database.Document document)
+        public Task InsertDocument(Models.Document document)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Document> GetDocuments(IEnumerable<Guid> documentIds)
+        public IEnumerable<DocumentDto> GetDocuments(IEnumerable<Guid> documentIds)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(Document document)
+        public void UpdateDocument(DocumentDto document)
         {
             throw new NotImplementedException();
         }
@@ -108,7 +106,7 @@ namespace SystematicsData.Data
 
             _logger.LogDebug("{Action} - DocumentId: {documentId} - Document: {document}", "Save Document", documentId, document);
 
-            var storeDocument = await _context.Document.FindAsync(new Guid(documentId));
+            var storeDocument = await _context.Documents.FindAsync(new Guid(documentId));
 
             if (storeDocument != null)
             {
@@ -126,20 +124,20 @@ namespace SystematicsData.Data
             }
             else
             {
-                storeDocument = new Models.Entities.Database.Document
+                storeDocument = new Models.Document
                 {
                     DocumentId = Guid.Parse(documentId),
                     Version = 1,
                     SerializedDocument = document.ToString()
                 };
 
-                await _context.Document.AddAsync(storeDocument);
+                await _context.Documents.AddAsync(storeDocument);
 
                 //     _logger.LogDebug("{Action} - {DocumentId} - Number of documents saved {NumberOfDocuments}", "Update Document", documentId, result);
             }
         }
 
-        public IEnumerable<Document> GetDocuments()
+        public IEnumerable<DocumentDto> GetDocuments()
         {
             throw new NotImplementedException();
         }

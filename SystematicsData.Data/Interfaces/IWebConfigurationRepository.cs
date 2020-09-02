@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
 
-namespace SystematicsData.Models.Interfaces
+namespace SystematicsData.Data.Interfaces
 {
     public interface IWebConfigurationRepository
     {

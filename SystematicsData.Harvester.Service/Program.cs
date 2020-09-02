@@ -8,13 +8,13 @@ using System;
 using System.IO;
 using System.Reflection;
 using SystematicsData.Data;
+using SystematicsData.Data.Interfaces;
 using SystematicsData.Harvester.Service.Clients;
 using SystematicsData.Harvester.Service.Consumers;
 using SystematicsData.Harvester.Service.Helpers;
 using SystematicsData.Harvester.Service.Services;
 using SystematicsData.Harvester.Service.Strategies;
 using SystematicsData.Harvester.Service.Strategies.Interfaces;
-using SystematicsData.Models.Interfaces;
 using SystematicsData.Utility.Helpers;
 using Topshelf;
 

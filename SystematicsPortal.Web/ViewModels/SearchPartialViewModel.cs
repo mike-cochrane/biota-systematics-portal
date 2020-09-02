@@ -11,10 +11,11 @@ namespace SystematicsPortal.Web.Models
         public SelectList Collections { get; set; }
         public string ErrorMessage { get; set; }
 
-        public SearchPartialViewModel(ComboList collectionList, string selectedCollection) {
+        public SearchPartialViewModel()
+        { // ComboList collectionList, string selectedCollection
             Query = String.Empty;
             UncorrectedQuery = String.Empty;
-            SelectedCollection = selectedCollection;
+            // SelectedCollection = selectedCollection;
             // siamac commented to get working temporarily until backend completed - Collections = new SelectList(collectionList.Items, "Key", "DisplayText", SelectedCollection);
             ErrorMessage = String.Empty;
         }

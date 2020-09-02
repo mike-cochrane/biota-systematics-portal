@@ -12,7 +12,7 @@ namespace SystematicsPortal.Web.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string query)
         {
-            SearchViewModel search = new SearchViewModel(null, null, null);
+            SearchViewModel search = new SearchViewModel(null);
             search.Query = query;
 
             return View(search);

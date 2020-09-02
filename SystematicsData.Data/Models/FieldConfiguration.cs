@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SystematicsData.Models.Entities.Database
+namespace SystematicsData.Data.Models
 {
     public class FieldConfiguration
     {

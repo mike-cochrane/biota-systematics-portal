@@ -1,10 +1,12 @@
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using System.Net;
+using SystematicsData.Models.Infrastructure.Exceptions;
 using SystematicsData.Web.Api.Filters;
 using SystematicsData.Web.Api.Helpers;
 using SystematicsData.Web.Api.Infrastructure;
@@ -30,18 +32,26 @@ namespace SystematicsData.Web.Api
             AppSettings appSettings = appSettingsConfigurationSection.Get<AppSettings>();
             services.Configure<AppSettings>(appSettingsConfigurationSection);
 
-
             var connectionString = Configuration.GetConnectionString("NamesWeb");
 
             services.RegisterDependencies(appSettings, connectionString);
 
             services.AddControllers(opts =>
             {
-                opts.OutputFormatters.Add(new XmlSerializerOutputFormatter());
                 opts.Filters.Add<SerilogLoggingActionFilter>();
-            }).AddNewtonsoftJson(options =>
+            })
+                .AddNewtonsoftJson()
+                .AddXmlSerializerFormatters();
+
+            services.AddProblemDetails(config =>
             {
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                config.MapToStatusCode<NotFoundException>((int)HttpStatusCode.NotFound);
+                config.IncludeExceptionDetails = (ctx, ex) =>
+                {
+                    var env = ctx.RequestServices.GetRequiredService<IHostEnvironment>();
+
+                    return env.IsDevelopment();
+                };
             });
         }
 
@@ -52,7 +62,12 @@ namespace SystematicsData.Web.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
+            app.UseProblemDetails();
             app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = LogHelper.EnrichFromRequest);
             app.UseRouting();
             app.UseAuthorization();
