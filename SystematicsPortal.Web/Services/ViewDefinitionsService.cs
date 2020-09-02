@@ -14,12 +14,21 @@ namespace SystematicsPortal.Web.Services
         {
             var viewDefinition = new ViewDefinition();
 
+<<<<<<< HEAD
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Full Name", XPath = "Document/NameFull", Order = 10, Template = "Label" });
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Parent", XPath = "Document/Parent", Order = 20, Template = "NameHyperlink" });
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Authors", XPath = "Document/Authors", Order = 25, Template = "Label" });
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Classification", XPath = "Document/Classification", Order = 30, Template = "Label" });
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Reference", XPath = "Document/ParentReference", Order = 40, Template = "ReferenceHyperlink" });
             viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "CurrentName", XPath = "Document/CurrentName", Order = 50, Template = "NameHyperlink" });
+=======
+            //viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Parent", XPath = "Document/Parent", Order = 15, Template = "NameHyperlink" });
+            viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Heading", XPath = "Document", Order = 10, Template = "Heading" });
+            //viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Authors", XPath = "Document/Authors", Order = 20, Template = "Label" });
+            //viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Classification", XPath = "Document/Classification", Order = 30, Template = "Label" });
+            //viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "Reference", XPath = "Document/ParentReference", Order = 40, Template = "ReferenceHyperlink" });
+            //viewDefinition.FieldDefinitions.Add(new FieldDefinition() { Label = "CurrentName", XPath = "Document/CurrentName", Order = 50, Template = "NameHyperlink" });
+>>>>>>> SYSPTL-397
 
             var fieldDefinition = new FieldDefinition()
             {

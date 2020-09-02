@@ -8,9 +8,17 @@
             <ul class="text-left list-inline">
                 @foreach (var field in Model.Fields.Where(o => o?.FieldData?.Data != null))
                 {
+<<<<<<< HEAD
                     string sectionId = "section-" + field.Label.ToLower().Replace(" ", "");
 
                     <li><a href="@("#"+sectionId)">@field.Label</a></li>
+=======
+                    @if (field.Label != "Heading") {
+                        string sectionId = "section-" + field.Label.ToLower().Replace(" ", "");
+                        
+                        <li><a href="@("#"+sectionId)">@field.Label</a></li>
+                    }
+>>>>>>> SYSPTL-397
                 }
             </ul>
         </div>
