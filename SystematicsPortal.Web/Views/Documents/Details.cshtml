@@ -28,19 +28,25 @@
             @foreach (var field in Model.Fields.Where(o => o.Data != null))
             {
                 string sectionId = "section-" + field.Label.ToLower().Replace(" ", "");
-                
-                <div id="@sectionId">
-                    <div class="heading-divider"></div>
-                    <div id="@(sectionId+"-expanded")" class="clickable" onclick="ToggleVisibility(this, '@('#'+sectionId)', 'collapsed')">
-                        <h3 class="sub-heading"><i class="fas fa-angle-up"></i> @field.Label</h3>
-                    </div>
-                    <div id="@(sectionId+"-collapsed")" style="display: none;" class="clickable" onclick="ToggleVisibility(this, '@('#'+sectionId)', 'expanded')">
-                        <h3 class="sub-heading"><i class="fas fa-angle-down"></i> @field.Label</h3>
-                    </div>
-                    <div id="@(sectionId+"-content")">
+                @if (field.Label == "Heading") {
+                    <div id="section-head">
                         @await Component.InvokeAsync(field.ViewComponent, field.Data)
                     </div>
-                </div>
+                    <br />
+                } else {
+                    <div id="@sectionId">
+                        <div class="heading-divider"></div>
+                        <div id="@(sectionId+"-expanded")" class="clickable" onclick="ToggleVisibility(this, '@('#'+sectionId)', 'collapsed')">
+                            <h3 class="sub-heading"><i class="fas fa-angle-up"></i> @field.Label</h3>
+                        </div>
+                        <div id="@(sectionId+"-collapsed")" style="display: none;" class="clickable" onclick="ToggleVisibility(this, '@('#'+sectionId)', 'expanded')">
+                            <h3 class="sub-heading"><i class="fas fa-angle-down"></i> @field.Label</h3>
+                        </div>
+                        <div id="@(sectionId+"-content")">
+                            @await Component.InvokeAsync(field.ViewComponent, field.Data)
+                        </div>
+                    </div>
+                }
             }
         </div>
     </div>
