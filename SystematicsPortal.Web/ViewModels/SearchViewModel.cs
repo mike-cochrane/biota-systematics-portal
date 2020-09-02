@@ -91,8 +91,9 @@ namespace SystematicsPortal.Web.Models
         {
             ComboList sortOptions = new ComboList();
             sortOptions.AddItem("title", "Title");
-            sortOptions.AddItem("family", "Family");
-            sortOptions.AddItem("taxonRank", "Taxon Rank");
+            sortOptions.AddItem("relevance", "Relevance");
+            sortOptions.AddItem("yearOfPublication", "Year of publication");
+            sortOptions.AddItem("classification", "Classification");
 
             return new SelectList(sortOptions.Items, "Key", "DisplayText", SelectedSortOption);
         }
