@@ -83,4 +83,7 @@
   <ItemGroup>
     <None Include="System Data\FieldGroup-SystemData.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SystematicsPortal.Database.refactorlog" />
+  </ItemGroup>
 </Project>
