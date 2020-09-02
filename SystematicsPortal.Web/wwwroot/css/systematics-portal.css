@@ -335,3 +335,7 @@ h1 strong {
     font-weight: 700;
 }
 /* Paging end */
+
+.search-help a {
+    color: white;
+}

@@ -82,5 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="System Data\FieldGroup-SystemData.sql" />
+    <None Include="SystematicsPortal.Database.SchemaCompare.scmp" />
   </ItemGroup>
 </Project>
