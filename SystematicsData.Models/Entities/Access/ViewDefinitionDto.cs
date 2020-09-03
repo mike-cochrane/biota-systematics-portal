@@ -2,8 +2,13 @@
 
 namespace SystematicsData.Models.Entities.Access
 {
-    public class FieldGroupsDto
+    public class ViewDefinitionDto
     {
         public List<FieldGroupDto> FieldGroups { get; set; }
+
+        public ViewDefinitionDto()
+        {
+            FieldGroups = new List<FieldGroupDto>();
+        }
     }
 }

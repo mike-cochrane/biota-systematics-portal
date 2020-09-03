@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 using SystematicsData.Models.Entities.Access;
 
-namespace SystematicsData.Data.Interfaces
+namespace SystematicsData.Web.Api.Services.Interfaces
 {
-    public interface IWebConfigurationRepository
+    public interface IConfigurationService
     {
-        Task<ContentConfigurations> GetContentConfigurationsAsync(string page);
-
         Task<ViewDefinitionDto> GetViewDefinitionAsync(string documentClass);
     }
 }

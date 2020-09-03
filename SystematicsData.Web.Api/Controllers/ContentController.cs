@@ -22,13 +22,5 @@ namespace SystematicsData.Web.Api.Controllers
 
             return Ok(response);
         }
-
-        [HttpGet("fields/{documentClass}")]
-        public async Task<IActionResult> GetField(string documentClass)
-        {
-            var response = await ((Services.ContentService)_contentService).GetViewDefinitionAsync(documentClass);
-
-            return Ok(response);
-        }
     }
 }

@@ -23,6 +23,7 @@ namespace SystematicsData.Web.Api.Services
 
             services.AddSingleton<ISearch, Search.Search>();
             services.AddScoped<IContentService, ContentService>();
+            services.AddScoped<IConfigurationService, ConfigurationService>();
             services.AddScoped<IDocumentsService, DocumentsService>();
             services.AddScoped<ISearchService, SearchService>();
         }
