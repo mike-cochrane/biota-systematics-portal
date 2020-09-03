@@ -21,7 +21,7 @@ namespace SystematicsData.Data.Extensions
             return contentConfigurationDto;
         }
 
-        public static SystematicsData.Models.Entities.Access.FieldGroupDto ToDto(this FieldGroup fieldGroupDb)
+        public static FieldGroupDto ToDto(this FieldGroup fieldGroupDb)
         {
             var fieldGroupDto = new FieldGroupDto()
             {
@@ -29,14 +29,14 @@ namespace SystematicsData.Data.Extensions
                 DisplayOrder = fieldGroupDb.DisplayOrder,
                 DisplayTitle = fieldGroupDb.DisplayTitle,
                 DocumentClass = fieldGroupDb.DocumentClass,
-                Name = fieldGroupDb.Name,
-                FieldConfigurations = fieldGroupDb.FieldConfiguration.Select(fc => fc.ToDto()),
+                Name = fieldGroupDb.Name
+                //FieldConfigurations = fieldGroupDb.FieldConfiguration.Select(fc => fc.ToDto()),
             };
 
             return fieldGroupDto;
         }
 
-        public static SystematicsData.Models.Entities.Access.FieldConfigurationDto ToDto(this FieldConfiguration fieldConfigurationDb)
+        public static FieldConfigurationDto ToDto(this FieldConfiguration fieldConfigurationDb)
         {
             var fieldConfigurationDto = new FieldConfigurationDto()
             {

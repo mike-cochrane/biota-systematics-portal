@@ -67,11 +67,11 @@ namespace SystematicsData.Data
           //  var fieldGroupListtDb = await _context.FieldGroups.Include(fg => fg.FieldConfiguration).Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
             var fieldGroupListtDb = await _context.FieldGroups.Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
 
-            foreach (var fieldGroupDb in fieldGroupListtDb)
+            foreach (var fieldGroupDb in fieldGroupsDb)
             {
                 var fieldGroup = fieldGroupDb.ToDto();
 
-                GetFieldsFromDocumentStore(ref fieldGroup);
+              //  GetFieldsFromDocumentStore(ref fieldGroup);
 
                 fieldGroups.FieldGroups.Add(fieldGroup);
             }
@@ -82,12 +82,12 @@ namespace SystematicsData.Data
         private void GetFieldsFromDocumentStore(ref FieldGroupDto fieldGroup)
         {
 
-            foreach (var fieldConfiguration in fieldGroup.FieldConfigurations)
-            {
-                var documentDb = GetDocumentDb(Guid.Parse(fieldConfiguration.ExternalId));
+            //foreach (var fieldConfiguration in fieldGroup.FieldConfigurations)
+            //{
+            //    var documentDb = GetDocumentDb(Guid.Parse(fieldConfiguration.ExternalId));
 
-                fieldConfiguration.Field = SerializationHelper.Deserialize<Field>(documentDb.ToString());
-            }
+            //    fieldConfiguration.Field = SerializationHelper.Deserialize<Field>(documentDb.ToString());
+            //}
         }
 
         private async Task<Content> GetContentFromDocumentStoreAsync(Guid externalId)
