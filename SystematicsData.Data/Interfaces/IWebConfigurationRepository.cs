@@ -6,5 +6,7 @@ namespace SystematicsData.Data.Interfaces
     public interface IWebConfigurationRepository
     {
         Task<ContentConfigurations> GetContentConfigurationsAsync(string page);
+
+        Task<FieldGroupsDto> GetFieldGroupsAsync(string documentClass);
     }
 }

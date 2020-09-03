@@ -25,7 +25,7 @@ namespace SystematicsData.Web.Api.Services
             return await _contentRepository.GetContentConfigurationsAsync(page);
         }
 
-        public async Task<ViewDefinition> GetViewDefinitionAsync(string documentClass)
+        public async Task<FieldGroupsDto> GetViewDefinitionAsync(string documentClass)
         {
             var viewDefinition = new ViewDefinition() { Class = "name" };
 
@@ -50,7 +50,9 @@ namespace SystematicsData.Web.Api.Services
                 }
             });
 
-            return viewDefinition;
+            return await _contentRepository.GetFieldGroupsAsync(documentClass);
+
+            //  return viewDefinition;
         }
     }
 

@@ -7,7 +7,7 @@ namespace SystematicsData.Data.Models
     {
         public Guid FieldGroupId { get; set; }
 
-        public Guid ExternalId { get; set; }
+        public Guid? ExternalId { get; set; }
 
         public string DocumentClass { get; set; }
 
