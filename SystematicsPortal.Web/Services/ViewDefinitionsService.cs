@@ -54,15 +54,15 @@ namespace SystematicsPortal.Web.Services
 
             var nomenclatureDefinition = new FieldDefinition() {
                 Label = "Nomenclature",
-                XPath = "Document/Nomenclature",
+                XPath = "Document/NomenclaturalStatusValues",
                 Order = 100,
                 Template = "DetailsStandard"
             };
             
-            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Place of Publication", XPath = "Nomenclature/PublicationPlace", Order = 10, Template = "UnformattedText" });
-            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Publication Date (Actual)", XPath = "Nomenclature/PublicationPlace", Order = 20, Template = "UnformattedText" });
-            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Publication Date (Stated)", XPath = "Nomenclature/PublicationDateActual", Order = 30, Template = "UnformattedText" });
-            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Nomenclatural Status", XPath = "Nomenclature/NomenclaturalStatus", Order = 40, Template = "UnformattedText" });
+            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Place of Publication", XPath = "NomenclaturalStatusValues/PublicationPlace", Order = 10, Template = "FormattedText" });
+            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Publication Date (Actual)", XPath = "NomenclaturalStatusValues/PublicationPlace", Order = 20, Template = "FormattedText" });
+            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Publication Date (Stated)", XPath = "NomenclaturalStatusValues/PublicationDateActual", Order = 30, Template = "FormattedText" });
+            nomenclatureDefinition.FieldConfigurations.Add(new FieldConfiguration() { Label = "Nomenclatural Status", XPath = "NomenclaturalStatusValues/NomenclaturalStatus", Order = 40, Template = "FormattedText" });
             
             viewDefinition.FieldDefinitions.Add(nomenclatureDefinition);    
 
