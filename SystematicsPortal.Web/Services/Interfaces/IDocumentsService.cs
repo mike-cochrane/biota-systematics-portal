@@ -7,7 +7,7 @@ using SystematicsData.Models.Entities.Access;
 
 namespace SystematicsPortal.Web.Services.Interfaces
 {
-    public interface IDocumentService
+    public interface IDocumentsService
     {
         Task<DocumentDto> GetDocument(string id);
     }

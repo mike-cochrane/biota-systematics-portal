@@ -1,0 +1,32 @@
+﻿@model SystematicsPortal.Web.Views.Documents.Components.Concepts.ConceptsViewModel
+
+@if (Model.Concepts.Any())
+{
+    <div class="form-group row">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>
+                        @Model.Labels["Name"]
+                    </th>
+                    <th>
+                        @Model.Labels["AccordingTo"]
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var concept in Model.Concepts)
+                {
+                    <tr>
+                        <td>
+                            @concept.Name
+                        </td>
+                        <td>
+                            @await Component.InvokeAsync("ReferenceHyperlink", concept.ReferenceXml)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
