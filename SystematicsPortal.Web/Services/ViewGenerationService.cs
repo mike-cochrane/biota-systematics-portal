@@ -32,6 +32,30 @@ namespace SystematicsPortal.Web.Services
 
                 field.ViewComponent = fieldDefinition.Template;
 
+                var childNavigator = field.FieldData.Data.ToXPathNavigable().CreateNavigator();
+
+                foreach (var fieldConfiguration in fieldDefinition.FieldConfigurations.OrderBy(o => o.Order)) {
+                    var childField = new Field();
+
+                    childField.Label = fieldConfiguration.Label;
+
+                    var childRootNode = childNavigator.SelectSingleNode(fieldConfiguration.XPath);
+
+                    if (childRootNode != null)
+                    {
+                        childField.FieldData = new FieldData()
+                        {
+                            Data = XElement.Parse(childRootNode.OuterXml),
+                            DataLabels = fieldConfiguration.DataLabels
+                        };
+                    }
+
+                    childField.ViewComponent = fieldConfiguration.Template;
+
+                    field.Fields.Add(childField);
+                }
+
+
                 fields.Add(field);
             }
 

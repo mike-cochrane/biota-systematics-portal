@@ -1,4 +1,6 @@
-﻿namespace SystematicsPortal.Web.Models
+﻿using System.Collections.Generic;
+
+namespace SystematicsPortal.Web.Models
 {
     public class FieldConfiguration
     {
@@ -10,8 +12,11 @@
 
         public string Template { get; set; }
 
+        public Dictionary<string, string> DataLabels { get; set; }
+
         public FieldConfiguration()
         {
+            DataLabels = new Dictionary<string, string>();
         }
     }
 }

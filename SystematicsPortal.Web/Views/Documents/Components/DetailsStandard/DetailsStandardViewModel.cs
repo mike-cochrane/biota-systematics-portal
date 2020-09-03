@@ -11,6 +11,7 @@ namespace SystematicsPortal.Web.Views.Documents.Components.DetailsStandard
 
         public DetailsStandardViewModel()
         {
+            Fields = new List<Field>();
         }
     }
 }

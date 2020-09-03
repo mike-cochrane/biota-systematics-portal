@@ -10,6 +10,13 @@ namespace SystematicsPortal.Web.Models
         public string ViewComponent { get; set; }
 
         public FieldData FieldData { get; set; }
+
+        public List<Field> Fields { get; set; }
+
+        public Field()
+        {
+            Fields = new List<Field>();
+        }
     }
 
     public class FieldData
