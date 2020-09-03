@@ -65,7 +65,7 @@ namespace SystematicsData.Data
             var fieldGroups = new ViewDefinitionDto();
 
           //  var fieldGroupListtDb = await _context.FieldGroups.Include(fg => fg.FieldConfiguration).Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
-            var fieldGroupListtDb = await _context.FieldGroups.Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
+            var fieldGroupsDb = await _context.FieldGroups.Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
 
             foreach (var fieldGroupDb in fieldGroupsDb)
             {
