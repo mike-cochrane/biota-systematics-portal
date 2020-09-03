@@ -349,6 +349,7 @@ namespace SystematicsPortal.Web.Controllers
             }
         }
 
+        [HttpPost]
         public async Task<ActionResult> ResultsPartialAsync([FromBody] SearchQueryViewModel model)
         {
 
