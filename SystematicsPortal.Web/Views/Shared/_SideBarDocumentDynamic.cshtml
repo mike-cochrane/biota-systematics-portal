@@ -1,0 +1,18 @@
+﻿@model SystematicsPortal.Web.ViewModels.Documents.DetailsViewModel
+
+<div class="col-12 col-lg-3 mw-100 sidebar pl-sm-5 pt-3 pb-5 order-2 order-lg-1">
+    <div class="sticky-top">
+        <div id="side-bar-navigation">
+            <div class="heading-divider mt-4">&nbsp;</div>
+            <h2>Navigation</h2>
+            <ul class="text-left list-inline">
+                @foreach (var field in Model.Fields.Where(o => o.Data != null))
+                {
+                    string sectionId = "section-" + field.Label.ToLower().Replace(" ", "");
+                    
+                    <li><a href="@("#"+sectionId)">@field.Label</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
