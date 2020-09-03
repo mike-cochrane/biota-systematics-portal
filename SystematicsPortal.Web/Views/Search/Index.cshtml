@@ -20,10 +20,7 @@
 <div class="full">
     <partial name="SearchPartial" model="Model.SearchData" />
     <partial name="~/Views/Shared/_NavAndSearch.cshtml" />
-    <div class="row">
-        <partial name="~/Views/Shared/_SideBarFacets.cshtml" model="Model" />
-        <div id="results" class="col-lg-9 mw-100 pt-3 pl-5 pb-5 order-1 order-lg-2">
-            <partial name="ResultsPartial" model="Model" />
-        </div> <!-- end2 -->
+    <div id="results" class="row">
+        <partial name="ResultsPartial" model="Model" />
     </div> <!-- end1 -->
 </div>

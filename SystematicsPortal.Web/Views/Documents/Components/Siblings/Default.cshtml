@@ -1,0 +1,32 @@
+﻿@model SystematicsPortal.Web.Views.Documents.Components.Siblings.SiblingsViewModel
+
+@if (Model.Siblings.Any())
+{
+    <div>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Reference
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sibling in Model.Siblings)
+                {
+                    <tr>
+                        <td>
+                            @sibling.Name
+                        </td>
+                        <td>
+                            @await Component.InvokeAsync("NameHyperlink", sibling.NameXml)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

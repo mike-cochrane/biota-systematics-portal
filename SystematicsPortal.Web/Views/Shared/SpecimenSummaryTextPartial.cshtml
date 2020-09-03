@@ -10,9 +10,9 @@
 
             @if (Model.DocumentClass == "name")
             {
-                @if (Model.NameFull != null && !Model.NameFull.Equals(String.Empty))
+                @if (Model.CurrentFormatted != null && !Model.CurrentFormatted.Equals(String.Empty))
                 {
-                    @:<span class="heading">Preferred name:</span>&nbsp;@Model.NameFull
+                    @:<span class="heading">Preferred name:</span>&nbsp;@Model.CurrentFormatted.Replace("-=", "<i>").Replace("=-", "</i>"))
                 }
                 @if (Model.Kingdom != null && !Model.Kingdom.Equals(String.Empty) && Model.Class != null && !Model.Class.Equals(String.Empty) && Model.Order != null && !Model.Order.Equals(String.Empty) && Model.Family != null && !Model.Family.Equals(String.Empty))
                 {

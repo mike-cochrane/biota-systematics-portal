@@ -1,279 +1,251 @@
 ﻿@model SystematicsPortal.Web.Models.SearchViewModel
     <!--<div class="container-fluid">-->
 <!--<div id="results">-->
-<div class="heading-divider mt-4"></div>
-<h2>Results for '@Html.Raw(Model.Query)'</h2>
+    <partial name="~/Views/Shared/_SideBarFacets.cshtml" model="Model" />
+    <div class="col-lg-9 mw-100 pt-3 pl-5 pb-5 order-1 order-lg-2">
+        <div class="heading-divider mt-4"></div>
+        <h2>Results for '@Html.Raw(Model.Query)'</h2>
 
-<div class="row-fluid">
-    <div id="applied-facets">
-        @foreach (SystematicsData.Search.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets)
-        {
-            string label = s.Label + " [x]";
-            <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
-        }
-        @foreach (SystematicsData.Search.Models.Search.SelectedRange s in Model.Result.AppliedRanges)
-        {
-            string label = s.Label + " [x]";
-            <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '', 'range')">@Html.Raw(label)</a>
-        }
-    </div>
-    <div id="search-result" class="row-fluid">
+        <div class="row-fluid">
+            <div id="applied-facets">
+                @foreach (SystematicsData.Search.Models.Search.SelectedFacetValue s in Model.Result.AppliedFacets)
+                {
+                    string label = s.Label + " [x]";
+                    <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '@s.ValueName', 'text')">@Html.Raw(label)</a>
+                }
+                @foreach (SystematicsData.Search.Models.Search.SelectedRange s in Model.Result.AppliedRanges)
+                {
+                    string label = s.Label + " [x]";
+                    <a href="#" class="facet-button" onclick="removeFacet('@s.FacetName', '', 'range')">@Html.Raw(label)</a>
+                }
+            </div>
+            <div id="search-result" class="row-fluid">
 
-        @if (Model.HaveSearched)
-        {
+                @if (Model.HaveSearched)
+                {
 
-            <div id="specimens">
-                <div class="row">
-                    <div class="pull-left">
-                        <!--<h2>
-                            Results
-                        </h2>-->
-                    </div>
-                    <div class="pull-right">
-                        @if (Model.Sets == null)
-                        {
-                            <a class="btn btn-home" href="@Url.Action("LogIn", "Account", new { returnUrl = Url.Action("Index", "Search", new { collectionId = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.AppliedFacets, appliedRanges = Model.Result.AppliedRanges, currentDisplayTab = Model.SelectedView, pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption, back = true }) })">
-                                <i class="icon-download-alt icon-white" title="Login to download selected records"></i>
-                            </a>
-                            <a class="btn btn-home" href="@Url.Action("LogIn", "Account", new { returnUrl = Url.Action("Index", "Search", new { collectionId = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.AppliedFacets, appliedRanges = Model.Result.AppliedRanges, currentDisplayTab = Model.SelectedView, pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption, back = true }) })">
-                                <i class="icon-folder-open icon-white" title="Add selected records to set"></i>
-                            </a>
-                        }
-                        else
-                        {
-                            <div class="dropdown" style="float: right;">
-                                <a class="btn btn-home dropdown-toggle" data-toggle="dropdown" role="button" data-target="#" id="save-to-set"><i class="icon-folder-open icon-white" title="Add selected records to set"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="save-to-set" id="sets">
-                                    @foreach (SystematicsPortal.Web.Models.SetViewModel s in Model.Sets)
-                                    {
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="saveToSet('@s.SetId')">@s.DisplayName</a></li>
-                                    }
-                                    <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a href="#new-set" data-toggle="modal">Add to new set</a></li>
-                                </ul>
+                    <div id="specimens">
+                        <div class="row">
+                            <div class="pull-left">
+                                <!--<h2>
+                                    Results
+                                </h2>-->
                             </div>
-                            if (Model.OneOrMoreSelected)
-                            {
-                                <a id="download-button" name="download-button" class="btn btn-home" onclick="processDownload()"><i class="icon-download-alt icon-white" title="Download selected records"></i></a>
-                            }
-                            else
-                            {
-                                <a id="download-button" name="download-button" class="btn btn-home disabled" href="#"><i class=" icon-download-alt icon-white" title="Select records to download data"></i></a>
-                            }
-                        }
-                    </div>
-                </div>
-                <div class="row">
-                    <div id="message"></div>
-                    <div id="error" class="error"></div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="float-left">
-                            <div class="specimen-count clear mt-3">
-                                <p>
-                                    @if (Model.Result.TotalSpecimens > Model.ResultsPerPage)
+                            <div class="pull-right">
+                                @if (Model.Sets == null)
+                                {
+                                    <a class="btn btn-home" href="@Url.Action("LogIn", "Account", new { returnUrl = Url.Action("Index", "Search", new { collectionId = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.AppliedFacets, appliedRanges = Model.Result.AppliedRanges, currentDisplayTab = Model.SelectedView, pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption, back = true }) })">
+                                        <i class="icon-download-alt icon-white" title="Login to download selected records"></i>
+                                    </a>
+                                    <a class="btn btn-home" href="@Url.Action("LogIn", "Account", new { returnUrl = Url.Action("Index", "Search", new { collectionId = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.AppliedFacets, appliedRanges = Model.Result.AppliedRanges, currentDisplayTab = Model.SelectedView, pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption, back = true }) })">
+                                        <i class="icon-folder-open icon-white" title="Add selected records to set"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <div class="dropdown" style="float: right;">
+                                        <a class="btn btn-home dropdown-toggle" data-toggle="dropdown" role="button" data-target="#" id="save-to-set"><i class="icon-folder-open icon-white" title="Add selected records to set"></i></a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="save-to-set" id="sets">
+                                            @foreach (SystematicsPortal.Web.Models.SetViewModel s in Model.Sets)
+                                            {
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="saveToSet('@s.SetId')">@s.DisplayName</a></li>
+                                            }
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation"><a href="#new-set" data-toggle="modal">Add to new set</a></li>
+                                        </ul>
+                                    </div>
+                                    if (Model.OneOrMoreSelected)
                                     {
-                                        if (Model.GetCurrentHighEndOfRange() > Model.Result.TotalSpecimens)
-                                        {
-                                            @:Showing @Model.GetCurrentLowEndOfRange() to @Model.Result.TotalSpecimens of @Model.Result.TotalSpecimens records
-                                        }
-                                        else
-                                        {
-                                            @:Showing @Model.GetCurrentLowEndOfRange() to @Model.GetCurrentHighEndOfRange() of @Model.Result.TotalSpecimens records
-                                        }
+                                        <a id="download-button" name="download-button" class="btn btn-home" onclick="processDownload()"><i class="icon-download-alt icon-white" title="Download selected records"></i></a>
                                     }
                                     else
                                     {
-                                        @Model.Result.TotalSpecimens @:records
+                                        <a id="download-button" name="download-button" class="btn btn-home disabled" href="#"><i class=" icon-download-alt icon-white" title="Select records to download data"></i></a>
                                     }
-                                </p>
-                            </div>
-                        </div>
-                        <div class="dropdown pull-right float-right">
-                            <span class="float-left align-self-center justify-content-center mt-3">Sort by:&nbsp;</span> @Html.DropDownList("sort-option", Model.SortOptions, new { id = "sort-option", @class = "mt-3 mr-4" })
-                            <img class="float-right mr-3" alt="Share" src="~/images/Share.png" />
-                            <img class="float-right mr-3" alt="Save" src="~/images/Save.png" />
-                            <img class="float-right mr-3" alt="Add" src="~/images/add.png" />
-                        </div>
-                    </div>
-                    <br />
-                </div>
-                @* Paging *@
-                @Html.Partial("PagingPartial", Model)
-                <br />
-                <div class="row">
-                    <div class="col-12">
-                        @if (Model.Result.FoundDocuments.Count > 0)
-                        {
-                            string listActiveClass = String.Empty;
-                            string gridActiveClass = String.Empty;
-                            var specimens = Model.Result.DisplayedDocuments();
-                            if (Model.SelectedView.Equals("list"))
-                            {
-                                listActiveClass = "active";
-                                <ul class="nav nav-tabs" id="search-results">
-                                    <li class="active"><a id="list" href="#list-result" data-toggle="tab" class="btn">List View</a></li>
-                                    <li><a id="grid" href="#grid-result" data-toggle="tab" class="btn">Grid View</a></li>
-                                </ul>
-                            }
-                            else if (Model.SelectedView.Equals("grid"))
-                            {
-                                gridActiveClass = "active";
-                                <ul class="nav nav-tabs" id="search-results">
-                                    <li><a id="list" href="#list-result" data-toggle="tab" class="btn">List View</a></li>
-                                    <li class="active"><a id="grid" href="#grid-result" data-toggle="tab" class="btn">Grid View</a></li>
-                                </ul>
-                            }
-                            <br />
-                            <div class="tab-content">
-                                <div class="tab-pane @listActiveClass" id="list-result">
-                                    <div class="specimen-list-item">
-                                        @if (Model.AllSelected)
-                                        {
-                                            @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" checked="checked" />&nbsp;Select all
-                                        }
-                                        else
-                                        {
-                                            @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />&nbsp;Select all
-                                        }
-                                    </div>
-                                    @foreach (SystematicsData.Search.Models.SolrDocument summary in specimens)
-                                    {
-                                        <div class="specimen-list-item">
-                                            <div class="pull-left">
-                                                <input type="checkbox" name="selected" id="@summary.Id.ToString()" class="@summary.Id.ToString()" onclick="toggleSpecimen(this)" @*checked="@summary.Selected"*@ />
-                                                @Html.ActionLink(@summary.GetHashCode() + " : " + summary.Current, "Details", "Search", new { id = @summary.Id.ToString(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
-                                            </div>
-                                            <div class="pull-right">
-                                                @*@if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
-                                {*@
-                                                @*<i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
                                 }
-                                @if (summary.HasImages)
-                                {
-                                                *@
-                                                <i class="icon-camera" title="Images are available for this record"></i>
-                                                @*}*@
-                                            </div>
-                                            <div class="clear"></div>
-                                            <br />
-                                            @Html.Partial("SpecimenSummaryTextPartial", summary)
-                                        </div>
-                                    }
-                                </div>
-                                <div class="tab-pane @gridActiveClass" id="grid-result">
-                                    <table>
-                                        <tr>
-                                            <th>
-                                                <input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />
-                                            </th>
-                                            <th align="left">
-                                                Accession Number
-                                            </th>
-                                            <th align="left">
-                                                Taxonomic Name
-                                            </th>
-                                            <th align="left">
-                                                Type Status
-                                            </th>
-                                            <th align="left">
-                                                Country
-                                            </th>
-                                            <th align="left">
-                                                Ecological District
-                                            </th>
-                                            <th align="left">
-                                                Land District
-                                            </th>
-                                            <th align="left">
-                                                NZ Area Code
-                                            </th>
-                                            <th align="left">
-                                                Data Provider
-                                            </th>
-                                            <th align="left">
-                                                Specimen Type
-                                            </th>
-                                        </tr>
-                                        @foreach (SystematicsData.Search.Models.SolrDocument summary in specimens)
-                                        {
-                                            //string id = summary.SpecimenId.ToString();
-                                            @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@
-                                            @*<tr valign="top">
-                                <td>
-                                    <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
-                                </td>
-                                <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
-                                </td>
-                                <td>@summary.TaxonName
-                                </td>
-                                <td>@summary.TypeStatus
-                                </td>
-                                <td>@summary.Country
-                                </td>
-                                <td>@summary.EcologicalDistrict
-                                </td>
-                                <td>@summary.LandDistrict
-                                </td>
-                                <td>@summary.NZAreaCode
-                                </td>
-                                <td>@summary.Collection
-                                </td>
-                                <td>@summary.SpecimenType
-                                </td>
-                            </tr>*@
-                                        }
-                                    </table>
-                                </div>
                             </div>
-                        }
-                        else
-                        {
-                            @:No results found
-                        }
+                        </div>
+                        <div class="row">
+                            <div id="message"></div>
+                            <div id="error" class="error"></div>
+                        </div>
                         @* Paging *@
                         @Html.Partial("PagingPartial", Model)
+                        @Html.Partial("CountPartial", Model)
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                @if (Model.Result.FoundDocuments.Count > 0)
+                                {
+                                    string listActiveClass = String.Empty;
+                                    string gridActiveClass = String.Empty;
+                                    var specimens = Model.Result.DisplayedDocuments();
+                                    if (Model.SelectedView.Equals("list"))
+                                    {
+                                        listActiveClass = "active";
+                                        @*<ul class="nav nav-tabs" id="search-results">
+                                                <li class="active"><a id="list" href="#list-result" data-toggle="tab" class="btn">List View</a></li>
+                                                <li><a id="grid" href="#grid-result" data-toggle="tab" class="btn">Grid View</a></li>
+                                            </ul>*@
+                                    }
+                                    else if (Model.SelectedView.Equals("grid"))
+                                    {
+                                        gridActiveClass = "active";
+                                        @*<ul class="nav nav-tabs" id="search-results">
+                                                <li><a id="list" href="#list-result" data-toggle="tab" class="btn">List View</a></li>
+                                                <li class="active"><a id="grid" href="#grid-result" data-toggle="tab" class="btn">Grid View</a></li>
+                                            </ul>*@
+                                    }
+                                    <!--<br />-->
+                                    <div class="tab-content">
+                                        <div class="tab-pane @listActiveClass" id="list-result">
+                                            <div class="specimen-list-item">
+                                                @if (Model.AllSelected)
+                                                {
+                                                    @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" checked="checked" />&nbsp;Select all
+                                                }
+                                                else
+                                                {
+                                                    @:<input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />&nbsp;Select all
+                                                }
+                                            </div>
+                                            @foreach (SystematicsData.Search.Models.SolrDocument summary in specimens)
+                                            {
+                                                <div class="specimen-list-item">
+                                                    <div class="pull-left">
+                                                        <input type="checkbox" name="selected" id="@summary.Id.ToString()" class="@summary.Id.ToString()" onclick="toggleSpecimen(this)" @*checked="@summary.Selected"*@ />
+                                                        @Html.ActionLink(@summary.GetHashCode() + " : " + summary.Title, "Details", "Search", new { id = @summary.Id.ToString(), query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "list", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        @*@if (summary.TypeStatus != null && !summary.TypeStatus.Equals(string.Empty))
+                                                            {*@
+                                                        @*<i class="icon-tag" title="Type status: @summary.TypeStatus"></i>
+                                                            }
+                                                            @if (summary.HasImages)
+                                                            {
+                                                        *@
+                                                        <i class="icon-camera" title="Images are available for this record"></i>
+                                                        @*}*@
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                    <br />
+                                                    @Html.Partial("SpecimenSummaryTextPartial", summary)
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="tab-pane @gridActiveClass" id="grid-result">
+                                            <table>
+                                                <tr>
+                                                    <th>
+                                                        <input type="checkbox" id="toggle-all" name="toggle-all" onclick="toggleAll(this)" title="Select entire result set" />
+                                                    </th>
+                                                    <th align="left">
+                                                        Accession Number
+                                                    </th>
+                                                    <th align="left">
+                                                        Taxonomic Name
+                                                    </th>
+                                                    <th align="left">
+                                                        Type Status
+                                                    </th>
+                                                    <th align="left">
+                                                        Country
+                                                    </th>
+                                                    <th align="left">
+                                                        Ecological District
+                                                    </th>
+                                                    <th align="left">
+                                                        Land District
+                                                    </th>
+                                                    <th align="left">
+                                                        NZ Area Code
+                                                    </th>
+                                                    <th align="left">
+                                                        Data Provider
+                                                    </th>
+                                                    <th align="left">
+                                                        Specimen Type
+                                                    </th>
+                                                </tr>
+                                                @foreach (SystematicsData.Search.Models.SolrDocument summary in specimens)
+                                                {
+                                                    //string id = summary.SpecimenId.ToString();
+                                                    @*<tr onclick="location.href='/Specimen/@summary.AccessionNumber">*@
+                                                    @*<tr valign="top">
+                                                            <td>
+                                                                <input type="checkbox" name="selected" id="@summary.SpecimenId.ToString()" class="@summary.SpecimenId.ToString()" onclick="toggleSpecimen(this)" checked="@summary.Selected" />
+                                                            </td>
+                                                            <td>@Html.ActionLink(@summary.AccessionNumber, "Details", "Specimen", new { id = @summary.AccessionNumber, collection = @summary.Collection, searchCollection = Model.SearchData.SelectedCollection, query = Model.SearchData.Query, appliedFacets = Model.Result.GetAppliedFacets(), appliedRanges = Model.Result.GetAppliedRanges(), currentDisplayTab = "grid", pageNumber = Model.CurrentPage, sortField = Model.SelectedSortOption }, null)
+                                                            </td>
+                                                            <td>@summary.TaxonName
+                                                            </td>
+                                                            <td>@summary.TypeStatus
+                                                            </td>
+                                                            <td>@summary.Country
+                                                            </td>
+                                                            <td>@summary.EcologicalDistrict
+                                                            </td>
+                                                            <td>@summary.LandDistrict
+                                                            </td>
+                                                            <td>@summary.NZAreaCode
+                                                            </td>
+                                                            <td>@summary.Collection
+                                                            </td>
+                                                            <td>@summary.SpecimenType
+                                                            </td>
+                                                        </tr>*@
+                                                }
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    @:No results found
+                                }
+                                @Html.Partial("CountPartial", Model)
+                                @* Paging *@
+                                @Html.Partial("PagingPartial", Model)
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="new-set" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="new-set-heading" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 id="new-set-heading">Create a New Set</h3>
+            </div>
+            <div class="modal-body">
+                @Html.ValidationSummary(true)
+
+                <div class="row-fluid">
+                    <div class="editor-label span2">
+                        <label for="DisplayName">Name</label>
+                    </div>
+                    <div class="editor-field span10 condensed">
+                        <input class="text-box single-line" data-val="true" data-val-required="The Name field is required." id="DisplayName" name="DisplayName" type="text" value="">
+                        <span class="field-validation-valid" data-valmsg-for="DisplayName" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="editor-label span2">
+                        <label for="Description">Description</label>
+                    </div>
+                    <div class="editor-field span10 condensed">
+                        <textarea class="text-box multi-line" id="Description" name="Description"></textarea>
+                        <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
                     </div>
                 </div>
             </div>
-        }
-    </div>
-</div>
-<div id="new-set" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="new-set-heading" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <h3 id="new-set-heading">Create a New Set</h3>
-    </div>
-    <div class="modal-body">
-        @Html.ValidationSummary(true)
-
-        <div class="row-fluid">
-            <div class="editor-label span2">
-                <label for="DisplayName">Name</label>
-            </div>
-            <div class="editor-field span10 condensed">
-                <input class="text-box single-line" data-val="true" data-val-required="The Name field is required." id="DisplayName" name="DisplayName" type="text" value="">
-                <span class="field-validation-valid" data-valmsg-for="DisplayName" data-valmsg-replace="true"></span>
-            </div>
-        </div>
-
-        <div class="row-fluid">
-            <div class="editor-label span2">
-                <label for="Description">Description</label>
-            </div>
-            <div class="editor-field span10 condensed">
-                <textarea class="text-box multi-line" id="Description" name="Description"></textarea>
-                <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-home" data-dismiss="modal" onclick="createSet()">Save</button>
+                <button class="btn btn-home" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
         </div>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary btn-home" data-dismiss="modal" onclick="createSet()">Save</button>
-        <button class="btn btn-home" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    </div>
-</div>
 <!--</div>--><!-- #results -->
 <!--</div>-->
 @*@Html.Partial("DownloadLogDetailsPartial", Model.DownloadLog)*@
@@ -341,9 +313,9 @@
             }),
             success: function (result) {
                 $('#results').html(result);
-                $('results').removeData('validator');
+                /*$('results').removeData('validator');
                 $('results').removeData('unobtrusiveValidation');
-                $.validator.unobtrusive.parse('#results');
+                $.validator.unobtrusive.parse('#results');*/
             },
             complete: function () {
                 $("#loading").hide();
@@ -391,9 +363,9 @@
             }),
             success: function (result) {
                 $('#results').html(result);
-                $('results').removeData('validator');
+                /*$('results').removeData('validator');
                 $('results').removeData('unobtrusiveValidation');
-                $.validator.unobtrusive.parse('#results');
+                $.validator.unobtrusive.parse('#results');*/
             },
             complete: function () {
                 $("#loading").hide();
@@ -429,9 +401,9 @@
             }),
             success: function (result) {
                 $('#results').html(result);
-                $('results').removeData('validator');
+                /*$('results').removeData('validator');
                 $('results').removeData('unobtrusiveValidation');
-                $.validator.unobtrusive.parse('#results');
+                $.validator.unobtrusive.parse('#results');*/
                 $("#loading").hide();
             },
             complete: function () {
@@ -468,9 +440,9 @@
             }),
             success: function (result) {
                 $('#results').html(result);
-                $('results').removeData('validator');
+                /*$('results').removeData('validator');
                 $('results').removeData('unobtrusiveValidation');
-                $.validator.unobtrusive.parse('#results');
+                $.validator.unobtrusive.parse('#results');*/
             },
             complete: function () {
                 $("#loading").hide();

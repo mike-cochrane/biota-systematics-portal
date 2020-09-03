@@ -1,0 +1,28 @@
+﻿@model SystematicsPortal.Web.Views.Documents.Components.Collections.CollectionsViewModel
+
+@if (Model.Collections.Any())
+{
+    <div class="form-group row">
+        <div class="col-12">
+            <div id="collections-table-header">
+                <div class="form-group row">
+                    <div class="col-4"><label>Determined Name</label></div>
+                    <div class="col-2"><label>Country</label></div>
+                    <div class="col-3"><label>Land District</label></div>
+                    <div class="col-3"><label>No. of Specimens</label></div>
+                </div>
+            </div>
+            <div id="collections-table-content">
+                @foreach (var collection in Model.Collections)
+                {
+                    <div class="form-group row table-row-separation">
+                        <div class="col-4">@await Component.InvokeAsync("NameHyperlink", collection.Name) </div>
+                        <div class="col-2">@collection.Country</div>
+                        <div class="col-3">@collection.LandDistrict</div>
+                        <div class="col-3"><a href="#">@collection.SpecimenCount</a></div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
