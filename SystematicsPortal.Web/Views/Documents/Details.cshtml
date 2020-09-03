@@ -46,7 +46,11 @@
                             <h3 class="sub-heading"><i class="fas fa-angle-down"></i> @field.Label</h3>
                         </div>
                         <div id="@(sectionId+"-content")">
-                            @await Component.InvokeAsync(field.ViewComponent, field.FieldData)
+                            @if (field.ViewComponent == "DetailsStandard") {
+                                @await Component.InvokeAsync(field.ViewComponent, field.Fields)
+                            } else {
+                                @await Component.InvokeAsync(field.ViewComponent, field.FieldData)
+                            }
                         </div>
                     </div>
                 }

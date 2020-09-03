@@ -2,7 +2,7 @@
 
 namespace SystematicsPortal.Web.Models
 {
-    public class FieldDefinition
+    public class FieldConfiguration
     {
         public string Label { get; set; }
 
@@ -14,13 +14,9 @@ namespace SystematicsPortal.Web.Models
 
         public Dictionary<string, string> DataLabels { get; set; }
 
-        public List<FieldConfiguration> FieldConfigurations { get; set; }
-
-
-        public FieldDefinition()
+        public FieldConfiguration()
         {
             DataLabels = new Dictionary<string, string>();
-            FieldConfigurations = new List<FieldConfiguration>();
         }
     }
 }
