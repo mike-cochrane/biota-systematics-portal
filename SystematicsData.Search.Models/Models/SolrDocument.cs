@@ -46,6 +46,9 @@ namespace SystematicsData.Search.Models
         [SolrField("current")]
         public string Current { get; set; }
 
+        [SolrField("currentFormatted")]
+        public string CurrentFormatted { get; set; }
+
         [SolrField("currentId")]
         public string CurrentId { get; set; }
 
