@@ -20,10 +20,13 @@ namespace SystematicsData.Search.Models
 
 
         [SolrField("associationType")]
-        public string AssociationType { get; set; }
+        public List<string> AssociationType { get; set; }
 
         [SolrField("basionymAuthor")]
-        public string BasionymAuthor { get; set; }
+        public List<string> BasionymAuthor { get; set; }
+
+        [SolrField("biologicalRelationshipType")]
+        public string BiologicalRelationshipType { get; set; }
 
         [SolrField("canonical")]
         public string Canonical { get; set; }
@@ -40,8 +43,11 @@ namespace SystematicsData.Search.Models
         [SolrField("classId")]
         public string ClassId { get; set; }
 
+        [SolrField("conceptRelationshipType")]
+        public string ConceptRelationshipType { get; set; }
+
         [SolrField("combinationAuthor")]
-        public string CombinationAuthor { get; set; }
+        public List<string> CombinationAuthor { get; set; }
 
         [SolrField("current")]
         public string Current { get; set; }
@@ -74,7 +80,7 @@ namespace SystematicsData.Search.Models
         public string GenusId { get; set; }
 
         [SolrField("hybridParent")]
-        public List<string> hybridParent { get; set; }
+        public List<string> HybridParent { get; set; }
 
         [SolrField("hybridParentId")]
         public List<string> HybridParentId { get; set; }
@@ -85,11 +91,17 @@ namespace SystematicsData.Search.Models
         [SolrField("imageUri")]
         public List<string> ImageUri { get; set; }
 
+        [SolrField("isCurrent")]
+        public bool IsCurrent { get; set; }
+
         [SolrField("kingdom")]
         public string Kingdom { get; set; }
 
+        [SolrField("kingdomId")]
+        public string KingdomId { get; set; }
+
         [SolrField("nameAuthor")]
-        public string NameAuthor { get; set; }
+        public List<string> NameAuthor { get; set; }
 
         [SolrField("nameFormatted")]
         public string NameFormatted { get; set; }
@@ -108,8 +120,10 @@ namespace SystematicsData.Search.Models
 
         [SolrField("note")]
         public List<string> Note { get; set; }
+
         [SolrField("nzBiostatusReference")]
         public List<string> NzBiostatusReference { get; set; }
+
         [SolrField("nzBiostatusReferenceId")]
         public string NzBiostatusReferenceId { get; set; }
 
@@ -118,18 +132,21 @@ namespace SystematicsData.Search.Models
 
         [SolrField("nzOrigin")]
         public List<string> NzOrigin { get; set; }
+
         [SolrField("NzbioStatusAdded")]
         public List<DateTime> NzbioStatusAdded { get; set; }
-        ///
 
         [SolrField("nzbioStatusUpdated")]
-        public List<DateTime> NzbioStatusUpdated { get; set; }
+        public List<DateTime> NzBioStatusUpdated { get; set; }
+
+        [SolrField("nzRelevance")]
+        public string NzRelevance { get; set; }
 
         [SolrField("order")]
         public string Order { get; set; }
 
         [SolrField("orderId")]
-        public string orderId { get; set; }
+        public string OrderId { get; set; }
 
         [SolrField("parent")]
         public string Parent { get; set; }
@@ -155,6 +172,9 @@ namespace SystematicsData.Search.Models
         [SolrField("source")]
         public string Source { get; set; }
 
+        [SolrField("taxonomicRelationshipType")]
+        public List<string> TaxonomicRelationshipType { get; set; }
+
         [SolrField("taxonRank")]
         public string TaxonRank { get; set; }
 
@@ -169,6 +189,7 @@ namespace SystematicsData.Search.Models
 
         [SolrField("titleUnformatted")]
         public string TitleUnformatted { get; set; }
+        
         [SolrField("updated")]
         public DateTime Updated { get; set; }
 
