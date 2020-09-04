@@ -15,7 +15,7 @@ namespace SystematicsData.Web.Api.Controllers
             _configurationService = configurationService;
         }
 
-        [HttpGet("viewdefinitions/{documentClass}")]
+        [HttpGet("viewdefinitions/{documentclass}")]
         public async Task<IActionResult> GetViewDefinition(string documentClass)
         {
             var response = await _configurationService.GetViewDefinitionAsync(documentClass);

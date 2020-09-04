@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using SystematicsData.Data.Models;
+﻿using SystematicsData.Data.Models;
 using SystematicsData.Models.Entities.Access;
 
 namespace SystematicsData.Data.Extensions
@@ -25,12 +24,9 @@ namespace SystematicsData.Data.Extensions
         {
             var fieldGroupDto = new FieldGroupDto()
             {
-                FieldGroupId = fieldGroupDb.FieldGroupId,
-                DisplayOrder = fieldGroupDb.DisplayOrder,
                 DisplayTitle = fieldGroupDb.DisplayTitle,
-                DocumentClass = fieldGroupDb.DocumentClass,
-                Name = fieldGroupDb.Name
-                //FieldConfigurations = fieldGroupDb.FieldConfiguration.Select(fc => fc.ToDto()),
+                Name = fieldGroupDb.Name,
+                DisplayOrder = fieldGroupDb.DisplayOrder
             };
 
             return fieldGroupDto;
@@ -40,12 +36,11 @@ namespace SystematicsData.Data.Extensions
         {
             var fieldConfigurationDto = new FieldConfigurationDto()
             {
-                FieldConfigurationId = fieldConfigurationDb.FieldConfigurationId,
-                DisplayOrder = fieldConfigurationDb.DisplayOrder,
                 DataDocumentXpath = fieldConfigurationDb.DataDocumentXpath,
+                SiblingFilterXPath = fieldConfigurationDb.SiblingFilterXpath,
+                DisplayOrder = fieldConfigurationDb.DisplayOrder,
+                DisplayTemplate = fieldConfigurationDb.DisplayTemplate,
                 DisplayAsIcon = fieldConfigurationDb.DisplayAsIcon,
-                // Should the harvester process fill in the labels?
-                //Labels = fieldConfigurationDb.Labels,
                 ShowAlways = fieldConfigurationDb.ShowAlways
             };
 

@@ -24,45 +24,4 @@ namespace SystematicsData.Web.Api.Services
             return await _contentRepository.GetContentConfigurationsAsync(page);
         }
     }
-
-    //public class ViewDefinition
-    //{
-    //    public string Class { get; set; }
-
-    //    public List<Group> Groups { get; set; }
-
-    //    public ViewDefinition()
-    //    {
-    //        Groups = new List<Group>();
-    //    }
-    //}
-
-    //public class Group
-    //{
-    //    public string Name { get; set; }
-
-    //    public string XPath { get; set; }
-
-    //    public int Order { get; set; }
-
-    //    public string Template { get; set; }
-
-    //    public List<Label> Labels { get; set; }
-
-    //    public List<Field> Fields { get; set; }
-    //}
-
-    //public class Field
-    //{
-    //    public string XPath { get; set; }
-
-    //    public List<Label> Labels { get; set; }
-    //}
-
-    //public class Label
-    //{
-    //    public string Text { get; set; }
-
-    //    public string Language { get; set; }
-    //}
 }

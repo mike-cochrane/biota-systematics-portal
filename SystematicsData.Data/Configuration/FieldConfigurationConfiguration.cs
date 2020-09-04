@@ -16,7 +16,7 @@ namespace SystematicsData.Data.Configuration
             builder.Property(e => e.Labels).HasColumnType("xml");
 
             builder.HasOne(d => d.FieldGroup)
-                .WithMany(p => p.FieldConfiguration)
+                .WithMany(p => p.FieldConfigurations)
                 .HasForeignKey(d => d.FieldGroupId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("frkFieldConfigurationFieldGroup");

@@ -19,11 +19,11 @@ namespace SystematicsData.Data.Models
 
         public int? DisplayOrder { get; set; }
 
-        public virtual ICollection<FieldConfiguration> FieldConfiguration { get; set; }
+        public virtual ICollection<FieldConfiguration> FieldConfigurations { get; set; }
 
         public FieldGroup()
         {
-            FieldConfiguration = new HashSet<FieldConfiguration>();
+            FieldConfigurations = new HashSet<FieldConfiguration>();
         }
     }
 }

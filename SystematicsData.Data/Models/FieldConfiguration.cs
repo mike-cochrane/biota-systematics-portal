@@ -6,7 +6,7 @@ namespace SystematicsData.Data.Models
     {
         public Guid FieldConfigurationId { get; set; }
 
-        public Guid FieldGroupId { get; set; }
+        public Guid? FieldGroupId { get; set; }
 
         public Guid? ParentFieldConfigurationId { get; set; }
 

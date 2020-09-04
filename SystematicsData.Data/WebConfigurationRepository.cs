@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using SystematicsData.Data.Extensions;
 using SystematicsData.Data.Interfaces;
-using SystematicsData.Models.Configuration;
 using SystematicsData.Models.Entities.Access;
 using SystematicsData.Models.Entities.Annotations;
 using SystematicsData.Models.Infrastructure.Exceptions;
@@ -62,32 +61,43 @@ namespace SystematicsData.Data
         /// <returns>Field groups with field configurations with each specific field</returns>
         public async Task<ViewDefinitionDto> GetViewDefinitionAsync(string documentClass)
         {
-            var fieldGroups = new ViewDefinitionDto();
+            var viewDefinition = new ViewDefinitionDto()
+            {
+                DocumentClass = documentClass
+            };
 
-          //  var fieldGroupListtDb = await _context.FieldGroups.Include(fg => fg.FieldConfiguration).Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
-            var fieldGroupsDb = await _context.FieldGroups.Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower()).ToListAsync();
+            var fieldGroupsDb = await _context.FieldGroups
+                .Include(fg => fg.FieldConfigurations)
+                .Where(fg => fg.DocumentClass.ToLower() == documentClass.ToLower())
+                .OrderBy(fg => fg.DisplayOrder)
+                .ToListAsync();
 
             foreach (var fieldGroupDb in fieldGroupsDb)
             {
                 var fieldGroup = fieldGroupDb.ToDto();
 
-              //  GetFieldsFromDocumentStore(ref fieldGroup);
+                foreach (var fieldGroupConfigurationDb in fieldGroupDb.FieldConfigurations.OrderBy(fc => fc.DisplayOrder))
+                {
+                    var fieldConfiguration = fieldGroupConfigurationDb.ToDto();
 
-                fieldGroups.FieldGroups.Add(fieldGroup);
+                    fieldGroup.FieldConfigurations.Add(fieldConfiguration);
+
+                    var childFieldGroupConfigurationsDb = _context.FieldConfigurations
+                        .Where(fc => fc.ParentFieldConfigurationId == fieldGroupConfigurationDb.FieldConfigurationId)
+                        .OrderBy(fc => fc.DisplayOrder);
+
+                    foreach (var childFieldGroupConfigurationDb in childFieldGroupConfigurationsDb)
+                    {
+                        var childFieldConfiguration = childFieldGroupConfigurationDb.ToDto();
+
+                        fieldGroup.FieldConfigurations.Add(childFieldConfiguration);
+                    }
+                }
+
+                viewDefinition.FieldGroups.Add(fieldGroup);
             }
 
-            return fieldGroups;
-        }
-
-        private void GetFieldsFromDocumentStore(ref FieldGroupDto fieldGroup)
-        {
-
-            //foreach (var fieldConfiguration in fieldGroup.FieldConfigurations)
-            //{
-            //    var documentDb = GetDocumentDb(Guid.Parse(fieldConfiguration.ExternalId));
-
-            //    fieldConfiguration.Field = SerializationHelper.Deserialize<Field>(documentDb.ToString());
-            //}
+            return viewDefinition;
         }
 
         private async Task<Content> GetContentFromDocumentStoreAsync(Guid externalId)
