@@ -453,15 +453,20 @@
   <field name="added" type="pdate" multiValued="false" indexed="true" required="false" stored="true"/>
   <field name="appliedToNameFull" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="appliedToNameId" type="string" multiValued="true" indexed="false" stored="true"/>
-  <field name="associationType" type="text_general" multiValued="false" indexed="true" stored="true"/>
-  <field name="basionymAuthor" type="text_general" multiValued="false" indexed="true" required="false" stored="true"/>
+  <field name="associationType" type="text_general" multiValued="true" indexed="true" stored="true"/>
+  <field name="authors" type="text_general"/>
+  <field name="basionymAuthor" type="text_general" multiValued="true" indexed="true" required="false" stored="true"/>
+  <field name="biologicalRelationshipType" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="canonical" type="text_general" multiValued="false" indexed="true" required="false" stored="true"/>
   <field name="citeNameId" type="string" multiValued="true" indexed="false" stored="true"/>
   <field name="citedName" type="text_general" multiValued="true" indexed="true" stored="true"/>
+  <field name="citedNameId" type="text_general"/>
   <field name="class" type="text_general" multiValued="false" indexed="true" stored="true"/>
   <field name="classId" type="string" multiValued="false" indexed="false" stored="true"/>
-  <field name="combinationAuthor" type="text_general" multiValued="false" indexed="true" required="false" stored="true"/>
+  <field name="combinationAuthor" type="text_general" multiValued="true" indexed="true" required="false" stored="true"/>
+  <field name="conceptRelationshipType" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="current" type="text_general" multiValued="false" indexed="true" stored="true"/>
+  <field name="currentFormatted" type="text_general" multiValued="false" indexed="false" stored="true"/>
   <field name="currentId" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="deprecatedId" type="string" multiValued="true" indexed="true" required="false" stored="true"/>
   <field name="documentClass" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
@@ -470,39 +475,51 @@
   <field name="familyId" type="string"/>
   <field name="genus" type="text_general" multiValued="false" indexed="true" stored="true"/>
   <field name="genusId" type="string" multiValued="false" indexed="false" stored="true"/>
+  <field name="host" type="text_general"/>
+  <field name="hostId" type="text_general"/>
   <field name="hybridParent" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="hybridParentId" type="string" multiValued="true" indexed="false" required="false" stored="true"/>
   <field name="hyperLinkType" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
   <field name="imageUri" type="string" multiValued="true" indexed="false" stored="true"/>
+  <field name="isCurrent" type="boolean" multiValued="false" indexed="true" required="false" stored="true"/>
   <field name="kingdom" type="text_general" multiValued="false" indexed="true" stored="true"/>
-  <field name="nameAuthor" type="text_general" multiValued="false" indexed="true" required="false" stored="true"/>
+  <field name="kingdomId" type="string" multiValued="false" indexed="false" stored="true"/>
+  <field name="nameAuthor" type="text_general" multiValued="true" indexed="true" required="false" stored="true"/>
   <field name="nameFormatted" type="text_general" multiValued="false" indexed="true" required="false" stored="true"/>
   <field name="nameFull" type="text_general" multiValued="false" indexed="true" required="false" stored="true"/>
   <field name="namePart" type="text_general" multiValued="false" indexed="true" required="false" stored="true"/>
   <field name="namePartFormatted" type="text_general"/>
   <field name="nomCode" type="string" multiValued="false" indexed="true" required="false" stored="true"/>
+  <field name="nomenclaturalStatus" type="text_general"/>
   <field name="note" type="text_general" multiValued="true" indexed="false" stored="false"/>
+  <field name="noteType" type="text_general"/>
   <field name="nzBioStatusReference" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="nzBiostatusAdded" type="pdates"/>
-  <field name="nzBiostatusReference" type="text_general"  multiValued="true" indexed="false" stored="true"/>
+  <field name="nzBiostatusReference" type="text_general" multiValued="true" indexed="false" stored="true"/>
+  <field name="nzBiostatusReferenceDisplay" type="text_general"/>
   <field name="nzBiostatusReferenceId" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="nzOccurrence" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="nzOrigin" type="string" multiValued="true" indexed="true" stored="true"/>
+  <field name="nzRelevance" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="nzbioStatusAdded" type="pdate" multiValued="true" indexed="false" stored="true"/>
   <field name="nzbioStatusUpdated" type="pdate" multiValued="true" indexed="false" stored="true"/>
+  <field name="nzbiostatusupdated" type="pdates"/>
   <field name="order" type="text_general" multiValued="false" indexed="true" stored="true"/>
   <field name="orderId" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="parent" type="text_general" multiValued="false" indexed="true" stored="true"/>
   <field name="parentId" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="parentReference" type="text_general" multiValued="false" indexed="true" stored="true"/>
   <field name="parentReferenceId" type="string" multiValued="false" indexed="true" stored="true"/>
+  <field name="partAffected" type="text_general"/>
   <field name="phylum" type="text_general" multiValued="false" indexed="true" stored="true"/>
   <field name="phylumId" type="string" multiValued="false" indexed="false" stored="true"/>
   <field name="referenceType" type="string" multiValued="false" indexed="true" stored="true"/>
   <field name="source" type="text_general" multiValued="false" indexed="true" required="true" stored="true"/>
+  <field name="substrate" type="text_general"/>
   <field name="taxonRank" type="text_general" multiValued="false" indexed="true" stored="true"/>
   <field name="taxonRankSort" type="pint" multiValued="false" indexed="false" stored="true"/>
+  <field name="taxonomicRelationshipType" type="text_general" multiValued="true" indexed="false" stored="true"/>
   <field name="text" type="text_general" multiValued="true" indexed="true" stored="false"/>
   <field name="title" type="text_general" multiValued="false" indexed="true" required="true" stored="true"/>
   <field name="titleFormatted" type="text_general" multiValued="false" indexed="false" required="false" stored="true"/>
@@ -513,12 +530,12 @@
   <field name="vernacularLanguageOfUse" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="vernacularName" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="vernacularRegionOfOrigin" type="text_general" multiValued="false" indexed="true" stored="true"/>
-  <field name="vernacularRegionOfUse" type="text_general"/>
-  <field name="verncularId" type="string" multiValued="false" indexed="false" stored="true"/>
-  <field name="verncularLanguageOfOrigin" type="text_general" multiValued="true" indexed="true" stored="true"/>
-  <field name="verncularLanguageOfUse" type="text_general" multiValued="true" indexed="true" stored="false"/>
+  <field name="vernacularRegionOfUse" type="text_general" multiValued="false" indexed="true" stored="true"/>
+  <field name="verncularId" type="text_general"/>
+  <field name="verncularLanguageOfOrigin" type="text_general"/>
+  <field name="verncularLanguageOfUse" type="text_general"/>
   <field name="verncularName" type="text_general"/>
-  <field name="verncularRegionOfUse" type="text_general" multiValued="false" indexed="true" stored="true"/>
+  <field name="verncularRegionOfUse" type="text_general"/>
   <dynamicField name="*_txt_en_split_tight" type="text_en_splitting_tight" indexed="true" stored="true"/>
   <dynamicField name="*_descendent_path" type="descendent_path" indexed="true" stored="true"/>
   <dynamicField name="*_ancestor_path" type="ancestor_path" indexed="true" stored="true"/>
@@ -620,11 +637,11 @@
   <copyField source="source" dest="text"/>
   <copyField source="taxonRank" dest="text"/>
   <copyField source="title" dest="text"/>
+  <copyField source="vernacularLanguageOfOrigin" dest="text"/>
+  <copyField source="vernacularLanguageOfUse" dest="text"/>
   <copyField source="vernacularName" dest="text"/>
   <copyField source="vernacularRegionOfOrigin" dest="text"/>
-  <copyField source="verncularLanguageOfOrigin" dest="text"/>
-  <copyField source="verncularLanguageOfUse" dest="text"/>
-  <copyField source="verncularRegionOfUse" dest="text"/>
+  <copyField source="vernacularRegionOfUse" dest="text"/>
   <copyField source="documentClass" dest="documentClass_ss"/>
   <copyField source="source" dest="source_ss"/>
   <copyField source="combinationAuthor" dest="combinationAuthor_ss"/>
@@ -640,9 +657,9 @@
   <copyField source="hybridParent" dest="hybridParent_ss"/>
   <copyField source="hyperLinkType" dest="hyperLinkType_ss"/>
   <copyField source="vernacularName" dest="vernacularName_ss"/>
-  <copyField source="verncularLanguageOfUse" dest="verncularLanguageOfUse_ss"/>
-  <copyField source="verncularLanguageOfOrigin" dest="verncularLanguageOfOrigin_ss"/>
-  <copyField source="verncularRegionOfUse" dest="verncularRegionOfUse_ss"/>
+  <copyField source="vernacularLanguageOfUse" dest="vernacularLanguageOfUse_ss"/>
+  <copyField source="vernacularLanguageOfOrigin" dest="vernacularLanguageOfOrigin_ss"/>
+  <copyField source="vernacularRegionOfUse" dest="vernacularRegionOfUse_ss"/>
   <copyField source="nzBioStatusReference" dest="nzBioStatusReference_ss"/>
   <copyField source="nzOrigin" dest="nzOrigin_ss"/>
   <copyField source="nzOccurrence" dest="nzOccurrence_ss"/>
@@ -652,6 +669,10 @@
   <copyField source="referenceType" dest="referenceType_ss"/>
   <copyField source="parentReference" dest="parentReference_ss"/>
   <copyField source="associationType" dest="associationType_ss"/>
+  <copyField source="basionymAuthor" dest="basionymAuthor_ss"/>
+  <copyField source="canonical" dest="canonical_ss"/>
+  <copyField source="parent" dest="parent_ss"/>
+  <copyField source="vernacularRegionOfOrigin" dest="vernacularRegionOfOrigin_ss"/>
   <copyField source="vernacularLanguageOfOrigin" dest="vernacularLanguageOfOrigin_str" maxChars="256"/>
   <copyField source="vernacularLanguageOfUse" dest="vernacularLanguageOfUse_str" maxChars="256"/>
   <copyField source="titleUnformatted" dest="titleUnformatted_str" maxChars="256"/>
@@ -663,6 +684,20 @@
   <copyField source="familyId" dest="familyId_str" maxChars="256"/>
   <copyField source="genusId" dest="genusId_str" maxChars="256"/>
   <copyField source="nzBiostatusReference" dest="nzBiostatusReference_str" maxChars="256"/>
+  <copyField source="vernacularId" dest="vernacularId_str" maxChars="256"/>
+  <copyField source="vernacularName" dest="vernacularName_str" maxChars="256"/>
+  <copyField source="substrate" dest="substrate_str" maxChars="256"/>
+  <copyField source="noteType" dest="noteType_str" maxChars="256"/>
+  <copyField source="authors" dest="authors_str" maxChars="256"/>
+  <copyField source="citedNameId" dest="citedNameId_str" maxChars="256"/>
+  <copyField source="nomenclaturalStatus" dest="nomenclaturalStatus_str" maxChars="256"/>
+  <copyField source="host" dest="host_str" maxChars="256"/>
+  <copyField source="hostId" dest="hostId_str" maxChars="256"/>
+  <copyField source="nzBiostatusReferenceDisplay" dest="nzBiostatusReferenceDisplay_str" maxChars="256"/>
+  <copyField source="verncularRegionOfUse" dest="verncularRegionOfUse_str" maxChars="256"/>
   <copyField source="verncularId" dest="verncularId_str" maxChars="256"/>
+  <copyField source="verncularLanguageOfUse" dest="verncularLanguageOfUse_str" maxChars="256"/>
   <copyField source="verncularName" dest="verncularName_str" maxChars="256"/>
+  <copyField source="partAffected" dest="partAffected_str" maxChars="256"/>
+  <copyField source="verncularLanguageOfOrigin" dest="verncularLanguageOfOrigin_str" maxChars="256"/>
 </schema>
