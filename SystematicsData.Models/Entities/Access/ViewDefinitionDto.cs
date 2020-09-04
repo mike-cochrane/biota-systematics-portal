@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace SystematicsData.Models.Entities.Access
 {
+    [XmlRoot(ElementName = "ViewDefinition")]
     public class ViewDefinitionDto
     {
         public string DocumentClass { get; set; }

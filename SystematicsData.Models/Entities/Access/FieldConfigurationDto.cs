@@ -1,5 +1,8 @@
-﻿namespace SystematicsData.Models.Entities.Access
+﻿using System.Xml.Serialization;
+
+namespace SystematicsData.Models.Entities.Access
 {
+    [XmlType(TypeName = "FieldConfiguration")]
     public class FieldConfigurationDto
     {
         public string DataDocumentXpath { get; set; }
